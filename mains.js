@@ -276,7 +276,7 @@ function Type_Slot_Set(value1, value2) {
 			document.getElementById("id_" + nameValue[value1] + "_slot" + (value2 + 1) + "_" + (j + 1)).innerHTML = kaizouValue[value1][index][j][1];
 		}
 	}
-	Type_Calc(value1)
+	Type_Calc(value1);
 }
 
 function Type_Calc(value1) {
