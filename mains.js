@@ -1,6 +1,6 @@
 ﻿//0:ギヤ, 1:モーター, 2:ボディ, 3:シャーシ
-var nameValue = new Array("moter", "gear", "body", "chassis", "");
-var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ ", "");
+var nameValue = new Array("moter", "gear", "body", "chassis");
+var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ ");
 var nameUpdate = new Array(1, 0, 0, 0);
 
 var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aero", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "rollermasatsu", "rollerteikou");
@@ -11,7 +11,7 @@ var typeSelect = new Array();
 typeSelect[0] = new Array(1, 2, 3, 4, 5, 6);
 typeSelect[1] = new Array(1, 2, 3, 4, 5, 6, 7);
 typeSelect[2] = new Array(1, 2, 3, 4, 5, 9, 10);
-typeSelect[3] = new Array(1, 2, 3, 4, 5, 6, 11);
+typeSelect[3] = new Array(1, 2, 3, 4, 5, 6, 11, 12);
 
 var kaizouSelect = new Array();
 s = 0;
@@ -47,6 +47,17 @@ kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
 kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
 kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
 kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
+s = 0;
+kaizouSelect[3] = new Array();
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
 
 
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
@@ -68,9 +79,10 @@ selectValue[1][s++] = new Array("4:1 スーパーカウンターギヤ", 10.0, 1
 selectValue[1][s++] = new Array("3.5:1 超速ギヤ", 20.0, 0.0, 0.0, 0.4, 1.5, 850.0, 350.0);
 s = 0;
 selectValue[2] = new Array();
-selectValue[2][s++] = new Array("スーパードラゴンSDP", 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("パックマンボディ", 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("スーパードラゴンSDP", 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ホーネットJr.(棚橋SP)", 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("ブーメラン・10", 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("アバンテJr.", 7.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("セイントドラゴンJr.", 2.0, 2.0, 18.0, 20.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("マグナムセイバー", 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
@@ -84,7 +96,18 @@ selectValue[2][s++] = new Array("プロトセイバーJB", 2.0, 2.0, 18.0, 20.0,
 selectValue[2][s++] = new Array("シャイニングスコーピオン", 20.0, 0.0, 1.2, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ビクトリーマグナム", 20.0, 1.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("バンガードソニック", 7.0, 5.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("ブーメラン・10", 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+s = 0;
+selectValue[3] = new Array();
+selectValue[3][s++] = new Array("スーパー1シャーシ", 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
+selectValue[3][s++] = new Array("スーパー1強化シャーシ", 11.0, 10.0, 9.6, 25.0, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
+selectValue[3][s++] = new Array("ゼロシャーシ", 15.0, 5.0, 8.76, 13.5, 15.1, 850.0, 0.0, 0.0, 0.0, 0.0, 100.0, 5.0);
+selectValue[3][s++] = new Array("タイプ1シャーシ", 2.0, 18.0, 8.4, 18.0, 18.8, 1000.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
+selectValue[3][s++] = new Array("タイプ1シャーシ(イベント)", 2.0, 18.0, 7.92, 18.0, 18.8, 1000.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
+selectValue[3][s++] = new Array("タイプ2シャーシ", 20.0, 0.0, 8.16, 14.4, 17.7, 950.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
+selectValue[3][s++] = new Array("タイプ3シャーシ", 4.0, 16.0, 7.68, 16.2, 18.6, 930.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
+selectValue[3][s++] = new Array("FMシャーシ", 9.0, 11.0, 8.52, 12.6, 18.0, 900.0, 0.0, 0.0, 0.0, 0.0, 100.0, 5.0);
+selectValue[3][s++] = new Array("スーパーFMシャーシ", 12.0, 8.0, 9.12, 13.8, 17.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
+
 
 
 //2:イイ感じ, 3:職人技, 4:至高の逸品, 5:強化, 6:固定フラグ, 7:タイプ
@@ -156,6 +179,32 @@ kaizouValue[2][4][0] = new Array("限界軽量化 [2]", "重さ〇〇〇 [4] ", 
 kaizouValue[2][4][1] = new Array("", "スピード〇 [1(固定)] ", 1.0, 1.0, 1.0, 0.0005, 100, 1);
 kaizouValue[2][4][2] = new Array("", "スタミナ耐久× [1] ", -0.01, -0.012, -0.014, -0.0005, -1, 4);
 
+kaizouValue[3] = new Array();
+kaizouValue[3][0] = new Array();
+kaizouValue[3][0][0] = new Array("グリスアップ", "ギヤ負荷〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 6);
+kaizouValue[3][0][1] = new Array("", "パワー〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 2);
+kaizouValue[3][1] = new Array();
+kaizouValue[3][1][0] = new Array("軽量化", "重さ〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 5);
+kaizouValue[3][1][1] = new Array("", "スピード〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 1);
+kaizouValue[3][2] = new Array();
+kaizouValue[3][2][0] = new Array("限界軽量化 [2]", "重さ〇〇〇 [4] ", -0.04, -0.048, -0.056, -0.002, -1, 5);
+kaizouValue[3][2][1] = new Array("", "スピード〇 [1(固定)] ", 1.0, 1.0, 1.0, 0.0005, 100, 1);
+kaizouValue[3][2][2] = new Array("", "スタミナ耐久× [1] ", -0.01, -0.012, -0.014, -0.0005, -1, 4);
+kaizouValue[3][3] = new Array();
+kaizouValue[3][3][0] = new Array("電池落とし", "コーナー安定〇 [2] ", 0.02, 0.024, 0.028, 0.001, -1, 3);
+kaizouValue[3][4] = new Array();
+kaizouValue[3][4][0] = new Array("剛性補強 [4]", "スタミナ耐久〇〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 5);
+kaizouValue[3][4][1] = new Array("", "重さ× [1] ", 0.01, 0.012, 0.014, 0.0005, -1, 5);
+kaizouValue[3][5] = new Array();
+kaizouValue[3][5][0] = new Array("ギヤ位置の調整 [2]", "ギヤ負荷〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 6);
+kaizouValue[3][5][1] = new Array("", "パワー〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 2);
+kaizouValue[3][6] = new Array();
+kaizouValue[3][6][0] = new Array("制震対策 [4]", "制震〇 [5] ", 0.05, 0.06, 0.07, 0.0025, -1, 11);
+kaizouValue[3][6][1] = new Array("", "コーナー安定〇 [5(固定)] ", 1.0, 1.2, 1.4, 0.0025, 20, 3);
+kaizouValue[3][7] = new Array();
+kaizouValue[3][7][0] = new Array("超制震対策 [2]", "制震〇〇〇 [10] ", 0.1, 0.12, 0.14, 0.005, -1, 11);
+kaizouValue[3][7][1] = new Array("", "コーナー安定〇 [10(固定)] ", 1.0, 1.0, 1.0, 0.005, 10, 3);
+kaizouValue[3][7][2] = new Array("", "スタミナ耐久× [1] ", -0.01, -0.012, -0.014, -0.0005, -1, 4);
 
 
 function View_Set(value1) {
@@ -208,7 +257,7 @@ function View_Set(value1) {
 }
 
 function All_Set() {
-	for (var i = 0; i <= 2; i++) {
+	for (var i = 0; i < nameValue.length; i++) {
 		Type_Init(i);
 		Type_Set(i, 1);
 	}
