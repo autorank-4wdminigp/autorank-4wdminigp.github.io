@@ -24,40 +24,13 @@ kaizouSelect[0][s++] = new Array(0, 1, 4, 5, 6, 9);
 s = 0;
 kaizouSelect[1] = new Array();
 kaizouSelect[1][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[1][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[1][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[1][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[1][s++] = new Array(0, 1, 2, 3, 4);
 s = 0;
 kaizouSelect[2] = new Array();
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
 kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
 s = 0;
 kaizouSelect[3] = new Array();
 kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
-kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
-kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
-kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
-kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
-kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
-kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
-kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
-kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+
 
 
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
@@ -241,7 +214,7 @@ function View_Set(value1) {
 		document.write("<option value=3>職人技</option>");
 		document.write("<option value=4>至高の逸品</option>");
 		document.write("</select>");
-		document.write(" 強化Lv");
+		document.write(" 強化Lv ");
 		document.write("<select name='" + nameValue[value1] + "_lv" + i + "' onchange='Type_Calc(" + value1 + ")'>");
 		for (var j = 1; j <= 50; j++) {
 			document.write("<option value=" + j + ">" + j + "</option>");
