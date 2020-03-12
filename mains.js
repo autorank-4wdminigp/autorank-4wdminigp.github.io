@@ -104,9 +104,9 @@ kaizouValue[0][4] = new Array();
 kaizouValue[0][4][0] = new Array("ブレークイン(バランス重視)", "スピード〇 [1] ", 0.01, 0.012, 0.014, 0.0005, -1, 1);
 kaizouValue[0][4][1] = new Array("", "パワー〇 [1] ", 0.01, 0.012, 0.014, 0.0005, -1, 2);
 kaizouValue[0][5] = new Array();
-kaizouValue[0][5][0] = new Array("3Vブレークイン(トルク重視) [4]", "パワー〇〇〇 [3] ", 0.03, 0.036, 0.01442, 0.0015, -1, 2);
+kaizouValue[0][5][0] = new Array("3Vブレークイン(トルク重視) [4]", "パワー〇〇〇 [3] ", 0.03, 0.036, 0.042, 0.0015, -1, 2);
 kaizouValue[0][6] = new Array();
-kaizouValue[0][6][0] = new Array("3Vブレークイン(回転数重視) [4]", "スピード〇〇〇 [3] ", 0.03, 0.036, 0.01442, 0.0015, -1, 1);
+kaizouValue[0][6][0] = new Array("3Vブレークイン(回転数重視) [4]", "スピード〇〇〇 [3] ", 0.03, 0.036, 0.042, 0.0015, -1, 1);
 kaizouValue[0][7] = new Array();
 kaizouValue[0][7][0] = new Array("3Vブレークイン(バランス重視[トルク]) [2]", "スピード〇 [1] ", 0.01, 0.012, 0.014, 0.0005, -1, 1);
 kaizouValue[0][7][1] = new Array("", "パワー〇〇 [2] ", 0.02, 0.024, 0.028, 0.001, -1, 2);
@@ -184,7 +184,7 @@ function View_Set(value1) {
 	for (var i = 1; i <= 6; i++) {
 		document.write("<tr>");
 		document.write("<td class='cstd'>　</td>");
-		document.write("<td>スロット" + i);
+		document.write("<td>スロット" + i + " ");
 		document.write("<span id='id_" + nameValue[value1] + "_slot" + i + "'></span>");
 		document.write("<br>");
 		document.write("<select name='" + nameValue[value1] + "_type" + i + "' onchange='Type_Calc(" + value1 + ")'>");
@@ -254,7 +254,7 @@ function Type_Slot_Set(value1, value2) {
 			document.getElementById("id_" + nameValue[value1] + "_slot" + (value2 + 1) + "_" + (j + 1)).innerHTML = kaizouValue[value1][index][j][1];
 		}
 	}
-	Type_Calc(value1);
+	Type_Calc(value1)
 }
 
 function Type_Calc(value1) {
