@@ -1,10 +1,10 @@
-﻿//0:ギヤ, 1:モーター, 2:ボディ, 3:シャーシ
-var nameValue = new Array("moter", "gear", "body", "chassis");
-var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ ");
-var nameUpdate = new Array(1, 0, 0, 0);
+﻿//0:ギヤ, 1:モーター, 2:ボディ, 3:シャーシ, 4:ホイール
+var nameValue = new Array("moter", "gear", "body", "chassis", "wheel");
+var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ ", "ホイール ");
+var nameUpdate = new Array(1, 0, 0, 0, 1);
 
-var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aero", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "rollermasatsu", "rollerteikou");
-var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 ", "スタミナ耐久 ", "重さ ", "ギヤ負荷 ", "パワーロス ", "スピードロス ", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ ", "節電 ", "制振 ", "スラスト角 ", "タイヤ摩擦 ", "タイヤ旋回 ", "ローラー摩擦 ", "ローラー抵抗 ");
+var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aero", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "rollermasatsu", "rollerteikou", "wave");
+var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 ", "スタミナ耐久 ", "重さ ", "ギヤ負荷 ", "パワーロス ", "スピードロス ", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ ", "節電 ", "制振 ", "スラスト角 ", "タイヤ摩擦 ", "タイヤ旋回 ", "ローラー摩擦 ", "ローラー抵抗 ", "ウェーブ ");
 
 var s;
 var typeSelect = new Array();
@@ -12,6 +12,7 @@ typeSelect[0] = new Array(1, 2, 3, 4, 5, 6);
 typeSelect[1] = new Array(1, 2, 3, 4, 5, 6, 7);
 typeSelect[2] = new Array(1, 2, 3, 4, 5, 9, 10);
 typeSelect[3] = new Array(1, 2, 3, 4, 5, 6, 11, 12);
+typeSelect[4] = new Array(1, 2, 3, 4, 5, 7, 8, 11, 17);
 
 var kaizouSelect = new Array();
 s = 0;
@@ -30,11 +31,42 @@ kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
 s = 0;
 kaizouSelect[3] = new Array();
 kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
+s = 0;
+kaizouSelect[4] = new Array();
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5, 6);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5, 6);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5, 6);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5, 6);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5, 6);
+kaizouSelect[4][s++] = new Array(0, 1, 2, 3, 4, 5, 6);
+
 
 
 
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
-//11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:ローラー摩擦, 16:ローラー抵抗
+//11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:ローラー摩擦, 16:ローラー抵抗, 17:ウェーブ
 var selectValue = new Array();
 s = 0;
 selectValue[0] = new Array();
@@ -80,6 +112,36 @@ selectValue[3][s++] = new Array("タイプ2シャーシ", 20.0, 0.0, 8.16, 14.4,
 selectValue[3][s++] = new Array("タイプ3シャーシ", 4.0, 16.0, 7.68, 16.2, 18.6, 930.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
 selectValue[3][s++] = new Array("FMシャーシ", 9.0, 11.0, 8.52, 12.6, 18.0, 900.0, 0.0, 0.0, 0.0, 0.0, 100.0, 5.0);
 selectValue[3][s++] = new Array("スーパーFMシャーシ", 12.0, 8.0, 9.12, 13.8, 17.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
+s = 0;
+selectValue[4] = new Array();
+selectValue[4][s++] = new Array("小径タイプ1・フロント", 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径タイプ1・リヤ", 0.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ナローワンウェイ・フロント", 8.0, 5.0, 4.0, 2.6, 3.0, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径ナローワンウェイ・リヤ", 8.0, 5.0, 4.0, 2.6, 4.5, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径ローハイトワイド・フロント", 5.0, 8.0, 2.0, 2.8, 1.7, 0.0, 160.0, 1000.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ローハイトワイド・リヤ", 5.0, 8.0, 2.0, 2.8, 2.3, 0.0, 160.0, 1000.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ローハイトWワンウェイ・フロント", 6.0, 7.0, 6.0, 3.0, 3.0, 0.0, 80.0, 1000.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径ローハイトWワンウェイ・リヤ", 6.0, 7.0, 6.0, 3.0, 4.5, 0.0, 80.0, 1000.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("大径タイプ1・フロント", 12.0, 0.0, 1.0, 2.0, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ1・リヤ", 12.0, 0.0, 1.0, 2.0, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ2・フロント", 12.0, 0.0, 1.0, 2.4, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ2・リヤ", 12.0, 0.0, 1.0, 2.4, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ3・フロント", 12.0, 0.0, 1.0, 2.6, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ3・リヤ", 12.0, 0.0, 1.0, 2.6, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ4・フロント", 12.0, 0.0, 1.0, 2.0, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ4・リヤ", 12.0, 0.0, 1.0, 2.0, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ7・フロント", 11.0, 3.0, 1.0, 2.0, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ7・リヤ", 11.0, 3.0, 1.0, 2.0, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径エアロホイール・フロント", 12.0, 1.0, 1.0, 2.4, 1.7, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径エアロホイール・リヤ", 12.0, 1.0, 1.0, 2.4, 2.3, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径スピード・フロント", 13.0, 0.0, 1.0, 2.4, 1.6, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径スピード・リヤ", 13.0, 0.0, 1.0, 2.4, 2.2, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径ライトウェイト・フロント", 11.0, 2.0, 1.0, 2.0, 1.5, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径ライトウェイト・リヤ", 11.0, 2.0, 1.0, 2.0, 2.0, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径ワイド・フロント", 11.0, 2.0, 2.0, 2.9, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径ワイド・リヤ", 11.0, 2.0, 2.0, 2.9, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径ワンウェイ・フロント", 10.0, 3.0, 4.0, 2.6, 3.0, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("大径ワンウェイ・リヤ", 10.0, 3.0, 4.0, 2.6, 4.5, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
 
 
 
@@ -172,12 +234,36 @@ kaizouValue[3][5] = new Array();
 kaizouValue[3][5][0] = new Array("ギヤ位置の調整 [2]", "ギヤ負荷〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 6);
 kaizouValue[3][5][1] = new Array("", "パワー〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 2);
 kaizouValue[3][6] = new Array();
-kaizouValue[3][6][0] = new Array("制震対策 [4]", "制震〇 [5] ", 0.05, 0.06, 0.07, 0.0025, -1, 11);
+kaizouValue[3][6][0] = new Array("制振対策 [4]", "制振〇 [5] ", 0.05, 0.06, 0.07, 0.0025, -1, 11);
 kaizouValue[3][6][1] = new Array("", "コーナー安定〇 [5(固定)] ", 1.0, 1.2, 1.4, 0.0025, 20, 3);
 kaizouValue[3][7] = new Array();
-kaizouValue[3][7][0] = new Array("超制震対策 [2]", "制震〇〇〇 [10] ", 0.1, 0.12, 0.14, 0.005, -1, 11);
+kaizouValue[3][7][0] = new Array("超制振対策 [2]", "制振〇〇〇 [10] ", 0.1, 0.12, 0.14, 0.005, -1, 11);
 kaizouValue[3][7][1] = new Array("", "コーナー安定〇 [10(固定)] ", 1.0, 1.0, 1.0, 0.005, 10, 3);
 kaizouValue[3][7][2] = new Array("", "スタミナ耐久× [1] ", -0.01, -0.012, -0.014, -0.0005, -1, 4);
+
+kaizouValue[4] = new Array();
+kaizouValue[4][0] = new Array();
+kaizouValue[4][0][0] = new Array("タイヤの固定", "パワーロス〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 7);
+kaizouValue[4][0][1] = new Array("", "パワー〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 2);
+kaizouValue[4][1] = new Array();
+kaizouValue[4][1][0] = new Array("シャフト受けの面取り", "スピードロス〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 8);
+kaizouValue[4][1][1] = new Array("", "スピード〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 1);
+kaizouValue[4][2] = new Array();
+kaizouValue[4][2][0] = new Array("軽量化 [4]", "重さ〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 5);
+kaizouValue[4][2][1] = new Array("", "スピード〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 1);
+kaizouValue[4][3] = new Array();
+kaizouValue[4][3][0] = new Array("限界軽量化 [2]", "重さ〇〇〇 [4] ", -0.04, -0.048, -0.056, -0.002, -1, 5);
+kaizouValue[4][3][1] = new Array("", "スピード〇 [1(固定)] ", 1.0, 1.0, 1.0, 0.0005, 100, 1);
+kaizouValue[4][3][2] = new Array("", "スタミナ耐久× [1] ", -0.01, -0.012, -0.014, -0.0005, -1, 4);
+kaizouValue[4][4] = new Array();
+kaizouValue[4][4][0] = new Array("ホイール貫通 [2]", "スタミナ耐久〇〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 4);
+kaizouValue[4][5] = new Array();
+kaizouValue[4][5][0] = new Array("ホイールブレの精密調整 [4]", "コーナー安定〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 3);
+kaizouValue[4][6] = new Array();
+kaizouValue[4][6][0] = new Array("ギヤ精密調整 [4]", "パワーロス〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
+kaizouValue[4][6][1] = new Array("", "パワー〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 2);
+
+
 
 
 function View_Set(value1) {
@@ -212,13 +298,14 @@ function View_Set(value1) {
 		document.write("<select name='" + nameValue[value1] + "_type" + i + "' onchange='Type_Calc(" + value1 + ")'>");
 		document.write("<option value=2>イイ感じ</option>");
 		document.write("<option value=3>職人技</option>");
-		document.write("<option value=4>至高の逸品</option>");
+		document.write("<option value=4 selected>至高の逸品</option>");
 		document.write("</select>");
 		document.write(" 強化Lv ");
 		document.write("<select name='" + nameValue[value1] + "_lv" + i + "' onchange='Type_Calc(" + value1 + ")'>");
-		for (var j = 1; j <= 50; j++) {
+		for (var j = 1; j < 50; j++) {
 			document.write("<option value=" + j + ">" + j + "</option>");
 		}
+		document.write("<option value=" + j + " selected>" + j + "</option>");
 		document.write("</select>");
 		document.write("</td>");
 		document.write("<td><span id='id_" + nameValue[value1] + "_slot" + i + "_1'></span><br><input type='text' name='" + nameValue[value1] + "_slot" + i + "_1' value=''></td>");
@@ -286,7 +373,7 @@ function Type_Calc(value1) {
 		}
 	}
 	var nameIndex = document.getElementsByName(nameValue[value1])[0].value;
-	var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	for (var i = 1; i < selectValue[value1][nameIndex].length; i++) {
 		calcValue[i] = selectValue[value1][nameIndex][i];
 	}
