@@ -1,0 +1,36 @@
+table {
+  border-style: none;
+  border-collapse:separate;
+  border-spacing: 3px;
+}
+td {
+  color: #ffffff;
+  background-color: #800000;
+  padding: 3px;
+  text-align: right;
+}
+.cstd {
+  color: #000000;
+  background-color: #000000;
+  padding: 3px;
+}
+input {
+  border-style: none;
+  color: #c0c0c0;
+  background-color: #000000;
+  font-size: 15px;
+  width: 80px;
+}
+select {
+  border-style: none;
+  color: #c0c0c0;
+  font-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0px 30px 0px 0px;
+  background: url("downArrow.png") no-repeat right #000000;
+}
+a {
+  text-decoration:none;
+}
