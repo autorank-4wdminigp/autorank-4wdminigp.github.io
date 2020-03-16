@@ -723,59 +723,44 @@ function All_Set() {
 }
 
 function View_Set(value1) {
-	document.write("<table class='cstable'>");
-	document.write("<tr>");
-	document.write("<td>" + nameView[value1]);
-	document.write("<span id='id_" + nameValue[value1] + value1 + "'></span>");
-	document.write("</td>");
-	document.write("</tr>");
-	document.write("</table>");
-	document.write("<table class='cstable'>");
-	document.write("<tr>");
-	document.write("<td class='cstd'>　</td>");
+	var writeValue = "<table class='cstable'><tr><td>" + nameView[value1];
+	writeValue += "<span id='id_" + nameValue[value1] + value1 + "'></span></td>";
+	if (value1 == 2) {
+		
+	}
+	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 		if (i == 5 || i == 10 || i == 15) {
-			document.write("</tr>");
-			document.write("<tr>");
-			document.write("<td class='cstd'>　</td>");
+			writeValue += "</tr><tr><td class='cstd'>　</td>";
 		}
-		document.write("<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input type='text' name='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input type='text' name='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai' value=''></td>");
+		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai' value=''></td>";
 	}
-	document.write("</tr>");
-	document.write("</table>");
+	writeValue += "</tr></table>";
 
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
-		document.write("<table class='cstable'>");
+		writeValue += "<table class='cstable'>";
 		for (var i = 1; i <= 6; i++) {
-			document.write("<tr>");
-			document.write("<td class='cstd'>　</td>");
-			document.write("<td>スロット" + i + " ");
-			document.write("<span id='id_" + nameValue[value1] + value1 + "_slot" + i + "'></span>");
-			document.write("<br>");
-			document.write("<select name='" + nameValue[value1] + value1 + "_type" + i + "' onchange='Type_Calc(" + value1 + ")'>");
-			document.write("<option value=2>イイ感じ</option>");
-			document.write("<option value=3>職人技</option>");
-			document.write("<option value=4 selected>至高の逸品</option>");
-			document.write("</select>");
-			document.write(" 強化Lv ");
-			document.write("<select name='" + nameValue[value1] + value1 + "_lv" + i + "' onchange='Type_Calc(" + value1 + ")'>");
+			writeValue += "<tr><td class='cstd'>　</td><td>スロット" + i + " ";
+			writeValue += "<span id='id_" + nameValue[value1] + value1 + "_slot" + i + "'></span><br>";
+			writeValue += "<select id='" + nameValue[value1] + value1 + "_type" + i + "' onchange='Type_Calc(" + value1 + ")'>";
+			writeValue += "<option value=2>イイ感じ</option><option value=3>職人技</option><option value=4 selected>至高の逸品</option></select> 強化Lv ";
+			writeValue += "<select id='" + nameValue[value1] + value1 + "_lv" + i + "' onchange='Type_Calc(" + value1 + ")'>";
 			for (var j = 1; j < 50; j++) {
-				document.write("<option value=" + j + ">" + j + "</option>");
+				writeValue += "<option value=" + j + ">" + j + "</option>";
 			}
-			document.write("<option value=" + 50 + " selected>" + 50 + "</option>");
-			document.write("</select>");
-			document.write("</td>");
+			writeValue += "<option value=" + 50 + " selected>" + 50 + "</option></select></td>";
 			for (var j = 1; j <= 3; j++) {
-				document.write("<td><span id='id_" + nameValue[value1] + value1 + "_slot" + i + "_" + j + "'></span><br><input type='text' name='" + nameValue[value1] + value1 + "_slot" + i + "_" + j +"' value=''></td>");
+				writeValue += "<td><span id='id_" + nameValue[value1] + value1 + "_slot" + i + "_" + j + "'></span><br><input type='text' id='" + nameValue[value1] + value1 + "_slot" + i + "_" + j +"' value=''></td>";
 			}
-			document.write("</tr>");
+			writeValue += "</tr>";
 		}
-		document.write("</table>");
+		writeValue += "</table>";
 	}
+	document.write(writeValue);
 }
 
 function Type_Init(value1) {
-	var innerValue = "<select name='" + nameValue[value1] + value1 + "' onchange='Type_Set(" + value1 + ", " + nameUpdate[nameCalc[value1]] + ")'>";
+	var innerValue = "<select id='" + nameValue[value1] + value1 + "' onchange='Type_Set(" + value1 + ", " + nameUpdate[nameCalc[value1]] + ")'>";
 	for (var i = 0; i < selectValue[nameCalc[value1]].length; i++) {
 		innerValue += "<option value=" + i + ">" + selectValue[nameCalc[value1]][i][0] + "</option>";
 	}
@@ -783,12 +768,12 @@ function Type_Init(value1) {
 }
 
 function Type_Set(value1, value2) {
-	var index = document.getElementsByName(nameValue[value1] + value1)[0].value;
+	var index = document.getElementById(nameValue[value1] + value1).value;
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		if (value2 == 1) {
 			var innerValue = "";
 			for (var i = 1; i <= 6; i++) {
-				innerValue = "<select name='" + nameValue[value1] + value1 + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
+				innerValue = "<select id='" + nameValue[value1] + value1 + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
 				innerValue += "<option value=-1 selected>改造選択</option>";
 				for (var j = 0; j < kaizouSelect[nameCalc[value1]][index].length; j++) {
 					innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][index][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][index][j]][0][0] + "</option>";
@@ -801,13 +786,13 @@ function Type_Set(value1, value2) {
 		}
 	}
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-		document.getElementsByName(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + value1)[0].value = selectValue[nameCalc[value1]][index][typeSelect[nameCalc[value1]][i]];
+		document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + value1).value = selectValue[nameCalc[value1]][index][typeSelect[nameCalc[value1]][i]];
 	}
 	Type_Calc(value1);
 }
 
 function Type_Slot_Set(value1, value2) {
-	var index = document.getElementsByName(nameValue[value1] + value1 + '_slot' + (value2 + 1))[0].value;
+	var index = document.getElementById(nameValue[value1] + value1 + '_slot' + (value2 + 1)).value;
 	for (var j = 0; j < 3; j++) {
 		document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + (value2 + 1) + "_" + (j + 1)).innerHTML = "";
 	}
@@ -822,30 +807,30 @@ function Type_Slot_Set(value1, value2) {
 function Type_Calc(value1) {
 	if (calcFlg == 0) return 0;
 	if (kaizouSelect[nameCalc[value1]][0].length == 0) {
-		var nameIndex = document.getElementsByName(nameValue[value1] + value1)[0].value;
+		var nameIndex = document.getElementById(nameValue[value1] + value1).value;
 		var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //24
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length; i++) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i];
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-			document.getElementsByName(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai")[0].value = calcValue[typeSelect[nameCalc[value1]][i]];
+			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
 		}
 	} else {
 		for (var i = 1; i <= 6; i++) {
 			for (var j = 1; j <= 3; j++) {
-				document.getElementsByName(nameValue[value1] + value1 + "_slot" + i + "_" + j)[0].value = "";
+				document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + j).value = "";
 			}
 		}
-		var nameIndex = document.getElementsByName(nameValue[value1] + value1)[0].value;
+		var nameIndex = document.getElementById(nameValue[value1] + value1).value;
 		var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //24
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length; i++) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i];
 		}
 		for (var i = 1; i <= 6; i++) {
-			var slotIndex = document.getElementsByName(nameValue[value1] + value1 + '_slot' + i)[0].value;
+			var slotIndex = document.getElementById(nameValue[value1] + value1 + '_slot' + i).value;
 			if (slotIndex == -1) continue;
-			var typeVal = document.getElementsByName(nameValue[value1] + value1 + '_type' + i)[0].value;
-			var lvVal = document.getElementsByName(nameValue[value1] + value1 + '_lv' + i)[0].value;
+			var typeVal = document.getElementById(nameValue[value1] + value1 + '_type' + i).value;
+			var lvVal = document.getElementById(nameValue[value1] + value1 + '_lv' + i).value;
 			for (var j = 0; j < kaizouValue[nameCalc[value1]][slotIndex].length; j++) {
 				var typeIndex = kaizouValue[nameCalc[value1]][slotIndex][j][7];
 				var kaizouVal = 0.0;
@@ -855,13 +840,13 @@ function Type_Calc(value1) {
 					kaizouVal = kaizouValue[nameCalc[value1]][slotIndex][j][typeVal];
 				}
 				var kyoukaVal = (calcValue[typeIndex] + kaizouVal) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
-				document.getElementsByName(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1))[0].value = kaizouVal + kyoukaVal;
+				document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaVal;
 				calcValue[typeIndex] += kaizouVal + kyoukaVal;
 				if (calcValue[typeIndex] < 0) calcValue[typeIndex] = 0;
 			}
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-			document.getElementsByName(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai")[0].value = calcValue[typeSelect[nameCalc[value1]][i]];
+			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
 		}
 	}
 
@@ -870,13 +855,13 @@ function Type_Calc(value1) {
 	var resultValueKai = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //24
 	for (var value0 = 0; value0 < nameValue.length; value0++) {
 		for (var i = 0; i < typeSelect[nameCalc[value0]].length; i++) {
-			resultValue[typeSelect[nameCalc[value0]][i]] += 1 * document.getElementsByName(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0)[0].value;
-			resultValueKai[typeSelect[nameCalc[value0]][i]] += 1 * document.getElementsByName(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kai")[0].value;
+			resultValue[typeSelect[nameCalc[value0]][i]] += 1 * document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0).value;
+			resultValueKai[typeSelect[nameCalc[value0]][i]] += 1 * document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kai").value;
 		}
 	}
 	for (var i = 1; i < typeValue.length; i++) {
-		window.parent.results.document.getElementsByName(typeValue[i])[0].value = resultValue[i];
-		window.parent.results.document.getElementsByName(typeValue[i]+ "_kai")[0].value = resultValueKai[i];
+		window.parent.results.document.getElementById(typeValue[i]).value = resultValue[i];
+		window.parent.results.document.getElementById(typeValue[i]+ "_kai").value = resultValueKai[i];
 	}
 }
 
@@ -888,7 +873,7 @@ function View_Result() {
 			document.write("</tr>");
 			document.write("<tr>");
 		}
-		document.write("<td>" + typeView[i] + "<input type='text' name='" + typeValue[i] + "' value=''><br>改造後 <input type='text' name='" + typeValue[i] + "_kai' value=''></td>");
+		document.write("<td>" + typeView[i] + "<input type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input type='text' id='" + typeValue[i] + "_kai' value=''></td>");
 	}
 	document.write("</tr>");
 	document.write("</table>");
