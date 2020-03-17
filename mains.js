@@ -728,7 +728,7 @@ function View_Set(value1) {
 	if (value1 == 2) {
 		writeValue += "<td class='cstd'>　</td>"
 		for (var i = 1; i <= 3; i++) {
-			writeValue += "<td>" + "<input type='checkbox' id='" + nameValue[value1] + value1 + '_niku' + i + "'style='width:30px;background-color:#800000;' onchange='Type_Calc(" + value1 + ")'> 肉抜き" + i + "　</td>";
+			writeValue += "<td>" + "<input class='csinput' type='checkbox' id='" + nameValue[value1] + value1 + '_niku' + i + "'onchange='Type_Calc(" + value1 + ")'> 肉抜き" + i + "　</td>";
 		}
 	}
 	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
@@ -859,14 +859,25 @@ function Type_Calc(value1) {
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
 		}
 	}
-
 	if (resultFlg == 0) return 0;
+	Result_Calc();
+}
+
+function Result_Calc() {
 	var resultValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //24
 	var resultValueKai = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //24
+	var disp1 = window.parent.results.document.getElementById('disp1').checked;
 	for (var value0 = 0; value0 < nameValue.length; value0++) {
+		var disp1Flg = 0;
+		if (disp1) {
+			if (value0 >= 27 && value0 <= 31) {
+				if (window.parent.mains.document.getElementById(nameValue[value0] + value0).value == 0) disp1Flg = 1;
+			}
+		}
 		for (var i = 0; i < typeSelect[nameCalc[value0]].length; i++) {
-			resultValue[typeSelect[nameCalc[value0]][i]] += 1 * document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0).value;
-			resultValueKai[typeSelect[nameCalc[value0]][i]] += 1 * document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kai").value;
+			if (disp1Flg == 1 && typeSelect[nameCalc[value0]][i] != 5) continue;
+			resultValue[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0).value;
+			resultValueKai[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kai").value;
 		}
 	}
 	for (var i = 1; i < typeValue.length; i++) {
@@ -876,16 +887,17 @@ function Type_Calc(value1) {
 }
 
 function View_Result() {
-	document.write("<table class='cstable'>");
-	document.write("<tr>");
+	document.write("<table class='cstable'><tr>");
+	document.write("<td><input class='csinput' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>標準表示　");
+	document.write("<input class='csinput' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>超速GPエントリー変更前表示　</td>");
+	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
 	for (var i = 1; i < typeValue.length; i++) {
 		if (i == 6 || i == 11 || i == 16 || i == 21) {
 			document.write("</tr>");
-			document.write("<tr>");
+			document.write("<tr><td class='cstd'>　</td>");
 		}
 		document.write("<td>" + typeView[i] + "<input type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input type='text' id='" + typeValue[i] + "_kai' value=''></td>");
 	}
-	document.write("</tr>");
-	document.write("</table>");
+	document.write("</tr></table>");
 }
 
