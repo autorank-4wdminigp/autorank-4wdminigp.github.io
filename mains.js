@@ -375,8 +375,8 @@ selectValue[14][s++] = new Array("放熱フィン", 7.0, 23.0, 0.0, 1.0, 1.5, 0.
 s = 0;
 selectValue[15] = new Array();
 selectValue[15][s++] = new Array("標準ピニオンギヤ", 0.0, 0.0, 0.0, 0.0, 0.1, 700.0, 400.0);
-selectValue[15][s++] = new Array("真ちゅうピニオンギヤ", 4.0, 16.0, 0.0, 1.0, 0.4, 650.0, 380.0);
 selectValue[15][s++] = new Array("ピニオンギヤ(紫)", 10.0, 10.0, 0.0, 0.2, 0.1, 650.0, 380.0);
+selectValue[15][s++] = new Array("真ちゅうピニオンギヤ", 4.0, 16.0, 0.0, 1.0, 0.4, 650.0, 380.0);
 s = 0;
 selectValue[16] = new Array();
 selectValue[16][s++] = new Array("標準プロペラシャフト", 0.0, 0.0, 0.0, 0.0, 2.0, 700.0, 300.0);
@@ -390,8 +390,8 @@ selectValue[17][s++] = new Array("丸穴ボールベアリング", 30.0, 0.0, 0.
 s = 0;
 selectValue[18] = new Array();
 selectValue[18][s++] = new Array("標準シャフト", 0.0, 0.0, 0.0, 0.0, 2.5, 0.0, 0.0, 1250.0);
-selectValue[18][s++] = new Array("中空ステンレスシャフト", 25.0, 5.0, 0.0, 1.0, 2.0, 0.0, 0.0, 900.0);
 selectValue[18][s++] = new Array("ハードシャフト", 5.0, 25.0, 0.0, 2.0, 3.0, 0.0, 0.0, 950.0);
+selectValue[18][s++] = new Array("中空ステンレスシャフト", 25.0, 5.0, 0.0, 1.0, 2.0, 0.0, 0.0, 900.0);
 s = 0;
 selectValue[19] = new Array();
 selectValue[19][s++] = new Array("標準クラウンギヤ", 0.0, 0.0, 0.0, 0.0, 0.8, 1400.0, 600.0);
@@ -726,7 +726,10 @@ function View_Set(value1) {
 	var writeValue = "<table class='cstable'><tr><td>" + nameView[value1];
 	writeValue += "<span id='id_" + nameValue[value1] + value1 + "'></span></td>";
 	if (value1 == 2) {
-		
+		writeValue += "<td class='cstd'>　</td>"
+		for (var i = 1; i <= 3; i++) {
+			writeValue += "<td>" + "<input type='checkbox' id='" + nameValue[value1] + value1 + '_niku' + i + "'style='width:30px;background-color:#800000;' onchange='Type_Calc(" + value1 + ")'> 肉抜き" + i + "　</td>";
+		}
 	}
 	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
@@ -743,7 +746,7 @@ function View_Set(value1) {
 			writeValue += "<tr><td class='cstd'>　</td><td>スロット" + i + " ";
 			writeValue += "<span id='id_" + nameValue[value1] + value1 + "_slot" + i + "'></span><br>";
 			writeValue += "<select id='" + nameValue[value1] + value1 + "_type" + i + "' onchange='Type_Calc(" + value1 + ")'>";
-			writeValue += "<option value=2>イイ感じ</option><option value=3>職人技</option><option value=4 selected>至高の逸品</option></select> 強化Lv ";
+			writeValue += "<option value=2>イイ感じ</option><option value=3>職人技</option><option value=4 selected>至高の逸品</option></select>　強化Lv ";
 			writeValue += "<select id='" + nameValue[value1] + value1 + "_lv" + i + "' onchange='Type_Calc(" + value1 + ")'>";
 			for (var j = 1; j < 50; j++) {
 				writeValue += "<option value=" + j + ">" + j + "</option>";
@@ -825,6 +828,13 @@ function Type_Calc(value1) {
 		var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //24
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length; i++) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i];
+		}
+		if (value1 == 2) {
+			for (var i = 1; i <= 3; i++) {
+				if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
+					calcValue[5] -= 0.32;
+				}
+			}
 		}
 		for (var i = 1; i <= 6; i++) {
 			var slotIndex = document.getElementById(nameValue[value1] + value1 + '_slot' + i).value;
