@@ -714,6 +714,7 @@ function All_Set() {
 		Type_Init(i);
 		Type_Set(i, 1);
 	}
+	UrlSet();
 	calcFlg = 1;
 	for (var i = 0; i < nameValue.length; i++) {
 		Type_Calc(i);
@@ -759,6 +760,7 @@ function View_Set(value1) {
 		}
 		writeValue += "</table>";
 	}
+	writeValue += "<input type='hidden' id='" + nameValue[value1] + value1 + "_url' value=''>";
 	document.write(writeValue);
 }
 
@@ -859,8 +861,10 @@ function Type_Calc(value1) {
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
 		}
 	}
+	UrlCalc(value1);
 	if (resultFlg == 0) return 0;
 	Result_Calc();
+	UrlView();
 }
 
 function Result_Calc() {
@@ -883,6 +887,11 @@ function Result_Calc() {
 	for (var i = 1; i < typeValue.length; i++) {
 		window.parent.results.document.getElementById(typeValue[i]).value = resultValue[i];
 		window.parent.results.document.getElementById(typeValue[i]+ "_kai").value = resultValueKai[i];
+		if (resultValue[i] == 0) {
+			window.parent.results.document.getElementById(typeValue[i]+ "_rate").value = 0;
+		} else {
+			window.parent.results.document.getElementById(typeValue[i]+ "_rate").value = resultValueKai[i] / resultValue[i] * 100.0 - 100.0;
+		}
 	}
 }
 
@@ -896,8 +905,193 @@ function View_Result() {
 			document.write("</tr>");
 			document.write("<tr><td class='cstd'>　</td>");
 		}
-		document.write("<td>" + typeView[i] + "<input type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input type='text' id='" + typeValue[i] + "_kai' value=''></td>");
+		document.write("<td>" + typeView[i] + "<input type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input type='text' id='" + typeValue[i] + "_kai' value=''><br>改造比率[%] <input type='text' id='" + typeValue[i] + "_rate' value=''></td>");
 	}
 	document.write("</tr></table>");
+	document.write("<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>");
+	document.write("： <span id='dispurl'></span>");
+}
+
+function UrlCalc(value1) {
+	var urlValue = NumToUrl(document.getElementById(nameValue[value1] + value1).selectedIndex);
+	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+		for (var i = 1; i <= 6; i++) {
+			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex);
+			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_type' + i).selectedIndex);
+			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex);
+		}
+		if (value1 == 2) {
+			for (var i = 1; i <= 3; i++) {
+				if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
+					urlValue += NumToUrl(1);
+				} else {
+					urlValue += NumToUrl(0);
+				}
+			}
+		}
+	}
+	document.getElementById(nameValue[value1] + value1 + "_url").value = urlValue;
+}
+
+function UrlView() {
+	var urlValue = "";
+	for (var value0 = 0; value0 < nameValue.length; value0++) {
+		urlValue += document.getElementById(nameValue[value0] + value0 + "_url").value;
+	}
+	var url = window.parent.document.location.href;
+	var start = url.indexOf("?", 0);
+	var urlInit = url;
+	if (start != -1) urlInit = url.substring(0, start);
+	window.parent.results.document.getElementById('linkurl').href = urlInit + "?" + urlValue;
+	window.parent.results.document.getElementById('dispurl').innerHTML = urlInit + "?" + urlValue;
+}
+
+function UrlSet() {
+	var url = window.parent.document.location.href;
+	var start = url.indexOf("?", 0);
+	if (start != -1) {
+		var presetText = url.substring(start + 1);
+		var index = 0;
+		var pos = 0;
+		if (presetText.length == (19 * (nameValue.length - 5) + 5 + 3)) {
+			for (var value1 = 0; value1 < nameValue.length; value1++) {
+				index = UrlToNum(presetText.charAt(pos++));
+				document.getElementById(nameValue[value1] + value1).selectedIndex = index;
+				if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+					for (var i = 1; i <= 6; i++) {
+						index = UrlToNum(presetText.charAt(pos++));
+						document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = index;
+						index = UrlToNum(presetText.charAt(pos++));
+						document.getElementById(nameValue[value1] + value1 + '_type' + i).selectedIndex = index;
+						index = UrlToNum(presetText.charAt(pos++));
+						document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex = index;
+					}
+					if (value1 == 2) {
+						for (var i = 1; i <= 3; i++) {
+							index = UrlToNum(presetText.charAt(pos++));
+							if (index == 1) {
+								document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = true;
+							} else {
+								document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = false;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+function UrlToNum(value) {
+    if (value == "a") return 0;
+    if (value == "b") return 1;
+    if (value == "c") return 2;
+    if (value == "d") return 3;
+    if (value == "e") return 4;
+    if (value == "f") return 5;
+    if (value == "g") return 6;
+    if (value == "h") return 7;
+    if (value == "i") return 8;
+    if (value == "j") return 9;
+    if (value == "k") return 10;
+    if (value == "l") return 11;
+    if (value == "m") return 12;
+    if (value == "n") return 13;
+    if (value == "o") return 14;
+    if (value == "p") return 15;
+    if (value == "q") return 16;
+    if (value == "r") return 17;
+    if (value == "s") return 18;
+    if (value == "t") return 19;
+    if (value == "u") return 20;
+    if (value == "v") return 21;
+    if (value == "w") return 22;
+    if (value == "x") return 23;
+    if (value == "y") return 24;
+    if (value == "z") return 25;
+	if (value == "A") return 26;
+	if (value == "B") return 27;
+	if (value == "C") return 28;
+	if (value == "D") return 29;
+	if (value == "E") return 30;
+	if (value == "F") return 31;
+	if (value == "G") return 32;
+	if (value == "H") return 33;
+	if (value == "I") return 34;
+	if (value == "J") return 35;
+	if (value == "K") return 36;
+	if (value == "L") return 37;
+	if (value == "M") return 38;
+	if (value == "N") return 39;
+	if (value == "O") return 40;
+	if (value == "P") return 41;
+	if (value == "Q") return 42;
+	if (value == "R") return 43;
+	if (value == "S") return 44;
+	if (value == "T") return 45;
+	if (value == "U") return 46;
+	if (value == "V") return 47;
+	if (value == "W") return 48;
+	if (value == "X") return 49;
+	if (value == "Y") return 50;
+	if (value == "Z") return -1;
+    return 0;
+}
+
+
+function NumToUrl(value) {
+    if (value == 0) return "a";
+    if (value == 1) return "b";
+    if (value == 2) return "c";
+    if (value == 3) return "d";
+    if (value == 4) return "e";
+    if (value == 5) return "f";
+    if (value == 6) return "g";
+    if (value == 7) return "h";
+    if (value == 8) return "i";
+    if (value == 9) return "j";
+    if (value == 10) return "k";
+    if (value == 11) return "l";
+    if (value == 12) return "m";
+    if (value == 13) return "n";
+    if (value == 14) return "o";
+    if (value == 15) return "p";
+    if (value == 16) return "q";
+    if (value == 17) return "r";
+    if (value == 18) return "s";
+    if (value == 19) return "t";
+    if (value == 20) return "u";
+    if (value == 21) return "v";
+    if (value == 22) return "w";
+    if (value == 23) return "x";
+    if (value == 24) return "y";
+    if (value == 25) return "z";
+	if (value == 26) return "A";
+	if (value == 27) return "B";
+	if (value == 28) return "C";
+	if (value == 29) return "D";
+	if (value == 30) return "E";
+	if (value == 31) return "F";
+	if (value == 32) return "G";
+	if (value == 33) return "H";
+	if (value == 34) return "I";
+	if (value == 35) return "J";
+	if (value == 36) return "K";
+	if (value == 37) return "L";
+	if (value == 38) return "M";
+	if (value == 39) return "N";
+	if (value == 40) return "O";
+	if (value == 41) return "P";
+	if (value == 42) return "Q";
+	if (value == 43) return "R";
+	if (value == 44) return "S";
+	if (value == 45) return "T";
+	if (value == 46) return "U";
+	if (value == 47) return "V";
+	if (value == 48) return "W";
+	if (value == 49) return "X";
+	if (value == 50) return "Y";
+	if (value == -1) return "Z";
+    return "a";
 }
 
