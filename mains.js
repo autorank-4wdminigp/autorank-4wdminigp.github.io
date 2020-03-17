@@ -957,7 +957,7 @@ function UrlSet() {
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				index = UrlToNum(presetText.charAt(pos++));
 				document.getElementById(nameValue[value1] + value1).selectedIndex = index;
-				Type_Set(value1, 1);
+				Type_Set(value1, nameUpdate[nameCalc[value1]]);
 				if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 					for (var i = 1; i <= 6; i++) {
 						index = UrlToNum(presetText.charAt(pos++));
