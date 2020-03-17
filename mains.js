@@ -909,7 +909,7 @@ function View_Result() {
 	}
 	document.write("</tr></table>");
 	document.write("<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>");
-	document.write("： <span id='dispurl'></span>");
+	document.write("<table class='cstable'><tr><td class='cstd'>　</td><td><input class='csinput2' type='text' id='dispurl' value=''></td></tr></table>");
 }
 
 function UrlCalc(value1) {
@@ -943,7 +943,7 @@ function UrlView() {
 	var urlInit = url;
 	if (start != -1) urlInit = url.substring(0, start);
 	window.parent.results.document.getElementById('linkurl').href = urlInit + "?" + urlValue;
-	window.parent.results.document.getElementById('dispurl').innerHTML = urlInit + "?" + urlValue;
+	window.parent.results.document.getElementById('dispurl').value = urlInit + "?" + urlValue;
 }
 
 function UrlSet() {

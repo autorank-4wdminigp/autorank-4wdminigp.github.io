@@ -27,6 +27,13 @@ input {
   background-color: #800000;
   width: 30px;
 }
+.csinput2 {
+  border-style: none;
+  color: #ffffff;
+  background-color: #000000;
+  font-size: 16px;
+  width: 900px;
+}
 select {
   border-style: none;
   color: #c0c0c0;
