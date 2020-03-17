@@ -966,6 +966,7 @@ function UrlSet() {
 						document.getElementById(nameValue[value1] + value1 + '_type' + i).selectedIndex = index;
 						index = UrlToNum(presetText.charAt(pos++));
 						document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex = index;
+						Type_Slot_Set(value1, i - 1);
 					}
 					if (value1 == 2) {
 						for (var i = 1; i <= 3; i++) {
