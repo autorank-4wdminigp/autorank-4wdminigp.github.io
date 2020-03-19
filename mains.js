@@ -943,8 +943,8 @@ function Result_Calc() {
 
 function View_Result() {
 	document.write("<table class='cstable'><tr>");
-	document.write("<td><input class='csinput' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>標準表示　");
-	document.write("<input class='csinput' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>超速GPエントリー変更前表示　</td>");
+	document.write("<td><input class='csinput' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>セッティング画面表示　");
+	document.write("<input class='csinput' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>マシン診断結果・超速GPエントリー変更前表示　</td>");
 	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
 	for (var i = 1; i < typeValue.length; i++) {
 		if (i == 6 || i == 11 || i == 16 || i == 21) {
