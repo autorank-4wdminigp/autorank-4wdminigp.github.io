@@ -14,17 +14,18 @@ td {
   background-color: #000000;
   padding: 3px;
 }
-input {
+.csinput {
   border-style: none;
   color: #c0c0c0;
   background-color: #000000;
   font-size: 15px;
   width: 80px;
 }
-.csinput {
+.csinput1 {
   border-style: none;
   color: #000000;
   background-color: #800000;
+  font-size: 15px;
   width: 30px;
 }
 .csinput2 {

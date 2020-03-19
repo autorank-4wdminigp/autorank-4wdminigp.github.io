@@ -775,15 +775,19 @@ function View_Set(value1) {
 	if (value1 == 2) {
 		writeValue += "<td class='cstd'>　</td>"
 		for (var i = 1; i <= 3; i++) {
-			writeValue += "<td>" + "<input class='csinput' type='checkbox' id='" + nameValue[value1] + value1 + '_niku' + i + "'onchange='Type_Calc(" + value1 + ")'> 肉抜き" + i + "　</td>";
+			writeValue += "<td><input class='csinput1' type='checkbox' id='" + nameValue[value1] + value1 + '_niku' + i + "' onchange='Type_Calc(" + value1 + ")'> 肉抜き" + i + "　</td>";
 		}
+	}
+	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+		writeValue += "<td class='cstd'>　</td>"
+		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
 	}
 	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 		if (i == 5 || i == 10 || i == 15) {
 			writeValue += "</tr><tr><td class='cstd'>　</td>";
 		}
-		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai' value=''></td>";
+		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai' value=''></td>";
 	}
 	writeValue += "</tr></table>";
 
@@ -800,7 +804,7 @@ function View_Set(value1) {
 			}
 			writeValue += "<option value=" + 50 + " selected>" + 50 + "</option></select></td>";
 			for (var j = 1; j <= 3; j++) {
-				writeValue += "<td><span id='id_" + nameValue[value1] + value1 + "_slot" + i + "_" + j + "'></span><br><input type='text' id='" + nameValue[value1] + value1 + "_slot" + i + "_" + j +"' value=''></td>";
+				writeValue += "<td><span id='id_" + nameValue[value1] + value1 + "_slot" + i + "_" + j + "'></span><br><input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_slot" + i + "_" + j +"' value=''></td>";
 			}
 			writeValue += "</tr>";
 		}
@@ -943,15 +947,15 @@ function Result_Calc() {
 
 function View_Result() {
 	document.write("<table class='cstable'><tr>");
-	document.write("<td><input class='csinput' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>セッティング画面表示　");
-	document.write("<input class='csinput' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>マシン診断結果・超速GPエントリー変更前表示　</td>");
+	document.write("<td><input class='csinput1' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>セッティング画面表示　");
+	document.write("<input class='csinput1' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>マシン診断結果・超速GPエントリー変更前表示　</td>");
 	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
 	for (var i = 1; i < typeValue.length; i++) {
 		if (i == 6 || i == 11 || i == 16 || i == 21) {
 			document.write("</tr>");
 			document.write("<tr><td class='cstd'>　</td>");
 		}
-		document.write("<td>" + typeView[i] + "<input type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input type='text' id='" + typeValue[i] + "_kai' value=''><br>改造比率[%] <input type='text' id='" + typeValue[i] + "_rate' value=''></td>");
+		document.write("<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kai' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>");
 	}
 	document.write("</tr></table>");
 	document.write("<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>");
@@ -975,6 +979,7 @@ function UrlCalc(value1) {
 				}
 			}
 		}
+		document.getElementById(nameValue[value1] + value1 + "_pres").value = urlValue;
 	}
 	document.getElementById(nameValue[value1] + value1 + "_url").value = urlValue;
 }
@@ -1024,6 +1029,36 @@ function UrlSet() {
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+}
+
+function Preset_Set(value1) {
+	var presetText = document.getElementById(nameValue[value1] + value1 + "_pres").value;
+	var index = 0;
+	var pos = 0;
+	if ((value1 != 2 && presetText.length == 19) || (value1 == 2 && presetText.length == 22)) {
+		index = UrlToNum(presetText.charAt(pos++));
+		document.getElementById(nameValue[value1] + value1).selectedIndex = index;
+		Type_Set(value1, nameUpdate[nameCalc[value1]]);
+		for (var i = 1; i <= 6; i++) {
+			index = UrlToNum(presetText.charAt(pos++));
+			document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = index;
+			index = UrlToNum(presetText.charAt(pos++));
+			document.getElementById(nameValue[value1] + value1 + '_type' + i).selectedIndex = index;
+			index = UrlToNum(presetText.charAt(pos++));
+			document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex = index;
+			Type_Slot_Set(value1, i - 1);
+		}
+		if (value1 == 2) {
+			for (var i = 1; i <= 3; i++) {
+				index = UrlToNum(presetText.charAt(pos++));
+				if (index == 1) {
+					document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = true;
+				} else {
+					document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = false;
 				}
 			}
 		}
