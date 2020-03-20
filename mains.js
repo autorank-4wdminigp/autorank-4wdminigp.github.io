@@ -1062,6 +1062,11 @@ function Preset_Set(value1) {
 				}
 			}
 		}
+	} else {
+		for (var i = 1; i <= 6; i++) {
+			document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = 0;
+			Type_Slot_Set(value1, i - 1);
+		}
 	}
 }
 
