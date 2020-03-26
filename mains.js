@@ -86,6 +86,8 @@ kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
+kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
+kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
 s = 0;
 kaizouSelect[5] = new Array();
 kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
@@ -208,9 +210,9 @@ s = 0;
 kaizouSelect[21] = new Array();
 kaizouSelect[21][s++] = new Array();
 
-//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+)
+//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン)
 var selectProper = new Array("－", "St", "U", "Kp", "Co", "J");
-var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "ブレーキ効果UP+", "バウンド抑制UP+", "節電UP+", "オフロード特効UP+");
+var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "ブレーキ効果UP+", "バウンド抑制UP+", "節電UP+", "オフロード特効UP+", "なし", "かっとびマシン");
 
 var selectValue = new Array();
 s = 0;
@@ -267,12 +269,14 @@ selectValue[2][s++] = new Array("プロトセイバーJB", 3, 3, 2.0, 2.0, 18.0,
 selectValue[2][s++] = new Array("シャイニングスコーピオン", 1, 11, 20.0, 0.0, 1.2, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ビクトリーマグナム", 1, 11, 20.0, 1.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("バンガードソニック", 4, 14, 7.0, 5.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("レイスティンガー(データ仮)", 3, 6, 9.0, 2.0, 18.0, 12.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("レイスティンガー", 3, 6, 9.0, 2.0, 18.0, 12.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ブーメラン・10", 1, 1, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("エアロソリチュード", 4, 4, 7.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("クリムゾングローリー", 1, 1, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("ブロッケンギガント", 3, 5, 2.0, 2.0, 18.0, 20.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//43
-
+selectValue[2][s++] = new Array("ブロッケンギガント", 3, 5, 2.0, 2.0, 18.0, 20.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("マグナムセイバー(そらまるSP)", 1, 2, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("マンタレイJr.", 1, 9, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("サイクロンマグナム", 1, 21, 20.0, 1.0, 4.05, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//46
 s = 0;
 selectValue[3] = new Array();
 selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
@@ -284,6 +288,7 @@ selectValue[3][s++] = new Array("タイプ2シャーシ", 1, 0, 20.0, 0.0, 8.16,
 selectValue[3][s++] = new Array("タイプ3シャーシ", 1, 0, 4.0, 16.0, 7.68, 16.2, 18.6, 930.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
 selectValue[3][s++] = new Array("FMシャーシ", 2, 0, 9.0, 11.0, 8.52, 12.6, 18.0, 900.0, 0.0, 0.0, 0.0, 0.0, 100.0, 5.0);
 selectValue[3][s++] = new Array("スーパーFMシャーシ", 4, 0, 12.0, 8.0, 9.12, 13.8, 17.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
+selectValue[3][s++] = new Array("スーパーTZシャーシ", 1, 0, 12.0, 9.0, 9.12, 10.5, 15.7, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
 s = 0;
 selectValue[4] = new Array();
 selectValue[4][s++] = new Array("小径タイプ1・フロント", 2, 0, 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
@@ -316,6 +321,8 @@ selectValue[4][s++] = new Array("大径ワイド・フロント", 1, 0, 11.0, 2.
 selectValue[4][s++] = new Array("大径ワイド・リヤ", 1, 0, 11.0, 2.0, 2.0, 2.9, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("大径ワンウェイ・フロント", 3, 0, 10.0, 3.0, 4.0, 2.6, 3.0, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
 selectValue[4][s++] = new Array("大径ワンウェイ・リヤ", 3, 0, 10.0, 3.0, 4.0, 2.6, 4.5, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径タイプ2・フロント", 2, 0, 1.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径タイプ2・リヤ", 2, 0, 1.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 s = 0;
 selectValue[5] = new Array();
 selectValue[5][s++] = new Array("小径ノーマル・フロント", 2, 0, 0.0, 10.0, 1.8, 2.4, 5.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 90.0, 26.0, 0.0, 0.0, 0.0, 0.0);
@@ -902,13 +909,6 @@ function Type_Calc(value1) {
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length - 2; i++) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 		}
-		if (value1 == 2) {
-			for (var i = 1; i <= 3; i++) {
-				if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
-					calcValue[5] -= 0.32;
-				}
-			}
-		}
 		for (var i = 1; i <= 6; i++) {
 			var slotIndex = document.getElementById(nameValue[value1] + value1 + '_slot' + i).value;
 			if (slotIndex == -1) continue;
@@ -926,6 +926,13 @@ function Type_Calc(value1) {
 				document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaVal;
 				calcValue[typeIndex] += kaizouVal + kyoukaVal;
 				if (calcValue[typeIndex] < 0) calcValue[typeIndex] = 0;
+			}
+		}
+		if (value1 == 2) {
+			for (var i = 1; i <= 3; i++) {
+				if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
+					calcValue[5] -= 0.32;
+				}
 			}
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
@@ -1083,6 +1090,7 @@ function Preset_Set(value1) {
 				}
 			}
 		}
+		Type_Set(value1, nameUpdate[nameCalc[value1]]);
 	} else {
 		for (var i = 1; i <= 6; i++) {
 			document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = 0;
