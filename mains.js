@@ -835,6 +835,7 @@ function View_Set(value1) {
 		writeValue += "</table>";
 	}
 	writeValue += "<input type='hidden' id='" + nameValue[value1] + value1 + "_url' value=''>";
+	writeValue += "<input type='hidden' id='" + nameValue[value1] + value1 + "_oldselect' value='-1'>";
 	document.write(writeValue);
 }
 
@@ -854,16 +855,30 @@ function Type_Set(value1, value2) {
 	var index = document.getElementById(nameValue[value1] + value1).value;
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		if (value2 == 1) {
-			var innerValue = "";
-			for (var i = 1; i <= 6; i++) {
-				innerValue = "<select id='" + nameValue[value1] + value1 + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
-				innerValue += "<option value=-1 selected>改造選択</option>";
+			var oldIndex = document.getElementById(nameValue[value1] + value1 + '_oldselect').value;
+			var sameFlg = 1;
+			if (oldIndex != -1 && kaizouSelect[nameCalc[value1]][index].length == kaizouSelect[nameCalc[value1]][oldIndex].length) {
 				for (var j = 0; j < kaizouSelect[nameCalc[value1]][index].length; j++) {
-					innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][index][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][index][j]][0][0] + "</option>";
+					if (kaizouSelect[nameCalc[value1]][index][j] != kaizouSelect[nameCalc[value1]][oldIndex][j]) {
+						sameFlg = -1;
+						break;
+					}
 				}
-				document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + i).innerHTML = innerValue + "</select>";
-				for (var j = 0; j < 3; j++) {
-					document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).innerHTML = "";
+			} else {
+				sameFlg = -1;
+			}
+			if (sameFlg == -1) {
+				var innerValue = "";
+				for (var i = 1; i <= 6; i++) {
+					innerValue = "<select id='" + nameValue[value1] + value1 + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
+					innerValue += "<option value=-1 selected>改造選択</option>";
+					for (var j = 0; j < kaizouSelect[nameCalc[value1]][index].length; j++) {
+						innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][index][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][index][j]][0][0] + "</option>";
+					}
+					document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + i).innerHTML = innerValue + "</select>";
+					for (var j = 0; j < 3; j++) {
+						document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).innerHTML = "";
+					}
 				}
 			}
 		}
@@ -871,6 +886,7 @@ function Type_Set(value1, value2) {
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 		document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + value1).value = selectValue[nameCalc[value1]][index][typeSelect[nameCalc[value1]][i] + 2];
 	}
+	document.getElementById(nameValue[value1] + value1 + '_oldselect').value = index;
 	Type_Calc(value1);
 }
 
