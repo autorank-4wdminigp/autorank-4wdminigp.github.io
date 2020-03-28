@@ -991,7 +991,7 @@ function Result_Calc() {
 
 function View_Result() {
 	document.write("<table class='cstable'><tr>");
-	document.write("<td><input class='csinput1' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>ゲーム内表示　");
+	document.write("<td><input class='csinput1' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>ゲーム内セッティング表示　");
 	document.write("<input class='csinput1' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>標準アクセサリー適用表示　</td>");
 	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
 	for (var i = 1; i < typeValue.length; i++) {
