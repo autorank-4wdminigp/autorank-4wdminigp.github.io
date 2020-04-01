@@ -1054,7 +1054,7 @@ function UrlSet() {
 		if (presetText.length >= (19 * (nameValue.length - 5) + 5 + 3)) {
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
-				if (str == "=") str += presetText.charAt(pos++);
+				if (str == "0") str += presetText.charAt(pos++);
 				index = UrlToNum(str);
 				document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 				Type_Set(value1, nameUpdate[nameCalc[value1]]);
@@ -1090,7 +1090,7 @@ function Preset_Set(value1) {
 	var pos = 0;
 	if ((value1 != 2 && presetText.length >= 19) || (value1 == 2 && presetText.length >= 22)) {
 		var str = presetText.charAt(pos++);
-		if (str == "=") str += presetText.charAt(pos++);
+		if (str == "0") str += presetText.charAt(pos++);
 		index = UrlToNum(str);
 		document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 		Type_Set(value1, nameUpdate[nameCalc[value1]]);
@@ -1187,6 +1187,13 @@ function UrlToNum(value) {
 	if (value == "0a") return 61;
 	if (value == "0b") return 62;
 	if (value == "0c") return 63;
+    if (value == "0d") return 64;
+    if (value == "0e") return 65;
+    if (value == "0f") return 66;
+    if (value == "0g") return 67;
+    if (value == "0h") return 68;
+    if (value == "0i") return 69;
+    if (value == "0j") return 70;
     return 0;
 }
 
@@ -1255,6 +1262,13 @@ function NumToUrl(value) {
 	if (value == 61) return "0a";
 	if (value == 62) return "0b";
 	if (value == 63) return "0c";
+    if (value == 64) return "0d";
+    if (value == 65) return "0e";
+    if (value == 66) return "0f";
+    if (value == 67) return "0g";
+    if (value == 68) return "0h";
+    if (value == 69) return "0i";
+    if (value == 70) return "0j";
     return "a";
 }
 
