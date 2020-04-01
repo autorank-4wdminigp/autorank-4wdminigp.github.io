@@ -272,13 +272,14 @@ selectValue[2][s++] = new Array("バンガードソニック", 4, 14, 7.0, 5.0, 
 selectValue[2][s++] = new Array("レイスティンガー", 3, 6, 9.0, 2.0, 18.0, 12.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ブーメラン・10", 1, 1, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("エアロソリチュード [FM]", 4, 4, 7.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("クリムゾングローリー(通常・銀メッキ) [FM]", 1, 1, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("クリムゾングローリー [FM]", 1, 1, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ブロッケンギガント [FM]", 3, 5, 2.0, 2.0, 18.0, 20.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("マグナムセイバー(そらまるSP)", 1, 2, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("マンタレイJr.", 1, 9, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("サイクロンマグナム", 1, 21, 20.0, 1.0, 4.05, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("トムゴディスペシャル", 4, 13, 8.0, 4.0, 10.0, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("自由皇帝", 1, 12, 20.0, 1.0, 4.0, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//48
+selectValue[2][s++] = new Array("自由皇帝", 1, 12, 20.0, 1.0, 4.0, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("クリムゾングローリー(銀メッキ) [FM]", 1, 1, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0); //49
 s = 0;
 selectValue[3] = new Array();
 selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
@@ -1050,9 +1051,11 @@ function UrlSet() {
 		var presetText = url.substring(start + 1);
 		var index = 0;
 		var pos = 0;
-		if (presetText.length == (19 * (nameValue.length - 5) + 5 + 3)) {
+		if (presetText.length >= (19 * (nameValue.length - 5) + 5 + 3)) {
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
-				index = UrlToNum(presetText.charAt(pos++));
+				var str = presetText.charAt(pos++);
+				if (str == "=") str += presetText.charAt(pos++);
+				index = UrlToNum(str);
 				document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 				Type_Set(value1, nameUpdate[nameCalc[value1]]);
 				if (kaizouSelect[nameCalc[value1]][0].length != 0) {
@@ -1085,8 +1088,10 @@ function Preset_Set(value1) {
 	var presetText = document.getElementById(nameValue[value1] + value1 + "_pres").value;
 	var index = 0;
 	var pos = 0;
-	if ((value1 != 2 && presetText.length == 19) || (value1 == 2 && presetText.length == 22)) {
-		index = UrlToNum(presetText.charAt(pos++));
+	if ((value1 != 2 && presetText.length >= 19) || (value1 == 2 && presetText.length >= 22)) {
+		var str = presetText.charAt(pos++);
+		if (str == "=") str += presetText.charAt(pos++);
+		index = UrlToNum(str);
 		document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 		Type_Set(value1, nameUpdate[nameCalc[value1]]);
 		for (var i = 1; i <= 6; i++) {
@@ -1179,10 +1184,11 @@ function UrlToNum(value) {
 	if (value == "7") return 58;
 	if (value == "8") return 59;
 	if (value == "9") return 60;
-	if (value == "0") return 61;
+	if (value == "0a") return 61;
+	if (value == "0b") return 62;
+	if (value == "0c") return 63;
     return 0;
 }
-
 
 function NumToUrl(value) {
     if (value == 0) return "a";
@@ -1246,7 +1252,9 @@ function NumToUrl(value) {
 	if (value == 58) return "7";
 	if (value == 59) return "8";
 	if (value == 60) return "9";
-	if (value == 61) return "0";
+	if (value == 61) return "0a";
+	if (value == 62) return "0b";
+	if (value == 63) return "0c";
     return "a";
 }
 
