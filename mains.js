@@ -7,7 +7,7 @@ var nameCalc = new Array(0, 1, 2, 3, 4, 4, 5, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9
 var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aerodf", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "tirehanpatsu", "tirekei", "rollermasatsu", "rollerteikou", "wave", "offload", "gearrate", "ampere", "brake", "stabilizer");
 var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 ", "スタミナ耐久 ", "重さ ", "ギヤ負荷 ", "パワーロス ", "スピードロス ", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ ", "節電 ", "制振 ", "スラスト角 ", "タイヤ摩擦 ", "タイヤ旋回 ", "タイヤ反発 ", "タイヤ径 ", "ローラー摩擦 ", "ローラー抵抗 ", "ウェーブ ", "オフロード ", "ギヤ比 ", "消費電流 ", "ブレーキ減速 ", "スタビ減速 ");
 
-var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
 //11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
@@ -176,6 +176,10 @@ kaizouSelect[9][s++] = new Array(0, 1, 2, 3);
 s = 0;
 kaizouSelect[10] = new Array();
 kaizouSelect[10][s++] = new Array(0, 1, 2);
+kaizouSelect[10][s++] = new Array(0, 1, 2);
+kaizouSelect[10][s++] = new Array(0, 1, 2);
+kaizouSelect[10][s++] = new Array(0, 1, 2);
+kaizouSelect[10][s++] = new Array(0, 1, 2, 3);
 s = 0;
 kaizouSelect[11] = new Array();
 kaizouSelect[11][s++] = new Array(0, 1, 2);
@@ -691,6 +695,9 @@ kaizouValue[10][1][1] = new Array("", "コーナー安定〇 [5(固定)] ", 1.0,
 kaizouValue[10][2] = new Array();
 kaizouValue[10][2][0] = new Array("ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減少 [4]", "スピード〇 [1(固定)] ", 1.0, 1.2, 1.4, 0.0005, 100, 1);
 kaizouValue[10][2][1] = new Array("", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ× [5] ", -0.05, -0.06, -0.07, -0.0025, -1, 9);
+kaizouValue[10][3] = new Array();
+kaizouValue[10][3][0] = new Array("スライドダンパーグリス調整 [4]", "スタミナ耐久〇〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 4);
+kaizouValue[10][3][1] = new Array("", "コーナー安定〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 3);
 
 kaizouValue[11] = new Array();
 kaizouValue[11][0] = new Array();
