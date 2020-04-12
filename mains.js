@@ -969,6 +969,7 @@ function Type_Calc(value1) {
 			for (var i = 1; i <= 3; i++) {
 				if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
 					calcValue[5] -= 0.32;
+					calcValueSv[5] -= 0.32;
 				}
 			}
 		}
