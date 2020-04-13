@@ -792,6 +792,7 @@ function All_Set() {
 	resultFlg = 0;
 	for (var i = 0; i < nameValue.length; i++) {
 		Type_Init(i);
+		document.getElementById(nameValue[i] + i + '_oldselect').value = -1;
 		Type_Set(i, 1);
 	}
 	UrlSet();
