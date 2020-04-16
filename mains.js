@@ -971,12 +971,12 @@ function Type_Calc(value1) {
 
 				var kyoukaValSv = calcValueSvInit[typeIndex] * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				//if (kyoukaValSv < 0) kyoukaValSv = 0;
-				if (calcValueSvInit[typeIndex] == 0) {
-					document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = 0;
-				} else {
+				//if (calcValueSvInit[typeIndex] == 0) {
+				//	document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = 0;
+				//} else {
 					document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
 					calcValueSv[typeIndex] += kaizouVal + kyoukaValSv;
-				}
+				//}
 				if (calcValueSv[typeIndex] < 0) calcValueSv[typeIndex] = 0;
 			}
 		}
