@@ -342,8 +342,8 @@ s = 0;
 selectValue[5] = new Array();
 selectValue[5][s++] = new Array("小径ノーマル・フロント", 2, 0, 0.0, 10.0, 1.8, 2.4, 5.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 90.0, 26.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[5][s++] = new Array("小径ノーマル・リヤ", 2, 0, 0.0, 10.0, 1.8, 2.4, 7.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 90.0, 26.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[5][s++] = new Array("小径スリック(通常・赤)・フロント", 2, 0, 2.0, 10.0, 2.0, 2.4, 5.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 85.0, 26.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[5][s++] = new Array("小径スリック(通常・赤)・リヤ", 2, 0, 2.0, 10.0, 2.0, 2.4, 7.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 85.0, 26.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[5][s++] = new Array("小径スリック(赤)・フロント", 2, 0, 2.0, 10.0, 2.0, 2.4, 5.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 85.0, 26.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[5][s++] = new Array("小径スリック(赤)・リヤ", 2, 0, 2.0, 10.0, 2.0, 2.4, 7.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 85.0, 26.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[5][s++] = new Array("小径スポンジ・フロント", 2, 0, 2.0, 11.0, 3.6, 2.0, 3.5, 0.0, 120.0, 840.0, 0.0, 0.0, 0.0, 0.0, 76.0, 73.0, 65.0, 24.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[5][s++] = new Array("小径スポンジ・リヤ", 2, 0, 2.0, 11.0, 3.6, 2.0, 4.5, 0.0, 120.0, 840.0, 0.0, 0.0, 0.0, 0.0, 76.0, 73.0, 65.0, 24.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[5][s++] = new Array("小径レストンスポンジ(青・橙)・フロント", 2, 0, 3.0, 10.0, 4.8, 2.0, 2.5, 0.0, 120.0, 840.0, 0.0, 0.0, 0.0, 0.0, 80.0, 78.0, 60.0, 24.0, 0.0, 0.0, 0.0, 0.0);
@@ -970,7 +970,7 @@ function Type_Calc(value1) {
 				if (calcValue[typeIndex] < 0) calcValue[typeIndex] = 0;
 
 				var kyoukaValSv = calcValueSvInit[typeIndex] * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
-				if (kyoukaValSv < 0) kyoukaValSv = 0;
+				//if (kyoukaValSv < 0) kyoukaValSv = 0;
 				document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
 				calcValueSv[typeIndex] += kaizouVal + kyoukaValSv;
 				if (calcValueSv[typeIndex] < 0) calcValueSv[typeIndex] = 0;
