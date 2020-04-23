@@ -1051,18 +1051,22 @@ function Diagnosis_Calc(resultValueKai) {
 	//ブレーキ性能
 	var brakeValue = resultValueKai[23] / 2000.0;
 	var bodyIndex = document.getElementById(nameValue[2] + "2").value;
-	if (brakeValue != 0 && selectValue[2][bodyIndex][2] == 6) brakeValue += 0.05;
+	var bodyOption = selectValue[2][bodyIndex][2];
+	if (brakeValue != 0 && bodyOption == 6) brakeValue += 0.05;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
 	//バッテリー消費量
 	var setsudenValue = resultValueKai[10];
-	if (setsudenValue != 0 && selectValue[2][bodyIndex][2] == 8) setsudenValue *= 1.6;
+	if (setsudenValue != 0 && bodyOption == 8) setsudenValue *= 1.6;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * (1 - setsudenValue / 10000.0);
 	//加速度(毎秒)
 	var ftireValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6" + "_kaisv").value;
 	var rtireValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "7" + "_kaisv").value;
 
 	if (ftireValue != rtireValue) {
-		var acceleValue = (10.0 * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
+		var bodypower = 1.0;
+		if (bodyOption == 2) bodypower = 1.02;
+		if (bodyOption == 12) bodypower = 1.03;
+		var acceleValue = (10.0 * bodypower * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
 		window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue;
 	}
 	else {
