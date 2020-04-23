@@ -9,6 +9,9 @@ var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 
 
 var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
+var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
+var diagnosisView = new Array("最高速度(時速) ", "最高速度(秒速) ", "バッテリー消費量 ", "加速度(毎秒) ", "最高速到達時間(秒) ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離 ", "バウンド時間 ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
+
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
 //11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
 //21:ギヤ比, 22:消費電流, 23:ブレーキ減速, 24:スタビ減速
@@ -1029,14 +1032,43 @@ function Result_Calc() {
 	}
 	for (var i = 1; i < typeValue.length; i++) {
 		window.parent.results.document.getElementById(typeValue[i]).value = resultValue[i];
-		window.parent.results.document.getElementById(typeValue[i]+ "_kai").value = resultValueKai[i];
-		window.parent.results.document.getElementById(typeValue[i]+ "_kaisv").value = resultValueKaiSv[i];
+		window.parent.results.document.getElementById(typeValue[i] + "_kai").value = resultValueKai[i];
+		window.parent.results.document.getElementById(typeValue[i] + "_kaisv").value = resultValueKaiSv[i];
 		if (resultValue[i] == 0) {
-			window.parent.results.document.getElementById(typeValue[i]+ "_rate").value = 0;
+			window.parent.results.document.getElementById(typeValue[i] + "_rate").value = 0;
 		} else {
-			window.parent.results.document.getElementById(typeValue[i]+ "_rate").value = resultValueKaiSv[i] / resultValue[i] * 100.0 - 100.0;
+			window.parent.results.document.getElementById(typeValue[i] + "_rate").value = resultValueKaiSv[i] / resultValue[i] * 100.0 - 100.0;
 		}
 	}
+	Diagnosis_Calc(resultValueKaiSv);
+}
+
+function Diagnosis_Calc(resultValueKai) {
+	//ローラースラスト角
+	window.parent.diagnosis.document.getElementById(diagnosisValue[10]).value = resultValueKai[12];
+	//重さ
+	window.parent.diagnosis.document.getElementById(diagnosisValue[11]).value = resultValueKai[5];
+	//ブレーキ性能
+	var brakeValue = resultValueKai[23] / 2000.0;
+	var bodyIndex = document.getElementById(nameValue[2] + "2").value;
+	if (brakeValue != 0 && selectValue[2][bodyIndex][2] == 6) brakeValue += 0.05;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
+	//バッテリー消費量
+	var setsudenValue = resultValueKai[10];
+	if (setsudenValue != 0 && selectValue[2][bodyIndex][2] == 8) setsudenValue *= 1.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * (1 - setsudenValue / 10000.0);
+	//加速度(毎秒)
+	var ftireValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6" + "_kaisv").value;
+	var rtireValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "7" + "_kaisv").value;
+
+	if (ftireValue != rtireValue) {
+		var acceleValue = (10.0 * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
+		window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue;
+	}
+	else {
+		window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = "";
+	}
+
 }
 
 function View_Result() {
@@ -1054,6 +1086,20 @@ function View_Result() {
 	document.write("</tr></table>");
 	document.write("<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>");
 	document.write("<table class='cstable'><tr><td class='cstd'>　</td><td><input class='csinput2' type='text' id='dispurl' value=''></td></tr></table>");
+}
+
+function View_Diagnosis() {
+	document.write("<table class='cstable'><tr>");
+	document.write("<td>　マシン診断　");
+	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
+	for (var i = 0; i < diagnosisValue.length; i++) {
+		if (i == 4 || i == 8 || i == 12 || i == 16) {
+			document.write("</tr>");
+			document.write("<tr><td class='cstd'>　</td>");
+		}
+		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
+	}
+	document.write("</tr></table>");
 }
 
 function UrlCalc(value1) {
