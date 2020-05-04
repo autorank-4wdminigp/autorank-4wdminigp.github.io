@@ -10,7 +10,7 @@ var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 
 var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
-var diagnosisView = new Array("最高速度(時速) ", "最高速度(秒速) ", "バッテリー消費量 ", "加速度(毎秒) ", "最高速到達時間(秒) ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離 ", "バウンド時間 ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
+var diagnosisView = new Array("最高速度(時速)※1※2 ", "最高速度(秒速)※1※2 ", "バッテリー消費量 ", "加速度(毎秒)※1 ", "最高速到達時間(秒) ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離 ", "バウンド時間 ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
 
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
 //11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
@@ -1055,7 +1055,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (brakeValue != 0 && bodyOption == 6) brakeValue += 0.05;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
 	//タイヤグリップ
-	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6" + "_kaisv").value;
+	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
 	if (ftiregripValue > 99) ftiregripValue = 99.0;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = ftiregripValue / 100.0;
 	//バッテリー消費量
@@ -1063,18 +1063,37 @@ function Diagnosis_Calc(resultValueKai) {
 	if (setsudenValue != 0 && bodyOption == 8) setsudenValue *= 1.6;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * (1 - setsudenValue / 10000.0);
 	//加速度(毎秒)
-	var ftireValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6" + "_kaisv").value;
-	var rtireValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "7" + "_kaisv").value;
-	var bodypower = 1.0;
-	if (bodyOption == 2) bodypower = 1.02;
-	if (bodyOption == 12) bodypower = 1.03;
+	var ftireValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6_kaisv").value;
+	var rtireValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "7_kaisv").value;
+	var bodyPower = 1.0;
+	if (bodyOption == 2) bodyPower = 1.02;
+	if (bodyOption == 12) bodyPower = 1.03;
+	if (bodyOption == 22) bodyPower = 1.04;
 	if (ftireValue != rtireValue) {
-		var acceleValue = (10.0 * bodypower * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
+		var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
 		window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue;
 	}
 	else {
 		window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = "";
 	}
+	//最高速度(秒速)
+	var bodySpeed = 1.0;
+	if (bodyOption == 1) bodySpeed = 1.02;
+	if (bodyOption == 11) bodySpeed = 1.03;
+	if (bodyOption == 21) bodySpeed = 1.04;
+	if (ftireValue != rtireValue) {
+		var spowerValue = (1.0 - 7200/(5480 + 10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] - resultValueKai[6])) * (1.0 - resultValueKai[7] / 10000.0);
+		var speedValue = 3.141523 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
+		window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = speedValue * 3.6;
+		window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = speedValue;
+	}
+	else {
+		window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = "";
+		window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = "";
+	}
+
+
+
 
 }
 
@@ -1107,6 +1126,8 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
+	document.write("<br>※1 タイヤ異径時");
+	document.write("<br>※2 参考の参考程度の算出値(仮)");
 }
 
 function UrlCalc(value1) {
