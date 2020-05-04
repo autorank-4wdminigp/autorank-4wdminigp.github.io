@@ -1056,7 +1056,6 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
 	//タイヤグリップ
 	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
-	if (ftiregripValue > 99) ftiregripValue = 99.0;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = ftiregripValue / 100.0;
 	//バッテリー消費量
 	var setsudenValue = resultValueKai[10];
@@ -1082,8 +1081,8 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption == 11) bodySpeed = 1.03;
 	if (bodyOption == 21) bodySpeed = 1.04;
 	if (ftireValue != rtireValue) {
-		var spowerValue = (1.0 - 7200/(5480 + 10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] - resultValueKai[6])) * (1.0 - resultValueKai[7] / 10000.0);
-		var speedValue = 3.141523 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
+		var spowerValue = (1.0 - 5700/(5555 + 10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] - resultValueKai[6])) - resultValueKai[7] / 10000.0;
+		var speedValue = 3.14159265359 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
 		window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = speedValue * 3.6;
 		window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = speedValue;
 	}
