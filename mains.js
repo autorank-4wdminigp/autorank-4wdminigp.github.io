@@ -1126,7 +1126,7 @@ function View_Diagnosis() {
 	}
 	document.write("</tr></table>");
 	document.write("<br><font color='#FFA500'>※1 タイヤ異径時</font>");
-	document.write("<br><font color='#FFA500'>※2 算出できたっぽい</font>");
+	document.write("<br><font color='#FFA500'>※2 算出できたっぽい(タイヤの組合わせによっては同径で計算しなければいけない可能性あり？)</font>");
 }
 
 function UrlCalc(value1) {
