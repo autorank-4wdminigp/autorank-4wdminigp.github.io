@@ -10,7 +10,7 @@ var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 
 var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
-var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒) ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離 ", "バウンド時間 ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
+var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒) ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間 ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
 
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
 //11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
@@ -1075,7 +1075,7 @@ function Diagnosis_Calc(resultValueKai) {
 	else {
 		window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue - resultValueKai[8] / 40000.0;
 	}
-	//最高速度(秒速)
+	//最高速度
 	var bodySpeed = 1.0;
 	if (bodyOption == 1) bodySpeed = 1.02;
 	if (bodyOption == 11) bodySpeed = 1.03;
@@ -1091,9 +1091,14 @@ function Diagnosis_Calc(resultValueKai) {
 		window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = (speedValue - speedlossValue) * 3.6;
 		window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = speedValue - speedlossValue;
 	}
-
-
-
+	//ジャンプ飛距離
+	var jumpValue = Math.sin(2.0 * 20.0 * (Math.PI / 180.0)) / 9.80665;
+	if (ftireValue != rtireValue) {
+		window.parent.diagnosis.document.getElementById(diagnosisValue[7]).value = speedValue * speedValue * jumpValue;
+	}
+	else {
+		window.parent.diagnosis.document.getElementById(diagnosisValue[7]).value = (speedValue - speedlossValue) * (speedValue - speedlossValue) * jumpValue;
+	}
 
 }
 
@@ -1127,6 +1132,7 @@ function View_Diagnosis() {
 	}
 	document.write("</tr></table>");
 	document.write("<br><font color='#FFA500'>※1 タイヤ同径異径対応(タイヤの組合わせによっては異径でも同径で計算しなければいけない可能性あり？)</font>");
+	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 }
 
 function UrlCalc(value1) {
