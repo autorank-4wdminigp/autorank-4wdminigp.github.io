@@ -832,7 +832,7 @@ function View_Set(value1) {
 		writeValue += "<td>肉抜き <select id='" + nameValue[value1] + value1 + "_niku' onchange='Type_Calc(" + value1 + ")'>";
 		writeValue += "<option value=0>なし</option>";
 		for (var j = 1; j <= 5; j++) {
-			writeValue += "<option value=" + j + ">" + j + "</option>";
+			writeValue += "<option value=" + j + ">" + j + "箇所</option>";
 		}
 		writeValue += "</td>";
 	}
