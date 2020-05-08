@@ -1044,13 +1044,19 @@ function Result_Calc() {
 }
 
 function Diagnosis_Calc(resultValueKai) {
+	var shindantire = 1;
+	if (window.parent.diagnosis.document.getElementById('shindantire2').checked) {
+		shindantire = 2;
+	} else if (window.parent.diagnosis.document.getElementById('shindantire3').checked) {
+		shindantire = 3;
+	}
 	//ローラースラスト角
 	window.parent.diagnosis.document.getElementById(diagnosisValue[10]).value = resultValueKai[12];
 	//重さ
 	window.parent.diagnosis.document.getElementById(diagnosisValue[11]).value = resultValueKai[5];
 	//ブレーキ性能
 	var brakeValue = resultValueKai[23] / 2000.0;
-	var bodyIndex = document.getElementById(nameValue[2] + "2").value;
+	var bodyIndex = window.parent.mains.document.getElementById(nameValue[2] + "2").value;
 	var bodyOption = selectValue[2][bodyIndex][2];
 	if (brakeValue != 0 && bodyOption == 6) brakeValue += 0.05;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
@@ -1069,12 +1075,14 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption == 12) bodyPower = 1.03;
 	if (bodyOption == 22) bodyPower = 1.04;
 	var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
-	if (ftireValue != rtireValue) {
-		window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue;
+	var acceleValue2;
+	if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
+		acceleValue2 = acceleValue;
 	}
 	else {
-		window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue - resultValueKai[8] / 40000.0;
+		acceleValue2 = acceleValue - resultValueKai[8] / 40000.0;
 	}
+	window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue2;
 	//最高速度
 	var bodySpeed = 1.0;
 	if (bodyOption == 1) bodySpeed = 1.02;
@@ -1083,22 +1091,19 @@ function Diagnosis_Calc(resultValueKai) {
 	var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - resultValueKai[7] / 10000.0;
 	var speedValue = 3.14159265359 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
 	var speedlossValue = resultValueKai[5] * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * resultValueKai[8] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300 * 2000 * 2000);
-	if (ftireValue != rtireValue) {
-		window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = speedValue * 3.6;
-		window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = speedValue;
+	var speedValue2;
+	if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
+		speedValue2 = speedValue;
 	}
 	else {
-		window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = (speedValue - speedlossValue) * 3.6;
-		window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = speedValue - speedlossValue;
+		speedValue2 = speedValue - speedlossValue;
 	}
+	window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = speedValue2 * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = speedValue2;
 	//ジャンプ飛距離
 	var jumpValue = Math.sin(2.0 * 20.0 * (Math.PI / 180.0)) / 9.80665;
-	if (ftireValue != rtireValue) {
-		window.parent.diagnosis.document.getElementById(diagnosisValue[7]).value = speedValue * speedValue * jumpValue;
-	}
-	else {
-		window.parent.diagnosis.document.getElementById(diagnosisValue[7]).value = (speedValue - speedlossValue) * (speedValue - speedlossValue) * jumpValue;
-	}
+	window.parent.diagnosis.document.getElementById(diagnosisValue[7]).value = speedValue2 * speedValue2 * jumpValue;
+
 
 }
 
@@ -1121,7 +1126,9 @@ function View_Result() {
 
 function View_Diagnosis() {
 	document.write("<table class='cstable'><tr>");
-	document.write("<td>　マシン診断　");
+	document.write("<td><input class='csinput1' type='radio' id='shindantire1' name='shindantire' onchange='Result_Calc()' checked>マシン診断　");
+	document.write("<input class='csinput1' type='radio' id='shindantire2' name='shindantire' onchange='Result_Calc()'>タイヤ異径表示　");
+	document.write("<input class='csinput1' type='radio' id='shindantire3' name='shindantire' onchange='Result_Calc()'>タイヤ同径表示　</td>");
 	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
 	for (var i = 0; i < diagnosisValue.length; i++) {
 		if (i == 4 || i == 8 || i == 12 || i == 16) {
