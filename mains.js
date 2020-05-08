@@ -1138,7 +1138,7 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※1 タイヤ同径異径対応(タイヤの組合わせによっては異径でも同径で計算しなければいけない可能性あり？)</font>");
+	document.write("<br><font color='#FFA500'>※1 タイヤ同径異径対応(前後の径差が1の場合、速度・加速度が少し小さくなるようです)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 }
 
