@@ -1099,7 +1099,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption == 21) bodySpeed = 1.04;
 	var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - resultValueKai[7] / 10000.0;
 	var speedValue = 3.14159265359 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
-	var speedlossValue = resultValueKai[5] * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * resultValueKai[8] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300 * 2000 * 2000);
+	var speedlossValue = resultValueKai[5] * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * resultValueKai[8] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
 	var speedValue2;
 	if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
 		speedValue2 = speedValue;
@@ -1147,7 +1147,7 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※1 タイヤ同径異径対応(前後の径差が1の場合、速度・加速度が少し小さくなるようです)</font>");
+	document.write("<br><font color='#FFA500'>※1 タイヤ同径異径対応(前後の径差が1の場合、速度・加速度が表示より少し小さくなるようです)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 }
 
