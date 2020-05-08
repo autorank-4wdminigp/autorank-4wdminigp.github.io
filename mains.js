@@ -825,10 +825,16 @@ function View_Set(value1) {
 	var writeValue = "<table class='cstable'><tr><td>" + nameView[value1];
 	writeValue += "<span id='id_" + nameValue[value1] + value1 + "'></span></td>";
 	if (value1 == 2) {
-		writeValue += "<td class='cstd'>　</td>"
-		for (var i = 1; i <= 3; i++) {
-			writeValue += "<td><input class='csinput1' type='checkbox' id='" + nameValue[value1] + value1 + '_niku' + i + "' onchange='Type_Calc(" + value1 + ")'> 肉抜き" + i + " </td>";
+		writeValue += "<td class='cstd'>　</td>";
+		//for (var i = 1; i <= 4; i++) {
+		//	writeValue += "<td><input class='csinput1' type='checkbox' id='" + nameValue[value1] + value1 + '_niku' + i + "' onchange='Type_Calc(" + value1 + ")'> 肉抜き" + i + " </td>";
+		//}
+		writeValue += "<td>肉抜き <select id='" + nameValue[value1] + value1 + "_niku' onchange='Type_Calc(" + value1 + ")'>";
+		writeValue += "<option value=0>なし</option>";
+		for (var j = 1; j <= 5; j++) {
+			writeValue += "<option value=" + j + ">" + j + "</option>";
 		}
+		writeValue += "</td>";
 	}
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		writeValue += "<td class='cstd'>　</td>"
@@ -993,12 +999,15 @@ function Type_Calc(value1) {
 			}
 		}
 		if (value1 == 2) {
-			for (var i = 1; i <= 3; i++) {
-				if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
-					calcValue[5] -= 0.32;
-					calcValueSv[5] -= 0.32;
-				}
-			}
+			//for (var i = 1; i <= 3; i++) {
+			//	if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
+			//		calcValue[5] -= 0.32;
+			//		calcValueSv[5] -= 0.32;
+			//	}
+			//}
+			var nikuVal = document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex;
+			calcValue[5] -= nikuVal * 0.32;
+			calcValueSv[5] -= nikuVal * 0.32;
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
@@ -1151,13 +1160,16 @@ function UrlCalc(value1) {
 			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex);
 		}
 		if (value1 == 2) {
-			for (var i = 1; i <= 3; i++) {
-				if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
-					urlValue += NumToUrl(1);
-				} else {
-					urlValue += NumToUrl(0);
-				}
-			}
+			//for (var i = 1; i <= 3; i++) {
+			//	if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
+			//		urlValue += NumToUrl(1);
+			//	} else {
+			//		urlValue += NumToUrl(0);
+			//	}
+			//}
+			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex);
+			urlValue += NumToUrl(0);
+			urlValue += NumToUrl(0);
 		}
 		document.getElementById(nameValue[value1] + value1 + "_pres").value = urlValue;
 	}
@@ -1202,14 +1214,18 @@ function UrlSet() {
 						Type_Slot_Set(value1, i - 1);
 					}
 					if (value1 == 2) {
-						for (var i = 1; i <= 3; i++) {
-							index = UrlToNum(presetText.charAt(pos++));
-							if (index == 1) {
-								document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = true;
-							} else {
-								document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = false;
-							}
-						}
+						//for (var i = 1; i <= 3; i++) {
+						//	index = UrlToNum(presetText.charAt(pos++));
+						//	if (index == 1) {
+						//		document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = true;
+						//	} else {
+						//		document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = false;
+						//	}
+						//}
+						index = UrlToNum(presetText.charAt(pos++));
+						document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex = index;
+						index = UrlToNum(presetText.charAt(pos++));
+						index = UrlToNum(presetText.charAt(pos++));
 					}
 				}
 			}
@@ -1237,14 +1253,18 @@ function Preset_Set(value1) {
 			Type_Slot_Set(value1, i - 1);
 		}
 		if (value1 == 2) {
-			for (var i = 1; i <= 3; i++) {
-				index = UrlToNum(presetText.charAt(pos++));
-				if (index == 1) {
-					document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = true;
-				} else {
-					document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = false;
-				}
-			}
+			//for (var i = 1; i <= 3; i++) {
+			//	index = UrlToNum(presetText.charAt(pos++));
+			//	if (index == 1) {
+			//		document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = true;
+			//	} else {
+			//		document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = false;
+			//	}
+			//}
+			index = UrlToNum(presetText.charAt(pos++));
+			document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex = index;
+			index = UrlToNum(presetText.charAt(pos++));
+			index = UrlToNum(presetText.charAt(pos++));
 		}
 		Type_Set(value1, nameUpdate[nameCalc[value1]]);
 	} else {
