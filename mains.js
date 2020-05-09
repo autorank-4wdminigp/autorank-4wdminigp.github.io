@@ -826,9 +826,6 @@ function View_Set(value1) {
 	writeValue += "<span id='id_" + nameValue[value1] + value1 + "'></span></td>";
 	if (value1 == 2) {
 		writeValue += "<td class='cstd'>　</td>";
-		//for (var i = 1; i <= 4; i++) {
-		//	writeValue += "<td><input class='csinput1' type='checkbox' id='" + nameValue[value1] + value1 + '_niku' + i + "' onchange='Type_Calc(" + value1 + ")'> 肉抜き" + i + " </td>";
-		//}
 		writeValue += "<td>肉抜き <select id='" + nameValue[value1] + value1 + "_niku' onchange='Type_Calc(" + value1 + ")'>";
 		writeValue += "<option value=0>なし</option>";
 		for (var j = 1; j <= 5; j++) {
@@ -999,12 +996,6 @@ function Type_Calc(value1) {
 			}
 		}
 		if (value1 == 2) {
-			//for (var i = 1; i <= 3; i++) {
-			//	if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
-			//		calcValue[5] -= 0.32;
-			//		calcValueSv[5] -= 0.32;
-			//	}
-			//}
 			var nikuVal = document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex;
 			calcValue[5] -= nikuVal * 0.32;
 			calcValueSv[5] -= nikuVal * 0.32;
@@ -1058,6 +1049,8 @@ function Diagnosis_Calc(resultValueKai) {
 		shindantire = 2;
 	} else if (window.parent.diagnosis.document.getElementById('shindantire3').checked) {
 		shindantire = 3;
+	} else if (window.parent.diagnosis.document.getElementById('shindantire4').checked) {
+		shindantire = 4;
 	}
 	//ローラースラスト角
 	window.parent.diagnosis.document.getElementById(diagnosisValue[10]).value = resultValueKai[12];
@@ -1085,10 +1078,11 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption == 22) bodyPower = 1.04;
 	var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
 	var acceleValue2;
-	if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
+	if ((shindantire == 1 && Math.abs(ftireValue - rtireValue) == 1) || shindantire == 3) {
+		acceleValue2 = acceleValue - (resultValueKai[8] - 5000.0) / 40000.0;
+	} else if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
 		acceleValue2 = acceleValue;
-	}
-	else {
+	} else {
 		acceleValue2 = acceleValue - resultValueKai[8] / 40000.0;
 	}
 	window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue2;
@@ -1099,13 +1093,14 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption == 21) bodySpeed = 1.04;
 	var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - resultValueKai[7] / 10000.0;
 	var speedValue = 3.14159265359 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
-	var speedlossValue = resultValueKai[5] * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * resultValueKai[8] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
+	var speedlossValue = resultValueKai[5] * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
 	var speedValue2;
-	if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
+	if ((shindantire == 1 && Math.abs(ftireValue - rtireValue) == 1) || shindantire == 3) {
+		speedValue2 = speedValue - speedlossValue * (resultValueKai[8] - 5000.0);
+	} else if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
 		speedValue2 = speedValue;
-	}
-	else {
-		speedValue2 = speedValue - speedlossValue;
+	} else {
+		speedValue2 = speedValue - speedlossValue * resultValueKai[8];
 	}
 	window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = speedValue2 * 3.6;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = speedValue2;
@@ -1137,7 +1132,8 @@ function View_Diagnosis() {
 	document.write("<table class='cstable'><tr>");
 	document.write("<td><input class='csinput1' type='radio' id='shindantire1' name='shindantire' onchange='Result_Calc()' checked>マシン診断　");
 	document.write("<input class='csinput1' type='radio' id='shindantire2' name='shindantire' onchange='Result_Calc()'>タイヤ異径表示　");
-	document.write("<input class='csinput1' type='radio' id='shindantire3' name='shindantire' onchange='Result_Calc()'>タイヤ同径表示　</td>");
+	document.write("<input class='csinput1' type='radio' id='shindantire3' name='shindantire' onchange='Result_Calc()'>タイヤ径差1表示　");
+	document.write("<input class='csinput1' type='radio' id='shindantire4' name='shindantire' onchange='Result_Calc()'>タイヤ同径表示　</td>");	
 	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
 	for (var i = 0; i < diagnosisValue.length; i++) {
 		if (i == 4 || i == 8 || i == 12 || i == 16) {
@@ -1147,7 +1143,7 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※1 タイヤ同径異径対応(前後の径差が1の場合、速度・加速度が表示より少し小さくなるようです)</font>");
+	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応(前後の径差が1の場合でスピロスが5000未満のとき一致するか検証をお願いします)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 }
 
@@ -1160,13 +1156,6 @@ function UrlCalc(value1) {
 			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex);
 		}
 		if (value1 == 2) {
-			//for (var i = 1; i <= 3; i++) {
-			//	if (document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked) {
-			//		urlValue += NumToUrl(1);
-			//	} else {
-			//		urlValue += NumToUrl(0);
-			//	}
-			//}
 			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex);
 			urlValue += NumToUrl(0);
 			urlValue += NumToUrl(0);
@@ -1214,14 +1203,6 @@ function UrlSet() {
 						Type_Slot_Set(value1, i - 1);
 					}
 					if (value1 == 2) {
-						//for (var i = 1; i <= 3; i++) {
-						//	index = UrlToNum(presetText.charAt(pos++));
-						//	if (index == 1) {
-						//		document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = true;
-						//	} else {
-						//		document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = false;
-						//	}
-						//}
 						index = UrlToNum(presetText.charAt(pos++));
 						document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex = index;
 						index = UrlToNum(presetText.charAt(pos++));
@@ -1253,14 +1234,6 @@ function Preset_Set(value1) {
 			Type_Slot_Set(value1, i - 1);
 		}
 		if (value1 == 2) {
-			//for (var i = 1; i <= 3; i++) {
-			//	index = UrlToNum(presetText.charAt(pos++));
-			//	if (index == 1) {
-			//		document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = true;
-			//	} else {
-			//		document.getElementById(nameValue[value1] + value1 + '_niku' + i).checked = false;
-			//	}
-			//}
 			index = UrlToNum(presetText.charAt(pos++));
 			document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex = index;
 			index = UrlToNum(presetText.charAt(pos++));
@@ -1276,32 +1249,32 @@ function Preset_Set(value1) {
 }
 
 function UrlToNum(value) {
-    if (value == "a") return 0;
-    if (value == "b") return 1;
-    if (value == "c") return 2;
-    if (value == "d") return 3;
-    if (value == "e") return 4;
-    if (value == "f") return 5;
-    if (value == "g") return 6;
-    if (value == "h") return 7;
-    if (value == "i") return 8;
-    if (value == "j") return 9;
-    if (value == "k") return 10;
-    if (value == "l") return 11;
-    if (value == "m") return 12;
-    if (value == "n") return 13;
-    if (value == "o") return 14;
-    if (value == "p") return 15;
-    if (value == "q") return 16;
-    if (value == "r") return 17;
-    if (value == "s") return 18;
-    if (value == "t") return 19;
-    if (value == "u") return 20;
-    if (value == "v") return 21;
-    if (value == "w") return 22;
-    if (value == "x") return 23;
-    if (value == "y") return 24;
-    if (value == "z") return 25;
+	if (value == "a") return 0;
+	if (value == "b") return 1;
+	if (value == "c") return 2;
+	if (value == "d") return 3;
+	if (value == "e") return 4;
+	if (value == "f") return 5;
+	if (value == "g") return 6;
+	if (value == "h") return 7;
+	if (value == "i") return 8;
+	if (value == "j") return 9;
+	if (value == "k") return 10;
+	if (value == "l") return 11;
+	if (value == "m") return 12;
+	if (value == "n") return 13;
+	if (value == "o") return 14;
+	if (value == "p") return 15;
+	if (value == "q") return 16;
+	if (value == "r") return 17;
+	if (value == "s") return 18;
+	if (value == "t") return 19;
+	if (value == "u") return 20;
+	if (value == "v") return 21;
+	if (value == "w") return 22;
+	if (value == "x") return 23;
+	if (value == "y") return 24;
+	if (value == "z") return 25;
 	if (value == "A") return 26;
 	if (value == "B") return 27;
 	if (value == "C") return 28;
@@ -1340,43 +1313,43 @@ function UrlToNum(value) {
 	if (value == "0a") return 61;
 	if (value == "0b") return 62;
 	if (value == "0c") return 63;
-    if (value == "0d") return 64;
-    if (value == "0e") return 65;
-    if (value == "0f") return 66;
-    if (value == "0g") return 67;
-    if (value == "0h") return 68;
-    if (value == "0i") return 69;
-    if (value == "0j") return 70;
+	if (value == "0d") return 64;
+	if (value == "0e") return 65;
+	if (value == "0f") return 66;
+	if (value == "0g") return 67;
+	if (value == "0h") return 68;
+	if (value == "0i") return 69;
+	if (value == "0j") return 70;
     return 0;
 }
 
 function NumToUrl(value) {
-    if (value == 0) return "a";
-    if (value == 1) return "b";
-    if (value == 2) return "c";
-    if (value == 3) return "d";
-    if (value == 4) return "e";
-    if (value == 5) return "f";
-    if (value == 6) return "g";
-    if (value == 7) return "h";
-    if (value == 8) return "i";
-    if (value == 9) return "j";
-    if (value == 10) return "k";
-    if (value == 11) return "l";
-    if (value == 12) return "m";
-    if (value == 13) return "n";
-    if (value == 14) return "o";
-    if (value == 15) return "p";
-    if (value == 16) return "q";
-    if (value == 17) return "r";
-    if (value == 18) return "s";
-    if (value == 19) return "t";
-    if (value == 20) return "u";
-    if (value == 21) return "v";
-    if (value == 22) return "w";
-    if (value == 23) return "x";
-    if (value == 24) return "y";
-    if (value == 25) return "z";
+	if (value == 0) return "a";
+	if (value == 1) return "b";
+	if (value == 2) return "c";
+	if (value == 3) return "d";
+	if (value == 4) return "e";
+	if (value == 5) return "f";
+	if (value == 6) return "g";
+	if (value == 7) return "h";
+	if (value == 8) return "i";
+	if (value == 9) return "j";
+	if (value == 10) return "k";
+	if (value == 11) return "l";
+	if (value == 12) return "m";
+	if (value == 13) return "n";
+	if (value == 14) return "o";
+	if (value == 15) return "p";
+	if (value == 16) return "q";
+	if (value == 17) return "r";
+	if (value == 18) return "s";
+	if (value == 19) return "t";
+	if (value == 20) return "u";
+	if (value == 21) return "v";
+	if (value == 22) return "w";
+	if (value == 23) return "x";
+	if (value == 24) return "y";
+	if (value == 25) return "z";
 	if (value == 26) return "A";
 	if (value == 27) return "B";
 	if (value == 28) return "C";
@@ -1415,13 +1388,13 @@ function NumToUrl(value) {
 	if (value == 61) return "0a";
 	if (value == 62) return "0b";
 	if (value == 63) return "0c";
-    if (value == 64) return "0d";
-    if (value == 65) return "0e";
-    if (value == 66) return "0f";
-    if (value == 67) return "0g";
-    if (value == 68) return "0h";
-    if (value == 69) return "0i";
-    if (value == 70) return "0j";
-    return "a";
+	if (value == 64) return "0d";
+	if (value == 65) return "0e";
+	if (value == 66) return "0f";
+	if (value == 67) return "0g";
+	if (value == 68) return "0h";
+	if (value == 69) return "0i";
+	if (value == 70) return "0j";
+	return "a";
 }
 
