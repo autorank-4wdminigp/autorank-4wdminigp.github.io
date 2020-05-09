@@ -1079,7 +1079,7 @@ function Diagnosis_Calc(resultValueKai) {
 	var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
 	var acceleValue2;
 	if ((shindantire == 1 && Math.abs(ftireValue - rtireValue) == 1) || shindantire == 3) {
-		acceleValue2 = acceleValue - (resultValueKai[8] - 5000.0) / 40000.0;
+		acceleValue2 = acceleValue - Math.max(resultValueKai[8] - 5000.0, 0.0) / 40000.0;
 	} else if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
 		acceleValue2 = acceleValue;
 	} else {
@@ -1096,7 +1096,7 @@ function Diagnosis_Calc(resultValueKai) {
 	var speedlossValue = resultValueKai[5] * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
 	var speedValue2;
 	if ((shindantire == 1 && Math.abs(ftireValue - rtireValue) == 1) || shindantire == 3) {
-		speedValue2 = speedValue - speedlossValue * (resultValueKai[8] - 5000.0);
+		speedValue2 = speedValue - speedlossValue * Math.max(resultValueKai[8] - 5000.0, 0.0);
 	} else if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
 		speedValue2 = speedValue;
 	} else {
@@ -1143,7 +1143,7 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応(前後の径差が1の場合でスピロスが5000未満のとき一致するか検証をお願いします)</font>");
+	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 }
 
