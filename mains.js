@@ -8,6 +8,7 @@ var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "
 var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 ", "スタミナ耐久 ", "重さ ", "ギヤ負荷 ", "パワーロス ", "スピードロス ", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ ", "節電 ", "制振 ", "スラスト角 ", "タイヤ摩擦 ", "タイヤ旋回 ", "タイヤ反発 ", "タイヤ径 ", "ローラー摩擦 ", "ローラー抵抗 ", "ウェーブ ", "オフロード ", "ギヤ比 ", "消費電流 ", "ブレーキ減速 ", "スタビ減速 ");
 
 var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
 var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒) ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間 ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
@@ -40,186 +41,103 @@ typeSelect[19] = new Array(1, 2, 3, 4, 5, 6, 7);
 typeSelect[20] = new Array(1, 2, 3, 4, 5, 8);
 typeSelect[21] = new Array(1, 2, 3, 4, 5);
 
+var kaizouSelectIndex = new Array();
 var kaizouSelect = new Array();
 s = 0;
+kaizouSelectIndex[0] = new Array(0, 0, 1, 2, 0);
 kaizouSelect[0] = new Array();
-kaizouSelect[0][s++] = new Array(0, 1, 4, 5, 6, 9);
 kaizouSelect[0][s++] = new Array(0, 1, 4, 5, 6, 9);
 kaizouSelect[0][s++] = new Array(0, 1, 2, 4, 5, 7, 10 ,11);
 kaizouSelect[0][s++] = new Array(0, 1, 3, 4, 6, 8, 10 ,11);
-kaizouSelect[0][s++] = new Array(0, 1, 4, 5, 6, 9);
 s = 0;
+kaizouSelectIndex[1] = new Array(0, 0);
 kaizouSelect[1] = new Array();
 kaizouSelect[1][s++] = new Array(0, 1, 2, 3, 4);
 s = 0;
+kaizouSelectIndex[2] = new Array(0, 0);
 kaizouSelect[2] = new Array();
 kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
 s = 0;
+kaizouSelectIndex[3] = new Array(0, 0);
 kaizouSelect[3] = new Array();
 kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7);
 s = 0;
+kaizouSelectIndex[4] = new Array(0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1);
 kaizouSelect[4] = new Array();
 kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6, 7);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6, 7);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6, 7);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6, 7);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
-kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
 s = 0;
+kaizouSelectIndex[5] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0);
 kaizouSelect[5] = new Array();
 kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
 kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 6);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 6);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 6);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 6);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
-kaizouSelect[5][s++] = new Array(0, 1, 2, 3, 4, 5);
 s = 0;
+kaizouSelectIndex[6] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
 kaizouSelect[6] = new Array();
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
 kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4);
 kaizouSelect[6][s++] = new Array(0, 1, 3, 4, 5);
 s = 0;
+kaizouSelectIndex[7] = new Array(0, 0);
 kaizouSelect[7] = new Array();
 kaizouSelect[7][s++] = new Array(0, 1, 2, 3);
 s = 0;
+kaizouSelectIndex[8] = new Array(0, 1, 1, 0, 0, 0, 0);
 kaizouSelect[8] = new Array();
 kaizouSelect[8][s++] = new Array(0, 1, 2, 3);
 kaizouSelect[8][s++] = new Array(0, 3);
-kaizouSelect[8][s++] = new Array(0, 3);
-kaizouSelect[8][s++] = new Array(0, 1, 2, 3);
-kaizouSelect[8][s++] = new Array(0, 1, 2, 3);
-kaizouSelect[8][s++] = new Array(0, 1, 2, 3);
-kaizouSelect[8][s++] = new Array(0, 1, 2, 3);
 s = 0;
+kaizouSelectIndex[9] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1);
 kaizouSelect[9] = new Array();
 kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
-kaizouSelect[9][s++] = new Array(0, 1, 2, 3);
 kaizouSelect[9][s++] = new Array(0, 1, 2, 3);
 s = 0;
+kaizouSelectIndex[10] = new Array(0, 0, 0, 0, 1);
 kaizouSelect[10] = new Array();
-kaizouSelect[10][s++] = new Array(0, 1, 2);
-kaizouSelect[10][s++] = new Array(0, 1, 2);
-kaizouSelect[10][s++] = new Array(0, 1, 2);
 kaizouSelect[10][s++] = new Array(0, 1, 2);
 kaizouSelect[10][s++] = new Array(0, 1, 2, 3);
 s = 0;
+kaizouSelectIndex[11] = new Array(0, 0);
 kaizouSelect[11] = new Array();
 kaizouSelect[11][s++] = new Array(0, 1, 2);
 s = 0;
+kaizouSelectIndex[12] = new Array(0, 0);
 kaizouSelect[12] = new Array();
 kaizouSelect[12][s++] = new Array();
 s = 0;
+kaizouSelectIndex[13] = new Array(0, 0);
 kaizouSelect[13] = new Array();
 kaizouSelect[13][s++] = new Array(0, 1, 2);
 s = 0;
+kaizouSelectIndex[14] = new Array(0, 0);
 kaizouSelect[14] = new Array();
 kaizouSelect[14][s++] = new Array(0, 1, 2);
 s = 0;
+kaizouSelectIndex[15] = new Array(0, 0);
 kaizouSelect[15] = new Array();
 kaizouSelect[15][s++] = new Array(0, 1, 2);
 s = 0;
+kaizouSelectIndex[16] = new Array(0, 0);
 kaizouSelect[16] = new Array();
 kaizouSelect[16][s++] = new Array(0, 1, 2);
 s = 0;
+kaizouSelectIndex[17] = new Array(0, 0);
 kaizouSelect[17] = new Array();
 kaizouSelect[17][s++] = new Array(0, 1, 2);
 s = 0;
+kaizouSelectIndex[18] = new Array(0, 0);
 kaizouSelect[18] = new Array();
 kaizouSelect[18][s++] = new Array(0, 1, 2);
 s = 0;
+kaizouSelectIndex[19] = new Array(0, 0);
 kaizouSelect[19] = new Array();
 kaizouSelect[19][s++] = new Array();
 s = 0;
+kaizouSelectIndex[20] = new Array(0, 0);
 kaizouSelect[20] = new Array();
 kaizouSelect[20][s++] = new Array();
 s = 0;
+kaizouSelectIndex[21] = new Array(0, 0);
 kaizouSelect[21] = new Array();
 kaizouSelect[21][s++] = new Array();
 
@@ -836,6 +754,8 @@ function View_Set(value1) {
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		writeValue += "<td class='cstd'>　</td>"
 		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
+		writeValue += "<td class='cstd'>　</td>"
+		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
 	}
 	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
@@ -851,6 +771,9 @@ function View_Set(value1) {
 		for (var i = 1; i <= 6; i++) {
 			writeValue += "<tr><td class='cstd'>　</td><td>スロット" + i + " ";
 			writeValue += "<span id='id_" + nameValue[value1] + value1 + "_slot" + i + "'></span><br>";
+			if (i == 1) {
+				writeValue += " <input type='button' value='Lv一括' onclick='Lv_Set(" + value1 + ")'>　";
+			}
 			writeValue += "<select id='" + nameValue[value1] + value1 + "_type" + i + "' onchange='Type_Calc(" + value1 + ")'>";
 			writeValue += "<option value=2>イイ感じ</option><option value=3>職人技</option><option value=4 selected>至高の逸品</option></select>　強化Lv ";
 			writeValue += "<select id='" + nameValue[value1] + value1 + "_lv" + i + "' onchange='Type_Calc(" + value1 + ")'>";
@@ -885,12 +808,12 @@ function Type_Init(value1) {
 function Type_Set(value1, value2) {
 	var index = document.getElementById(nameValue[value1] + value1).value;
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+		var sameFlg = 1;
 		if (value2 == 1) {
 			var oldIndex = document.getElementById(nameValue[value1] + value1 + '_oldselect').value;
-			var sameFlg = 1;
-			if (oldIndex != -1 && kaizouSelect[nameCalc[value1]][index].length == kaizouSelect[nameCalc[value1]][oldIndex].length) {
-				for (var j = 0; j < kaizouSelect[nameCalc[value1]][index].length; j++) {
-					if (kaizouSelect[nameCalc[value1]][index][j] != kaizouSelect[nameCalc[value1]][oldIndex][j]) {
+			if (oldIndex != -1 && kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length == kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][oldIndex]].length) {
+				for (var j = 0; j < kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length; j++) {
+					if (kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j] != kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][oldIndex]][j]) {
 						sameFlg = -1;
 						break;
 					}
@@ -898,18 +821,18 @@ function Type_Set(value1, value2) {
 			} else {
 				sameFlg = -1;
 			}
-			if (sameFlg == -1) {
-				var innerValue = "";
-				for (var i = 1; i <= 6; i++) {
-					innerValue = "<select id='" + nameValue[value1] + value1 + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
-					innerValue += "<option value=-1 selected>改造選択</option>";
-					for (var j = 0; j < kaizouSelect[nameCalc[value1]][index].length; j++) {
-						innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][index][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][index][j]][0][0] + "</option>";
-					}
-					document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + i).innerHTML = innerValue + "</select>";
-					for (var j = 0; j < 3; j++) {
-						document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).innerHTML = "";
-					}
+		}
+		if (sameFlg == -1 || (index == 0 && nameZero[nameCalc[value1]] == 1)) {
+			var innerValue = "";
+			for (var i = 1; i <= 6; i++) {
+				innerValue = "<select id='" + nameValue[value1] + value1 + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
+				innerValue += "<option value=-1 selected>改造選択</option>";
+				for (var j = 0; j < kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length; j++) {
+					innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j]][0][0] + "</option>";
+				}
+				document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + i).innerHTML = innerValue + "</select>";
+				for (var j = 0; j < 3; j++) {
+					document.getElementById("id_" + nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).innerHTML = "";
 				}
 			}
 		}
@@ -1245,6 +1168,21 @@ function Preset_Set(value1) {
 			document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = 0;
 			Type_Slot_Set(value1, i - 1);
 		}
+	}
+}
+
+function Lv_Set(value1) {
+	var index = document.getElementById(nameValue[value1] + value1 + '_lv' + 1).selectedIndex;
+	for (var i = 2; i <= 6; i++) {
+		document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex = index;
+		Type_Slot_Set(value1, i - 1);
+	}
+}
+
+function Shokika_Set(value1) {
+	for (var i = 1; i <= 6; i++) {
+		document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = 0;
+		Type_Slot_Set(value1, i - 1);
 	}
 }
 
