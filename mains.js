@@ -1,8 +1,9 @@
-﻿//0:ギヤ, 1:モーター, 2:ボディ, 3:シャーシ, 4:フロント・ホイール, 5:リヤ・ホイール, 6:フロント・タイヤ, 7:リヤ・タイヤ, 8:フロントステー, 9:サイドステー, 10:リヤステー, 11:フロント中・ローラー, 12:サイド中・ローラー, 13:リヤ中・ローラー, 14:フロント上・ローラー, 15:サイド上・ローラー, 16:リヤ上・ローラー, 17:リヤ下・ローラー, 18:ウイング・ローラー, 19:ボディオプション, 20:フロント・スタビライザー, 21:サイド・スタビライザー, 22:リヤ・スタビライザー, 23:フロント・ウェイト, 24:リヤ・ウェイト, 25:アクセサリー・ターミナル, 26:アクセサリー・モーターサポート, 27:アクセサリー・ピニオンギヤ, 28:アクセサリー・プロペラシャフト, 29:アクセサリー・軸受け, 30:アクセサリー・シャフト, 31:アクセサリー・クラウンギヤ, 32:アクセサリー・ギヤシャフト, 33:バッテリー
+﻿//0:モーター, 1:ギヤ, 2:ボディ, 3:シャーシ, 4:フロント・ホイール, 5:リヤ・ホイール, 6:フロント・タイヤ, 7:リヤ・タイヤ, 8:フロントステー, 9:サイドステー, 10:リヤステー, 11:フロント中・ローラー, 12:サイド中・ローラー, 13:リヤ中・ローラー, 14:フロント上・ローラー, 15:サイド上・ローラー, 16:リヤ上・ローラー, 17:リヤ下・ローラー, 18:ウイング・ローラー, 19:ボディオプション, 20:フロント・スタビライザー, 21:サイド・スタビライザー, 22:リヤ・スタビライザー, 23:フロント・ウェイト, 24:リヤ・ウェイト, 25:アクセサリー・ターミナル, 26:アクセサリー・モーターサポート, 27:アクセサリー・ピニオンギヤ, 28:アクセサリー・プロペラシャフト, 29:アクセサリー・軸受け, 30:アクセサリー・シャフト, 31:アクセサリー・クラウンギヤ, 32:アクセサリー・ギヤシャフト, 33:バッテリー
 var nameValue = new Array("moter", "gear", "body", "chassis", "f_wheel", "r_wheel", "f_tire", "r_tire", "f_stator", "s_stator", "r_stator", "fm_roller", "sm_roller", "rm_roller", "ft_roller", "st_roller", "rt_roller", "rb_roller", "w_roller", "bodyoption", "f_stabilizer", "s_stabilizer", "r_stabilizer", "f_weight", "r_weight", "terminal", "msupport", "pgear", "pshaft", "bearing", "shaft", "cgear", "gshaft", "battery");
 var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ ", "フロント・ホイール ", "リヤ・ホイール ", "フロント・タイヤ ", "リヤ・タイヤ ", "フロントステー ", "サイドステー ", "リヤステー ", "フロント中・ローラー ", "サイド中・ローラー ", "リヤ中・ローラー ", "フロント上・ローラー ", "サイド上・ローラー ", "リヤ上・ローラー ", "リヤ下・ローラー ", "ウイング・ローラー ", "ボディオプション ", "フロント・スタビライザー ", "サイド・スタビライザー ", "リヤ・スタビライザー ", "フロント・ウェイト ", "リヤ・ウェイト ", "アクセサリー・ターミナル ", "アクセサリー・モーターサポート ", "アクセサリー・ピニオンギヤ ", "アクセサリー・プロペラシャフト ", "アクセサリー・軸受け ", "アクセサリー・シャフト ", "アクセサリー・クラウンギヤ ", "アクセサリー・ギヤシャフト ", "バッテリー ");
-//0:ギヤ, 1:モーター, 2:ボディ, 3:シャーシ, 4:ホイール, 5:タイヤ, 6:フロントステー, 7:サイドステー, 8:リヤステー, 9:ローラー, 10:ボディオプション, 11:スタビライザー, 12:ウェイト, 13:ターミナル, 14:モーターサポート, 15:ピニオンギヤ, 16:プロペラシャフト, 17:軸受け, 18:シャフト, 19:クラウンギヤ, 20:ギヤシャフト, 21:バッテリー
+//0:モーター, 1:ギヤ, 2:ボディ, 3:シャーシ, 4:ホイール, 5:タイヤ, 6:フロントステー, 7:サイドステー, 8:リヤステー, 9:ローラー, 10:ボディオプション, 11:スタビライザー, 12:ウェイト, 13:ターミナル, 14:モーターサポート, 15:ピニオンギヤ, 16:プロペラシャフト, 17:軸受け, 18:シャフト, 19:クラウンギヤ, 20:ギヤシャフト, 21:バッテリー
 var nameCalc = new Array(0, 1, 2, 3, 4, 4, 5, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 10, 11, 11, 11, 12, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21);
+var partsGravity = new Array(0, 0, 0, 0, 64, 0, 64, -64, 128, 0, -64, 128, 0, -128, 128, 0, -128, -128, -128, 0, 128, 0, -128, 64, -128, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aerodf", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "tirehanpatsu", "tirekei", "rollermasatsu", "rollerteikou", "wave", "offload", "gearrate", "ampere", "brake", "stabilizer");
 var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 ", "スタミナ耐久 ", "重さ ", "ギヤ負荷 ", "パワーロス ", "スピードロス ", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ ", "節電 ", "制振 ", "スラスト角 ", "タイヤ摩擦 ", "タイヤ旋回 ", "タイヤ反発 ", "タイヤ径 ", "ローラー摩擦 ", "ローラー抵抗 ", "ウェーブ ", "オフロード ", "ギヤ比 ", "消費電流 ", "ブレーキ減速 ", "スタビ減速 ");
@@ -11,7 +12,7 @@ var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
-var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒) ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間 ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
+var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒) ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間 ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
 
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
 //11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
@@ -214,6 +215,8 @@ selectValue[2][s++] = new Array("自由皇帝", 1, 12, 20.0, 1.0, 4.0, 0.0, 16.0
 selectValue[2][s++] = new Array("ビッグウィッグJr.(コジ坊SP)", 3, 5, 2.0, 2.0, 18.0, 20.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("スピンコブラ", 4, 13, 8.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//51
 s = 0;
+chassisGravity = new Array(3, 3, 3, 3, 3, 3.2, 3.175, 3, 3, 3);
+otherGravity = new Array(0, 0, 0, 0, 0, 0.0, 0.15, 0, 0, 0);
 selectValue[3] = new Array();
 selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
 selectValue[3][s++] = new Array("スーパー1強化シャーシ", 3, 0, 11.0, 10.0, 9.6, 25.0, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
@@ -1030,6 +1033,19 @@ function Diagnosis_Calc(resultValueKai) {
 	//ジャンプ飛距離
 	var jumpValue = Math.sin(2.0 * 20.0 * (Math.PI / 180.0)) / 9.80665;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[7]).value = speedValue2 * speedValue2 * jumpValue;
+	//前後の重心
+	var chassisIndex = window.parent.mains.document.getElementById(nameValue[3] + "3").value;
+	var gravityValue = 0.0;
+	for (var i = 0; i < nameValue.length; i++) {
+		var weightValue = window.parent.mains.document.getElementById(nameValue[i] + "_" + typeValue[5] + i + "_kaisv").value;
+		if (i == 3) {
+			gravityValue += chassisGravity[chassisIndex] * weightValue + otherGravity[chassisIndex];
+		} else {
+			gravityValue += partsGravity[i] * weightValue;
+		}
+	}
+	gravityValue = gravityValue / resultValueKai[5];
+	window.parent.diagnosis.document.getElementById(diagnosisValue[9]).value = gravityValue;
 
 
 }
@@ -1068,6 +1084,7 @@ function View_Diagnosis() {
 	document.write("</tr></table>");
 	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
+	document.write("<br><font color='#FFA500'>※3 タイプ2、タイプ3シャーシ仮運用(それ以外は適当です)</font>");
 }
 
 function UrlCalc(value1) {
