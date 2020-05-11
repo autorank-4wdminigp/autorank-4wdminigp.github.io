@@ -1084,7 +1084,7 @@ function View_Diagnosis() {
 	document.write("</tr></table>");
 	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※3 タイプ2、タイプ3シャーシ仮運用(それ以外は適当です)</font>");
+	document.write("<br><font color='#FFA500'>※3 タイプ2、タイプ3シャーシ仮運用(それ以外のシャーシは適当です)</font>");
 }
 
 function UrlCalc(value1) {
