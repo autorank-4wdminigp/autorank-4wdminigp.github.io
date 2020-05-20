@@ -216,8 +216,8 @@ selectValue[2][s++] = new Array("ビッグウィッグJr.(コジ坊SP)", 3, 5, 2
 selectValue[2][s++] = new Array("スピンコブラ", 4, 13, 8.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ネオトライダガーZMC", 1, 17, 20.0, 0.0, 18.0, 10.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//52
 s = 0;
-var chassisGravity = new Array(3.275, 3.275, 3, 3.175, 3.175, 3.2, 3.175, -3.3, -0.025, 3);
-var otherGravity = new Array(-0.45, -0.45, 0, 0.15, 0.15, 0.0, 0.15, -0.6, -0.655, 0);
+var chassisGravity = new Array(3.275, 3.275, 1.625, 3.175, 3.175, 3.2, 3.175, -3.3, -0.025, 3);
+var otherGravity = new Array(-0.45, -0.45, -85.05, 0.15, 0.15, 0.0, 0.15, -0.6, -0.655, 0);
 selectValue[3] = new Array();
 selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
 selectValue[3][s++] = new Array("スーパー1強化シャーシ", 3, 0, 11.0, 10.0, 9.6, 25.0, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
@@ -1092,7 +1092,7 @@ function View_Diagnosis() {
 	document.write("</tr></table>");
 	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※3 タイプ1、2、3、S1、FMシャーシ対応(それ以外のシャーシは持っていないので適当です)</font>");
+	document.write("<br><font color='#FFA500'>※3 再調査の必要なことが判明したので参考値です</font>");
 }
 
 function UrlCalc(value1) {
