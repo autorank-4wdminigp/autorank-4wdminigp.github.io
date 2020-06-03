@@ -318,7 +318,7 @@ selectValue[6][s++] = new Array("スペーサー付き補強FRP・フロント",
 selectValue[6][s++] = new Array("ダウンスラストフロントステー", 3, 0, 0.0, 0.0, 32.4, 40.5, 5.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[6][s++] = new Array("可変ダウンスラストローラーステー", 3, 0, 0.0, 0.0, 31.2, 39.0, 6.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[6][s++] = new Array("フロントスライドダンパー(通常・赤)", 3, 0, 0.0, 0.0, 33.6, 42.0, 5.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
-selectValue[6][s++] = new Array("(-)FRP強化マウント・フロント(仮)", 3, 0, 0.0, 0.0, 38.4, 55.0, 4.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, -4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[6][s++] = new Array("(-)FRP強化マウント・フロント", 3, 0, 0.0, 0.0, 38.4, 55.0, 4.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, -4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[6][s++] = new Array("スペーサー付(-)FRP強化マウント・F", 3, 0, 0.0, 0.0, 38.4, 55.0, 4.3, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, -4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 s = 0;
 selectValue[7] = new Array();
@@ -911,7 +911,7 @@ function Type_Calc(value1) {
 				var typeIndex = kaizouValue[nameCalc[value1]][slotIndex][j][7];
 				var kaizouVal = 0.0;
 				if (kaizouValue[nameCalc[value1]][slotIndex][j][6] == -1) {
-					kaizouVal = selectValue[nameCalc[value1]][nameIndex][typeIndex + 2] * kaizouValue[nameCalc[value1]][slotIndex][j][typeVal];
+					kaizouVal = Math.abs(selectValue[nameCalc[value1]][nameIndex][typeIndex + 2]) * kaizouValue[nameCalc[value1]][slotIndex][j][typeVal];
 				} else {
 					kaizouVal = kaizouValue[nameCalc[value1]][slotIndex][j][typeVal];
 				}
@@ -919,7 +919,7 @@ function Type_Calc(value1) {
 				if (kaizouValue[nameCalc[value1]][slotIndex][j][6] == -2) {
 					kyoukaVal = kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				} else {
-					kyoukaVal = (calcValue[typeIndex] + kaizouVal) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
+					kyoukaVal = Math.abs(calcValue[typeIndex] + kaizouVal) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				}
 				//document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaVal;
 				calcValue[typeIndex] += kaizouVal + kyoukaVal;
@@ -929,7 +929,7 @@ function Type_Calc(value1) {
 				if (kaizouValue[nameCalc[value1]][slotIndex][j][6] == -2) {
 					kyoukaValSv = kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				} else {
-					kyoukaValSv = calcValueSvInit[typeIndex] * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
+					kyoukaValSv = Math.abs(calcValueSvInit[typeIndex]) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				}
 				document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
 				calcValueSv[typeIndex] += kaizouVal + kyoukaValSv;
