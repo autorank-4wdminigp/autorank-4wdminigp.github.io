@@ -3,7 +3,6 @@ var nameValue = new Array("moter", "gear", "body", "chassis", "f_wheel", "r_whee
 var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ ", "フロント・ホイール ", "リヤ・ホイール ", "フロント・タイヤ ", "リヤ・タイヤ ", "フロントステー ", "サイドステー ", "リヤステー ", "フロント中・ローラー ", "サイド中・ローラー ", "リヤ中・ローラー ", "フロント上・ローラー ", "サイド上・ローラー ", "リヤ上・ローラー ", "リヤ下・ローラー ", "ウイング・ローラー ", "ボディオプション ", "フロント・スタビライザー ", "サイド・スタビライザー ", "リヤ・スタビライザー ", "フロント・ウェイト ", "リヤ・ウェイト ", "アクセサリー・ターミナル ", "アクセサリー・モーターサポート ", "アクセサリー・ピニオンギヤ ", "アクセサリー・プロペラシャフト ", "アクセサリー・軸受け ", "アクセサリー・シャフト ", "アクセサリー・クラウンギヤ ", "アクセサリー・ギヤシャフト ", "バッテリー ");
 //0:モーター, 1:ギヤ, 2:ボディ, 3:シャーシ, 4:ホイール, 5:タイヤ, 6:フロントステー, 7:サイドステー, 8:リヤステー, 9:ローラー, 10:ボディオプション, 11:スタビライザー, 12:ウェイト, 13:ターミナル, 14:モーターサポート, 15:ピニオンギヤ, 16:プロペラシャフト, 17:軸受け, 18:シャフト, 19:クラウンギヤ, 20:ギヤシャフト, 21:バッテリー
 var nameCalc = new Array(0, 1, 2, 3, 4, 4, 5, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 10, 11, 11, 11, 12, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21);
-var partsGravity = new Array(0, 0, 0, 0, 64, 0, 64, -64, 128, 0, -64, 128, 0, -128, 128, 0, -128, -128, -128, 0, 128, 0, -128, 64, -128, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aerodf", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "tirehanpatsu", "tirekei", "rollermasatsu", "rollerteikou", "wave", "offload", "gearrate", "ampere", "brake", "stabilizer", "digital");
 var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 ", "スタミナ耐久 ", "重さ ", "ギヤ負荷 ", "パワーロス ", "スピードロス ", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ ", "節電 ", "制振 ", "スラスト角 ", "タイヤ摩擦 ", "タイヤ旋回 ", "タイヤ反発 ", "タイヤ径 ", "ローラー摩擦 ", "ローラー抵抗 ", "ウェーブ ", "オフロード ", "ギヤ比 ", "消費電流 ", "ブレーキ減速 ", "スタビ減速 ", "デジタル ");
@@ -219,8 +218,13 @@ selectValue[2][s++] = new Array("ダッシュ01号 超皇帝", 2, 12, 6.0, 16.0,
 selectValue[2][s++] = new Array("アバンテ2001Jr.", 1, 14, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ダイナストームJr.", 3, 6, 2.0, 9.0, 18.0, 12.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//55
 s = 0;
-var chassisGravity = new Array(3.275, 3.275, 1.625, 3.175, 3.175, 3.2, 3.175, -3.3, -0.025, 3);
-var otherGravity = new Array(-0.45, -0.45, -85.05, 0.15, 0.15, 0.0, 0.15, -0.6, -0.655, 0);
+var partsGravity = new Array(0, 0, 0, 0, 0.5, 0, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025);
+var baseGravity = new Array(); //0:リヤローラーなしダブルアルミなし, 1:リヤローラーありダブルアルミなし, 2;リヤローラーなしダブルアルミあり, 3;リヤローラーありダブルアルミあり
+baseGravity[0] = new Array( 65.0,  65.0,  65.0,  63.0,  63.0,  64.0,  63.0,  66.0,  72.0, 72.0);
+baseGravity[1] = new Array(131.0, 131.0, 131.0, 127.0, 127.0, 128.0, 127.0, 132.0, 144.0, 144.0);
+baseGravity[2] = new Array( 67.0,  67.0,  67.0,  65.0,  65.0,  65.0,  65.0,  67.0,  73.0, 73.0);
+baseGravity[3] = new Array(134.0, 134.0, 134.0, 130.0, 130.0, 131.0, 130.0, 135.0, 147.0, 147.0);
 selectValue[3] = new Array();
 selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
 selectValue[3][s++] = new Array("スーパー1強化シャーシ", 3, 0, 11.0, 10.0, 9.6, 25.0, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
@@ -780,7 +784,7 @@ function View_Set(value1) {
 		if (i == 5 || i == 10 || i == 15) {
 			writeValue += "</tr><tr><td class='cstd'>　</td>";
 		}
-		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>旧アプリ <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
+		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
 	}
 	writeValue += "</tr></table>";
 
@@ -884,7 +888,6 @@ function Type_Calc(value1) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValue[typeSelect[nameCalc[value1]][i]];
 		}
 	} else {
@@ -894,11 +897,9 @@ function Type_Calc(value1) {
 			}
 		}
 		var nameIndex = document.getElementById(nameValue[value1] + value1).value;
-		var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //25
 		var calcValueSv = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //25
 		var calcValueSvInit = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //25
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length - 2; i++) {
-			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 			calcValueSv[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 			calcValueSvInit[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 		}
@@ -915,16 +916,6 @@ function Type_Calc(value1) {
 				} else {
 					kaizouVal = kaizouValue[nameCalc[value1]][slotIndex][j][typeVal];
 				}
-				var kyoukaVal = 0.0;
-				if (kaizouValue[nameCalc[value1]][slotIndex][j][6] == -2) {
-					kyoukaVal = kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
-				} else {
-					kyoukaVal = Math.abs(calcValue[typeIndex] + kaizouVal) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
-				}
-				//document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaVal;
-				calcValue[typeIndex] += kaizouVal + kyoukaVal;
-				if (calcValue[typeIndex] < 0 && typeIndex != 12) calcValue[typeIndex] = 0;
-
 				var kyoukaValSv = 0.0;
 				if (kaizouValue[nameCalc[value1]][slotIndex][j][6] == -2) {
 					kyoukaValSv = kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
@@ -938,11 +929,9 @@ function Type_Calc(value1) {
 		}
 		if (value1 == 2) {
 			var nikuVal = document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex;
-			calcValue[5] -= nikuVal * 0.32;
 			calcValueSv[5] -= nikuVal * 0.32;
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValueSv[typeSelect[nameCalc[value1]][i]];
 		}
 	}
@@ -967,13 +956,11 @@ function Result_Calc() {
 		for (var i = 0; i < typeSelect[nameCalc[value0]].length; i++) {
 			if (disp1Flg == 1 && typeSelect[nameCalc[value0]][i] != 5) continue;
 			resultValue[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0).value;
-			resultValueKai[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kai").value;
 			resultValueKaiSv[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kaisv").value;
 		}
 	}
 	for (var i = 1; i < typeValue.length; i++) {
 		window.parent.results.document.getElementById(typeValue[i]).value = resultValue[i];
-		window.parent.results.document.getElementById(typeValue[i] + "_kai").value = resultValueKai[i];
 		window.parent.results.document.getElementById(typeValue[i] + "_kaisv").value = resultValueKaiSv[i];
 		if (resultValue[i] == 0) {
 			window.parent.results.document.getElementById(typeValue[i] + "_rate").value = 0;
@@ -1052,12 +1039,19 @@ function Diagnosis_Calc(resultValueKai) {
 	//前後の重心
 	var chassisIndex = window.parent.mains.document.getElementById(nameValue[3] + "3").value;
 	var gravityValue = 0.0;
+	var baseGravityIndex = 0;
+	if (window.parent.mains.document.getElementById(nameValue[13] + "13").value != 0 || window.parent.mains.document.getElementById(nameValue[16] + "16").value != 0 || window.parent.mains.document.getElementById(nameValue[17] + "17").value != 0 || window.parent.mains.document.getElementById(nameValue[18] + "18").value != 0) {
+		baseGravityIndex = 1;
+	}
+	if (window.parent.mains.document.getElementById(nameValue[10] + "10").value == 2 || window.parent.mains.document.getElementById(nameValue[10] + "10").value == 4) {
+		baseGravityIndex += 2;
+	}
 	for (var i = 0; i < nameValue.length; i++) {
 		var weightValue = window.parent.mains.document.getElementById(nameValue[i] + "_" + typeValue[5] + i + "_kaisv").value;
 		if (i == 3) {
-			gravityValue += chassisGravity[chassisIndex] * weightValue + otherGravity[chassisIndex];
+			gravityValue += baseGravity[baseGravityIndex][chassisIndex] * chassisGravity[chassisIndex] * weightValue;
 		} else {
-			gravityValue += partsGravity[i] * weightValue;
+			gravityValue += baseGravity[baseGravityIndex][chassisIndex] * partsGravity[i] * weightValue;
 		}
 	}
 	gravityValue = gravityValue / resultValueKai[5];
@@ -1076,7 +1070,7 @@ function View_Result() {
 			document.write("</tr>");
 			document.write("<tr><td class='cstd'>　</td>");
 		}
-		document.write("<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>旧アプリ <input class='csinput' type='text' id='" + typeValue[i] + "_kai' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>");
+		document.write("<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>");
 	}
 	document.write("</tr></table>");
 	document.write("<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>");
@@ -1100,7 +1094,7 @@ function View_Diagnosis() {
 	document.write("</tr></table>");
 	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※3 再調査の必要なことが判明したので参考値です</font>");
+	document.write("<br><font color='#FFA500'>※3 スーパー1、ゼロ、タイプ1、2、3、FM、スーパーFMシャーシ対応(スーパー1強化、スーパーTZシャーシは不明)</font>");
 }
 
 function UrlCalc(value1) {
