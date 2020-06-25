@@ -790,7 +790,7 @@ function View_Set(value1) {
 		if (i == 5 || i == 10 || i == 15) {
 			writeValue += "</tr><tr><td class='cstd'>　</td>";
 		}
-		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
+		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>旧アプリ <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
 	}
 	writeValue += "</tr></table>";
 
@@ -894,6 +894,7 @@ function Type_Calc(value1) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
+			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValue[typeSelect[nameCalc[value1]][i]];
 		}
 	} else {
@@ -903,9 +904,11 @@ function Type_Calc(value1) {
 			}
 		}
 		var nameIndex = document.getElementById(nameValue[value1] + value1).value;
+		var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //25
 		var calcValueSv = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //25
 		var calcValueSvInit = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //25
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length - 2; i++) {
+			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 			calcValueSv[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 			calcValueSvInit[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 		}
@@ -922,6 +925,14 @@ function Type_Calc(value1) {
 				} else {
 					kaizouVal = kaizouValue[nameCalc[value1]][slotIndex][j][typeVal];
 				}
+				var kyoukaVal = 0.0;
+				if (kaizouValue[nameCalc[value1]][slotIndex][j][6] == -2) {
+					kyoukaVal = kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
+				} else {
+					kyoukaVal = Math.abs(calcValue[typeIndex] + kaizouVal) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
+				}
+				calcValue[typeIndex] += kaizouVal + kyoukaVal;
+				if (calcValue[typeIndex] < 0 && typeIndex != 12) calcValue[typeIndex] = 0;
 				var kyoukaValSv = 0.0;
 				if (kaizouValue[nameCalc[value1]][slotIndex][j][6] == -2) {
 					kyoukaValSv = kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
@@ -935,9 +946,11 @@ function Type_Calc(value1) {
 		}
 		if (value1 == 2) {
 			var nikuVal = document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex;
+			calcValue[5] -= nikuVal * 0.32;
 			calcValueSv[5] -= nikuVal * 0.32;
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
+			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai").value = calcValue[typeSelect[nameCalc[value1]][i]];
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValueSv[typeSelect[nameCalc[value1]][i]];
 		}
 	}
@@ -962,11 +975,13 @@ function Result_Calc() {
 		for (var i = 0; i < typeSelect[nameCalc[value0]].length; i++) {
 			if (disp1Flg == 1 && typeSelect[nameCalc[value0]][i] != 5) continue;
 			resultValue[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0).value;
+			resultValueKai[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kai").value;
 			resultValueKaiSv[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kaisv").value;
 		}
 	}
 	for (var i = 1; i < typeValue.length; i++) {
 		window.parent.results.document.getElementById(typeValue[i]).value = resultValue[i];
+		window.parent.results.document.getElementById(typeValue[i] + "_kai").value = resultValueKai[i];
 		window.parent.results.document.getElementById(typeValue[i] + "_kaisv").value = resultValueKaiSv[i];
 		if (resultValue[i] == 0) {
 			window.parent.results.document.getElementById(typeValue[i] + "_rate").value = 0;
@@ -1076,7 +1091,7 @@ function View_Result() {
 			document.write("</tr>");
 			document.write("<tr><td class='cstd'>　</td>");
 		}
-		document.write("<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>");
+		document.write("<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>旧アプリ <input class='csinput' type='text' id='" + typeValue[i] + "_kai' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>");
 	}
 	document.write("</tr></table>");
 	document.write("<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>");
