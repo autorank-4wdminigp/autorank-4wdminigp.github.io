@@ -991,7 +991,7 @@ function Result_Calc() {
 			window.parent.results.document.getElementById(typeValue[i] + "_rate").value = resultValueKai[i] / resultValue[i] * 100.0 - 100.0;
 		}
 	}
-	Diagnosis_Calc(resultValueKai);
+	Diagnosis_Calc(resultValueKaiSv);
 }
 
 function Diagnosis_Calc(resultValueKai) {
