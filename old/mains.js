@@ -790,7 +790,7 @@ function View_Set(value1) {
 		if (i == 5 || i == 10 || i == 15) {
 			writeValue += "</tr><tr><td class='cstd'>　</td>";
 		}
-		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>旧アプリ <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
+		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>旧アプリ <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kai' value=''><br>新アプリ <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
 	}
 	writeValue += "</tr></table>";
 
@@ -931,15 +931,17 @@ function Type_Calc(value1) {
 				} else {
 					kyoukaVal = Math.abs(calcValue[typeIndex] + kaizouVal) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				}
+				document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaVal;
 				calcValue[typeIndex] += kaizouVal + kyoukaVal;
 				if (calcValue[typeIndex] < 0 && typeIndex != 12) calcValue[typeIndex] = 0;
+
 				var kyoukaValSv = 0.0;
 				if (kaizouValue[nameCalc[value1]][slotIndex][j][6] == -2) {
 					kyoukaValSv = kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				} else {
 					kyoukaValSv = Math.abs(calcValueSvInit[typeIndex]) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				}
-				document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
+				//document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
 				calcValueSv[typeIndex] += kaizouVal + kyoukaValSv;
 				if (calcValueSv[typeIndex] < 0 && typeIndex != 12) calcValueSv[typeIndex] = 0;
 			}
@@ -986,10 +988,10 @@ function Result_Calc() {
 		if (resultValue[i] == 0) {
 			window.parent.results.document.getElementById(typeValue[i] + "_rate").value = 0;
 		} else {
-			window.parent.results.document.getElementById(typeValue[i] + "_rate").value = resultValueKaiSv[i] / resultValue[i] * 100.0 - 100.0;
+			window.parent.results.document.getElementById(typeValue[i] + "_rate").value = resultValueKai[i] / resultValue[i] * 100.0 - 100.0;
 		}
 	}
-	Diagnosis_Calc(resultValueKaiSv);
+	Diagnosis_Calc(resultValueKai);
 }
 
 function Diagnosis_Calc(resultValueKai) {
@@ -1091,7 +1093,7 @@ function View_Result() {
 			document.write("</tr>");
 			document.write("<tr><td class='cstd'>　</td>");
 		}
-		document.write("<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>旧アプリ <input class='csinput' type='text' id='" + typeValue[i] + "_kai' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>");
+		document.write("<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>旧アプリ <input class='csinput' type='text' id='" + typeValue[i] + "_kai' value=''><br>新アプリ <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>");
 	}
 	document.write("</tr></table>");
 	document.write("<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>");
