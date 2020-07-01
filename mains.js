@@ -1,7 +1,7 @@
-﻿//0:モーター, 1:ギヤ, 2:ボディ, 3:シャーシ, 4:フロント・ホイール, 5:リヤ・ホイール, 6:フロント・タイヤ, 7:リヤ・タイヤ, 8:フロントステー, 9:サイドステー, 10:リヤステー, 11:フロント中・ローラー, 12:サイド中・ローラー, 13:リヤ中・ローラー, 14:フロント上・ローラー, 15:サイド上・ローラー, 16:リヤ上・ローラー, 17:リヤ下・ローラー, 18:ウイング・ローラー, 19:ボディオプション, 20:フロント・スタビライザー, 21:サイド・スタビライザー, 22:リヤ・スタビライザー, 23:フロント・ウェイト, 24:リヤ・ウェイト, 25:アクセサリー・ターミナル, 26:アクセサリー・モーターサポート, 27:アクセサリー・ピニオンギヤ, 28:アクセサリー・プロペラシャフト, 29:アクセサリー・軸受け, 30:アクセサリー・シャフト, 31:アクセサリー・クラウンギヤ, 32:アクセサリー・ギヤシャフト, 33:バッテリー
-var nameValue = new Array("moter", "gear", "body", "chassis", "f_wheel", "r_wheel", "f_tire", "r_tire", "f_stator", "s_stator", "r_stator", "fm_roller", "sm_roller", "rm_roller", "ft_roller", "st_roller", "rt_roller", "rb_roller", "w_roller", "bodyoption", "f_stabilizer", "s_stabilizer", "r_stabilizer", "f_weight", "r_weight", "terminal", "msupport", "pgear", "pshaft", "bearing", "shaft", "cgear", "gshaft", "battery");
-var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ ", "フロント・ホイール ", "リヤ・ホイール ", "フロント・タイヤ ", "リヤ・タイヤ ", "フロントステー ", "サイドステー ", "リヤステー ", "フロント中・ローラー ", "サイド中・ローラー ", "リヤ中・ローラー ", "フロント上・ローラー ", "サイド上・ローラー ", "リヤ上・ローラー ", "リヤ下・ローラー ", "ウイング・ローラー ", "ボディオプション ", "フロント・スタビライザー ", "サイド・スタビライザー ", "リヤ・スタビライザー ", "フロント・ウェイト ", "リヤ・ウェイト ", "アクセサリー・ターミナル ", "アクセサリー・モーターサポート ", "アクセサリー・ピニオンギヤ ", "アクセサリー・プロペラシャフト ", "アクセサリー・軸受け ", "アクセサリー・シャフト ", "アクセサリー・クラウンギヤ ", "アクセサリー・ギヤシャフト ", "バッテリー ");
-//0:モーター, 1:ギヤ, 2:ボディ, 3:シャーシ, 4:ホイール, 5:タイヤ, 6:フロントステー, 7:サイドステー, 8:リヤステー, 9:ローラー, 10:ボディオプション, 11:スタビライザー, 12:ウェイト, 13:ターミナル, 14:モーターサポート, 15:ピニオンギヤ, 16:プロペラシャフト, 17:軸受け, 18:シャフト, 19:クラウンギヤ, 20:ギヤシャフト, 21:バッテリー
+﻿//0:モーター, 1:ギヤ, 2:ボディ, 3:シャーシ, 4:フロント・ホイール, 5:リヤ・ホイール, 6:フロント・タイヤ, 7:リヤ・タイヤ, 8:フロントステー, 9:サイドステー, 10:リヤステー, 11:フロント中・ローラー, 12:サイド中・ローラー, 13:リヤ中・ローラー, 14:フロント上・ローラー, 15:サイド上・ローラー, 16:リヤ上・ローラー, 17:リヤ下・ローラー, 18:ウイング・ローラー, 19:ボディオプション, 20:フロント・スタビライザー, 21:サイド・スタビライザー, 22:リヤ・スタビライザー, 23:フロント・ウェイト, 24:リヤ・ウェイト, 25:アクセサリー・ターミナル, 26:アクセサリー・モーターサポート, 27:アクセサリー・ピニオンギヤ, 28:アクセサリー・プロペラシャフト, 29:アクセサリー・軸受け, 30:アクセサリー・シャフト, 31:アクセサリー・ギヤシャフト, 32:アクセサリー・クラウンギヤ, 33:バッテリー
+var nameValue = new Array("moter", "gear", "body", "chassis", "f_wheel", "r_wheel", "f_tire", "r_tire", "f_stator", "s_stator", "r_stator", "fm_roller", "sm_roller", "rm_roller", "ft_roller", "st_roller", "rt_roller", "rb_roller", "w_roller", "bodyoption", "f_stabilizer", "s_stabilizer", "r_stabilizer", "f_weight", "r_weight", "terminal", "msupport", "pgear", "pshaft", "bearing", "shaft", "gshaft", "cgear", "battery");
+var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ ", "フロント・ホイール ", "リヤ・ホイール ", "フロント・タイヤ ", "リヤ・タイヤ ", "フロントステー ", "サイドステー ", "リヤステー ", "フロント中・ローラー ", "サイド中・ローラー ", "リヤ中・ローラー ", "フロント上・ローラー ", "サイド上・ローラー ", "リヤ上・ローラー ", "リヤ下・ローラー ", "ウイング・ローラー ", "ボディオプション ", "フロント・スタビライザー ", "サイド・スタビライザー ", "リヤ・スタビライザー ", "フロント・ウェイト ", "リヤ・ウェイト ", "アクセサリー・ターミナル ", "アクセサリー・モーターサポート ", "アクセサリー・ピニオンギヤ ", "アクセサリー・プロペラシャフト ", "アクセサリー・軸受け ", "アクセサリー・シャフト ", "アクセサリー・ギヤシャフト ", "アクセサリー・クラウンギヤ ", "バッテリー ");
+//0:モーター, 1:ギヤ, 2:ボディ, 3:シャーシ, 4:ホイール, 5:タイヤ, 6:フロントステー, 7:サイドステー, 8:リヤステー, 9:ローラー, 10:ボディオプション, 11:スタビライザー, 12:ウェイト, 13:ターミナル, 14:モーターサポート, 15:ピニオンギヤ, 16:プロペラシャフト, 17:軸受け, 18:シャフト, 19:ギヤシャフト, 20:クラウンギヤ, 21:バッテリー
 var nameCalc = new Array(0, 1, 2, 3, 4, 4, 5, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 10, 11, 11, 11, 12, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21);
 
 var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aerodf", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "tirehanpatsu", "tirekei", "rollermasatsu", "rollerteikou", "wave", "offload", "gearrate", "ampere", "brake", "stabilizer", "digital");
@@ -38,7 +38,7 @@ typeSelect[16] = new Array(1, 2, 3, 4, 5, 6, 7);
 typeSelect[17] = new Array(1, 2, 3, 4, 5, 8);
 typeSelect[18] = new Array(1, 2, 3, 4, 5, 8);
 typeSelect[19] = new Array(1, 2, 3, 4, 5, 6, 7);
-typeSelect[20] = new Array(1, 2, 3, 4, 5, 8);
+typeSelect[20] = new Array(1, 2, 3, 4, 5, 6, 7);
 typeSelect[21] = new Array(1, 2, 3, 4, 5);
 
 var kaizouSelectIndex = new Array();
@@ -131,7 +131,7 @@ kaizouSelect[18][s++] = new Array(0, 1, 2);
 s = 0;
 kaizouSelectIndex[19] = new Array(0, 0);
 kaizouSelect[19] = new Array();
-kaizouSelect[19][s++] = new Array();
+kaizouSelect[19][s++] = new Array(0, 1);
 s = 0;
 kaizouSelectIndex[20] = new Array(0, 0);
 kaizouSelect[20] = new Array();
@@ -403,6 +403,7 @@ s = 0;
 selectValue[14] = new Array();
 selectValue[14][s++] = new Array("なし", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[14][s++] = new Array("放熱フィン", 1, 0, 7.0, 23.0, 0.0, 1.0, 1.5, 0.0, 0.0, 0.0, 0.0, 1000.0);
+selectValue[14][s++] = new Array("アルミモーターサポート", 1, 0, 5.0, 25.0, 0.0, 4.0, 1.5, 0.0, 0.0, 0.0, 0.0, 600.0);
 s = 0;
 selectValue[15] = new Array();
 selectValue[15][s++] = new Array("標準ピニオンギヤ", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.1, 700.0, 400.0);
@@ -425,10 +426,11 @@ selectValue[18][s++] = new Array("ハードシャフト", 3, 0, 5.0, 25.0, 0.0, 
 selectValue[18][s++] = new Array("中空ステンレスシャフト", 3, 0, 25.0, 5.0, 0.0, 1.0, 2.0, 0.0, 0.0, 900.0);
 s = 0;
 selectValue[19] = new Array();
-selectValue[19][s++] = new Array("標準クラウンギヤ", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.8, 1400.0, 600.0);
+selectValue[19][s++] = new Array("標準ギヤシャフト", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.3, 700.0, 300.0);
+selectValue[19][s++] = new Array("フッソコートギヤシャフト", 1, 0, 15.0, 15.0, 0.0, 0.2, 0.3, 650.0, 280.0);
 s = 0;
 selectValue[20] = new Array();
-selectValue[20][s++] = new Array("標準ギヤシャフト", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[20][s++] = new Array("標準クラウンギヤ", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.5, 700.0, 300.0);
 s = 0;
 selectValue[21] = new Array();
 selectValue[21][s++] = new Array("標準バッテリー", 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0);
@@ -741,6 +743,11 @@ kaizouValue[18][2][0] = new Array("滑り止め加工 [4]", "スタミナ耐久�
 
 kaizouValue[19] = new Array();
 kaizouValue[19][0] = new Array();
+kaizouValue[19][0][0] = new Array("回転ブレのチェック", "パワーロス〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 7);
+kaizouValue[19][0][1] = new Array("", "パワー〇 [200(全固定)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
+kaizouValue[19][1] = new Array();
+kaizouValue[19][1][0] = new Array("ギヤシャフト固定 [2]", "パワーロス〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
+kaizouValue[19][1][1] = new Array("", "パワー〇 [200(全固定)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 
 kaizouValue[20] = new Array();
 kaizouValue[20][0] = new Array();
@@ -955,7 +962,7 @@ function Result_Calc() {
 	for (var value0 = 0; value0 < nameValue.length; value0++) {
 		var disp1Flg = 0;
 		if (disp1) {
-			if (value0 >= 27 && value0 <= 31) {
+			if (value0 >= 27 && value0 <= 32) {
 				if (window.parent.mains.document.getElementById(nameValue[value0] + value0).value == 0) disp1Flg = 1;
 			}
 		}
