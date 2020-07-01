@@ -38,7 +38,7 @@ typeSelect[16] = new Array(1, 2, 3, 4, 5, 6, 7);
 typeSelect[17] = new Array(1, 2, 3, 4, 5, 8);
 typeSelect[18] = new Array(1, 2, 3, 4, 5, 8);
 typeSelect[19] = new Array(1, 2, 3, 4, 5, 6, 7);
-typeSelect[20] = new Array(1, 2, 3, 4, 5, 8);
+typeSelect[20] = new Array(1, 2, 3, 4, 5, 6, 7);
 typeSelect[21] = new Array(1, 2, 3, 4, 5);
 
 var kaizouSelectIndex = new Array();
@@ -425,10 +425,10 @@ selectValue[18][s++] = new Array("ハードシャフト", 3, 0, 5.0, 25.0, 0.0, 
 selectValue[18][s++] = new Array("中空ステンレスシャフト", 3, 0, 25.0, 5.0, 0.0, 1.0, 2.0, 0.0, 0.0, 900.0);
 s = 0;
 selectValue[19] = new Array();
-selectValue[19][s++] = new Array("標準クラウンギヤ", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.8, 1400.0, 600.0);
+selectValue[19][s++] = new Array("標準クラウンギヤ", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.5, 700.0, 300.0);
 s = 0;
 selectValue[20] = new Array();
-selectValue[20][s++] = new Array("標準ギヤシャフト", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[20][s++] = new Array("標準ギヤシャフト", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.3, 700.0, 300.0);
 s = 0;
 selectValue[21] = new Array();
 selectValue[21][s++] = new Array("標準バッテリー", 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0);
@@ -970,7 +970,7 @@ function Result_Calc() {
 	for (var value0 = 0; value0 < nameValue.length; value0++) {
 		var disp1Flg = 0;
 		if (disp1) {
-			if (value0 >= 27 && value0 <= 31) {
+			if (value0 >= 27 && value0 <= 32) {
 				if (window.parent.mains.document.getElementById(nameValue[value0] + value0).value == 0) disp1Flg = 1;
 			}
 		}
