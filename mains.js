@@ -944,7 +944,12 @@ function Type_Calc(value1) {
 		}
 		if (value1 == 2) {
 			var nikuVal = document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex;
-			calcValueSv[5] -= nikuVal * 0.32;
+			var minusCoefficient = 0.32;
+			if (nameIndex == 57) {
+				// ファイターマグナムVFX
+				minusCoefficient = 0.2;
+			}
+			calcValueSv[5] -= nikuVal * minusCoefficient;
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValueSv[typeSelect[nameCalc[value1]][i]];
