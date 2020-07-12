@@ -1047,7 +1047,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.4;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.3;
 	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.4;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * (1 - setsudenValue * setsudenUp / 10000.0);
+	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
 	//加速度(毎秒)
 	var ftireValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6_kaisv").value;
 	var rtireValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "7_kaisv").value;
