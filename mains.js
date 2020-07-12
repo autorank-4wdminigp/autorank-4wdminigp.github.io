@@ -143,7 +143,7 @@ kaizouSelect[21][s++] = new Array();
 
 //1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン)
 var selectProper = new Array("－", "St", "U", "Kp", "Co", "J");
-var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "ブレーキ効果UP+", "バウンド抑制UP+", "節電UP+", "オフロード特効UP+", "なし", "かっとびマシン");
+var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "なし", "コーナー速度UP+", "なし", "なし", "バウンド抑制UP+", "節電UP+(仮)", "なし", "なし", "かっとびマシン");
 
 var selectValue = new Array();
 s = 0;
@@ -209,10 +209,10 @@ selectValue[2][s++] = new Array("マグナムセイバー(そらまるSP)", 1, 2
 selectValue[2][s++] = new Array("マンタレイJr.", 1, 9, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("サイクロンマグナム", 1, 21, 20.0, 1.0, 4.05, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("クリムゾングローリー(銀メッキ) [FM]", 1, 1, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("トムゴディスペシャル", 4, 13, 8.0, 4.0, 10.0, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("トムゴディスペシャル", 4, 14, 8.0, 4.0, 10.0, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("自由皇帝", 1, 12, 20.0, 1.0, 4.0, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ビッグウィッグJr.(コジ坊SP)", 3, 5, 2.0, 2.0, 18.0, 20.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("スピンコブラ", 4, 13, 8.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("スピンコブラ", 4, 14, 8.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ネオトライダガーZMC", 1, 17, 20.0, 0.0, 18.0, 10.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ダッシュ01号 超皇帝", 2, 12, 6.0, 16.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("アバンテ2001Jr.", 1, 14, 20.0, 0.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
@@ -794,6 +794,23 @@ function View_Set(value1) {
 		writeValue += "<td class='cstd'>　</td>"
 		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
 	}
+	if (value1 == 2) {
+		writeValue += "</tr></table>";
+		writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
+		writeValue += "<td>メイン特性 <select id='" + nameValue[value1] + value1 + "_bodytokusei1' onchange='Type_Calc(" + value1 + ")'>";
+		for (var i = 0; i < selectOption.length; i++) {
+			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
+		}
+		writeValue += "</select></td><td>アシストA特性 <select id='" + nameValue[value1] + value1 + "_bodytokusei2' onchange='Type_Calc(" + value1 + ")'>";
+		for (var i = 0; i <= 20; i++) {
+			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
+		}
+		writeValue += "</select> ※ 仮 </td><td>アシストB特性 <select id='" + nameValue[value1] + value1 + "_bodytokusei3' onchange='Type_Calc(" + value1 + ")'>";
+		for (var i = 0; i <= 20; i++) {
+			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
+		}
+		writeValue += "</select> ※ 仮 </td>";
+	}
 	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 		if (i == 5 || i == 10 || i == 15) {
@@ -802,7 +819,6 @@ function View_Set(value1) {
 		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
 	}
 	writeValue += "</tr></table>";
-
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		writeValue += "<table class='cstable'>";
 		for (var i = 1; i <= 6; i++) {
@@ -873,6 +889,14 @@ function Type_Set(value1, value2) {
 				}
 			}
 		}
+	}
+	if (value1 == 2) {
+		var bodyIndex = document.getElementById(nameValue[2] + "2").value;
+		var bodyOption = selectValue[2][bodyIndex][2];
+		var calcFlgOrg = calcFlg;
+		calcFlg = 0;
+		document.getElementById(nameValue[value1] + value1 + '_bodytokusei1').selectedIndex = bodyOption;
+		calcFlg = calcFlgOrg;
 	}
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 		document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + value1).value = selectValue[nameCalc[value1]][index][typeSelect[nameCalc[value1]][i] + 2];
@@ -1002,24 +1026,38 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[11]).value = resultValueKai[5];
 	//ブレーキ性能
 	var brakeValue = resultValueKai[23] / 2000.0;
-	var bodyIndex = window.parent.mains.document.getElementById(nameValue[2] + "2").value;
-	var bodyOption = selectValue[2][bodyIndex][2];
-	if (brakeValue != 0 && bodyOption == 6) brakeValue += 0.05;
+	//var bodyIndex = window.parent.mains.document.getElementById(nameValue[2] + "2").value;
+	//var bodyOption = selectValue[2][bodyIndex][2];
+	var bodyOption1 = window.parent.mains.document.getElementById(nameValue[2] + "2_bodytokusei1").selectedIndex;
+	var bodyOption2 = window.parent.mains.document.getElementById(nameValue[2] + "2_bodytokusei2").selectedIndex;
+	var bodyOption3 = window.parent.mains.document.getElementById(nameValue[2] + "2_bodytokusei3").selectedIndex;
+	if (brakeValue != 0 && bodyOption1 == 6) brakeValue += 0.05;
+	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.025;
+	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.025;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
 	//タイヤグリップ
 	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = ftiregripValue / 100.0;
 	//バッテリー消費量
+	var setsudenUp = 1.0;
 	var setsudenValue = resultValueKai[10];
-	if (setsudenValue != 0 && bodyOption == 8) setsudenValue *= 1.6;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * (1 - setsudenValue / 10000.0);
+	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.6;
+	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.8;
+	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.3;
+	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.4;
+	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.3;
+	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.4;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * (1 - setsudenValue * setsudenUp / 10000.0);
 	//加速度(毎秒)
 	var ftireValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6_kaisv").value;
 	var rtireValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "7_kaisv").value;
 	var bodyPower = 1.0;
-	if (bodyOption == 2) bodyPower = 1.02;
-	if (bodyOption == 12) bodyPower = 1.03;
-	if (bodyOption == 22) bodyPower = 1.04;
+	if (bodyOption1 == 2) bodyPower += 0.02;
+	if (bodyOption1 == 12) bodyPower += 0.03;
+	if (bodyOption2 == 2) bodyPower += 0.01;
+	if (bodyOption2 == 12) bodyPower += 0.015;
+	if (bodyOption3 == 2) bodyPower += 0.01;
+	if (bodyOption3 == 12) bodyPower += 0.015;
 	var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
 	var acceleValue2;
 	if ((shindantire == 1 && Math.abs(ftireValue - rtireValue) == 1) || shindantire == 3) {
@@ -1032,9 +1070,15 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue2;
 	//最高速度
 	var bodySpeed = 1.0;
-	if (bodyOption == 1) bodySpeed = 1.02;
-	if (bodyOption == 11) bodySpeed = 1.03;
-	if (bodyOption == 21) bodySpeed = 1.04;
+	if (bodyOption1 == 1) bodySpeed += 0.02;
+	if (bodyOption1 == 11) bodySpeed += 0.03;
+	if (bodyOption1 == 21) bodySpeed += 0.04;
+	if (bodyOption2 == 1) bodySpeed += 0.01;
+	if (bodyOption2 == 11) bodySpeed += 0.015;
+	if (bodyOption2 == 21) bodySpeed += 0.02;
+	if (bodyOption3 == 1) bodySpeed += 0.01;
+	if (bodyOption3 == 11) bodySpeed += 0.015;
+	if (bodyOption3 == 21) bodySpeed += 0.02;
 	var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - resultValueKai[7] / 10000.0;
 	var speedValue = 3.14159265359 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
 	var speedlossValue = resultValueKai[5] * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
