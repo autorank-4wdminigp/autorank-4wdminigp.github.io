@@ -813,11 +813,11 @@ function View_Set(value1) {
 		for (var i = 0; i <= 20; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
-		writeValue += "</select> ※ 仮 </td><td>アシストB特性 <select id='" + nameValue[value1] + value1 + "_bodytokusei3' onchange='Type_Calc(" + value1 + ")'>";
+		writeValue += "</select> ※ 仮(効果50%) </td><td>アシストB特性 <select id='" + nameValue[value1] + value1 + "_bodytokusei3' onchange='Type_Calc(" + value1 + ")'>";
 		for (var i = 0; i <= 20; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
-		writeValue += "</select> ※ 仮 </td>";
+		writeValue += "</select> ※ 仮(効果50%) </td>";
 	}
 	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
