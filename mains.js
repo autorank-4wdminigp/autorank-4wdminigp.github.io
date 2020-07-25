@@ -142,9 +142,9 @@ kaizouSelectIndex[21] = new Array(0, 0);
 kaizouSelect[21] = new Array();
 kaizouSelect[21][s++] = new Array();
 
-//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン)
+//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン, 22:なし, 23:なし, 24:パワードリフト)
 var selectProper = new Array("－", "St", "U", "Kp", "Co", "J");
-var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "なし", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "かっとびマシン");
+var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "なし", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "かっとびマシン", "なし", "なし", "パワードリフト");
 
 var selectValue = new Array();
 s = 0;
@@ -225,7 +225,9 @@ selectValue[2][s++] = new Array("セイバー600 二郎丸スペシャル", 1, 9
 selectValue[2][s++] = new Array("アバンテJr.(黒メッキ)", 1, 11, 12.0, 0.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ダッシュ1号 皇帝(黒メッキ)", 1, 9, 5.0, 15.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("シャイニングスコーピオン(黒メッキ)", 1, 18, 20.0, 2.0, 1.2, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("原始大帝", 3, 13, 7.0, 5.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//63
+selectValue[2][s++] = new Array("原始大帝", 3, 13, 7.0, 5.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("アスチュードJr.", 4, 17, 7.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("ハリケーンソニック", 4, 24, 8.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//65
 s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, 0, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025);
@@ -398,6 +400,7 @@ selectValue[11][s++] = new Array("なし", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0
 selectValue[11][s++] = new Array("スタビライザーポール", 3, 0, 0.0, 0.0, 45.0, 2.5, 3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 10.0);
 selectValue[11][s++] = new Array("11mm大径スタビヘッド", 3, 0, 0.0, 0.0, 48.0, 2.5, 3.7, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 15.0);
 selectValue[11][s++] = new Array("15mm大径スタビヘッド", 3, 0, 0.0, 0.0, 49.5, 2.5, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 20.0);
+selectValue[11][s++] = new Array("ショートスタビ", 3, 0, 0.0, 0.0, 46.5, 2.5, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 13.0);
 s = 0;
 selectValue[12] = new Array();
 selectValue[12][s++] = new Array("なし", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0);
@@ -1044,8 +1047,10 @@ function Diagnosis_Calc(resultValueKai) {
 	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.025;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
 	//タイヤグリップ
+	var ftiregripUp = 1.0;
+	if (bodyOption1 == 24) ftiregripUp += 0.15;
 	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = ftiregripValue / 100.0;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = ftiregripValue * ftiregripUp / 100.0;
 	//バッテリー消費量
 	var setsudenUp = 1.0;
 	var setsudenValue = resultValueKai[10];
