@@ -229,7 +229,8 @@ selectValue[2][s++] = new Array("原始大帝", 3, 13, 7.0, 5.0, 10.5, 5.0, 16.0
 selectValue[2][s++] = new Array("アスチュードJr.", 4, 17, 7.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ハリケーンソニック", 4, 24, 8.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("イグレスJr.", 3, 5, 8.0, 4.0, 4.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("ブーメラン・ガンマ・ブラックスペシャル", 1, 11, 10.0, 10.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//67
+selectValue[2][s++] = new Array("ブーメラン・ガンマ・ブラックスペシャル", 1, 11, 10.0, 10.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("ブラックセイバー(ReN SP)", 3, 5, 10.0, 2.0, 18.0, 12.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//67
 s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, 0, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025);
@@ -1379,6 +1380,16 @@ function UrlToNum(value) {
 	if (value == "0h") return 68;
 	if (value == "0i") return 69;
 	if (value == "0j") return 70;
+	if (value == "0k") return 71;
+	if (value == "0l") return 72;
+	if (value == "0m") return 73;
+	if (value == "0n") return 74;
+	if (value == "0o") return 75;
+	if (value == "0p") return 76;
+	if (value == "0q") return 77;
+	if (value == "0r") return 78;
+	if (value == "0s") return 79;
+	if (value == "0t") return 80;
     return 0;
 }
 
@@ -1454,6 +1465,16 @@ function NumToUrl(value) {
 	if (value == 68) return "0h";
 	if (value == 69) return "0i";
 	if (value == 70) return "0j";
+	if (value == 71) return "0k";
+	if (value == 72) return "0l";
+	if (value == 73) return "0m";
+	if (value == 74) return "0n";
+	if (value == 75) return "0o";
+	if (value == 76) return "0p";
+	if (value == 77) return "0q";
+	if (value == 78) return "0r";
+	if (value == 79) return "0s";
+	if (value == 80) return "0t";
 	return "a";
 }
 
