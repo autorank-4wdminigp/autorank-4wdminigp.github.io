@@ -62,7 +62,7 @@ kaizouSelectIndex[3] = new Array(0, 0);
 kaizouSelect[3] = new Array();
 kaizouSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6 ,7, 8);
 s = 0;
-kaizouSelectIndex[4] = new Array(0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0);
+kaizouSelectIndex[4] = new Array(0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1);
 kaizouSelect[4] = new Array();
 kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
@@ -142,9 +142,9 @@ kaizouSelectIndex[21] = new Array(0, 0);
 kaizouSelect[21] = new Array();
 kaizouSelect[21][s++] = new Array();
 
-//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン, 22:なし, 23:なし, 24:パワードリフト)
+//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン, 22:パワーブースト, 23:なし, 24:パワードリフト)
 var selectProper = new Array("－", "St", "U", "Kp", "Co", "J");
-var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "なし", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "かっとびマシン", "なし", "なし", "パワードリフト");
+var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "なし", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "かっとびマシン", "パワーブースト", "なし", "パワードリフト");
 
 var selectValue = new Array();
 s = 0;
@@ -230,7 +230,8 @@ selectValue[2][s++] = new Array("アスチュードJr.", 4, 17, 7.0, 4.0, 10.5, 
 selectValue[2][s++] = new Array("ハリケーンソニック", 4, 24, 8.0, 4.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("イグレスJr.", 3, 5, 8.0, 4.0, 4.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ブーメラン・ガンマ・ブラックスペシャル", 1, 11, 10.0, 10.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("ブラックセイバー(ReN SP)", 3, 5, 10.0, 2.0, 18.0, 12.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//67
+selectValue[2][s++] = new Array("ブラックセイバー(ReN SP)", 3, 5, 10.0, 2.0, 18.0, 12.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("バックブレーダー", 2, 22, 5.0, 10.0, 10.5, 12.0, 14.0, 0.0, 0.0, 0.0, 30.0, 0.0);//68
 s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, 0, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025);
@@ -291,6 +292,8 @@ selectValue[4][s++] = new Array("小径ZMC(赤)・フロント", 2, 0, 2.0, 12.0
 selectValue[4][s++] = new Array("小径リアルEVO(銀)・フロント", 2, 0, 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("小径リアルEVO(銀)・リヤ", 2, 0, 0.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("小径中空(黄緑)", 3, 0, 1.0, 12.0, 4.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径リアルBB(銀)・フロント", 1, 0, 8.0, 5.0, 4.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径リアルBB(銀)・リヤ", 1, 0, 8.0, 5.0, 4.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 s = 0;
 selectValue[5] = new Array();
 selectValue[5][s++] = new Array("小径ノーマル・フロント", 2, 0, 0.0, 10.0, 1.8, 2.4, 5.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 90.0, 26.0, 0.0, 0.0, 0.0, 0.0);
@@ -1055,6 +1058,7 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
 	//タイヤグリップ
 	var ftiregripUp = 1.0;
+	if (bodyOption1 == 22) ftiregripUp += 0.015;
 	if (bodyOption1 == 24) ftiregripUp += 0.15;
 	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = ftiregripValue * ftiregripUp / 100.0;
@@ -1074,11 +1078,14 @@ function Diagnosis_Calc(resultValueKai) {
 	var bodyPower = 1.0;
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
+	if (bodyOption1 == 22) bodyPower += 0.05;
 	if (bodyOption2 == 2) bodyPower += 0.01;
 	if (bodyOption2 == 12) bodyPower += 0.015;
 	if (bodyOption3 == 2) bodyPower += 0.01;
 	if (bodyOption3 == 12) bodyPower += 0.015;
-	var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
+	var bodyPowerloss = 1.0;
+	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
+	var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - bodyPowerloss * resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * resultValueKai[5]);
 	var acceleValue2;
 	if ((shindantire == 1 && Math.abs(ftireValue - rtireValue) == 1) || shindantire == 3) {
 		acceleValue2 = acceleValue - Math.max(resultValueKai[8] - 5000.0, 0.0) / 40000.0;
@@ -1095,11 +1102,9 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 21) bodySpeed += 0.04;
 	if (bodyOption2 == 1) bodySpeed += 0.01;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
-	if (bodyOption2 == 21) bodySpeed += 0.02;
 	if (bodyOption3 == 1) bodySpeed += 0.01;
 	if (bodyOption3 == 11) bodySpeed += 0.015;
-	if (bodyOption3 == 21) bodySpeed += 0.02;
-	var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - resultValueKai[7] / 10000.0;
+	var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - bodyPowerloss * resultValueKai[7] / 10000.0;
 	var speedValue = 3.14159265359 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
 	var speedlossValue = resultValueKai[5] * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
 	var speedValue2;
