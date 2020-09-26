@@ -83,12 +83,12 @@ kaizouSelectIndex[7] = new Array(0, 0);
 kaizouSelect[7] = new Array();
 kaizouSelect[7][s++] = new Array(0, 1, 2, 3);
 s = 0;
-kaizouSelectIndex[8] = new Array(0, 1, 1, 0, 0, 0, 0, 1);
+kaizouSelectIndex[8] = new Array(0, 1, 1, 0, 0, 0, 0, 1, 0);
 kaizouSelect[8] = new Array();
 kaizouSelect[8][s++] = new Array(0, 1, 2, 3);
 kaizouSelect[8][s++] = new Array(0, 3);
 s = 0;
-kaizouSelectIndex[9] = new Array(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1);
+kaizouSelectIndex[9] = new Array(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1);
 kaizouSelect[9] = new Array();
 kaizouSelect[9][s++] = new Array(0, 1, 2, 3, 4);
 kaizouSelect[9][s++] = new Array(0, 1, 2, 3);
@@ -142,9 +142,9 @@ kaizouSelectIndex[21] = new Array(0, 0);
 kaizouSelect[21] = new Array();
 kaizouSelect[21][s++] = new Array();
 
-//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン, 22:パワーブースト, 23:なし, 24:パワードリフト)
+//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン, 22:パワーブースト, 23:なし, 24:パワードリフト, 25:, 26:, 27:, 28:, 29:ワイルドラン)
 var selectProper = new Array("－", "St", "U", "Kp", "Co", "J");
-var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "かっとびマシン", "パワーブースト", "なし", "パワードリフト");
+var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "かっとびマシン", "パワーブースト", "なし", "パワードリフト", "なし", "なし", "なし", "なし", "ワイルドラン");
 
 var selectValue = new Array();
 s = 0;
@@ -234,7 +234,8 @@ selectValue[2][s++] = new Array("ブラックセイバー(ReN SP)", 3, 5, 10.0, 
 selectValue[2][s++] = new Array("バックブレーダー", 2, 22, 5.0, 10.0, 10.5, 12.0, 14.0, 0.0, 0.0, 0.0, 30.0, 0.0);
 selectValue[2][s++] = new Array("ダッシュ2号 新太陽", 3, 15, 3.0, 2.0, 18.0, 20.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ビッグ バン ゴースト", 4, 14, 12.0, 10.0, 4.5, 0.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("ベアホークJr.", 1, 6, 20.0, 2.0, 4.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//71
+selectValue[2][s++] = new Array("ベアホークJr.", 1, 6, 20.0, 2.0, 4.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("ダッシュ001号 大帝", 2, 29, 6.0, 18.0, 10.5, 5.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//72
 s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, 0, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025, -0.025, -0.025);
@@ -372,6 +373,7 @@ selectValue[8][s++] = new Array("リヤローラー・スタビステー", 5, 0,
 selectValue[8][s++] = new Array("リヤブレーキステー(ハード)", 5, 0, 0.0, 0.0, 30.0, 30.0, 4.8, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 100.0);
 selectValue[8][s++] = new Array("リヤブレーキステー(ソフト)", 5, 0, 0.0, 0.0, 30.0, 30.0, 4.8, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 200.0);
 selectValue[8][s++] = new Array("ジュラルミンマルチワイドリヤステー(青)", 3, 0, 0.0, 0.0, 39.6, 75.0, 5.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[8][s++] = new Array("リヤースキット・ゴムローラー", 5, 0, 0.0, 0.0, 32.0, 35.0, 4.5, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 150.0);
 s = 0;
 selectValue[9] = new Array();
 selectValue[9][s++] = new Array("なし", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
@@ -404,6 +406,7 @@ selectValue[9][s++] = new Array("16mm低摩擦プラ(橙)", 4, 0, 0.0, 0.0, 50.4
 selectValue[9][s++] = new Array("19mm低摩擦プラ(紫)", 4, 0, 0.0, 0.0, 59.4, 2.5, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6.0, 125.0);
 selectValue[9][s++] = new Array("ローラー用7mmボールベアリング", 4, 0, 0.0, 0.0, 60.0, 15.0, 0.9, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 15.0, 135.0);
 selectValue[9][s++] = new Array("17mmゴム付きアルミベアリング", 3, 0, 0.0, 0.0, 99.0, 13.0, 1.8, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 17.0, 100.0);
+selectValue[9][s++] = new Array("ローラー用11mmボールベアリング", 4, 0, 0.0, 0.0, 75.0, 16.25, 3.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 15.0, 100.0);
 s = 0;
 selectValue[10] = new Array();
 selectValue[10][s++] = new Array("なし", 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
@@ -1071,6 +1074,7 @@ function Diagnosis_Calc(resultValueKai) {
 	var ftiregripUp = 1.0;
 	if (bodyOption1 == 22) ftiregripUp += 0.015;
 	if (bodyOption1 == 24) ftiregripUp += 0.15;
+	if (bodyOption1 == 29) ftiregripUp += 0.015;
 	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = ftiregripValue * ftiregripUp / 100.0;
 	//バッテリー消費量
@@ -1111,6 +1115,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 1) bodySpeed += 0.02;
 	if (bodyOption1 == 11) bodySpeed += 0.03;
 	if (bodyOption1 == 21) bodySpeed += 0.04;
+	if (bodyOption1 == 29) bodySpeed += 0.03;
 	if (bodyOption2 == 1) bodySpeed += 0.01;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption3 == 1) bodySpeed += 0.01;
