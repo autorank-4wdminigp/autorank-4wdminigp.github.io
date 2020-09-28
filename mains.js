@@ -1250,13 +1250,17 @@ function UrlSet() {
 		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
-				if (str == "0") str += presetText.charAt(pos++);
+				var charLenTmp = 0;
+				if (str == "0") {
+					str += presetText.charAt(pos++);
+					charLenTmp++;
+				}
 				index = UrlToNum(str);
 				document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 				Type_Set(value1, nameUpdate[nameCalc[value1]]);
 				if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 					var slotNumTmp = slotNum;
-					if (presetText.length <= 578) slotNumTmp = 6;
+					if (presetText.length <= (578 + charLenTmp)) slotNumTmp = 6;
 					for (var i = 1; i <= slotNumTmp; i++) {
 						index = UrlToNum(presetText.charAt(pos++));
 						document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = index;
@@ -1269,7 +1273,7 @@ function UrlSet() {
 					if (value1 == 2) {
 						index = UrlToNum(presetText.charAt(pos++));
 						document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex = index;
-						if (presetText.length != 559 && presetText.length != 577) {
+						if (presetText.length != (559 + charLenTmp) && presetText.length != (577 + charLenTmp)) {
 							index = UrlToNum(presetText.charAt(pos++));
 							document.getElementById(nameValue[value1] + value1 + '_bodytokusei1').selectedIndex = index;
 						}
@@ -1291,12 +1295,16 @@ function Preset_Set(value1) {
 	if ((value1 != 2 && presetText.length >= 19) || (value1 == 2 && presetText.length >= 22)) {
 		calcFlg = 0;
 		var str = presetText.charAt(pos++);
-		if (str == "0") str += presetText.charAt(pos++);
+		var charLenTmp = 0;
+		if (str == "0") {
+			str += presetText.charAt(pos++);
+			charLenTmp++;
+		}
 		index = UrlToNum(str);
 		document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 		Type_Set(value1, nameUpdate[nameCalc[value1]]);
 		var slotNumTmp = slotNum;
-		if (presetText.length <= 23) slotNumTmp = 6;
+		if (presetText.length <= (23 + charLenTmp)) slotNumTmp = 6;
 		for (var i = 1; i <= slotNumTmp; i++) {
 			index = UrlToNum(presetText.charAt(pos++));
 			document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = index;
@@ -1309,7 +1317,7 @@ function Preset_Set(value1) {
 		if (value1 == 2) {
 			index = UrlToNum(presetText.charAt(pos++));
 			document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex = index;
-			if (presetText.length >= 23) {
+			if (presetText.length >= (23 + charLenTmp)) {
 				index = UrlToNum(presetText.charAt(pos++));
 				document.getElementById(nameValue[value1] + value1 + '_bodytokusei1').selectedIndex = index;
 			}
@@ -1426,6 +1434,12 @@ function UrlToNum(value) {
 	if (value == "0r") return 78;
 	if (value == "0s") return 79;
 	if (value == "0t") return 80;
+	if (value == "0u") return 81;
+	if (value == "0v") return 82;
+	if (value == "0w") return 83;
+	if (value == "0x") return 84;
+	if (value == "0y") return 85;
+	if (value == "0z") return 86;
     return 0;
 }
 
@@ -1511,6 +1525,12 @@ function NumToUrl(value) {
 	if (value == 78) return "0r";
 	if (value == 79) return "0s";
 	if (value == 80) return "0t";
+	if (value == 81) return "0u";
+	if (value == 82) return "0v";
+	if (value == 83) return "0w";
+	if (value == 84) return "0x";
+	if (value == 85) return "0y";
+	if (value == 86) return "0z";
 	return "a";
 }
 
