@@ -13,6 +13,8 @@ var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
 var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※4</font> ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間 ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
 
+var slotNum = 7;
+
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
 //11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
 //21:ギヤ比, 22:消費電流, 23:ブレーキ減速, 24:スタビ減速, 25:デジタル, 26:耐風
@@ -858,7 +860,7 @@ function View_Set(value1) {
 	writeValue += "</tr></table>";
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		writeValue += "<table class='cstable'>";
-		for (var i = 1; i <= 6; i++) {
+		for (var i = 1; i <= slotNum; i++) {
 			writeValue += "<tr><td class='cstd'>　</td><td>スロット" + i + " ";
 			writeValue += "<span id='id_" + nameValue[value1] + value1 + "_slot" + i + "'></span><br>";
 			if (i == 1) {
@@ -914,7 +916,7 @@ function Type_Set(value1, value2) {
 		}
 		if (sameFlg == -1 || (index == 0 && nameZero[nameCalc[value1]] == 1)) {
 			var innerValue = "";
-			for (var i = 1; i <= 6; i++) {
+			for (var i = 1; i <= slotNum; i++) {
 				innerValue = "<select id='" + nameValue[value1] + value1 + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
 				innerValue += "<option value=-1 selected>改造選択</option>";
 				for (var j = 0; j < kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length; j++) {
@@ -967,7 +969,7 @@ function Type_Calc(value1) {
 			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValue[typeSelect[nameCalc[value1]][i]];
 		}
 	} else {
-		for (var i = 1; i <= 6; i++) {
+		for (var i = 1; i <= slotNum; i++) {
 			for (var j = 1; j <= 3; j++) {
 				document.getElementById(nameValue[value1] + value1 + "_slot" + i + "_" + j).value = "";
 			}
@@ -979,7 +981,7 @@ function Type_Calc(value1) {
 			calcValueSv[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 			calcValueSvInit[i] = selectValue[nameCalc[value1]][nameIndex][i + 2];
 		}
-		for (var i = 1; i <= 6; i++) {
+		for (var i = 1; i <= slotNum; i++) {
 			var slotIndex = document.getElementById(nameValue[value1] + value1 + '_slot' + i).value;
 			if (slotIndex == -1) continue;
 			var typeVal = document.getElementById(nameValue[value1] + value1 + '_type' + i).value;
@@ -1204,7 +1206,7 @@ function View_Diagnosis() {
 function UrlCalc(value1) {
 	var urlValue = NumToUrl(document.getElementById(nameValue[value1] + value1).selectedIndex);
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
-		for (var i = 1; i <= 6; i++) {
+		for (var i = 1; i <= slotNum; i++) {
 			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex);
 			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_type' + i).selectedIndex);
 			urlValue += NumToUrl(document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex);
@@ -1240,7 +1242,7 @@ function UrlSet() {
 		var presetText = url.substring(start + 1);
 		var index = 0;
 		var pos = 0;
-		if (presetText.length >= (19 * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577
+		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
 				if (str == "0") str += presetText.charAt(pos++);
@@ -1248,7 +1250,9 @@ function UrlSet() {
 				document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 				Type_Set(value1, nameUpdate[nameCalc[value1]]);
 				if (kaizouSelect[nameCalc[value1]][0].length != 0) {
-					for (var i = 1; i <= 6; i++) {
+					var slotNumTmp = slotNum;
+					if (presetText.length <= 578) slotNumTmp = 6;
+					for (var i = 1; i <= slotNumTmp; i++) {
 						index = UrlToNum(presetText.charAt(pos++));
 						document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = index;
 						index = UrlToNum(presetText.charAt(pos++));
@@ -1286,7 +1290,7 @@ function Preset_Set(value1) {
 		index = UrlToNum(str);
 		document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 		Type_Set(value1, nameUpdate[nameCalc[value1]]);
-		for (var i = 1; i <= 6; i++) {
+		for (var i = 1; i <= slotNum; i++) {
 			index = UrlToNum(presetText.charAt(pos++));
 			document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = index;
 			index = UrlToNum(presetText.charAt(pos++));
@@ -1311,7 +1315,7 @@ function Preset_Set(value1) {
 		//Type_Set(value1, nameUpdate[nameCalc[value1]]);
 		Type_Calc(value1);
 	} else {
-		for (var i = 1; i <= 6; i++) {
+		for (var i = 1; i <= slotNum; i++) {
 			document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = 0;
 			Type_Slot_Set(value1, i - 1);
 		}
@@ -1320,14 +1324,14 @@ function Preset_Set(value1) {
 
 function Lv_Set(value1) {
 	var index = document.getElementById(nameValue[value1] + value1 + '_lv' + 1).selectedIndex;
-	for (var i = 2; i <= 6; i++) {
+	for (var i = 2; i <= slotNum; i++) {
 		document.getElementById(nameValue[value1] + value1 + '_lv' + i).selectedIndex = index;
 		Type_Slot_Set(value1, i - 1);
 	}
 }
 
 function Shokika_Set(value1) {
-	for (var i = 1; i <= 6; i++) {
+	for (var i = 1; i <= slotNum; i++) {
 		document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = 0;
 		Type_Slot_Set(value1, i - 1);
 	}
