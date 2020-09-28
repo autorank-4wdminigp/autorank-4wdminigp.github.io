@@ -1290,7 +1290,9 @@ function Preset_Set(value1) {
 		index = UrlToNum(str);
 		document.getElementById(nameValue[value1] + value1).selectedIndex = index;
 		Type_Set(value1, nameUpdate[nameCalc[value1]]);
-		for (var i = 1; i <= slotNum; i++) {
+		var slotNumTmp = slotNum;
+		if (presetText.length <= 23) slotNumTmp = 6;
+		for (var i = 1; i <= slotNumTmp; i++) {
 			index = UrlToNum(presetText.charAt(pos++));
 			document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = index;
 			index = UrlToNum(presetText.charAt(pos++));
@@ -1302,7 +1304,7 @@ function Preset_Set(value1) {
 		if (value1 == 2) {
 			index = UrlToNum(presetText.charAt(pos++));
 			document.getElementById(nameValue[value1] + value1 + '_niku').selectedIndex = index;
-			if (presetText.length == 23) {
+			if (presetText.length >= 23) {
 				index = UrlToNum(presetText.charAt(pos++));
 				document.getElementById(nameValue[value1] + value1 + '_bodytokusei1').selectedIndex = index;
 			}
