@@ -1189,7 +1189,7 @@ function Diagnosis_Calc(resultValueKai) {
 	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[17] + "_" + typeValue[18] + "17_kaisv").value);
 	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[18] + "_" + typeValue[18] + "18_kaisv").value);
 	var masatsuValue = rollerangleValue * rollermasatsuValue + rollerteikouValue / 20.8;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = 1 / ((0.558972011 - 0.009335907 * acceleValue2) +  Math.sqrt((0.31157764 - 0.009878514 * acceleValue2) + (-0.000990163 + 0.002976091 * speedValue2 - 0.001512247 * acceleValue2) * masatsuValue));
+	//window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = 1 / ((0.558972011 - 0.009335907 * acceleValue2) +  Math.sqrt((0.31157764 - 0.009878514 * acceleValue2) + (-0.000990163 + 0.002976091 * speedValue2 - 0.001512247 * acceleValue2) * masatsuValue));
 
 }
 
@@ -1228,7 +1228,7 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※3 スーパー1、ゼロ、タイプ1、2、3、FM、スーパーFMシャーシ対応(スーパー1強化、スーパーTZ、タイプ4、5シャーシは不明)</font>");
-	document.write("<br><font color='#FFA500'>※4 参考値です(重心・タイヤ旋回・コーナー速度UP・ローラーなしは考慮せず、加速度3.5前後の場合誤差0.04くらい?)</font>");
+	//document.write("<br><font color='#FFA500'>※4 参考値です(重心・タイヤ旋回・コーナー速度UP・ローラーなしは考慮せず、加速度3.5前後の場合誤差0.04くらい?)</font>");
 	document.write("<br><font color='#FFA500'>※5 情報提供感謝します</font>");
 }
 
