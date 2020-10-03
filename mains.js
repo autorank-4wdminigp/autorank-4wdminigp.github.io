@@ -11,7 +11,7 @@ var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
-var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※4</font> ", "タイヤグリップ ", "コーナー減速率 ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間 ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
+var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※5</font> ", "タイヤグリップ ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間 ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
 
 var slotNum = 7;
 
@@ -1167,6 +1167,29 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[9]).value = gravityValue;
 	//最高速到達時間
 	window.parent.diagnosis.document.getElementById(diagnosisValue[4]).value = Math.log(100.0 * speedValue2) / (4.0 * acceleValue2);
+	//コーナー減速率
+	var rollermasatsuValue = 0.0;
+	if (window.parent.mains.document.getElementById(nameValue[16] + "16").selectedIndex != 0) {
+		rollermasatsuValue = window.parent.mains.document.getElementById(nameValue[16] + "_" + typeValue[17] + "16_kaisv").value;
+	}
+	if (window.parent.mains.document.getElementById(nameValue[13] + "13").selectedIndex != 0) {
+		rollermasatsuValue = window.parent.mains.document.getElementById(nameValue[13] + "_" + typeValue[17] + "13_kaisv").value;
+	}
+	if (window.parent.mains.document.getElementById(nameValue[17] + "17").selectedIndex != 0) {
+		rollermasatsuValue = window.parent.mains.document.getElementById(nameValue[17] + "_" + typeValue[17] + "17_kaisv").value;
+	}
+	if (window.parent.mains.document.getElementById(nameValue[18] + "18").selectedIndex != 0) {
+		rollermasatsuValue = window.parent.mains.document.getElementById(nameValue[18] + "_" + typeValue[17] + "18_kaisv").value;
+	}
+	var rollerteikouValue = 0.0;
+	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[14] + "_" + typeValue[18] + "14_kaisv").value);
+	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[11] + "_" + typeValue[18] + "11_kaisv").value);
+	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[16] + "_" + typeValue[18] + "16_kaisv").value);
+	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[13] + "_" + typeValue[18] + "13_kaisv").value);
+	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[17] + "_" + typeValue[18] + "17_kaisv").value);
+	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[18] + "_" + typeValue[18] + "18_kaisv").value);
+	var masatsuValue = rollerangleValue * rollermasatsuValue + rollerteikouValue / 20.8;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = 1 / ((0.558972011 - 0.009335907 * acceleValue2) +  Math.sqrt((0.31157764 - 0.009878514 * acceleValue2) + (-0.000990163 + 0.002976091 * speedValue2 - 0.001512247 * acceleValue2) * masatsuValue));
 
 }
 
@@ -1205,7 +1228,8 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※3 スーパー1、ゼロ、タイプ1、2、3、FM、スーパーFMシャーシ対応(スーパー1強化、スーパーTZ、タイプ4、5シャーシは不明)</font>");
-	document.write("<br><font color='#FFA500'>※4 情報提供感謝します</font>");
+	document.write("<br><font color='#FFA500'>※4 参考値(仮)です(重心・旋回・コーナー速度UP・ローラーなしは考慮せず、誤差0.04くらい?)</font>");
+	document.write("<br><font color='#FFA500'>※5 情報提供感謝します</font>");
 }
 
 function UrlCalc(value1) {
