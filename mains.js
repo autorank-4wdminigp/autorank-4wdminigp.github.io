@@ -1278,6 +1278,15 @@ function Diagnosis_Calc(resultValueKai) {
 	//最高速到達時間
 	window.parent.diagnosis.document.getElementById(diagnosisValue[4]).value = Math.log(100.0 * speedValue2) / (4.0 * acceleValue2);
 	//コーナー減速率
+	var bodyCornerdecele = 1.0;
+	if (bodyOption1 == 4) bodyCornerdecele += 0.1;
+	if (bodyOption1 == 14) bodyCornerdecele += 0.2;
+	if (bodyOption1 == 24) bodyCornerdecele += 0.6;
+	if (bodyOption2 == 4) bodyCornerdecele += 0.05;
+	if (bodyOption2 == 14) bodyCornerdecele += 0.1;
+	if (bodyOption3 == 4) bodyCornerdecele += 0.05;
+	if (bodyOption3 == 14) bodyCornerdecele += 0.1;
+	var acceleValue3 = acceleValue2 * bodyCornerdecele;
 	var rollermasatsuValue = 0.0;
 	if (window.parent.mains.document.getElementById(nameValue[16] + "16").selectedIndex != 0) {
 		rollermasatsuValue = window.parent.mains.document.getElementById(nameValue[16] + "_" + typeValue[17] + "16_kaisv").value;
@@ -1298,8 +1307,47 @@ function Diagnosis_Calc(resultValueKai) {
 	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[13] + "_" + typeValue[18] + "13_kaisv").value);
 	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[17] + "_" + typeValue[18] + "17_kaisv").value);
 	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[18] + "_" + typeValue[18] + "18_kaisv").value);
-	var masatsuValue = rollerangleValue * rollermasatsuValue + rollerteikouValue / 20.8;
-	//window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = 1 / ((0.558972011 - 0.009335907 * acceleValue2) +  Math.sqrt((0.31157764 - 0.009878514 * acceleValue2) + (-0.000990163 + 0.002976091 * speedValue2 - 0.001512247 * acceleValue2) * masatsuValue));
+	var masatsuValue = rollerangleValue * rollermasatsuValue;
+	var ftiresenkaiValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "6_kaisv").value;
+	var rtiresenkaiValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
+	var tiresenkaiValue = (ftiresenkaiValue * (baseGravity[baseGravityIndex][chassisIndex] / 2.0 - gravityValue)+rtiresenkaiValue * (baseGravity[baseGravityIndex][chassisIndex] / 2.0 + gravityValue)) / baseGravity[baseGravityIndex][chassisIndex];
+//	if (speedValue2 < 5.0) {
+		var x1 = -35.34037919;
+		var x2 = -0.181476994;
+		var x3 = 0.166922546;
+		var x4 = -0.00388356;
+		var x5 = -0.008588292;
+		var x6 = 1.727607286;
+		var x7 = 0.01867255;
+		var x8 = -0.022662623;
+		var x9 = 0.0000207796;
+		var x10 = 0.0000372836;
+		var x11 = -0.026814002;
+		var x12 = -0.000672941;
+		var x13 = 0.001125533;
+		var x14 = -0.0000000470017;
+		var x15 = -0.000000052914;
+		var x16 = 0.000138309;
+		window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = x1 + x2 * speedValue2 + x3 * acceleValue3 + x4 * masatsuValue + x5 * rollerteikouValue + x6 * tiresenkaiValue + x7 * speedValue2 * speedValue2 + x8 * acceleValue3 * acceleValue3 + x9 * masatsuValue * masatsuValue + x10 * rollerteikouValue * rollerteikouValue + x11 * tiresenkaiValue * tiresenkaiValue + x12 * speedValue2 * speedValue2 * speedValue2 + x13 * acceleValue3 * acceleValue3 * acceleValue3 + x14 * masatsuValue * masatsuValue * masatsuValue + x15 * rollerteikouValue * rollerteikouValue * rollerteikouValue + x16 * tiresenkaiValue * tiresenkaiValue * tiresenkaiValue;
+//	} else {
+//		var x1 = 612.890612;
+//		var x2 = -0.148035904;
+//		var x3 = 1.314647521;
+//		var x4 = -0.004898622;
+//		var x5 = -0.005840122;
+//		var x6 = -27.14839251;
+//		var x7 = 0.011489628;
+//		var x8 = -0.375993124;
+//		var x9 = 0.000024708;
+//		var x10 = 0.0000246114;
+//		var x11 = 0.400463692;
+//		var x12 = -0.000363143;
+//		var x13 = 0.035789083;
+//		var x14 = -0.0000000484657;
+//		var x15 = -0.0000000349099;
+//		var x16 = -0.001966004;
+//		window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = x1 + x2 * speedValue2 + x3 * acceleValue3 + x4 * masatsuValue + x5 * rollerteikouValue + x6 * tiresenkaiValue + x7 * speedValue2 * speedValue2 + x8 * acceleValue3 * acceleValue3 + x9 * masatsuValue * masatsuValue + x10 * rollerteikouValue * rollerteikouValue + x11 * tiresenkaiValue * tiresenkaiValue + x12 * speedValue2 * speedValue2 * speedValue2 + x13 * acceleValue3 * acceleValue3 * acceleValue3 + x14 * masatsuValue * masatsuValue * masatsuValue + x15 * rollerteikouValue * rollerteikouValue * rollerteikouValue + x16 * tiresenkaiValue * tiresenkaiValue * tiresenkaiValue;
+//	}
 
 }
 
@@ -1338,7 +1386,7 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※3 スーパー1、ゼロ、タイプ1、2、3、4、FM、スーパーFM、スーパーTZシャーシ対応(スーパー1強化、タイプ5、FM強化シャーシは不明)</font>");
-	//document.write("<br><font color='#FFA500'>※4 参考値です(重心・タイヤ旋回・コーナー速度UP・ローラーなしは考慮せず、加速度3.5前後の場合誤差0.04くらい?)</font>");
+	document.write("<br><font color='#FFA500'>※4 参考値です(前後ローラーなしは考慮せず、3次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※5 情報提供感謝します</font>");
 }
 
