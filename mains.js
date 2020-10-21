@@ -1100,11 +1100,11 @@ function View_Set(value1) {
 		for (var i = 0; i <= 20; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
-		writeValue += "</select> ※ 仮(効果50%) </td><td>アシスト特性 <select id='" + nameValue[value1] + value1 + "_bodytokusei3' onchange='Type_Calc(" + value1 + ")'>";
+		writeValue += "</select> ※ 効果30% </td><td>アシスト特性 <select id='" + nameValue[value1] + value1 + "_bodytokusei3' onchange='Type_Calc(" + value1 + ")'>";
 		for (var i = 0; i <= 20; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
-		writeValue += "</select> ※ 仮(効果50%) </td>";
+		writeValue += "</select> ※ 効果30% </td>";
 	}
 	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
@@ -1346,8 +1346,8 @@ function Diagnosis_Calc(resultValueKai) {
 	var bodyOption2 = window.parent.mains.document.getElementById(nameValue[2] + "2_bodytokusei2").selectedIndex;
 	var bodyOption3 = window.parent.mains.document.getElementById(nameValue[2] + "2_bodytokusei3").selectedIndex;
 	if (brakeValue != 0 && bodyOption1 == 6) brakeValue += 0.05;
-	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.025;
-	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.025;
+	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.015;
+	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.015;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
 	//タイヤグリップ
 	var ftiregripUp = 1.0;
@@ -1359,12 +1359,12 @@ function Diagnosis_Calc(resultValueKai) {
 	//バッテリー消費量
 	var setsudenUp = 1.0;
 	var setsudenValue = resultValueKai[10];
-	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.6;
-	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.7;
-	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.3;
-	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.35;
-	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.3;
-	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.35;
+	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.42;
+	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.49;
+	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.126;
+	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.147;
+	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.126;
+	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.147;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
 	//加速度(毎秒)
 	var ftireValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6_kaisv").value;
@@ -1373,10 +1373,10 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
 	if (bodyOption1 == 22) bodyPower += 0.05;
-	if (bodyOption2 == 2) bodyPower += 0.01;
-	if (bodyOption2 == 12) bodyPower += 0.015;
-	if (bodyOption3 == 2) bodyPower += 0.01;
-	if (bodyOption3 == 12) bodyPower += 0.015;
+	if (bodyOption2 == 2) bodyPower += 0.006;
+	if (bodyOption2 == 12) bodyPower += 0.009;
+	if (bodyOption3 == 2) bodyPower += 0.006;
+	if (bodyOption3 == 12) bodyPower += 0.009;
 	var bodyPowerloss = 1.0;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 	var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - bodyPowerloss * resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * weightValue);
@@ -1395,10 +1395,10 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 11) bodySpeed += 0.03;
 	if (bodyOption1 == 21) bodySpeed += 0.04;
 	if (bodyOption1 == 29) bodySpeed += 0.03;
-	if (bodyOption2 == 1) bodySpeed += 0.01;
-	if (bodyOption2 == 11) bodySpeed += 0.015;
-	if (bodyOption3 == 1) bodySpeed += 0.01;
-	if (bodyOption3 == 11) bodySpeed += 0.015;
+	if (bodyOption2 == 1) bodySpeed += 0.006;
+	if (bodyOption2 == 11) bodySpeed += 0.009;
+	if (bodyOption3 == 1) bodySpeed += 0.006;
+	if (bodyOption3 == 11) bodySpeed += 0.009;
 	var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - bodyPowerloss * resultValueKai[7] / 10000.0;
 	var speedValue = 3.14159265359 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
 	var speedlossValue = weightValue * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
@@ -1442,10 +1442,10 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 4) bodyCornerdecele += 0.1;
 	if (bodyOption1 == 14) bodyCornerdecele += 0.2;
 	if (bodyOption1 == 24) bodyCornerdecele += 0.6;
-	if (bodyOption2 == 4) bodyCornerdecele += 0.05;
-	if (bodyOption2 == 14) bodyCornerdecele += 0.1;
-	if (bodyOption3 == 4) bodyCornerdecele += 0.05;
-	if (bodyOption3 == 14) bodyCornerdecele += 0.1;
+	if (bodyOption2 == 4) bodyCornerdecele += 0.03;
+	if (bodyOption2 == 14) bodyCornerdecele += 0.06;
+	if (bodyOption3 == 4) bodyCornerdecele += 0.03;
+	if (bodyOption3 == 14) bodyCornerdecele += 0.06;
 	var acceleValue3 = acceleValue2 * bodyCornerdecele;
 	var rollermasatsuValue = 0.0;
 	if (window.parent.mains.document.getElementById(nameValue[16] + "16").selectedIndex != 0) {
@@ -1492,10 +1492,10 @@ function Diagnosis_Calc(resultValueKai) {
 	var bodyBoundtime = 1.0;
 	if (bodyOption1 == 7) bodyBoundtime -= 0.06;
 	if (bodyOption1 == 17) bodyBoundtime -= 0.12;
-	if (bodyOption2 == 7) bodyBoundtime -= 0.03;
-	if (bodyOption2 == 17) bodyBoundtime -= 0.06;
-	if (bodyOption3 == 7) bodyBoundtime -= 0.03;
-	if (bodyOption3 == 17) bodyBoundtime -= 0.06;
+	if (bodyOption2 == 7) bodyBoundtime -= 0.018;
+	if (bodyOption2 == 17) bodyBoundtime -= 0.036;
+	if (bodyOption3 == 7) bodyBoundtime -= 0.018;
+	if (bodyOption3 == 17) bodyBoundtime -= 0.036;
 	var seishinValue = resultValueKai[11];
 	var ftirehanpatsuValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[15] + "6_kaisv").value;
 	var rtirehanpatsuValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[15] + "7_kaisv").value;
