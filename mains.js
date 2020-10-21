@@ -337,7 +337,7 @@ selectValue[2][s++] = new Array("ダッシュ001号 大帝", 2, 29, 6.0, 18.0, 1
 selectValue[2][s++] = new Array("コンカラーJr.", 2, 12, 0.0, 12.0, 10.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ストラトベクター", 2, 18, 3.0, 9.0, 10.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//74
 s = 0;
-var partsGravity = new Array(0, 0, 0, 0, 0.5, 0, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var partsGravity = new Array(0, 0, 0, 0, 0.5, -0.5, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025, -0.025, 0.025);
 var baseGravity = new Array(); //0:リヤローラーなしダブルアルミなし, 1:リヤローラーありダブルアルミなし, 2;リヤローラーなしダブルアルミあり, 3;リヤローラーありダブルアルミあり
 baseGravity[0] = new Array( 65.0,  65.0,  65.0,  63.0,  63.0,  64.0,  63.0,  66.0,  72.0,  69.0,  64.0,  66.0,  64.0);
@@ -1557,12 +1557,12 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※1 タイヤ同径・異径・径差1対応</font>");
-	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※3 スーパー1、ゼロ、タイプ1、2、3、4、FM、スーパーFM、スーパーTZシャーシ対応(スーパー1強化、タイプ5、FM強化シャーシは不明)</font>");
-	document.write("<br><font color='#FFA500'>※4 参考値です(前後ローラーなしは考慮せず、3次多項式の重回帰分析による近似式)</font>");
-	document.write("<br><font color='#FFA500'>※5 参考値です(3次多項式の重回帰分析による近似式)</font>");
-	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
+	document.write("<br><font color='#FFA500'>※1 未確認</font>");
+	document.write("<br><font color='#FFA500'>※2 未確認 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
+	document.write("<br><font color='#FFA500'>※3 未確認 スーパー1、ゼロ、タイプ1、2、3、4、FM、スーパーFM、スーパーTZシャーシ対応(スーパー1強化、タイプ5、FM強化シャーシは不明)</font>");
+	document.write("<br><font color='#FFA500'>※4 未確認 参考値です(前後ローラーなしは考慮せず、3次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※5 未確認 参考値です(3次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※6 未確認 情報提供感謝します</font>");
 }
 
 function UrlCalc(value1) {
