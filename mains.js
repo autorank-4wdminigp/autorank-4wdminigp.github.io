@@ -1334,9 +1334,9 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 7) bodyBoundtime -= 0.06;
 	if (bodyOption1 == 17) bodyBoundtime -= 0.12;
 	if (bodyOption2 == 7) bodyBoundtime -= 0.03;
-	if (bodyOption2 == 17) bodyBoundtime -= 0.6;
+	if (bodyOption2 == 17) bodyBoundtime -= 0.06;
 	if (bodyOption3 == 7) bodyBoundtime -= 0.03;
-	if (bodyOption3 == 17) bodyBoundtime -= 0.6;
+	if (bodyOption3 == 17) bodyBoundtime -= 0.06;
 	var seishinValue = resultValueKai[11];
 	var ftirehanpatsuValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[15] + "6_kaisv").value;
 	var rtirehanpatsuValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[15] + "7_kaisv").value;
