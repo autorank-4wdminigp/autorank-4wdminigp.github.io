@@ -11,7 +11,7 @@ var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
-var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
+var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ<font color='#FFA500'>※6</font> ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
 
 var slotNum = 7;
 
@@ -340,10 +340,10 @@ s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, -0.5, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025, -0.025, 0.025);
 var baseGravity = new Array(); //0:リヤローラーなしダブルアルミなし, 1:リヤローラーありダブルアルミなし, 2;リヤローラーなしダブルアルミあり, 3;リヤローラーありダブルアルミあり
-baseGravity[0] = new Array( 65.0,  65.0,  65.0,  63.0,  63.0,  64.0,  63.0,  66.0,  72.0,  69.0,  64.0,  66.0,  64.0);
-baseGravity[1] = new Array(131.0, 131.0, 131.0, 127.0, 127.0, 128.0, 127.0, 132.0, 144.0, 138.0, 128.0, 132.0, 128.0);
-baseGravity[2] = new Array( 67.0,  67.0,  67.0,  65.0,  65.0,  65.0,  65.0,  67.0,  73.0,  70.0,  65.0,  67.0,  65.0);
-baseGravity[3] = new Array(134.0, 134.0, 134.0, 130.0, 130.0, 131.0, 130.0, 135.0, 147.0, 141.0, 131.0, 135.0, 131.0);
+baseGravity[0] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
+baseGravity[1] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
+baseGravity[2] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
+baseGravity[3] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
 selectValue[3] = new Array();
 selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
 selectValue[3][s++] = new Array("スーパー1強化シャーシ", 3, 0, 11.0, 10.0, 9.6, 25.0, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
@@ -436,8 +436,8 @@ selectValue[5][s++] = new Array("大径スポンジ(通常・青・緑)・フロ
 selectValue[5][s++] = new Array("大径スポンジ(通常・青・緑)・リヤ", 2, 0, 12.0, 1.0, 3.6, 2.0, 4.5, 0.0, 150.0, 1050.0, 0.0, 0.0, 0.0, 0.0, 76.0, 73.0, 120.0, 30.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[5][s++] = new Array("大径ワイドスポンジ(黒)・フロント", 1, 0, 11.0, 2.0, 10.0, 4.0, 4.5, 0.0, 150.0, 1050.0, 0.0, 0.0, 0.0, 0.0, 80.0, 84.0, 110.0, 30.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[5][s++] = new Array("大径ワイドスポンジ(黒)・リヤ", 1, 0, 11.0, 2.0, 10.0, 4.0, 5.5, 0.0, 150.0, 1050.0, 0.0, 0.0, 0.0, 0.0, 80.0, 84.0, 110.0, 30.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[5][s++] = new Array("大径スパイク・フロント", 1, 0, 12.0, 0.0, 1.8, 2.8, 5.5, 0.0, 155.0, 1085.0, 0.0, 0.0, 0.0, 0.0, 56.0, 67.0, 138.0, 31.0, 0.0, 0.0, 0.0, 2000.0);
-selectValue[5][s++] = new Array("大径スパイク・リヤ", 1, 0, 12.0, 0.0, 1.8, 2.8, 7.5, 0.0, 155.0, 1085.0, 0.0, 0.0, 0.0, 0.0, 56.0, 67.0, 138.0, 31.0, 0.0, 0.0, 0.0, 2000.0);
+selectValue[5][s++] = new Array("大径スパイク・フロント", 1, 0, 12.0, 0.0, 1.8, 2.8, 5.5, 0.0, 155.0, 1085.0, 0.0, 0.0, 0.0, 0.0, 76.0, 67.0, 138.0, 31.0, 0.0, 0.0, 0.0, 2000.0);
+selectValue[5][s++] = new Array("大径スパイク・リヤ", 1, 0, 12.0, 0.0, 1.8, 2.8, 7.5, 0.0, 155.0, 1085.0, 0.0, 0.0, 0.0, 0.0, 76.0, 67.0, 138.0, 31.0, 0.0, 0.0, 0.0, 2000.0);
 selectValue[5][s++] = new Array("大径スパイク(赤)・フロント", 1, 0, 12.0, 0.0, 1.8, 2.8, 5.5, 0.0, 155.0, 1085.0, 0.0, 0.0, 0.0, 0.0, 76.0, 67.0, 138.0, 31.0, 0.0, 0.0, 0.0, 2000.0);
 selectValue[5][s++] = new Array("大径スパイク(赤)・リヤ", 1, 0, 12.0, 0.0, 1.8, 2.8, 7.5, 0.0, 155.0, 1085.0, 0.0, 0.0, 0.0, 0.0, 76.0, 67.0, 138.0, 31.0, 0.0, 0.0, 0.0, 2000.0);
 selectValue[5][s++] = new Array("小径トレッドパターン・フロント", 2, 0, 4.0, 9.0, 1.8, 2.8, 5.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 56.0, 67.0, 98.0, 26.0, 0.0, 0.0, 0.0, 2000.0);
@@ -1349,13 +1349,6 @@ function Diagnosis_Calc(resultValueKai) {
 	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.015;
 	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.015;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[12]).value = brakeValue;
-	//タイヤグリップ
-	var ftiregripUp = 1.0;
-	if (bodyOption1 == 22) ftiregripUp += 0.015;
-	if (bodyOption1 == 24) ftiregripUp += 0.15;
-	if (bodyOption1 == 29) ftiregripUp += 0.015;
-	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = ftiregripValue * ftiregripUp / 100.0;
 	//バッテリー消費量
 	var setsudenUp = 1.0;
 	var setsudenValue = resultValueKai[10];
@@ -1437,6 +1430,15 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[9]).value = gravityValue;
 	//最高速到達時間
 	window.parent.diagnosis.document.getElementById(diagnosisValue[4]).value = Math.log(100.0 * speedValue2) / (4.0 * acceleValue2);
+	//タイヤグリップ
+	var ftiregripUp = 1.0;
+	if (bodyOption1 == 22) ftiregripUp += 0.015;
+	if (bodyOption1 == 24) ftiregripUp += 0.15;
+	if (bodyOption1 == 29) ftiregripUp += 0.015;
+	var ftiregripValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
+	var rtiregripValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[13] + "7_kaisv").value;
+	var tiregripValue = (ftiregripValue * (baseGravity[baseGravityIndex][chassisIndex] / 2.0 + gravityValue) + rtiregripValue * (baseGravity[baseGravityIndex][chassisIndex] / 2.0 - gravityValue)) / baseGravity[baseGravityIndex][chassisIndex];
+	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = tiregripValue * ftiregripUp / 100.0;
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
 	if (bodyOption1 == 4) bodyCornerdecele += 0.1;
@@ -1557,12 +1559,12 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※1 未確認</font>");
-	document.write("<br><font color='#FFA500'>※2 未確認 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※3 未確認 スーパー1、ゼロ、タイプ1、2、3、4、FM、スーパーFM、スーパーTZシャーシ対応(スーパー1強化、タイプ5、FM強化シャーシは不明)</font>");
+	document.write("<br><font color='#FFA500'>※1 確認中(同径はスピロスそのまま、異径はスピロス増加)</font>");
+	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
+	document.write("<br><font color='#FFA500'>※3 確認中(おそらく修正済み) スーパー1、ゼロ、タイプ1、2、3、4、FM、スーパーFM、スーパーTZシャーシ対応(スーパー1強化、タイプ5、FM強化シャーシは不明)</font>");
 	document.write("<br><font color='#FFA500'>※4 未確認 参考値です(前後ローラーなしは考慮せず、3次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※5 未確認 参考値です(3次多項式の重回帰分析による近似式)</font>");
-	document.write("<br><font color='#FFA500'>※6 未確認 情報提供感謝します</font>");
+	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
 
 function UrlCalc(value1) {
