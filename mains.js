@@ -345,29 +345,29 @@ baseGravity[1] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0,
 baseGravity[2] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
 baseGravity[3] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
 selectValue[3] = new Array();
-selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
-selectValue[3][s++] = new Array("スーパー1強化シャーシ", 3, 0, 11.0, 10.0, 9.6, 25.0, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
-selectValue[3][s++] = new Array("ゼロシャーシ", 1, 0, 15.0, 5.0, 8.76, 13.5, 15.1, 850.0, 0.0, 0.0, 0.0, 0.0, 100.0, 5.0);
-selectValue[3][s++] = new Array("タイプ1シャーシ", 2, 0, 2.0, 18.0, 8.4, 18.0, 18.8, 1000.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
-selectValue[3][s++] = new Array("タイプ1シャーシ(パックマン・棚橋SP)", 1, 0, 2.0, 18.0, 7.92, 18.0, 18.8, 1000.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
-selectValue[3][s++] = new Array("タイプ2シャーシ", 1, 0, 20.0, 0.0, 8.16, 14.4, 17.7, 950.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
-selectValue[3][s++] = new Array("タイプ3シャーシ", 1, 0, 4.0, 16.0, 7.68, 16.2, 18.6, 930.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
-selectValue[3][s++] = new Array("FMシャーシ", 2, 0, 9.0, 11.0, 8.52, 12.6, 18.0, 900.0, 0.0, 0.0, 0.0, 0.0, 100.0, 5.0);
-selectValue[3][s++] = new Array("スーパーFMシャーシ", 4, 0, 12.0, 8.0, 9.12, 13.8, 17.8, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
-selectValue[3][s++] = new Array("スーパーTZシャーシ", 1, 0, 12.0, 9.0, 9.12, 10.5, 15.7, 800.0, 0.0, 0.0, 0.0, 0.0, 100.0, 8.0);
-selectValue[3][s++] = new Array("タイプ4シャーシ", 1, 0, 20.0, 0.0, 8.16, 19.0, 18.0, 900.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
-selectValue[3][s++] = new Array("FM強化シャーシ", 3, 0, 10.0, 11.0, 9.6, 25.0, 18.2, 850.0, 0.0, 0.0, 0.0, 0.0, 100.0, 5.0);
-selectValue[3][s++] = new Array("タイプ5シャーシ", 1, 0, 20.0, 0.0, 7.92, 20.0, 17.0, 940.0, 0.0, 0.0, 0.0, 0.0, 100.0, 1.0);
+selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 10.0, 8.0);
+selectValue[3][s++] = new Array("スーパー1強化シャーシ", 3, 0, 11.0, 10.0, 9.6, 25.0, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 10.0, 8.0);
+selectValue[3][s++] = new Array("ゼロシャーシ", 1, 0, 15.0, 5.0, 8.76, 13.5, 15.1, 850.0, 0.0, 0.0, 0.0, 0.0, 10.0, 5.0);
+selectValue[3][s++] = new Array("タイプ1シャーシ", 2, 0, 2.0, 18.0, 8.4, 18.0, 18.8, 1000.0, 0.0, 0.0, 0.0, 0.0, 10.0, 1.0);
+selectValue[3][s++] = new Array("タイプ1シャーシ(パックマン・棚橋SP)", 1, 0, 2.0, 18.0, 7.92, 18.0, 18.8, 1000.0, 0.0, 0.0, 0.0, 0.0, 10.0, 1.0);
+selectValue[3][s++] = new Array("タイプ2シャーシ", 1, 0, 20.0, 0.0, 8.16, 14.4, 17.7, 950.0, 0.0, 0.0, 0.0, 0.0, 10.0, 1.0);
+selectValue[3][s++] = new Array("タイプ3シャーシ", 1, 0, 4.0, 16.0, 7.68, 16.2, 18.6, 930.0, 0.0, 0.0, 0.0, 0.0, 10.0, 1.0);
+selectValue[3][s++] = new Array("FMシャーシ", 2, 0, 9.0, 11.0, 8.52, 12.6, 18.0, 900.0, 0.0, 0.0, 0.0, 0.0, 10.0, 5.0);
+selectValue[3][s++] = new Array("スーパーFMシャーシ", 4, 0, 12.0, 8.0, 9.12, 13.8, 17.8, 800.0, 0.0, 0.0, 0.0, 0.0, 10.0, 8.0);
+selectValue[3][s++] = new Array("スーパーTZシャーシ", 1, 0, 12.0, 9.0, 9.12, 10.5, 15.7, 800.0, 0.0, 0.0, 0.0, 0.0, 10.0, 8.0);
+selectValue[3][s++] = new Array("タイプ4シャーシ", 1, 0, 20.0, 0.0, 8.16, 19.0, 18.0, 900.0, 0.0, 0.0, 0.0, 0.0, 10.0, 1.0);
+selectValue[3][s++] = new Array("FM強化シャーシ", 3, 0, 10.0, 11.0, 9.6, 25.0, 18.2, 850.0, 0.0, 0.0, 0.0, 0.0, 10.0, 5.0);
+selectValue[3][s++] = new Array("タイプ5シャーシ", 1, 0, 20.0, 0.0, 7.92, 20.0, 17.0, 940.0, 0.0, 0.0, 0.0, 0.0, 10.0, 1.0);
 s = 0;
 selectValue[4] = new Array();
-selectValue[4][s++] = new Array("小径タイプ1・フロント", 2, 0, 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径タイプ1・リヤ", 2, 0, 0.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径ナローワンウェイ(通常・赤・黒メッキ)・フロント", 3, 0, 8.0, 5.0, 4.0, 2.6, 3.0, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
-selectValue[4][s++] = new Array("小径ナローワンウェイ(通常・赤・黒メッキ)・リヤ", 3, 0, 8.0, 5.0, 4.0, 2.6, 4.5, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
-selectValue[4][s++] = new Array("小径ローハイトワイド・フロント", 2, 0, 5.0, 8.0, 2.0, 2.8, 1.7, 0.0, 160.0, 1000.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径ローハイトワイド・リヤ", 2, 0, 5.0, 8.0, 2.0, 2.8, 2.3, 0.0, 160.0, 1000.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径ローハイトWワンウェイ(通常・紫)・フロント", 3, 0, 6.0, 7.0, 6.0, 3.0, 3.0, 0.0, 80.0, 1000.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
-selectValue[4][s++] = new Array("小径ローハイトWワンウェイ(通常・紫)・リヤ", 3, 0, 6.0, 7.0, 6.0, 3.0, 4.5, 0.0, 80.0, 1000.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径タイプ1・フロント", 2, 0, 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径タイプ1・リヤ", 2, 0, 0.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ナローワンウェイ(通常・赤・黒メッキ)・フロント", 3, 0, 8.0, 5.0, 4.0, 2.6, 3.0, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径ナローワンウェイ(通常・赤・黒メッキ)・リヤ", 3, 0, 8.0, 5.0, 4.0, 2.6, 4.5, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径ローハイトワイド・フロント", 2, 0, 5.0, 8.0, 2.0, 2.8, 1.7, 0.0, 160.0, 1000.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ローハイトワイド・リヤ", 2, 0, 5.0, 8.0, 2.0, 2.8, 2.3, 0.0, 160.0, 1000.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ローハイトWワンウェイ(通常・紫)・フロント", 3, 0, 6.0, 7.0, 6.0, 3.0, 3.0, 0.0, 80.0, 1000.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径ローハイトWワンウェイ(通常・紫)・リヤ", 3, 0, 6.0, 7.0, 6.0, 3.0, 4.5, 0.0, 80.0, 1000.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
 selectValue[4][s++] = new Array("大径タイプ1・フロント", 1, 0, 12.0, 0.0, 1.0, 2.0, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("大径タイプ1・リヤ", 1, 0, 12.0, 0.0, 1.0, 2.0, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("大径タイプ1(パックマン)・フロント", 1, 0, 12.0, 2.0, 1.0, 2.0, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
@@ -390,22 +390,22 @@ selectValue[4][s++] = new Array("大径ワイド・フロント", 1, 0, 11.0, 2.
 selectValue[4][s++] = new Array("大径ワイド・リヤ", 1, 0, 11.0, 2.0, 2.0, 2.9, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("大径ワンウェイ(通常・青・黒メッキ)・フロント", 3, 0, 10.0, 3.0, 4.0, 2.6, 3.0, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
 selectValue[4][s++] = new Array("大径ワンウェイ(通常・青・黒メッキ)・リヤ", 3, 0, 10.0, 3.0, 4.0, 2.6, 4.5, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
-selectValue[4][s++] = new Array("小径タイプ2・フロント", 2, 0, 1.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径タイプ2・リヤ", 2, 0, 1.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径リアルコブラ・フロント", 2, 0, 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径リアルコブラ・リヤ", 2, 0, 0.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径ZMC(赤)・フロント", 2, 0, 2.0, 12.0, 1.0, 2.7, 2.8, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径リアルEVO(銀)・フロント", 2, 0, 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径リアルEVO(銀)・リヤ", 2, 0, 0.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径中空(黄緑)", 3, 0, 1.0, 12.0, 4.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径リアルBB(銀)・フロント", 1, 0, 8.0, 5.0, 4.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径リアルBB(銀)・リヤ", 1, 0, 8.0, 5.0, 4.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径ローハイトWエアロ・フロント", 1, 0, 7.0, 6.0, 2.0, 2.8, 1.8, 0.0, 160.0, 800.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径ローハイトWエアロ・リヤ", 1, 0, 7.0, 6.0, 3.0, 2.8, 2.2, 0.0, 160.0, 800.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径タイプ2・フロント", 2, 0, 1.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径タイプ2・リヤ", 2, 0, 1.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径リアルコブラ・フロント", 2, 0, 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径リアルコブラ・リヤ", 2, 0, 0.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ZMC(赤)・フロント", 2, 0, 2.0, 12.0, 1.0, 2.7, 2.8, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径リアルEVO(銀)・フロント", 2, 0, 0.0, 12.0, 1.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径リアルEVO(銀)・リヤ", 2, 0, 0.0, 12.0, 1.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径中空(黄緑)", 3, 0, 1.0, 12.0, 4.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径リアルBB(銀)・フロント", 1, 0, 8.0, 5.0, 4.0, 2.0, 1.7, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径リアルBB(銀)・リヤ", 1, 0, 8.0, 5.0, 4.0, 2.0, 2.3, 0.0, 80.0, 1000.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ローハイトWエアロ・フロント", 1, 0, 7.0, 6.0, 2.0, 2.8, 1.8, 0.0, 160.0, 800.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("小径ローハイトWエアロ・リヤ", 1, 0, 7.0, 6.0, 3.0, 2.8, 2.2, 0.0, 160.0, 800.0, 0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("大径タイプ6・フロント", 1, 0, 12.0, 0.0, 1.0, 2.6, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("大径タイプ6・リヤ", 1, 0, 12.0, 0.0, 1.0, 2.6, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-selectValue[4][s++] = new Array("小径ローハイトワンウェイ・フロント", 2, 0, 4.0, 9.0, 4.0, 3.0, 3.0, 0.0, 80.0, 800.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
-selectValue[4][s++] = new Array("小径ローハイトワンウェイ・リヤ", 2, 0, 4.0, 9.0, 4.0, 3.0, 4.5, 0.0, 80.0, 800.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径ローハイトワンウェイ・フロント", 2, 0, 4.0, 9.0, 4.0, 3.0, 3.0, 0.0, 80.0, 800.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
+selectValue[4][s++] = new Array("小径ローハイトワンウェイ・リヤ", 2, 0, 4.0, 9.0, 4.0, 3.0, 4.5, 0.0, 80.0, 800.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
 s = 0;
 selectValue[5] = new Array();
 selectValue[5][s++] = new Array("小径ノーマル・フロント", 2, 0, 0.0, 10.0, 1.8, 2.4, 5.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 90.0, 26.0, 0.0, 0.0, 0.0, 0.0);
@@ -1325,12 +1325,10 @@ function Result_Calc() {
 
 function Diagnosis_Calc(resultValueKai) {
 	var shindantire = 1;
+	var shindantirekei = 0;
 	if (window.parent.diagnosis.document.getElementById('shindantire2').checked) {
 		shindantire = 2;
-	} else if (window.parent.diagnosis.document.getElementById('shindantire3').checked) {
-		shindantire = 3;
-	} else if (window.parent.diagnosis.document.getElementById('shindantire4').checked) {
-		shindantire = 4;
+		shindantirekei = window.parent.diagnosis.document.getElementById('shindantirekei').selectedIndex;
 	}
 	//ローラースラスト角
 	var rollerangleValue = Math.min(10, Math.max(0, resultValueKai[12]));
@@ -1352,16 +1350,29 @@ function Diagnosis_Calc(resultValueKai) {
 	//バッテリー消費量
 	var setsudenUp = 1.0;
 	var setsudenValue = resultValueKai[10];
-	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.42;
-	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.49;
-	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.126;
-	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.147;
-	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.126;
-	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.147;
+	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.40;
+	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.50;
+	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
+	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.15;
+	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
+	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.15;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
 	//加速度(毎秒)
-	var ftireValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6_kaisv").value;
-	var rtireValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "7_kaisv").value;
+	var ftirekeiValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6_kaisv").value;
+	var rtirekeiValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "7_kaisv").value;
+	var mintiresenkai;
+	var mintirespeedloss;
+	if (ftirekeiValue <= rtirekeiValue) {
+		mintiresenkai = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "6_kaisv").value;
+		mintirespeedloss = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[8] + "6").value;
+	} else {
+		mintiresenkai = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
+		mintirespeedloss = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[8] + "7").value;
+	}
+	var tiresenkaisa = Math.abs(ftirekeiValue - rtirekeiValue);
+	if (shindantire == 2) {
+		tiresenkaisa = shindantirekei;
+	}
 	var bodyPower = 1.0;
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
@@ -1372,15 +1383,17 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption3 == 12) bodyPower += 0.009;
 	var bodyPowerloss = 1.0;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
-	var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - bodyPowerloss * resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtireValue * weightValue);
-	var acceleValue2;
-	if ((shindantire == 1 && Math.abs(ftireValue - rtireValue) == 1) || shindantire == 3) {
-		acceleValue2 = acceleValue - Math.max(resultValueKai[8] - 5000.0, 0.0) / 40000.0;
-	} else if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
-		acceleValue2 = acceleValue;
-	} else {
-		acceleValue2 = acceleValue - resultValueKai[8] / 40000.0;
-	}
+	//var acceleValue = (10.0 * bodyPower * resultValueKai[2] * (1.0 - bodyPowerloss * resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (2.0 * rtirekeiValue * weightValue);
+	//var acceleValue2;
+	//if ((shindantire == 1 && Math.abs(ftirekeiValue - rtirekeiValue) == 1) || shindantire == 3) {
+	//	acceleValue2 = acceleValue - Math.max(resultValueKai[8] - 5000.0, 0.0) / 40000.0;
+	//} else if ((shindantire == 1 && ftirekeiValue != rtirekeiValue) || shindantire == 2) {
+	//	acceleValue2 = acceleValue;
+	//} else {
+	//	acceleValue2 = acceleValue - resultValueKai[8] / 40000.0;
+	//}
+	var speedlossValue = 28.0 * tiresenkaisa * mintiresenkai / (mintirespeedloss / 1000.0);
+	var acceleValue2 = ((10.0 * bodyPower * resultValueKai[2] * (1.0 - bodyPowerloss * resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (rtirekeiValue / 2000.0 * weightValue) - (resultValueKai[8] + speedlossValue) / 10.0) / 4000.0;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue2;
 	//最高速度
 	var bodySpeed = 1.0;
@@ -1392,17 +1405,19 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption2 == 11) bodySpeed += 0.009;
 	if (bodyOption3 == 1) bodySpeed += 0.006;
 	if (bodyOption3 == 11) bodySpeed += 0.009;
-	var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - bodyPowerloss * resultValueKai[7] / 10000.0;
-	var speedValue = 3.14159265359 * rtireValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
-	var speedlossValue = weightValue * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * rtireValue * rtireValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
-	var speedValue2;
-	if ((shindantire == 1 && Math.abs(ftireValue - rtireValue) == 1) || shindantire == 3) {
-		speedValue2 = speedValue - speedlossValue * Math.max(resultValueKai[8] - 5000.0, 0.0);
-	} else if ((shindantire == 1 && ftireValue != rtireValue) || shindantire == 2) {
-		speedValue2 = speedValue;
-	} else {
-		speedValue2 = speedValue - speedlossValue * resultValueKai[8];
-	}
+	//var spowerValue = (1.0 - resultValueKai[6] / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) - bodyPowerloss * resultValueKai[7] / 10000.0;
+	//var speedValue = 3.14159265359 * rtirekeiValue * spowerValue * 10.0 * bodySpeed * resultValueKai[1] / (60000.0 * resultValueKai[21]) - 0.001 * resultValueKai[9];
+	//var speedlossValue = weightValue * 3.14159265359 * 10.0 * bodySpeed * resultValueKai[1] * rtirekeiValue * rtirekeiValue / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21] * resultValueKai[21] * 300.0 * 2000.0 * 2000.0);
+	//var speedValue2;
+	//if ((shindantire == 1 && Math.abs(ftirekeiValue - rtirekeiValue) == 1) || shindantire == 3) {
+	//	speedValue2 = speedValue - speedlossValue * Math.max(resultValueKai[8] - 5000.0, 0.0);
+	//} else if ((shindantire == 1 && ftirekeiValue != rtirekeiValue) || shindantire == 2) {
+	//	speedValue2 = speedValue;
+	//} else {
+	//	speedValue2 = speedValue - speedlossValue * resultValueKai[8];
+	//}
+	var spowerValue = (1.0 - (weightValue * rtirekeiValue / 2000.0 * (resultValueKai[8] + speedlossValue) / 10.0 + resultValueKai[6]) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]) - bodyPowerloss * resultValueKai[7] / 10000.0);
+	var speedValue2 = (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21] * spowerValue - resultValueKai[9] / 1000.0;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[0]).value = speedValue2 * 3.6;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[1]).value = speedValue2;
 	//ジャンプ飛距離
@@ -1498,7 +1513,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption2 == 17) bodyBoundtime -= 0.036;
 	if (bodyOption3 == 7) bodyBoundtime -= 0.018;
 	if (bodyOption3 == 17) bodyBoundtime -= 0.036;
-	var seishinValue = resultValueKai[11];
+	var seishinValue = 10.0 * resultValueKai[11];
 	var ftirehanpatsuValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[15] + "6_kaisv").value;
 	var rtirehanpatsuValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[15] + "7_kaisv").value;
 	var tirehanpatsuValue = 1.0 * ftirehanpatsuValue + 1.0 * rtirehanpatsuValue;
@@ -1547,9 +1562,14 @@ function View_Result() {
 function View_Diagnosis() {
 	document.write("<table class='cstable'><tr>");
 	document.write("<td><input class='csinput1' type='radio' id='shindantire1' name='shindantire' onchange='Result_Calc()' checked>マシン診断　");
-	document.write("<input class='csinput1' type='radio' id='shindantire2' name='shindantire' onchange='Result_Calc()'>タイヤ異径表示　");
-	document.write("<input class='csinput1' type='radio' id='shindantire3' name='shindantire' onchange='Result_Calc()'>タイヤ径差1表示　");
-	document.write("<input class='csinput1' type='radio' id='shindantire4' name='shindantire' onchange='Result_Calc()'>タイヤ同径表示　</td>");	
+	document.write("<input class='csinput1' type='radio' id='shindantire2' name='shindantire' onchange='Result_Calc()'>タイヤ径差表示　");
+	var writeValue = "";
+	writeValue += "<select id='shindantirekei' onchange='Result_Calc()'>";
+	for (var j = 0; j <= 7; j++) {
+		writeValue += "<option value=" + j + ">" + j + "</option>";
+	}
+	writeValue += "</select></td>";
+	document.write(writeValue);
 	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
 	for (var i = 0; i < diagnosisValue.length; i++) {
 		if (i == 4 || i == 8 || i == 12 || i == 16) {
@@ -1559,11 +1579,11 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※1 確認中(同径はスピロスそのまま、異径はスピロス増加)</font>");
+	document.write("<br><font color='#FFA500'>※1 対応済(ご協力感謝します)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※3 確認中(おそらく修正済み) スーパー1、ゼロ、タイプ1、2、3、4、FM、スーパーFM、スーパーTZシャーシ対応(スーパー1強化、タイプ5、FM強化シャーシは不明)</font>");
-	document.write("<br><font color='#FFA500'>※4 未確認 参考値です(前後ローラーなしは考慮せず、3次多項式の重回帰分析による近似式)</font>");
-	document.write("<br><font color='#FFA500'>※5 未確認 参考値です(3次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※3 確認中(おそらく修正済) スーパー1、ゼロ、タイプ1、2、3、4、FM、スーパーFM、スーパーTZシャーシ対応(スーパー1強化、タイプ5、FM強化シャーシは不明)</font>");
+	document.write("<br><font color='#FFA500'>※4 参考値です(前後ローラーなしは考慮せず、3次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※5 参考値です(3次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
 
