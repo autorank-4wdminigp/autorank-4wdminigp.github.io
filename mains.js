@@ -335,15 +335,15 @@ selectValue[2][s++] = new Array("ビッグ バン ゴースト", 4, 14, 12.0, 10
 selectValue[2][s++] = new Array("ベアホークJr.", 1, 6, 20.0, 2.0, 4.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ダッシュ001号 大帝", 2, 29, 6.0, 18.0, 10.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("コンカラーJr.", 2, 12, 0.0, 12.0, 10.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("ストラトベクター", 2, 18, 3.0, 9.0, 10.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//74
+selectValue[2][s++] = new Array("ストラトベクター [FM]", 2, 18, 3.0, 9.0, 10.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//74
 s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, -0.5, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025, -0.025, 0.025);
 var baseGravity = new Array(); //0:リヤローラーなしダブルアルミなし, 1:リヤローラーありダブルアルミなし, 2;リヤローラーなしダブルアルミあり, 3;リヤローラーありダブルアルミあり
-baseGravity[0] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
-baseGravity[1] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
-baseGravity[2] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
-baseGravity[3] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 83.0, 82.0, 82.0, 83.0, 82.0);
+baseGravity[0] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 80.0, 82.0, 82.0, 83.0, 82.0);
+//baseGravity[1] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 80.0, 82.0, 82.0, 83.0, 82.0);
+//baseGravity[2] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 80.0, 82.0, 82.0, 83.0, 82.0);
+//baseGravity[3] = new Array(80.0, 80.0, 80.0, 80.0, 80.0, 82.0, 80.0, 83.0, 80.0, 82.0, 82.0, 83.0, 82.0);
 selectValue[3] = new Array();
 selectValue[3][s++] = new Array("スーパー1シャーシ", 4, 0, 10.0, 10.0, 9.12, 10.8, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 10.0, 8.0);
 selectValue[3][s++] = new Array("スーパー1強化シャーシ", 3, 0, 11.0, 10.0, 9.6, 25.0, 15.8, 800.0, 0.0, 0.0, 0.0, 0.0, 10.0, 8.0);
@@ -1331,7 +1331,8 @@ function Diagnosis_Calc(resultValueKai) {
 		shindantirekei = window.parent.diagnosis.document.getElementById('shindantirekei').selectedIndex;
 	}
 	//ローラースラスト角
-	var rollerangleValue = Math.min(10, Math.max(0, resultValueKai[12]));
+	//var rollerangleValue = Math.min(10, Math.max(0, resultValueKai[12]));
+	var rollerangleValue = Math.max(0, resultValueKai[12]);
 	window.parent.diagnosis.document.getElementById(diagnosisValue[10]).value = rollerangleValue;
 	//重さ
 	var weightValue = resultValueKai[5];
@@ -1392,7 +1393,7 @@ function Diagnosis_Calc(resultValueKai) {
 	//} else {
 	//	acceleValue2 = acceleValue - resultValueKai[8] / 40000.0;
 	//}
-	var speedlossValue = 28.0 * tiresenkaisa * mintiresenkai / (mintirespeedloss / 1000.0);
+	var speedlossValue = 28.0 * tiresenkaisa * mintiresenkai * 1000.0 / mintirespeedloss;
 	var acceleValue2 = ((10.0 * bodyPower * resultValueKai[2] * (1.0 - bodyPowerloss * resultValueKai[7] / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (rtirekeiValue / 2000.0 * weightValue) - (resultValueKai[8] + speedlossValue) / 10.0) / 4000.0;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[3]).value = acceleValue2;
 	//最高速度
@@ -1427,12 +1428,12 @@ function Diagnosis_Calc(resultValueKai) {
 	var chassisIndex = window.parent.mains.document.getElementById(nameValue[3] + "3").value;
 	var gravityValue = 0.0;
 	var baseGravityIndex = 0;
-	if (window.parent.mains.document.getElementById(nameValue[13] + "13").value != 0 || window.parent.mains.document.getElementById(nameValue[16] + "16").value != 0 || window.parent.mains.document.getElementById(nameValue[17] + "17").value != 0 || window.parent.mains.document.getElementById(nameValue[18] + "18").value != 0) {
-		baseGravityIndex = 1;
-	}
-	if (window.parent.mains.document.getElementById(nameValue[10] + "10").value == 2 || window.parent.mains.document.getElementById(nameValue[10] + "10").value == 4) {
-		baseGravityIndex += 2;
-	}
+	//if (window.parent.mains.document.getElementById(nameValue[13] + "13").value != 0 || window.parent.mains.document.getElementById(nameValue[16] + "16").value != 0 || window.parent.mains.document.getElementById(nameValue[17] + "17").value != 0 || window.parent.mains.document.getElementById(nameValue[18] + "18").value != 0) {
+	//	baseGravityIndex = 1;
+	//}
+	//if (window.parent.mains.document.getElementById(nameValue[10] + "10").value == 2 || window.parent.mains.document.getElementById(nameValue[10] + "10").value == 4) {
+	//	baseGravityIndex += 2;
+	//}
 	for (var i = 0; i < nameValue.length; i++) {
 		var weightpartsValue = window.parent.mains.document.getElementById(nameValue[i] + "_" + typeValue[5] + i + "_kaisv").value;
 		if (i == 3) {
@@ -1456,13 +1457,13 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = tiregripValue * ftiregripUp / 100.0;
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
-	if (bodyOption1 == 4) bodyCornerdecele += 0.1;
-	if (bodyOption1 == 14) bodyCornerdecele += 0.2;
-	if (bodyOption1 == 24) bodyCornerdecele += 0.6;
-	if (bodyOption2 == 4) bodyCornerdecele += 0.03;
-	if (bodyOption2 == 14) bodyCornerdecele += 0.06;
-	if (bodyOption3 == 4) bodyCornerdecele += 0.03;
-	if (bodyOption3 == 14) bodyCornerdecele += 0.06;
+	if (bodyOption1 == 4) bodyCornerdecele += 0.6;
+	if (bodyOption1 == 14) bodyCornerdecele += 0.7;
+	if (bodyOption1 == 24) bodyCornerdecele += 0.9;
+	if (bodyOption2 == 4) bodyCornerdecele += 0.18;
+	if (bodyOption2 == 14) bodyCornerdecele += 0.21;
+	if (bodyOption3 == 4) bodyCornerdecele += 0.18;
+	if (bodyOption3 == 14) bodyCornerdecele += 0.21;
 	var acceleValue3 = acceleValue2 * bodyCornerdecele;
 	var rollermasatsuValue = 0.0;
 	if (window.parent.mains.document.getElementById(nameValue[16] + "16").selectedIndex != 0) {
@@ -1536,10 +1537,6 @@ function Diagnosis_Calc(resultValueKai) {
 	x16 = -0.0000000001;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[8]).value = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue + x12 * speedValue3 * speedValue3 * speedValue3 + x13 * tirehanpatsuValue * tirehanpatsuValue * tirehanpatsuValue + x14 * gravityValue * gravityValue * gravityValue + x15 * weightValue * weightValue * weightValue + x16 * seishinValue * seishinValue * seishinValue;
 
-
-
-
-
 }
 
 function View_Result() {
@@ -1581,7 +1578,7 @@ function View_Diagnosis() {
 	document.write("</tr></table>");
 	document.write("<br><font color='#FFA500'>※1 対応済(ご協力感謝します)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※3 確認中(おそらく修正済) スーパー1、ゼロ、タイプ1、2、3、4、FM、スーパーFM、スーパーTZシャーシ対応(スーパー1強化、タイプ5、FM強化シャーシは不明)</font>");
+	document.write("<br><font color='#FFA500'>※3 対応済(タイプ5、FM強化シャーシは要確認)</font>");
 	document.write("<br><font color='#FFA500'>※4 参考値です(前後ローラーなしは考慮せず、3次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※5 参考値です(3次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
