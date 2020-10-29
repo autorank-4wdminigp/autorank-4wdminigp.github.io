@@ -1359,9 +1359,9 @@ function Diagnosis_Calc(resultValueKai) {
 	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.40;
 	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.50;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
-	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.15;
+	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
-	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.15;
+	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.17;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
 	//加速度(毎秒)
 	var ftirekeiValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "6_kaisv").value;
