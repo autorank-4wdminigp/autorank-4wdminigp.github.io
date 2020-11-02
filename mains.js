@@ -1092,6 +1092,9 @@ function View_Set(value1) {
 		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
 		writeValue += "<td class='cstd'>　</td>"
 		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
+		if (value1 == 0) {
+			writeValue += "<td class='cstd'>　</td> <td>全パーツ <input type='button' value='至高の逸品' onclick='Shikou_Set(2)'>　<input type='button' value='職人' onclick='Shikou_Set(1)'>　<input type='button' value='イイ感じ' onclick='Shikou_Set(0)'> </td>";
+		}
 	}
 	if (value1 == 2) {
 		writeValue += "</tr></table>";
@@ -1733,6 +1736,24 @@ function Shokika_Set(value1) {
 		document.getElementById(nameValue[value1] + value1 + '_slot' + i).selectedIndex = 0;
 		Type_Slot_Set(value1, i - 1);
 	}
+}
+
+function Shikou_Set(value0) {
+	calcFlg = 0;
+	resultFlg = 0;
+	for (var i = 0; i < nameValue.length; i++) {
+		if (kaizouSelect[nameCalc[i]][0].length != 0) {
+			for (var j = 1; j <= slotNum; j++) {
+				document.getElementById(nameValue[i] + i + '_type' + j).selectedIndex = value0;
+			}
+		}
+	}
+	calcFlg = 1;
+	for (var i = 0; i < nameValue.length; i++) {
+		Type_Calc(i);
+	}
+	resultFlg = 1;
+	Type_Calc(0);
 }
 
 function UrlToNum(value) {
