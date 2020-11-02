@@ -1093,7 +1093,7 @@ function View_Set(value1) {
 		writeValue += "<td class='cstd'>　</td>"
 		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
 		if (value1 == 0) {
-			writeValue += "<td class='cstd'>　</td> <td>全パーツ <input type='button' value='至高の逸品' onclick='Shikou_Set(2)'>　<input type='button' value='職人' onclick='Shikou_Set(1)'>　<input type='button' value='イイ感じ' onclick='Shikou_Set(0)'> </td>";
+			writeValue += "<td class='cstd'>　</td> <td>全パーツ <input type='button' value='至高の逸品' onclick='Shikou_Set(2)'>　<input type='button' value='職人技' onclick='Shikou_Set(1)'>　<input type='button' value='イイ感じ' onclick='Shikou_Set(0)'> </td>";
 		}
 	}
 	if (value1 == 2) {
