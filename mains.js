@@ -1234,7 +1234,7 @@ function All_Set() {
 }
 
 function View_Set(value1) {
-	var writeValue = "<table class='cstable'><tr><td>" + nameView[value1];
+	var writeValue = "<a name='link" + value1 + "'></a><table class='cstable'><tr><td>" + nameView[value1];
 	writeValue += "<span id='id_" + nameValue[value1] + value1 + "'></span></td>";
 	if (value1 == 2) {
 		writeValue += "<td class='cstd'>　</td>";
@@ -1282,7 +1282,7 @@ function View_Set(value1) {
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		writeValue += "<table class='cstable'><tr><td class='cstd'>　</td><td>テンプレ改造 ";
 		writeValue += "<span id='id_" + nameValue[value1] + value1 + "_tenpure'></span>";
-		writeValue += "</td></tr></table>";
+		writeValue += "</td><td class='cstd'>　</td><td class='cstd'><a href='#link0'>モーターへ</a>　</td><td class='cstd'><a href='#link4'>ホイールへ</a>　</td><td class='cstd'><a href='#link11'>ローラーへ</a>　</td><td class='cstd'><a href='#link25'>アクセサリーへ</a>　</td></tr></table>";
 		writeValue += "<table class='cstable'>";
 		for (var i = 1; i <= slotNum; i++) {
 			writeValue += "<tr><td class='cstd'>　</td><td>スロット" + i + " ";
