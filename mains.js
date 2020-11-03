@@ -10,8 +10,8 @@ var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 
 var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
-var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake");
-var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ<font color='#FFA500'>※6</font> ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ");
+var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou");
+var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ<font color='#FFA500'>※6</font> ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ");
 
 var slotNum = 7;
 
@@ -1655,7 +1655,13 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption3 == 4) bodyCornerdecele += 0.18;
 	if (bodyOption3 == 14) bodyCornerdecele += 0.21;
 	var acceleValue3 = acceleValue2 * bodyCornerdecele;
-	var rollermasatsuValue = 0.0;
+	var rollermasatsuValue = 30.0;
+	if (window.parent.mains.document.getElementById(nameValue[15] + "15").selectedIndex != 0) {
+		rollermasatsuValue = window.parent.mains.document.getElementById(nameValue[15] + "_" + typeValue[17] + "15_kaisv").value;
+	}
+	if (window.parent.mains.document.getElementById(nameValue[12] + "12").selectedIndex != 0) {
+		rollermasatsuValue = window.parent.mains.document.getElementById(nameValue[12] + "_" + typeValue[17] + "12_kaisv").value;
+	}
 	if (window.parent.mains.document.getElementById(nameValue[16] + "16").selectedIndex != 0) {
 		rollermasatsuValue = window.parent.mains.document.getElementById(nameValue[16] + "_" + typeValue[17] + "16_kaisv").value;
 	}
@@ -1675,6 +1681,11 @@ function Diagnosis_Calc(resultValueKai) {
 	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[13] + "_" + typeValue[18] + "13_kaisv").value);
 	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[17] + "_" + typeValue[18] + "17_kaisv").value);
 	rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[18] + "_" + typeValue[18] + "18_kaisv").value);
+	if (window.parent.mains.document.getElementById(nameValue[14] + "14").selectedIndex == 0 && window.parent.mains.document.getElementById(nameValue[11] + "11").selectedIndex == 0 && window.parent.mains.document.getElementById(nameValue[16] + "16").selectedIndex == 0 && window.parent.mains.document.getElementById(nameValue[13] + "13").selectedIndex == 0 && window.parent.mains.document.getElementById(nameValue[17] + "17").selectedIndex == 0 && window.parent.mains.document.getElementById(nameValue[18] + "18").selectedIndex == 0) {
+		rollerteikouValue = 400.0;
+	}
+	window.parent.diagnosis.document.getElementById(diagnosisValue[13]).value = rollermasatsuValue;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[14]).value = rollerteikouValue;
 	var masatsuValue = rollerangleValue * rollermasatsuValue;
 	var ftiresenkaiValue = window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "6_kaisv").value;
 	var rtiresenkaiValue = window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
