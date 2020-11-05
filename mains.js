@@ -253,13 +253,14 @@ kaizou7Select[10][s++] = new Array(4, 5, 6);
 kaizou7Select[10][s++] = new Array(4, 5, 7);
 s = 0;
 kaizouTenpreSelect[10] = new Array();
-kaizouTenpreSelect[10][s++] = new Array(0, 1);
-kaizouTenpreSelect[10][s++] = new Array(0, 1, 2, 3);
+kaizouTenpreSelect[10][s++] = new Array(0, 1, 2);
+kaizouTenpreSelect[10][s++] = new Array(0, 1, 2, 3, 4);
 kaizouTenpre[10] = new Array();
 kaizouTenpre[10][0] = new Array("エアロダウンフォース減少x4 軽量化x2", 3, 3, 3, 3, 1, 1);
 kaizouTenpre[10][1] = new Array("エアロダウンフォース増加x4 軽量化x2", 2, 2, 2, 2, 1, 1);
-kaizouTenpre[10][2] = new Array("耐久x4 軽量化x2", 4, 4, 4, 4, 1, 1);
-kaizouTenpre[10][3] = new Array("耐久x4 エアロダウンフォース減少x2", 4, 4, 4, 4, 3, 3);
+kaizouTenpre[10][2] = new Array("軽量化x6", 1, 1, 1, 1, 1, 1);
+kaizouTenpre[10][3] = new Array("耐久x4 軽量化x2", 4, 4, 4, 4, 1, 1);
+kaizouTenpre[10][4] = new Array("耐久x4 エアロダウンフォース減少x2", 4, 4, 4, 4, 3, 3);
 s = 0;
 kaizouSelectIndex[11] = new Array(0, 0);
 kaizouSelect[11] = new Array();
@@ -400,7 +401,7 @@ kaizou7Select[21][s++] = new Array();
 
 //1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン, 22:パワーブースト, 23:流星, 24:パワードリフト, 25:, 26:紅い閃光, 27:, 28:, 29:ワイルドラン)
 var selectProper = new Array("－", "St", "U", "Kp", "Co", "J");
-var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "(S)かっとびマシン", "(S)パワーブースト", "(S)流星(仮)", "(S)パワードリフト", "なし", "(S)紅い閃光", "なし", "なし", "(S)ワイルドラン");
+var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "(S)かっとびマシン", "(S)パワーブースト", "(S)流星", "(S)パワードリフト", "なし", "(S)紅い閃光", "なし", "なし", "(S)ワイルドラン");
 
 var selectValue = new Array();
 s = 0;
@@ -495,7 +496,7 @@ selectValue[2][s++] = new Array("ダッシュ001号 大帝", 2, 29, 6.0, 18.0, 1
 selectValue[2][s++] = new Array("コンカラーJr.", 2, 12, 0.0, 12.0, 10.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ストラトベクター [FM]", 2, 18, 3.0, 9.0, 10.5, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ディオスパーダ", 4, 26, 11.0, 11.0, 6.0, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("ダッシュ03号 S.S.S", 1, 23, 22.0, 0.0, 4.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("ダッシュ03号 S.S.S.", 1, 23, 22.0, 0.0, 4.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("トップフォースJr.", 1, 11, 21.0, 1.0, 4.5, 45.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ビクトリーマグナム(銀メッキ)", 1, 11, 20.0, 2.0, 4.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//78
 s = 0;
