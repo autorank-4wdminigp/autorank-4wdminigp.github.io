@@ -10,8 +10,8 @@ var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 
 var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
-var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h");
-var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ<font color='#FFA500'>※6</font> ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "空転目安(時速)(仮) ");
+var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h", "dia16taifuu_h");
+var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ<font color='#FFA500'>※6</font> ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "空転目安(時速)(仮) ", "耐風最高速(時速) ");
 
 var slotNum = 7;
 
@@ -1656,6 +1656,8 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = tiregripValue * ftiregripUp / 100.0;
 	//空転
 	window.parent.diagnosis.document.getElementById(diagnosisValue[15]).value = window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value / 0.027;
+	//耐風最高速
+	window.parent.diagnosis.document.getElementById(diagnosisValue[16]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26], 9000.0) / 10000.0) * weightValue / acceleValue2 / 45.0), speedValue2 / 5.0) * 3.6;
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
 	if (bodyOption1 == 4) bodyCornerdecele += 0.6;
