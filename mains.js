@@ -1662,6 +1662,7 @@ function Diagnosis_Calc(resultValueKai) {
 	//芝最高速
 	var bodyOffload = 1.0;
 	if (bodyOption1 == 9) bodyOffload += 100.0;
+	if (bodyOption1 == 29) bodyOffload += 100.0;
 	if (bodyOption2 == 9) bodyOffload += 30.0;
 	if (bodyOption3 == 9) bodyOffload += 30.0;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[17]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload * resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
