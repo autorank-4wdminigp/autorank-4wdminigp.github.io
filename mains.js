@@ -1676,7 +1676,7 @@ function Diagnosis_Calc(resultValueKai) {
 	//耐水空転
 	var taisuigripUp = 0.0;
 	if (bodyOption1 == 30) taisuigripUp += 5100.0;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[19]).value = (window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value * 10.0 * Math.min(resultValueKai[27] + 250.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[19]).value = (window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value * 10.0 * Math.min(resultValueKai[27] + 200.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
 	//耐風最高速
 	window.parent.diagnosis.document.getElementById(diagnosisValue[16]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26], 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
 	//芝最高速
