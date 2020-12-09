@@ -1691,10 +1691,18 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[18]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload * resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
 
 	//コーナー安定速度
+	var cornerspeedUp = 1.0;
+	if (bodyOption1 == 3) cornerspeedUp += 0.1;
+	if (bodyOption1 == 13) cornerspeedUp += 0.15;
+	if (bodyOption1 == 23) cornerspeedUp += 0.1;
+	if (bodyOption2 == 3) cornerspeedUp += 0.03;
+	if (bodyOption2 == 13) cornerspeedUp += 0.075;
+	if (bodyOption3 == 3) cornerspeedUp += 0.03;
+	if (bodyOption3 == 13) cornerspeedUp += 0.075;
 	var rollecornerValue1 = 1.0 * window.parent.mains.document.getElementById(nameValue[12] + "_" + typeValue[3] + "12_kaisv").value;
 	var rollecornerValue2 = 1.0 * window.parent.mains.document.getElementById(nameValue[15] + "_" + typeValue[3] + "15_kaisv").value;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[20]).value = 0.4 * Math.sqrt(resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * 3.6;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = 0.4 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * 0.2) * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[20]).value = 0.4 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = 0.4 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.2) * 3.6;
 
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
