@@ -1703,8 +1703,9 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption3 == 13) cornerspeedUp += 0.075;
 	var rollecornerValue1 = 1.0 * window.parent.mains.document.getElementById(nameValue[12] + "_" + typeValue[3] + "12_kaisv").value;
 	var rollecornerValue2 = 1.0 * window.parent.mains.document.getElementById(nameValue[15] + "_" + typeValue[3] + "15_kaisv").value;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[20]).value = 0.4 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = 0.4 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.2) * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[20]).value = 0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = 0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.25) * 3.6;
+	//window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
 
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
