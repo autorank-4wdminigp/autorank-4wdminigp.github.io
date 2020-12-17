@@ -1719,7 +1719,7 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = "";
 	for (var t = 0.1; t <= 100.0; t += 0.1) {
 		var kyori = speedValue2 * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (Math.exp(- 4.0 * acceleValue2 / speedValue2 * t) - 1.0);
-		if (kyori > 100.0) {
+		if (kyori >= 100.0) {
 			window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = t;
 			break;
 		}
