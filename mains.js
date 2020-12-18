@@ -11,7 +11,7 @@ var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h", "dia16taifuu_h", "dia17offload_h", "dia18offloaddirt_h", "dia19taisuikuuten_h", "dia20cornerspeed_h", "dia21raincornerspeed_h", "dia22arrivaltime95", "dia23time100m");
-var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ<font color='#FFA500'>※6</font> ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "空転目安(時速) ", "耐風最高速(時速) ", "芝最高速(時速) ", "ダート最高速(時速) ", "耐水空転目安(時速) ", "ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "雨ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "最高速95%到達時間(秒) ", "100m走(秒) ");
+var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ<font color='#FFA500'>※6</font> ", "コーナー減速率<font color='#FFA500'>※4</font> ", "ジャンプ飛距離<font color='#FFA500'>※2</font> ", "バウンド時間<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "空転目安(時速) ", "耐風最高速(時速) ", "芝最高速(時速) ", "ダート最高速(時速) ", "耐水空転目安(時速) ", "ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "雨ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "最高速95%到達時間(秒) ", "100m走(仮)(秒) ");
 
 var slotNum = 7;
 
@@ -1717,14 +1717,8 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[22]).value = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
 	//100m走
 	window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = "";
-	for (var t = 0.1; t <= 100.0; t += 0.1) {
-		var kyori = speedValue2 * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (Math.exp(- 4.0 * acceleValue2 / speedValue2 * t) - 1.0);
-		if (kyori >= 100.0) {
-			window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = t;
-			break;
-		}
-	}
-	
+	Time_Calc(0.0, 100.0, 100.0, 8, speedValue2, acceleValue2);
+
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
 	if (bodyOption1 == 4) bodyCornerdecele += 0.6;
@@ -1818,6 +1812,32 @@ function Diagnosis_Calc(resultValueKai) {
 	x16 = -0.0000000001;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[8]).value = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue + x12 * speedValue3 * speedValue3 * speedValue3 + x13 * tirehanpatsuValue * tirehanpatsuValue * tirehanpatsuValue + x14 * gravityValue * gravityValue * gravityValue + x15 * weightValue * weightValue * weightValue + x16 * seishinValue * seishinValue * seishinValue;
 
+}
+
+function Time_Calc(time1, time2, step, num, speedValue2, acceleValue2) {
+	if ((speedValue2 * (time1 + step * 0.5) + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (Math.exp(- 4.0 * acceleValue2 / speedValue2 * (time1 + step * 0.5)) - 1.0)) > 100.0) {
+		if (num == 1) {
+			for (var t = time1; t <= (time1 + step * 0.5); t += 0.01) {
+				if ((speedValue2 * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (Math.exp(- 4.0 * acceleValue2 / speedValue2 * t) - 1.0)) >= 100.0) {
+					window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = t;
+					break;
+				}
+			}
+		} else {
+			Time_Calc(time1, time1 + step * 0.5, step * 0.5, num - 1, speedValue2, acceleValue2);
+		}
+	} else {
+		if (num == 1) {
+			for (var t = (time1 + step * 0.5); t <= time2; t += 0.01) {
+				if ((speedValue2 * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (Math.exp(- 4.0 * acceleValue2 / speedValue2 * t) - 1.0)) >= 100.0) {
+					window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = t;
+					break;
+				}
+			}
+		} else {
+			Time_Calc(time1 + step * 0.5, time2, step * 0.5, num - 1, speedValue2, acceleValue2);
+		}
+	}
 }
 
 function View_Result() {
