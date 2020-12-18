@@ -1717,7 +1717,7 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[22]).value = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
 	//100m走
 	window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = "";
-	Time_Calc(0.0, 100.0, 100.0, 8, speedValue2, acceleValue2);
+	Time_Calc(0.0, 100.0, 100.0, 10, speedValue2, acceleValue2);
 
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
