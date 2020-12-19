@@ -813,7 +813,7 @@ kaizouValue[0][12][0] = new Array("ピニオンギヤの固定(上級)", "ギヤ
 kaizouValue[0][12][1] = new Array("", "パワー〇〇 [200(全固定)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 kaizouValue[0][13] = new Array();
 kaizouValue[0][13][0] = new Array("モーター位置調整(仮)", "ギヤ負荷〇〇〇 [6] ", -0.06, -0.072, -0.084, -0.003, -1, 6);
-kaizouValue[0][13][1] = new Array("", "スタミナ耐久〇〇(仮) [100(全固定)] ", 1.0, 1.2, 1.4, 0.05, -2, 4);
+kaizouValue[0][13][1] = new Array("", "スタミナ耐久〇〇(仮) [120(全固定)] ", 1.2, 1.44, 1.68, 0.06, -2, 4);
 
 kaizouValue[1] = new Array();
 kaizouValue[1][0] = new Array();
@@ -1230,7 +1230,7 @@ kaizouValue[19][1][0] = new Array("ギヤシャフト固定 [2]", "パワーロ�
 kaizouValue[19][1][1] = new Array("", "パワー〇 [200(全固定)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 
 kaizouValue[19][2] = new Array();
-kaizouValue[19][2][0] = new Array("ギヤシャフトメンテ(仮)", "スタミナ耐久〇〇(仮) [200(全固定)] ", 1.0, 1.2, 1.4, 0.1, -2, 4);
+kaizouValue[19][2][0] = new Array("ギヤシャフトメンテ(仮)", "スタミナ耐久〇〇(仮) [120(全固定)] ", 1.2, 1.44, 1.68, 0.06, -2, 4);
 kaizouValue[19][2][1] = new Array("", "パワー〇〇〇(仮) [200(全固定)] ", 2.0, 2.4, 2.8, 0.1, -2, 2);
 kaizouValue[19][3] = new Array();
 kaizouValue[19][3][0] = new Array("回転ブレのチェック(上級)(仮)", "パワーロス〇〇(仮) [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
@@ -1538,6 +1538,9 @@ function Result_Calc() {
 	Diagnosis_Calc(resultValueKaiSv);
 }
 
+var g_speedValue;
+var g_acceleValue;
+ 
 function Diagnosis_Calc(resultValueKai) {
 	var shindantire = 1;
 	var shindantirekei = 0;
@@ -1710,14 +1713,16 @@ function Diagnosis_Calc(resultValueKai) {
 	var rollecornerValue1 = 1.0 * window.parent.mains.document.getElementById(nameValue[12] + "_" + typeValue[3] + "12_kaisv").value;
 	var rollecornerValue2 = 1.0 * window.parent.mains.document.getElementById(nameValue[15] + "_" + typeValue[3] + "15_kaisv").value;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[20]).value = 0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = 0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.25) * 3.6;
-	//window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = 0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.385) * 3.6;
+	//window.parent.diagnosis.document.getElementById(diagnosisValue[16]).value = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
 	
 	//最高速95%到達時間
 	window.parent.diagnosis.document.getElementById(diagnosisValue[22]).value = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
 	//100m走
 	window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = "";
-	Time_Calc(0.0, 100.0, 100.0, 8, speedValue2, acceleValue2);
+	g_speedValue = speedValue2;
+	g_acceleValue = acceleValue2;
+	Time_Calc(0.0, 100.0, 100.0, 8);
 	
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
@@ -1814,28 +1819,28 @@ function Diagnosis_Calc(resultValueKai) {
 
 }
 
-function Time_Calc(time1, time2, step, num, speedValue2, acceleValue2) {
-	if ((speedValue2 * (time1 + step * 0.5) + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (Math.exp(- 4.0 * acceleValue2 / speedValue2 * (time1 + step * 0.5)) - 1.0)) > 100.0) {
+function Time_Calc(time1, time2, step, num) {
+	if ((g_speedValue * (time1 + step * 0.5) + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * (time1 + step * 0.5)) - 1.0)) > 100.0) {
 		if (num == 1) {
 			for (var t = time1; t <= (time1 + step * 0.5); t += 0.01) {
-				if ((speedValue2 * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (Math.exp(- 4.0 * acceleValue2 / speedValue2 * t) - 1.0)) >= 100.0) {
+				if ((g_speedValue * t + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * t) - 1.0)) >= 100.0) {
 					window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = t;
 					break;
 				}
 			}
 		} else {
-			Time_Calc(time1, time1 + step * 0.5, step * 0.5, num - 1, speedValue2, acceleValue2);
+			Time_Calc(time1, time1 + step * 0.5, step * 0.5, num - 1);
 		}
 	} else {
 		if (num == 1) {
 			for (var t = (time1 + step * 0.5); t <= time2; t += 0.01) {
-				if ((speedValue2 * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (Math.exp(- 4.0 * acceleValue2 / speedValue2 * t) - 1.0)) >= 100.0) {
+				if ((g_speedValue * t + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * t) - 1.0)) >= 100.0) {
 					window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = t;
 					break;
 				}
 			}
 		} else {
-			Time_Calc(time1 + step * 0.5, time2, step * 0.5, num - 1, speedValue2, acceleValue2);
+			Time_Calc(time1 + step * 0.5, time2, step * 0.5, num - 1);
 		}
 	}
 }
