@@ -833,7 +833,7 @@ kaizouValue[1][4][0] = new Array("ギヤ位置の固定 [2]", "パワーロス�
 kaizouValue[1][4][1] = new Array("", "パワー〇 [200(全固定)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 
 kaizouValue[1][5] = new Array();
-kaizouValue[1][5][0] = new Array("ギヤ慣らし(上級)(仮)", "パワーロス〇〇(仮) [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
+kaizouValue[1][5][0] = new Array("ギヤ慣らし(上級)", "パワーロス〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
 kaizouValue[1][5][1] = new Array("", "パワー〇〇 [200(全固定)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 kaizouValue[1][6] = new Array();
 kaizouValue[1][6][0] = new Array("ギヤフローティング加工(上級)(仮)", "ギヤ負荷〇〇〇(仮) [4] ", -0.04, -0.048, -0.056, -0.002, -1, 6);
@@ -1686,20 +1686,20 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[15]).value = (window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value * 10.0 + 0.3) * 3.6;
 	//耐水空転
 	var taisuigripUp = 0.0;
-	if (bodyOption1 == 30) taisuigripUp += 5100.0;
+	if (resultValueKai[27] != 0 && bodyOption1 == 30) taisuigripUp += 5100.0;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[19]).value = (window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value * 10.0 * Math.min(resultValueKai[27] + 200.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
 	//耐風最高速
 	window.parent.diagnosis.document.getElementById(diagnosisValue[16]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26], 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
 	//芝最高速
-	var bodyOffload = 1.0;
-	if (bodyOption1 == 9) bodyOffload += 100.0;
-	if (bodyOption1 == 29) bodyOffload += 100.0;
-	if (bodyOption1 == 31) bodyOffload += 100.0;
-	if (bodyOption2 == 9) bodyOffload += 30.0;
-	if (bodyOption3 == 9) bodyOffload += 30.0;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[17]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload * resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
+	var bodyOffload = 0.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 9) bodyOffload += 50000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 29) bodyOffload += 50000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 50000.0;
+	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 15000.0;
+	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 15000.0;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[17]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
 	//ダート最高速
-	window.parent.diagnosis.document.getElementById(diagnosisValue[18]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload * resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[18]).value = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
 
 	//コーナー安定速度
 	var cornerspeedUp = 1.0;
