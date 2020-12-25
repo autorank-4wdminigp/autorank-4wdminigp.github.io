@@ -409,9 +409,9 @@ kaizou7SelectIndex[21] = new Array(0, 0);
 kaizou7Select[21] = new Array();
 kaizou7Select[21][s++] = new Array();
 
-//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン, 22:パワーブースト, 23:流星, 24:パワードリフト, 25:, 26:紅い閃光, 27:, 28:, 29:ワイルドラン, 30:ハイドロウェーブ, 31:アースエナジー)
+//1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:なし, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:なし, 21:かっとびマシン, 22:パワーブースト, 23:流星, 24:パワードリフト, 25:, 26:紅い閃光, 27:, 28:, 29:ワイルドラン, 30:ハイドロウェーブ, 31:アースエナジー, 32:高貴な走り, 33:気高き力)
 var selectProper = new Array("－", "St", "U", "Kp", "Co", "J");
-var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "(S)かっとびマシン", "(S)パワーブースト", "(S)流星", "(S)パワードリフト", "なし", "(S)紅い閃光", "なし", "なし", "(S)ワイルドラン", "(S)ハイドロウェーブ", "(S)アースエナジー");
+var selectOption = new Array("－", "スピードUP", "パワーUP", "コーナー安定UP", "コーナー速度UP", "スタミナ耐久UP", "ブレーキ効果UP", "バウンド抑制UP", "節電UP", "オフロード特効UP", "なし", "スピードUP+", "パワーUP+", "コーナー安定UP+", "コーナー速度UP+", "スタミナ耐久UP+", "なし", "バウンド抑制UP+", "節電UP+", "なし", "なし", "(S)かっとびマシン", "(S)パワーブースト", "(S)流星", "(S)パワードリフト", "なし", "(S)紅い閃光", "なし", "なし", "(S)ワイルドラン", "(S)ハイドロウェーブ", "(S)アースエナジー", "(S)高貴な走り", "(S)気高き力");
 
 var selectValue = new Array();
 s = 0;
@@ -513,7 +513,9 @@ selectValue[2][s++] = new Array("アストロブーメラン", 2, 18, 15.0, 10.0
 selectValue[2][s++] = new Array("ポセイドンX", 2, 30, 5.0, 20.0, 18.0, 45.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ダッシュCB1 大地皇帝", 2, 31, 5.0, 20.0, 10.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ネオVQS ジャパンカップ2020", 4, 14, 10.0, 5.0, 30.0, 45.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("サイクロンマグナム(そらまるX'masSP)", 1, 12, 20.0, 0.0, 4.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//83
+selectValue[2][s++] = new Array("サイクロンマグナム(そらまるX'masSP)", 1, 12, 20.0, 0.0, 4.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("ベルクカイザー", 1, 32, 23.0, 0.0, 9.0, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("ベルクカイザーL型", 4, 33, 0.0, 23.0, 9.0, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//85
 s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, -0.5, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025, -0.025, 0.025);
@@ -1570,8 +1572,10 @@ function Diagnosis_Calc(resultValueKai) {
 	//バッテリー消費量
 	var setsudenUp = 1.0;
 	var setsudenValue = resultValueKai[10];
-	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.40;
-	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.50;
+	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.4;
+	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.5;
+	if (setsudenValue != 0 && bodyOption1 == 32) setsudenUp -= 0.1;
+	if (setsudenValue != 0 && bodyOption1 == 33) setsudenUp -= 0.1;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
@@ -1625,6 +1629,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 23) bodySpeed += 0.03;
 	if (bodyOption1 == 26) bodySpeed += 0.03;
 	if (bodyOption1 == 29) bodySpeed += 0.03;
+	if (bodyOption1 == 32) bodySpeed += 0.07;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption3 == 1) bodySpeed += 0.006;
@@ -1678,6 +1683,8 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 29) ftiregripUp += 0.015;
 	if (bodyOption1 == 30) ftiregripUp += 0.015;
 	if (bodyOption1 == 31) ftiregripUp += 0.015;
+	if (bodyOption1 == 32) ftiregripUp += 0.015;
+	if (bodyOption1 == 33) ftiregripUp += 0.15;
 	var ftiregripValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
 	var rtiregripValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[13] + "7_kaisv").value;
 	var tiregripValue = (ftiregripValue * (baseGravity[baseGravityIndex][chassisIndex] / 2.0 + gravityValue) + rtiregripValue * (baseGravity[baseGravityIndex][chassisIndex] / 2.0 - gravityValue)) / baseGravity[baseGravityIndex][chassisIndex];
@@ -1729,6 +1736,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 4) bodyCornerdecele += 0.6;
 	if (bodyOption1 == 14) bodyCornerdecele += 0.7;
 	if (bodyOption1 == 24) bodyCornerdecele += 0.9;
+	if (bodyOption1 == 33) bodyCornerdecele += 0.9;
 	if (bodyOption2 == 4) bodyCornerdecele += 0.18;
 	if (bodyOption2 == 14) bodyCornerdecele += 0.21;
 	if (bodyOption3 == 4) bodyCornerdecele += 0.18;
