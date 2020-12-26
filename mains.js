@@ -100,11 +100,12 @@ kaizou7Select[2] = new Array();
 kaizou7Select[2][s++] = new Array(5, 6);
 s = 0;
 kaizouTenpreSelect[2] = new Array();
-kaizouTenpreSelect[2][s++] = new Array(0, 1, 2);
+kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3);
 kaizouTenpre[2] = new Array();
 kaizouTenpre[2][0] = new Array("軽量x2 節電x4", 5, 5, 4, 4, 4, 4);
 kaizouTenpre[2][1] = new Array("軽量x6", 5, 5, 1, 1, 1, 1);
 kaizouTenpre[2][2] = new Array("軽量x2 エアロダウンフォース減少x4", 5, 5, 3, 3, 3, 3);
+kaizouTenpre[2][3] = new Array("軽量x2 エアロダウンフォース増加x4", 5, 5, 2, 2, 2, 2);
 s = 0;
 kaizouSelectIndex[3] = new Array(0, 0);
 kaizouSelect[3] = new Array();
@@ -1267,7 +1268,7 @@ function View_Set(value1) {
 	var writeValue = "<a name='link" + value1 + "'></a><table class='cstable'><tr><td>" + nameView[value1];
 	writeValue += "<span id='id_" + nameValue[value1] + value1 + "'></span></td>";
 	if (value1 == 2) {
-		writeValue += "<td class='cstd'>　</td>";
+		writeValue += "<td class='cstd'></td>";
 		writeValue += "<td>肉抜き <select id='" + nameValue[value1] + value1 + "_niku' onchange='Type_Calc(" + value1 + ")'>";
 		writeValue += "<option value=0>なし</option>";
 		for (var j = 1; j <= 5; j++) {
@@ -1276,9 +1277,9 @@ function View_Set(value1) {
 		writeValue += "</td>";
 	}
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
-		writeValue += "<td class='cstd'>　</td>"
+		writeValue += "<td class='cstd'></td>"
 		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
-		writeValue += "<td class='cstd'>　</td>"
+		writeValue += "<td class='cstd'></td>"
 		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
 		if (value1 == 0) {
 			writeValue += "<td class='cstd'>　</td> <td>全パーツ <input type='button' value='至高の逸品' onclick='Shikou_Set(2)'>　<input type='button' value='職人技' onclick='Shikou_Set(1)'>　<input type='button' value='イイ感じ' onclick='Shikou_Set(0)'> </td>";
