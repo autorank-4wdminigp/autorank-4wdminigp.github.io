@@ -1712,7 +1712,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption3 == 4) bodyCornerdecele += 0.18;
 	if (bodyOption3 == 14) bodyCornerdecele += 0.21;
 	var acceleValue3 = acceleValue2 * bodyCornerdecele;
-	var rollermasatsuValue = 30.0;
+	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
 		if (window.parent.mains.document.getElementById(nameValue[rollerNo[i]] + rollerNo[i]).selectedIndex != 0) {
@@ -1743,7 +1743,7 @@ function Diagnosis_Calc(resultValueKai) {
 		}
 	}
 	if (rollerteikouValue < -10.0) {
-		rollerteikouValue = 400.0;
+		rollerteikouValue = 300.0;
 	}
 	window.parent.diagnosis.document.getElementById(diagnosisValue[13]).value = rollermasatsuValue;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[14]).value = rollerteikouValue;
@@ -1769,8 +1769,8 @@ function Diagnosis_Calc(resultValueKai) {
 	x15 = -0.000000052914;
 	x16 = 0.000138309;
 	var cornerdeceleValue = x1 + x2 * speedValue2 + x3 * acceleValue3 + x4 * masatsuValue + x5 * rollerteikouValue + x6 * tiresenkaiValue + x7 * speedValue2 * speedValue2 + x8 * acceleValue3 * acceleValue3 + x9 * masatsuValue * masatsuValue + x10 * rollerteikouValue * rollerteikouValue + x11 * tiresenkaiValue * tiresenkaiValue + x12 * speedValue2 * speedValue2 * speedValue2 + x13 * acceleValue3 * acceleValue3 * acceleValue3 + x14 * masatsuValue * masatsuValue * masatsuValue + x15 * rollerteikouValue * rollerteikouValue * rollerteikouValue + x16 * tiresenkaiValue * tiresenkaiValue * tiresenkaiValue;
-	if (rollerteikouValue1 < -10.0 && rollerteikouValue2 < -10.0) {
-		cornerdeceleValue -= 0.1;
+	if (rollerteikouValue1 < -10.0) {
+		cornerdeceleValue = -0.5454 * cornerdeceleValue * cornerdeceleValue + 1.5447 * cornerdeceleValue - 0.163;
 	}
 	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = cornerdeceleValue;
 	//バウンド時間
@@ -1872,7 +1872,7 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※1 対応済(ご協力感謝します)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※3 対応済(FM強化シャーシは要確認)</font>");
-	document.write("<br><font color='#FFA500'>※4 参考値です(前後ローラーなしは考慮せず、3次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※4 参考値です(3次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※5 参考値です(3次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
