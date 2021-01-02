@@ -1748,28 +1748,26 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[13]).value = rollermasatsuValue;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[14]).value = rollerteikouValue;
 	var masatsuValue = rollerangleValue * rollermasatsuValue;
+	if (rollerteikouValue1 < -10.0) {
+		masatsuValue += 48;
+		rollerteikouValue += 300;
+	}
 	var ftiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "6_kaisv").value;
 	var rtiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
-	var tiresenkaiValue = (ftiresenkaiValue * (baseGravity[chassisIndex] / 2.0 - gravityValue)+rtiresenkaiValue * (baseGravity[chassisIndex] / 2.0 + gravityValue)) / baseGravity[chassisIndex];
+	var tiresenkaiValue = (ftiresenkaiValue * (baseGravity[chassisIndex] / 2.0 - gravityValue) + rtiresenkaiValue * (baseGravity[chassisIndex] / 2.0 + gravityValue)) / baseGravity[chassisIndex];
 	var x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11;
-	x1 = 3.4384541825;
-	x2 = -0.1107702768;
-	x3 = 0.0851969801;
-	x4 = -0.0028745739;
-	x5 = -0.0007391071;
-	x6 = -0.0728177434;
-	x7 = 0.0064164926;
-	x8 = -0.0052335070;
-	x9 = 0.0000066246;
-	x10 = 0.0000012971;
-	x11 = 0.0005643796;
+	x1 = 2.3273852354;
+	x2 = -0.1058017211;
+	x3 = 0.0859413248;
+	x4 = -0.0029347476;
+	x5 = -0.0002606045;
+	x6 = -0.0392772937;
+	x7 = 0.0060150591;
+	x8 = -0.0052734393;
+	x9 = 0.0000068366;
+	x10 = 0.0000001800;
+	x11 = 0.0002970556;
 	var cornerdeceleValue = x1 + x2 * speedValue2 + x3 * acceleValue3 + x4 * masatsuValue + x5 * rollerteikouValue + x6 * tiresenkaiValue + x7 * speedValue2 * speedValue2 + x8 * acceleValue3 * acceleValue3 + x9 * masatsuValue * masatsuValue + x10 * rollerteikouValue * rollerteikouValue + x11 * tiresenkaiValue * tiresenkaiValue;
-	if (rollerteikouValue1 < -10.0) {
-		x1 = 0.309984725;
-		x2 = 0.676977845;
-		x3 = -0.04296438;
-		cornerdeceleValue = x1 + x2 * cornerdeceleValue + x3 * speedValue2;
-	}
 	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = cornerdeceleValue;
 	//バウンド時間
 	var bodyBoundtime = 1.0;
