@@ -1743,7 +1743,7 @@ function Diagnosis_Calc(resultValueKai) {
 		}
 	}
 	if (rollerteikouValue < -10.0) {
-		rollerteikouValue = 300.0;
+		rollerteikouValue = 0.0;
 	}
 	window.parent.diagnosis.document.getElementById(diagnosisValue[13]).value = rollermasatsuValue;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[14]).value = rollerteikouValue;
@@ -1751,26 +1751,24 @@ function Diagnosis_Calc(resultValueKai) {
 	var ftiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "6_kaisv").value;
 	var rtiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
 	var tiresenkaiValue = (ftiresenkaiValue * (baseGravity[chassisIndex] / 2.0 - gravityValue)+rtiresenkaiValue * (baseGravity[chassisIndex] / 2.0 + gravityValue)) / baseGravity[chassisIndex];
-	var x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16;
-	x1 = -35.34037919;
-	x2 = -0.181476994;
-	x3 = 0.166922546;
-	x4 = -0.00388356;
-	x5 = -0.008588292;
-	x6 = 1.727607286;
-	x7 = 0.01867255;
-	x8 = -0.022662623;
-	x9 = 0.0000207796;
-	x10 = 0.0000372836;
-	x11 = -0.026814002;
-	x12 = -0.000672941;
-	x13 = 0.001125533;
-	x14 = -0.0000000470017;
-	x15 = -0.000000052914;
-	x16 = 0.000138309;
-	var cornerdeceleValue = x1 + x2 * speedValue2 + x3 * acceleValue3 + x4 * masatsuValue + x5 * rollerteikouValue + x6 * tiresenkaiValue + x7 * speedValue2 * speedValue2 + x8 * acceleValue3 * acceleValue3 + x9 * masatsuValue * masatsuValue + x10 * rollerteikouValue * rollerteikouValue + x11 * tiresenkaiValue * tiresenkaiValue + x12 * speedValue2 * speedValue2 * speedValue2 + x13 * acceleValue3 * acceleValue3 * acceleValue3 + x14 * masatsuValue * masatsuValue * masatsuValue + x15 * rollerteikouValue * rollerteikouValue * rollerteikouValue + x16 * tiresenkaiValue * tiresenkaiValue * tiresenkaiValue;
+	var x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11;
+	x1 = 3.4384541825;
+	x2 = -0.1107702768;
+	x3 = 0.0851969801;
+	x4 = -0.0028745739;
+	x5 = -0.0007391071;
+	x6 = -0.0728177434;
+	x7 = 0.0064164926;
+	x8 = -0.0052335070;
+	x9 = 0.0000066246;
+	x10 = 0.0000012971;
+	x11 = 0.0005643796;
+	var cornerdeceleValue = x1 + x2 * speedValue2 + x3 * acceleValue3 + x4 * masatsuValue + x5 * rollerteikouValue + x6 * tiresenkaiValue + x7 * speedValue2 * speedValue2 + x8 * acceleValue3 * acceleValue3 + x9 * masatsuValue * masatsuValue + x10 * rollerteikouValue * rollerteikouValue + x11 * tiresenkaiValue * tiresenkaiValue;
 	if (rollerteikouValue1 < -10.0) {
-		cornerdeceleValue = -0.5454 * cornerdeceleValue * cornerdeceleValue + 1.5447 * cornerdeceleValue - 0.163;
+		x1 = 0.309984725;
+		x2 = 0.676977845;
+		x3 = -0.04296438;
+		cornerdeceleValue = x1 + x2 * cornerdeceleValue + x3 * speedValue2;
 	}
 	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = cornerdeceleValue;
 	//バウンド時間
@@ -1786,23 +1784,18 @@ function Diagnosis_Calc(resultValueKai) {
 	var rtirehanpatsuValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[15] + "7_kaisv").value;
 	var tirehanpatsuValue = ftirehanpatsuValue + rtirehanpatsuValue;
 	var speedValue3 = speedValue2 * 2 * Math.sin(10.0 * (Math.PI / 180.0)) * tirehanpatsuValue / 1000.0 / 9.80665 / (1.0 - tirehanpatsuValue / 1000.0) * bodyBoundtime;
-	x1 = -1.5443132709;
-	x2 = 1.3447137591;
-	x3 = 0.0000991347;
-	x4 = -0.0001170222;
-	x5 = 0.0406394882;
-	x6 = -0.0000592731;
-	x7 = -7.6667056513;
-	x8 = -0.0000008081;
-	x9 = 0.0000055815;
-	x10 = -0.0003551276;
-	x11 = 0.0000001126;
-	x12 = 35.2842613108;
-	x13 = 0.0000000017;
-	x14 = 0.0000011013;
-	x15 = 0.0000010302;
-	x16 = -0.0000000001;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[8]).value = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue + x12 * speedValue3 * speedValue3 * speedValue3 + x13 * tirehanpatsuValue * tirehanpatsuValue * tirehanpatsuValue + x14 * gravityValue * gravityValue * gravityValue + x15 * weightValue * weightValue * weightValue + x16 * seishinValue * seishinValue * seishinValue;
+	x1 = 0.1336667529;
+	x2 = 1.0439052417;
+	x3 = -0.0001122684;
+	x4 = -0.0000788496;
+	x5 = -0.0020418294;
+	x6 = -0.0000150669;
+	x7 = -1.3662751348;
+	x8 = 0.0000002773;
+	x9 = 0.0000068178;
+	x10 = 0.0000084761;
+	x11 = 0.0000000075;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[8]).value = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue;
 
 }
 
@@ -1872,8 +1865,8 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※1 対応済(ご協力感謝します)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※3 対応済(FM強化シャーシは要確認)</font>");
-	document.write("<br><font color='#FFA500'>※4 参考値です(3次多項式の重回帰分析による近似式)</font>");
-	document.write("<br><font color='#FFA500'>※5 参考値です(3次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※4 参考値です(2次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
 
