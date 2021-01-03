@@ -1128,7 +1128,7 @@ kaizouValue[13][2][0] = new Array("ターミナル位置の固定 [2]", "パワ�
 kaizouValue[13][2][1] = new Array("", "パワー〇 [200(全固定)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 
 kaizouValue[13][3] = new Array();
-kaizouValue[13][3][0] = new Array("ターミナル位置の固定(上級)(仮)", "パワーロス〇〇(仮) [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
+kaizouValue[13][3][0] = new Array("ターミナル位置の固定(上級)", "パワーロス〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
 kaizouValue[13][3][1] = new Array("", "パワー〇〇 [200(全固定)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 kaizouValue[13][4] = new Array();
 kaizouValue[13][4][0] = new Array("ターミナルメンテ(仮)", "スタミナ耐久〇〇〇(仮) [280(全固定)] ", 1.4, 1.68, 1.96, 0.14, -2, 4);
@@ -1163,7 +1163,7 @@ kaizouValue[15][2][0] = new Array("ギヤ研磨 [4]", "ギヤ負荷〇〇 [3] ",
 kaizouValue[15][2][1] = new Array("", "パワー〇 [200(全固定)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 
 kaizouValue[15][3] = new Array();
-kaizouValue[15][3][0] = new Array("ギヤ慣らし(上級)(仮)", "パワーロス〇〇(仮) [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
+kaizouValue[15][3][0] = new Array("ギヤ慣らし(上級)", "パワーロス〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
 kaizouValue[15][3][1] = new Array("", "パワー〇〇 [200(全固定)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 kaizouValue[15][4] = new Array();
 kaizouValue[15][4][0] = new Array("ギヤ研磨(上級)(仮)", "ギヤ負荷〇〇(仮) [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 6);
@@ -1550,7 +1550,6 @@ function Diagnosis_Calc(resultValueKai) {
 		shindantirekei = window.parent.diagnosis.document.getElementById('shindantirekei').selectedIndex;
 	}
 	//ローラースラスト角
-	//var rollerangleValue = Math.min(10, Math.max(0, resultValueKai[12]));
 	var rollerangleValue = Math.max(0, resultValueKai[12]);
 	window.parent.diagnosis.document.getElementById(diagnosisValue[10]).value = rollerangleValue;
 	//重さ
