@@ -127,14 +127,14 @@ kaizouTenpre[3][5] = new Array("制振x4 軽量x2", 8, 8, 7, 7, 3, 3);
 kaizouTenpre[3][6] = new Array("軽量x2 ギヤ負荷x2 スラスト角の減少x2", 3, 3, 6, 6, 9, 9);
 kaizouTenpre[3][7] = new Array("軽量x2 スラスト角の減少x4", 3, 3, 9, 9, 9, 9);
 s = 0;
-kaizouSelectIndex[4] = new Array(0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 2, 3, 0, 1);
+kaizouSelectIndex[4] = new Array(0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 2, 3);
 kaizouSelect[4] = new Array();
 kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6, 7);
 kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6, 7);
 s = 0;
-kaizou7SelectIndex[4] = new Array(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 2, 2, 0, 0);
+kaizou7SelectIndex[4] = new Array(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 2);
 kaizou7Select[4] = new Array();
 kaizou7Select[4][s++] = new Array(8, 9);
 kaizou7Select[4][s++] = new Array(10, 9);
@@ -518,7 +518,8 @@ selectValue[2][s++] = new Array("サイクロンマグナム(そらまるX'masSP
 selectValue[2][s++] = new Array("ベルクカイザー [3]", 1, 32, 23.0, 0.0, 9.0, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("ベルクカイザーL型 [3]", 4, 33, 0.0, 23.0, 9.0, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("スーパーアバンテ [4]", 1, 11, 20.0, 3.0, 3.0, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("干支ミニ四駆 丑年 [3]", 1, 11, 12.0, 9.0, 6.0, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//87
+selectValue[2][s++] = new Array("干支ミニ四駆 丑年 [3]", 1, 11, 12.0, 9.0, 6.0, 40.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("サンダーブーメラン W10", 4, 14, 7.0, 14.0, 9.0, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//88
 s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, -0.5, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025, -0.025, 0.025);
@@ -593,7 +594,10 @@ selectValue[4][s++] = new Array("大径軽量ワンウェイ・フロント", 2,
 selectValue[4][s++] = new Array("大径軽量ワンウェイ・リヤ", 2, 0, 3.0, 12.0, 5.0, 2.3, 4.0, 0.0, 320.0, 900.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3500.0);
 selectValue[4][s++] = new Array("小径ローハイトY強化・フロント", 3, 0, 3.0, 12.0, 9.0, 3.2, 2.8, 0.0, 160.0, 900.0, 0.0, 0.0, 7.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[4][s++] = new Array("小径ローハイトY強化・リヤ", 3, 0, 3.0, 12.0, 10.0, 3.5, 3.0, 0.0, 160.0, 800.0, 0.0, 0.0, 7.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-
+selectValue[4][s++] = new Array("大径タイプ9・フロント", 1, 0, 12.0, 0.0, 1.0, 2.6, 2.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径タイプ9・リヤ", 1, 0, 12.0, 0.0, 1.0, 2.6, 3.8, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[4][s++] = new Array("大径ワンウェイタイプ2・フロント", 2, 0, 8.0, 8.0, 6.0, 4.0, 3.5, 0.0, 320.0, 1000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4000.0);
+selectValue[4][s++] = new Array("大径ワンウェイタイプ2・リヤ", 2, 0, 8.0, 8.0, 8.0, 5.0, 4.2, 0.0, 320.0, 900.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4000.0);
 s = 0;
 selectValue[5] = new Array();
 selectValue[5][s++] = new Array("小径ノーマル・フロント", 2, 0, 0.0, 10.0, 1.8, 2.4, 5.5, 0.0, 130.0, 910.0, 0.0, 0.0, 0.0, 0.0, 62.0, 55.0, 90.0, 26.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
@@ -1785,7 +1789,7 @@ function Diagnosis_Calc(resultValueKai) {
 	x9 = 0.0000068178;
 	x10 = 0.0000084761;
 	x11 = 0.0000000075;
-	//window.parent.diagnosis.document.getElementById(diagnosisValue[8]).value = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[8]).value = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue;
 
 }
 
