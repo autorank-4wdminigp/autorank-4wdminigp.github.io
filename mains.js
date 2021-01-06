@@ -1868,7 +1868,7 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※1 対応済(ご協力感謝します)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※3 対応済(FM強化シャーシは要確認)</font>");
-	document.write("<br><font color='#FFA500'>※4 ほぼ解明(最適重心関係未実装、コーナー速度UP効果はスラスト角0だと合う感じ)</font>");
+	document.write("<br><font color='#FFA500'>※4 ほぼ解明(最適重心関係未実装)</font>");
 	document.write("<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
