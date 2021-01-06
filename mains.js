@@ -1761,7 +1761,7 @@ function Diagnosis_Calc(resultValueKai) {
 	var rtiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
 	var tiresenkaiValue = (ftiresenkaiValue * (baseGravity[chassisIndex] / 2.0 - gravityValue) + rtiresenkaiValue * (baseGravity[chassisIndex] / 2.0 + gravityValue)) / baseGravity[chassisIndex];
 	var cornerdeceleA = 1.0 / (916.0 - 2.520328126 * tiresenkaiValue * bodyCornerdecele / acceleValue2);
-	var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) * (1.0 + masatsuValue / 1212.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue + rollerteikouValue / 20.0) * bodyCornerdecele2));
+	var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) * (1.0 + masatsuValue / 1212.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue + rollerteikouValue / 20.0 * bodyCornerdecele2)));
 	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = cornerdeceleValue;
 
 	//バウンド時間
@@ -1859,7 +1859,7 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※1 対応済(ご協力感謝します)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※3 対応済(FM強化シャーシは要確認)</font>");
-	document.write("<br><font color='#FFA500'>※4 ほぼ解明(最適重心関係未実装)</font>");
+	document.write("<br><font color='#FFA500'>※4 ほぼ解明(最適重心関係未実装、コーナー速度UP効果はスラスト角0だと合う感じ)</font>");
 	document.write("<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
