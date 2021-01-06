@@ -1715,8 +1715,17 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption3 == 4) bodyCornerdecele *= 0.65;
 	if (bodyOption3 == 14) bodyCornerdecele *= 0.625;
 	var bodyCornerdecele2 = 1.0;
-	if (bodyOption1 == 24) bodyCornerdecele2 *= 0.3;
-	if (bodyOption1 == 33) bodyCornerdecele2 *= 0.3;
+	if (bodyOption1 == 4) bodyCornerdecele2 *= 0.81;
+	if (bodyOption1 == 14) bodyCornerdecele2 *= 0.78;
+	if (bodyOption1 == 24) bodyCornerdecele2 *= 0.98;
+	if (bodyOption1 == 33) bodyCornerdecele2 *= 0.98;
+	if (bodyOption2 == 4) bodyCornerdecele2 *= 0.905;
+	if (bodyOption2 == 14) bodyCornerdecele2 *= 0.89;
+	if (bodyOption3 == 4) bodyCornerdecele2 *= 0.905;
+	if (bodyOption3 == 14) bodyCornerdecele2 *= 0.89;
+	var bodyCornerdecele3 = 1.0;
+	if (bodyOption1 == 24) bodyCornerdecele3 *= 0.3;
+	if (bodyOption1 == 33) bodyCornerdecele3 *= 0.3;
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
@@ -1761,7 +1770,7 @@ function Diagnosis_Calc(resultValueKai) {
 	var rtiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
 	var tiresenkaiValue = (ftiresenkaiValue * (baseGravity[chassisIndex] / 2.0 - gravityValue) + rtiresenkaiValue * (baseGravity[chassisIndex] / 2.0 + gravityValue)) / baseGravity[chassisIndex];
 	var cornerdeceleA = 1.0 / (916.0 - 2.520328126 * tiresenkaiValue * bodyCornerdecele / acceleValue2);
-	var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) * (1.0 + masatsuValue / 1212.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue + rollerteikouValue / 20.0 * bodyCornerdecele2)));
+	var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) * (1.0 + masatsuValue / 1212.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue * bodyCornerdecele2 + rollerteikouValue / 20.0 * bodyCornerdecele3)));
 	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = cornerdeceleValue;
 
 	//バウンド時間
