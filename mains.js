@@ -1702,15 +1702,17 @@ function Diagnosis_Calc(resultValueKai) {
 	
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
-	if (bodyOption1 == 4) bodyCornerdecele += 0.6;
-	if (bodyOption1 == 14) bodyCornerdecele += 0.7;
-	if (bodyOption1 == 24) bodyCornerdecele += 0.9;
-	if (bodyOption1 == 33) bodyCornerdecele += 0.9;
-	if (bodyOption2 == 4) bodyCornerdecele += 0.18;
-	if (bodyOption2 == 14) bodyCornerdecele += 0.21;
-	if (bodyOption3 == 4) bodyCornerdecele += 0.18;
-	if (bodyOption3 == 14) bodyCornerdecele += 0.21;
-	var acceleValue3 = acceleValue2 * bodyCornerdecele;
+	if (bodyOption1 == 4) bodyCornerdecele *= 0.3;
+	if (bodyOption1 == 14) bodyCornerdecele *= 0.25;
+	if (bodyOption1 == 24) bodyCornerdecele *= 0.25;
+	if (bodyOption1 == 33) bodyCornerdecele *= 0.25;
+	if (bodyOption2 == 4) bodyCornerdecele *= 0.65;
+	if (bodyOption2 == 14) bodyCornerdecele *= 0.625;
+	if (bodyOption3 == 4) bodyCornerdecele *= 0.65;
+	if (bodyOption3 == 14) bodyCornerdecele *= 0.625;
+	var bodyCornerdecele2 = 1.0;
+	if (bodyOption1 == 24) bodyCornerdecele2 *= 0.3;
+	if (bodyOption1 == 33) bodyCornerdecele2 *= 0.3;
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
@@ -1754,21 +1756,12 @@ function Diagnosis_Calc(resultValueKai) {
 	var ftiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "6_kaisv").value;
 	var rtiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
 	var tiresenkaiValue = (ftiresenkaiValue * (baseGravity[chassisIndex] / 2.0 - gravityValue) + rtiresenkaiValue * (baseGravity[chassisIndex] / 2.0 + gravityValue)) / baseGravity[chassisIndex];
-	var x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11;
-	x1 = 2.3273852354;
-	x2 = -0.1058017211;
-	x3 = 0.0859413248;
-	x4 = -0.0029347476;
-	x5 = -0.0002606045;
-	x6 = -0.0392772937;
-	x7 = 0.0060150591;
-	x8 = -0.0052734393;
-	x9 = 0.0000068366;
-	x10 = 0.0000001800;
-	x11 = 0.0002970556;
-	var cornerdeceleValue = x1 + x2 * speedValue2 + x3 * acceleValue3 + x4 * masatsuValue + x5 * rollerteikouValue + x6 * tiresenkaiValue + x7 * speedValue2 * speedValue2 + x8 * acceleValue3 * acceleValue3 + x9 * masatsuValue * masatsuValue + x10 * rollerteikouValue * rollerteikouValue + x11 * tiresenkaiValue * tiresenkaiValue;
+	var cornerdeceleA = 1.0 / (916.0 - 2.520328126 * tiresenkaiValue * bodyCornerdecele / acceleValue2);
+	var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) * (1.0 + masatsuValue / 1212.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue + rollerteikouValue / 20.0) * bodyCornerdecele2));
 	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = cornerdeceleValue;
+
 	//バウンド時間
+	var x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11;
 	var bodyBoundtime = 1.0;
 	if (bodyOption1 == 7) bodyBoundtime -= 0.06;
 	if (bodyOption1 == 17) bodyBoundtime -= 0.12;
@@ -1792,7 +1785,7 @@ function Diagnosis_Calc(resultValueKai) {
 	x9 = 0.0000068178;
 	x10 = 0.0000084761;
 	x11 = 0.0000000075;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[8]).value = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue;
+	//window.parent.diagnosis.document.getElementById(diagnosisValue[8]).value = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue;
 
 }
 
@@ -1862,7 +1855,7 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※1 対応済(ご協力感謝します)</font>");
 	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※3 対応済(FM強化シャーシは要確認)</font>");
-	document.write("<br><font color='#FFA500'>※4 参考値です(2次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※4 ほぼ解明(最適重心関係未実装)</font>");
 	document.write("<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
