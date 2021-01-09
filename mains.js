@@ -1771,10 +1771,10 @@ function Diagnosis_Calc(resultValueKai) {
 	var rtireIndex = window.parent.mains.document.getElementById(nameValue[7] + "7").selectedIndex;
 	var treadValue = 1 * selectValue[5][ftireIndex][2] + selectValue[5][rtireIndex][2];
 	var cornerweightValue = 2.520328126;
-	if (treadValue == 12) cornerweightValue = 2.535189734;
-	if (treadValue == 14) cornerweightValue = 2.550200429;
-	if (treadValue == 16) cornerweightValue = 2.5653576;
-	if (treadValue == 18) cornerweightValue = 2.580658658;
+	if (treadValue == 24) cornerweightValue = 2.535189734;
+	if (treadValue == 28) cornerweightValue = 2.550200429;
+	if (treadValue == 32) cornerweightValue = 2.5653576;
+	if (treadValue == 36) cornerweightValue = 2.580658658;
 	var cornerdeceleA = 1.0 / (916.0 - cornerweightValue * Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) / acceleValue2);
 	var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue * bodyCornerdecele2 * (1.0 + Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) * 0.0005611396) + rollerteikouValue / 20.0 * bodyCornerdecele3)));
 	window.parent.diagnosis.document.getElementById(diagnosisValue[6]).value = cornerdeceleValue;
