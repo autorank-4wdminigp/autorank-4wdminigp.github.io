@@ -1876,6 +1876,7 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※3 対応済(FM強化シャーシは要確認)</font>");
 	document.write("<br><font color='#FFA500'>※4 ほぼ解明(最適重心未実装)</font>");
 	document.write("<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>");
+	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
 
 function UrlCalc(value1) {
