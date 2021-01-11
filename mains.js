@@ -1709,7 +1709,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 4) bodyCornerdecele -= 0.7;
 	if (bodyOption1 == 14) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 24) bodyCornerdecele -= 0.75;
-	if (bodyOption1 == 33) bodyCornerdecele -= 0.75;
+	if (bodyOption1 == 33) bodyCornerdecele -= 0.77;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.375;
 	if (bodyOption3 == 4) bodyCornerdecele -= 0.35;
