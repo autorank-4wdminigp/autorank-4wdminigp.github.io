@@ -1761,8 +1761,7 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[14]).value = rollerteikouValue;
 	var masatsuValue = rollerangleValue * rollermasatsuValue;
 	if (rollerteikouValue1 < -10.0) {
-		masatsuValue += 48;
-		rollerteikouValue += 300;
+		rollerteikouValue += 1250;
 	}
 	var ftiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "6_kaisv").value;
 	var rtiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "7_kaisv").value;
