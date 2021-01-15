@@ -1735,7 +1735,6 @@ function Diagnosis_Calc(resultValueKai) {
 	var bodyCornerdecele2 = 1.0;
 	if (bodyOption1 == 4) bodyCornerdecele2 -= 0.17;
 	if (bodyOption1 == 14) bodyCornerdecele2 -= 0.2;
-	if (bodyOption1 == 34) bodyCornerdecele2 -= 0.2;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
 	if (bodyOption3 == 4) bodyCornerdecele2 -= 0.085;
