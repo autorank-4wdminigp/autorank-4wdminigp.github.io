@@ -11,7 +11,7 @@ var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h", "dia16taifuu_h", "dia17offload_h", "dia18offloaddirt_h", "dia19taisuikuuten_h", "dia20cornerspeed_h", "dia21raincornerspeed_h", "dia22arrivaltime95", "dia23time100m");
-var diagnosisView = new Array("最高速度(時速)<font color='#FFA500'>※1</font> ", "最高速度(秒速)<font color='#FFA500'>※1</font> ", "バッテリー消費量 ", "加速度(毎秒)<font color='#FFA500'>※1</font> ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ ", "コーナー減速率(仮)<font color='#FFA500'>※4</font> ", "ジャンプ飛距離(仮)<font color='#FFA500'>※2</font> ", "バウンド時間(仮)<font color='#FFA500'>※5</font> ", "前後の重心<font color='#FFA500'>※3</font> ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "空転目安(時速) ", "耐風最高速(時速) ", "芝最高速(時速) ", "ダート最高速(時速) ", "耐水空転目安(時速) ", "ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "雨ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "最高速95%到達時間(秒) ", "100m走(仮)(秒) ");
+var diagnosisView = new Array("最高速度(時速) ", "最高速度(秒速) ", "バッテリー消費量 ", "加速度(毎秒) ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ ", "コーナー減速率(仮)<font color='#FFA500'>※4</font> ", "ジャンプ飛距離(仮)<font color='#FFA500'>※3</font> ", "バウンド時間(仮)<font color='#FFA500'>※5</font> ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "空転目安(時速) ", "耐風最高速(時速) ", "芝最高速(時速) ", "ダート最高速(時速) ", "耐水空転目安(時速) ", "ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "雨ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "最高速95%到達時間(秒) ", "100m走(仮)(秒) ");
 
 var slotNum = 7;
 
@@ -1710,8 +1710,8 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption3 == 13) cornerspeedUp += 0.075;
 	var rollecornerValue1 = 1.0 * window.parent.mains.document.getElementById(nameValue[12] + "_" + typeValue[3] + "12_kaisv").value;
 	var rollecornerValue2 = 1.0 * window.parent.mains.document.getElementById(nameValue[15] + "_" + typeValue[3] + "15_kaisv").value;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[20]).value = 0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
-	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = 0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.385) * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[20]).value = "調整中";//0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = "調整中";//0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.385) * 3.6;
 	//window.parent.diagnosis.document.getElementById(diagnosisValue[16]).value = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
 	
 	//最高速95%到達時間
@@ -1885,9 +1885,7 @@ function View_Diagnosis() {
 		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
 	}
 	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※1 対応済(ご協力感謝します)</font>");
-	document.write("<br><font color='#FFA500'>※2 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※3 対応済(FM強化シャーシは要確認)</font>");
+	document.write("<br><font color='#FFA500'>※3 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
 	document.write("<br><font color='#FFA500'>※4 ほぼ解明(最適重心未実装)</font>");
 	document.write("<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>");
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
