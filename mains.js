@@ -1016,7 +1016,7 @@ kaizouValue[6][7][0] = new Array("可変ダウンスラストグリス調整 [4]
 kaizouValue[6][7][1] = new Array("", "スタミナ耐久〇〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 4);
 
 kaizouValue[6][8] = new Array();
-kaizouValue[6][8][0] = new Array("超剛性強化(仮)", "スタミナ耐久〇〇〇(仮) [6] ", 0.06, 0.072, 0.084, 0.003, -1, 4);
+kaizouValue[6][8][0] = new Array("超剛性強化", "スタミナ耐久〇〇〇 [6] ", 0.06, 0.072, 0.084, 0.003, -1, 4);
 kaizouValue[6][9] = new Array();
 kaizouValue[6][9][0] = new Array("ネジ締め調整(上級)", "コーナー安定〇〇〇 [12] ", 0.12, 0.144, 0.168, 0.006, -1, 3);
 kaizouValue[6][10] = new Array();
@@ -1038,7 +1038,7 @@ kaizouValue[7][3][0] = new Array("剛性補強 [4]", "スタミナ耐久〇〇 [
 kaizouValue[7][3][1] = new Array("", "重さ× [1] ", 0.01, 0.012, 0.014, 0.0005, -1, 5);
 
 kaizouValue[7][4] = new Array();
-kaizouValue[7][4][0] = new Array("超剛性強化(仮)", "スタミナ耐久〇〇〇(仮) [6] ", 0.06, 0.072, 0.084, 0.003, -1, 4);
+kaizouValue[7][4][0] = new Array("超剛性強化", "スタミナ耐久〇〇〇 [6] ", 0.06, 0.072, 0.084, 0.003, -1, 4);
 kaizouValue[7][5] = new Array();
 kaizouValue[7][5][0] = new Array("ネジ締め調整(上級)", "コーナー安定〇〇〇 [12] ", 0.12, 0.144, 0.168, 0.006, -1, 3);
 
@@ -1057,7 +1057,7 @@ kaizouValue[8][3][0] = new Array("剛性補強 [4]", "スタミナ耐久〇〇 [
 kaizouValue[8][3][1] = new Array("", "重さ× [1] ", 0.01, 0.012, 0.014, 0.0005, -1, 5);
 
 kaizouValue[8][4] = new Array();
-kaizouValue[8][4][0] = new Array("超剛性強化(仮)", "スタミナ耐久〇〇〇(仮) [6] ", 0.06, 0.072, 0.084, 0.003, -1, 4);
+kaizouValue[8][4][0] = new Array("超剛性強化", "スタミナ耐久〇〇〇 [6] ", 0.06, 0.072, 0.084, 0.003, -1, 4);
 kaizouValue[8][5] = new Array();
 kaizouValue[8][5][0] = new Array("ネジ締め調整(上級)", "コーナー安定〇〇〇 [12] ", 0.12, 0.144, 0.168, 0.006, -1, 3);
 kaizouValue[8][6] = new Array();
