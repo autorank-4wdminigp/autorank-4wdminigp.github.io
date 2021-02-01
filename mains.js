@@ -61,7 +61,7 @@ s = 0;
 kaizou7SelectIndex[0] = new Array(0, 0, 0, 0, 0, 1);
 kaizou7Select[0] = new Array();
 kaizou7Select[0][s++] = new Array(12, 13);
-kaizou7Select[0][s++] = new Array(12, 15);
+kaizou7Select[0][s++] = new Array(16, 15);
 s = 0;
 kaizouTenpreSelect[0] = new Array();
 kaizouTenpreSelect[0][s++] = new Array(0, 1, 2);
@@ -853,6 +853,9 @@ kaizouValue[0][14][1] = new Array("", "消費電流〇 [2] ", -0.02, -0.024, -0.
 kaizouValue[0][15] = new Array();
 kaizouValue[0][15][0] = new Array("低電圧ブレークイン(上級)", "スピード〇〇 [2] ", 0.02, 0.024, 0.028, 0.001, -1, 1);
 kaizouValue[0][15][1] = new Array("", "消費電流〇〇 [4] ", -0.04, -0.048, -0.056, -0.002, -1, 22);
+kaizouValue[0][16] = new Array();
+kaizouValue[0][16][0] = new Array("ピニオンギヤの固定(上級)", "ギヤ負荷〇〇〇 [6] ", -0.06, -0.072, -0.084, -0.003, -1, 6);
+kaizouValue[0][16][1] = new Array("", "パワー〇〇 [16(固定UP)] ", 8.0, 9.6, 11.2, 0.8, -2, 2);
 
 //ギヤ
 kaizouValue[1] = new Array();
