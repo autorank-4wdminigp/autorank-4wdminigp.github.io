@@ -10,8 +10,8 @@ var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 
 var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
-var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h", "dia16taifuu_h", "dia17offload_h", "dia18offloaddirt_h", "dia19taisuikuuten_h", "dia20cornerspeed_h", "dia21raincornerspeed_h", "dia22arrivaltime95", "dia23time100m", "dia24stamina");
-var diagnosisView = new Array("最高速度(時速) ", "最高速度(秒速) ", "バッテリー消費量 ", "加速度(毎秒) ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ ", "コーナー減速率(仮)<font color='#FFA500'>※4</font> ", "ジャンプ飛距離(仮)<font color='#FFA500'>※3</font> ", "バウンド時間(仮)<font color='#FFA500'>※5</font> ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "空転目安(時速) ", "耐風最高速(時速) ", "芝最高速(時速) ", "ダート最高速(時速) ", "耐水空転目安(時速) ", "ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "雨ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "最高速95%到達時間(秒) ", "100m走(仮)(秒) ", "ﾃﾞｼﾞﾀﾙｶｰﾌﾞ耐久目安(仮) ");
+var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h", "dia16taifuu_h", "dia17offload_h", "dia18offloaddirt_h", "dia19taisuikuuten_h", "dia20cornerspeed_h", "dia21raincornerspeed_h", "dia22arrivaltime95", "dia23time100m", "dia24stamina", "dia25", "dia26", "dia27time50m");
+var diagnosisView = new Array("最高速度(時速) ", "最高速度(秒速) ", "バッテリー消費量 ", "加速度(毎秒) ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ ", "コーナー減速率(仮)<font color='#FFA500'>※4</font> ", "ジャンプ飛距離(仮)<font color='#FFA500'>※3</font> ", "バウンド時間(仮)<font color='#FFA500'>※5</font> ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "空転目安(時速) ", "耐風最高速(時速) ", "芝最高速(時速) ", "ダート最高速(時速) ", "耐水空転目安(時速) ", "ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "雨ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "最高速95%到達時間(秒) ", "100m走(仮)(秒) ", "ﾃﾞｼﾞﾀﾙｶｰﾌﾞ耐久目安(仮) ", " ", " ", "50m走(仮)(秒) ");
 
 var slotNum = 7;
 var addStatusNum = 5; //1:適正, 2:特性, 3:カーブ耐久, 4:, 5:
@@ -1603,7 +1603,9 @@ function Result_Calc() {
 
 var g_speedValue;
 var g_acceleValue;
- 
+var g_target;
+var g_distance;
+
 function Diagnosis_Calc(resultValueKai) {
 	var shindantire = 1;
 	var shindantirekei = 0;
@@ -1762,7 +1764,14 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = "";
 	g_speedValue = speedValue2;
 	g_acceleValue = acceleValue2;
-	Time_Calc(0.0, 100.0, 100.0, 8);
+	g_target = 23;
+	g_distance = 100.0;
+	Time_Calc(0.0, 100.0, 100.0, 7);
+	//50m走
+	g_target = 27;
+	g_distance = 50.0;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[26]).value = "";
+	Time_Calc(0.0, 100.0, 100.0, 6);
 
 	//スタミナ耐久
 	var bodyStamina = 1.0;
@@ -1888,11 +1897,11 @@ function Diagnosis_Calc(resultValueKai) {
 }
 
 function Time_Calc(time1, time2, step, num) {
-	if ((g_speedValue * (time1 + step * 0.5) + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * (time1 + step * 0.5)) - 1.0)) > 100.0) {
+	if ((g_speedValue * (time1 + step * 0.5) + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * (time1 + step * 0.5)) - 1.0)) > g_distance) {
 		if (num == 1) {
 			for (var t = time1; t <= (time1 + step * 0.5); t += 0.01) {
-				if ((g_speedValue * t + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * t) - 1.0)) >= 100.0) {
-					window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = t;
+				if ((g_speedValue * t + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * t) - 1.0)) >= g_distance) {
+					window.parent.diagnosis.document.getElementById(diagnosisValue[g_target]).value = t;
 					break;
 				}
 			}
@@ -1902,8 +1911,8 @@ function Time_Calc(time1, time2, step, num) {
 	} else {
 		if (num == 1) {
 			for (var t = (time1 + step * 0.5); t <= time2; t += 0.01) {
-				if ((g_speedValue * t + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * t) - 1.0)) >= 100.0) {
-					window.parent.diagnosis.document.getElementById(diagnosisValue[23]).value = t;
+				if ((g_speedValue * t + g_speedValue * g_speedValue / (4.0 * g_acceleValue) * (Math.exp(- 4.0 * g_acceleValue / g_speedValue * t) - 1.0)) >= g_distance) {
+					window.parent.diagnosis.document.getElementById(diagnosisValue[g_target]).value = t;
 					break;
 				}
 			}
