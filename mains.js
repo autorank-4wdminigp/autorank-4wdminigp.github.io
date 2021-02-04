@@ -16,6 +16,9 @@ var diagnosisView = new Array("最高速度(時速) ", "最高速度(秒速) ", 
 var slotNum = 7;
 var addStatusNum = 5; //1:適正, 2:特性, 3:カーブ耐久, 4:, 5:
 
+var addTypeValue = new Array("", "", "", "curvestamina", "", "");
+var addTypeView = new Array("", "", "", "カーブ耐久 ", "", "");
+
 //タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
 //11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
 //21:ギヤ比, 22:消費電流, 23:ブレーキ減速, 24:スタビ減速, 25:デジタル, 26:耐風, 27:耐水
@@ -24,13 +27,13 @@ var typeSelect = new Array();
 typeSelect[0] = new Array(1, 2, 3, 4, 5, 6, 22);
 typeSelect[1] = new Array(1, 2, 3, 4, 5, 6, 7, 21);
 typeSelect[2] = new Array(1, 2, 3, 4, 5, 9, 10);
-typeSelect[3] = new Array(1, 2, 3, 4, 5, 6, 11, 12);
-typeSelect[4] = new Array(1, 2, 3, 4, 5, 7, 8, 11, 19);
-typeSelect[5] = new Array(1, 2, 3, 4, 5, 7, 8, 13, 14, 15, 16, 20, 27);
-typeSelect[6] = new Array(1, 2, 3, 4, 5, 9, 12, 25, 26);
-typeSelect[7] = new Array(1, 2, 3, 4, 5, 9);
-typeSelect[8] = new Array(1, 2, 3, 4, 5, 9, 23);
-typeSelect[9] = new Array(1, 2, 3, 4, 5, 9, 17, 18);
+typeSelect[3] = new Array(1, 2, 3, 4, 5, 6, 11, 12, -3);
+typeSelect[4] = new Array(1, 2, 3, 4, 5, 7, 8, 11, 19, -3);
+typeSelect[5] = new Array(1, 2, 3, 4, 5, 7, 8, 13, 14, 15, 16, 20, 27, -3);
+typeSelect[6] = new Array(1, 2, 3, 4, 5, 9, 12, 25, 26, -3);
+typeSelect[7] = new Array(1, 2, 3, 4, 5, 9, -3);
+typeSelect[8] = new Array(1, 2, 3, 4, 5, 9, 23, -3);
+typeSelect[9] = new Array(1, 2, 3, 4, 5, 9, 17, 18, -3);
 typeSelect[10] = new Array(1, 2, 3, 4, 5, 9, 25, 26);
 typeSelect[11] = new Array(1, 2, 3, 4, 5, 24);
 typeSelect[12] = new Array(1, 2, 3, 4, 5);
@@ -42,7 +45,7 @@ typeSelect[17] = new Array(1, 2, 3, 4, 5, 8);
 typeSelect[18] = new Array(1, 2, 3, 4, 5, 8);
 typeSelect[19] = new Array(1, 2, 3, 4, 5, 6, 7);
 typeSelect[20] = new Array(1, 2, 3, 4, 5, 6, 7);
-typeSelect[21] = new Array(1, 2, 3, 4, 5);
+typeSelect[21] = new Array(1, 2, 3, 4, 5, 13);
 
 var kaizouSelectIndex = new Array();
 var kaizouSelect = new Array();
@@ -809,8 +812,8 @@ selectValue[20] = new Array();
 selectValue[20][s++] = new Array("標準クラウンギヤ", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.5, 700.0, 300.0);
 s = 0;
 selectValue[21] = new Array();
-selectValue[21][s++] = new Array("標準バッテリー", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0);
-selectValue[21][s++] = new Array("パワーチャンプゴールド", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0);
+selectValue[21][s++] = new Array("標準バッテリー", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[21][s++] = new Array("パワーチャンプゴールド", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 50.0);
 
 //2:イイ感じ, 3:職人技, 4:至高の逸品, 5:強化, 6:固定フラグ, 7:タイプ
 var kaizouValue = new Array();
@@ -1373,7 +1376,11 @@ function View_Set(value1) {
 		if (i > 0 && i % 5 == 0) {
 			writeValue += "</tr><tr><td class='cstd'>　</td>";
 		}
-		writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
+		if (typeSelect[nameCalc[value1]][i] >= 0) {
+			writeValue += "<td>" + typeView[typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
+		} else {
+			writeValue += "<td>" + addTypeView[-typeSelect[nameCalc[value1]][i]] + "<input class='csinput' type='text' id='" + nameValue[value1] + "_" + addTypeValue[-typeSelect[nameCalc[value1]][i]] + value1 + "' value=''><br>改造後 <input class='csinput' type='text' id='" + nameValue[value1] + "_" + addTypeValue[-typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv' value=''></td>";
+		}
 	}
 	writeValue += "</tr></table>";
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
@@ -1485,7 +1492,11 @@ function Type_Set(value1, value2) {
 		calcFlg = calcFlgOrg;
 	}
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-		document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + value1).value = selectValue[nameCalc[value1]][index][typeSelect[nameCalc[value1]][i] + addStatusNum];
+		if (typeSelect[nameCalc[value1]][i] >= 0) {
+			document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + value1).value = selectValue[nameCalc[value1]][index][typeSelect[nameCalc[value1]][i] + addStatusNum];
+		} else {
+			document.getElementById(nameValue[value1] + '_' + addTypeValue[-typeSelect[nameCalc[value1]][i]] + value1).value = selectValue[nameCalc[value1]][index][-typeSelect[nameCalc[value1]][i]];
+		}
 	}
 	document.getElementById(nameValue[value1] + value1 + '_oldselect').value = index;
 	Type_Calc(value1);
@@ -1524,7 +1535,9 @@ function Type_Calc(value1) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i + addStatusNum];
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValue[typeSelect[nameCalc[value1]][i]];
+			if (typeSelect[nameCalc[value1]][i] >= 0) {
+				document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValue[typeSelect[nameCalc[value1]][i]];
+			}
 		}
 	} else {
 		for (var i = 1; i <= slotNum; i++) {
@@ -1568,7 +1581,11 @@ function Type_Calc(value1) {
 			calcValueSv[5] -= nikuVal * document.getElementById(nameValue[value1] + "_" + typeValue[5] + value1).value * 0.02;
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-			document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValueSv[typeSelect[nameCalc[value1]][i]];
+			if (typeSelect[nameCalc[value1]][i] >= 0) {
+				document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = calcValueSv[typeSelect[nameCalc[value1]][i]];
+			} else {
+				document.getElementById(nameValue[value1] + "_" + addTypeValue[-typeSelect[nameCalc[value1]][i]] + value1 + "_kaisv").value = document.getElementById(nameValue[value1] + "_" + addTypeValue[-typeSelect[nameCalc[value1]][i]] + value1).value;
+			}
 		}
 	}
 	UrlCalc(value1);
@@ -1590,9 +1607,11 @@ function Result_Calc() {
 			}
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value0]].length; i++) {
-			if (disp1Flg == 1 && typeSelect[nameCalc[value0]][i] != 5) continue;
-			resultValue[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0).value;
-			resultValueKaiSv[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kaisv").value;
+			if (typeSelect[nameCalc[value0]][i] >= 0) {
+				if (disp1Flg == 1 && typeSelect[nameCalc[value0]][i] != 5) continue;
+				resultValue[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0).value;
+				resultValueKaiSv[typeSelect[nameCalc[value0]][i]] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeSelect[nameCalc[value0]][i]] + value0 + "_kaisv").value;
+			}
 		}
 	}
 	for (var i = 1; i < typeValue.length; i++) {
@@ -1729,6 +1748,7 @@ function Diagnosis_Calc(resultValueKai) {
 	var ftiregripValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "6_kaisv").value;
 	var rtiregripValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[13] + "7_kaisv").value;
 	var tiregripValue = (ftiregripValue * (baseGravity[chassisIndex] / 2.0 + gravityValue) + rtiregripValue * (baseGravity[chassisIndex] / 2.0 - gravityValue)) / baseGravity[chassisIndex];
+	//tiregripValue += 1.0 * window.parent.mains.document.getElementById(nameValue[33] + "_" + typeValue[13] + "33_kaisv").value;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = tiregripValue * ftiregripUp / 100.0;
 	//空転
 	window.parent.diagnosis.document.getElementById(diagnosisValue[15]).value = (window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value * 10.0 + 0.3) * 3.6;
@@ -1787,25 +1807,25 @@ function Diagnosis_Calc(resultValueKai) {
 	//スタミナ耐久
 	var bodyStamina = 1.0;
 	if (bodyOption1 == 5) bodyStamina += 0.1;
-	if (bodyOption1 == 15) bodyStamina += 0.15;
+	if (bodyOption1 == 15) bodyStamina += 0.2;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
-	if (bodyOption2 == 15) bodyStamina += 0.075;
+	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption3 == 5) bodyStamina += 0.05;
-	if (bodyOption3 == 15) bodyStamina += 0.075;
-	var staminaValue = resultValueKai[4] + selectValue[3][chassisIndex][3];
+	if (bodyOption3 == 15) bodyStamina += 0.1;
+	var cstaminaValue = selectValue[3][chassisIndex][3];
 	for (var i = 4; i <= 5; i++) {
-		staminaValue += selectValue[4][window.parent.mains.document.getElementById(nameValue[i] + i).selectedIndex][3];
+		cstaminaValue += selectValue[4][window.parent.mains.document.getElementById(nameValue[i] + i).selectedIndex][3];
 	}
 	for (var i = 6; i <= 7; i++) {
-		staminaValue += selectValue[5][window.parent.mains.document.getElementById(nameValue[i] + i).selectedIndex][3];
+		cstaminaValue += selectValue[5][window.parent.mains.document.getElementById(nameValue[i] + i).selectedIndex][3];
 	}
 	for (var i = 8; i <= 10; i++) {
-		staminaValue += selectValue[i - 2][window.parent.mains.document.getElementById(nameValue[i] + i).selectedIndex][3];
+		cstaminaValue += selectValue[i - 2][window.parent.mains.document.getElementById(nameValue[i] + i).selectedIndex][3];
 	}
 	for (var i = 11; i <= 18; i++) {
-		staminaValue += selectValue[9][window.parent.mains.document.getElementById(nameValue[i] + i).selectedIndex][3];
+		cstaminaValue += selectValue[9][window.parent.mains.document.getElementById(nameValue[i] + i).selectedIndex][3];
 	}
-	window.parent.diagnosis.document.getElementById(diagnosisValue[24]).value = staminaValue * bodyStamina;
+	window.parent.diagnosis.document.getElementById(diagnosisValue[24]).value = (resultValueKai[4] + cstaminaValue) * bodyStamina;
 
 	//コーナー減速率
 	var bodyCornerdecele = 1.0;
