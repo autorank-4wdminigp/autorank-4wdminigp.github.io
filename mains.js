@@ -53,6 +53,7 @@ var kaizou7SelectIndex = new Array();
 var kaizou7Select = new Array();
 var kaizouTenpreSelect = new Array();
 var kaizouTenpre = new Array();
+//モーター
 s = 0;
 kaizouSelectIndex[0] = new Array(0, 0, 1, 2, 0, 3);
 kaizouSelect[0] = new Array();
@@ -86,6 +87,7 @@ kaizouTenpre[0][10] = new Array("スピードx4 低電圧x2", 5, 5, 5, 5, 7, 7);
 kaizouTenpre[0][11] = new Array("スピードx2 バランスx2 低電圧x2", 5, 5, 6, 6, 7, 7);
 kaizouTenpre[0][12] = new Array("パワーx2 バランスx2 低電圧x2", 4, 4, 6, 6, 7, 7);
 
+//ギヤ
 s = 0;
 kaizouSelectIndex[1] = new Array(0, 0);
 kaizouSelect[1] = new Array();
@@ -102,6 +104,8 @@ kaizouTenpre[1][0] = new Array("パワロスx4 ギヤ負荷x2", 5, 5, 2, 2, 4, 4
 kaizouTenpre[1][1] = new Array("パワロスx2 ギヤ負荷x4", 5, 5, 4, 4, 3, 3);
 kaizouTenpre[1][2] = new Array("パワロスx6", 5, 5, 2, 2, 2, 2);
 kaizouTenpre[1][3] = new Array("ギヤ負荷x6", 4, 4, 3, 3, 3, 3);
+
+//ボディ
 s = 0;
 kaizouSelectIndex[2] = new Array(0, 0);
 kaizouSelect[2] = new Array();
@@ -118,6 +122,8 @@ kaizouTenpre[2][0] = new Array("軽量x2 節電x4", 5, 5, 4, 4, 4, 4);
 kaizouTenpre[2][1] = new Array("軽量x6", 5, 5, 1, 1, 1, 1);
 kaizouTenpre[2][2] = new Array("軽量x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減少x4", 5, 5, 3, 3, 3, 3);
 kaizouTenpre[2][3] = new Array("軽量x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ増加x4", 5, 5, 2, 2, 2, 2);
+
+//シャーシ
 s = 0;
 kaizouSelectIndex[3] = new Array(0, 0);
 kaizouSelect[3] = new Array();
@@ -138,6 +144,8 @@ kaizouTenpre[3][4] = new Array("制振x6", 8, 8, 7, 7, 7, 7);
 kaizouTenpre[3][5] = new Array("制振x4 軽量x2", 8, 8, 7, 7, 3, 3);
 kaizouTenpre[3][6] = new Array("軽量x2 ギヤ負荷x2 スラスト角の減少x2", 3, 3, 6, 6, 9, 9);
 kaizouTenpre[3][7] = new Array("軽量x2 スラスト角の減少x4", 3, 3, 9, 9, 9, 9);
+
+//ホイール
 s = 0;
 kaizouSelectIndex[4] = new Array(0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 2, 3, 0, 0, 1);
 kaizouSelect[4] = new Array();
@@ -163,6 +171,8 @@ kaizouTenpre[4][1] = new Array("スピロスx6", 2, 2, 2, 2, 2, 2);
 kaizouTenpre[4][2] = new Array("軽量x6", 4, 4, 3, 3, 3, 3);
 kaizouTenpre[4][3] = new Array("パワロスx6", 7, 7, 7, 7, 1, 1);
 kaizouTenpre[4][4] = new Array("パワロススピートx6", 1, 1, 1, 1, 1, 1);
+
+//タイヤ
 s = 0;
 kaizouSelectIndex[5] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1);
 kaizouSelect[5] = new Array();
@@ -187,6 +197,8 @@ kaizouTenpre[5][5] = new Array("旋回x6", 6, 6, 3, 3, 3, 3);
 kaizouTenpre[5][6] = new Array("摩擦x4 パワロスx2", 2, 2, 2, 2, 1, 1);
 kaizouTenpre[5][7] = new Array("摩擦x4 オフロードx2", 2, 2, 2, 2, 5, 5);
 kaizouTenpre[5][8] = new Array("オフロードx2 パワロスx4", 5, 5, 1, 1, 1, 1);
+
+//フロントステー
 s = 0;
 kaizouSelectIndex[6] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 3, 0, 0, 0);
 kaizouSelect[6] = new Array();
@@ -214,6 +226,8 @@ kaizouTenpre[6][4] = new Array("軽量x4 スラスト角の減少x2", 2, 2, 2, 2
 kaizouTenpre[6][5] = new Array("耐久x6", 2, 2, 2, 2, 1, 1);
 kaizouTenpre[6][6] = new Array("耐久x2 スラスト角の減少x4", 2, 2, 4, 4, 4, 4);
 kaizouTenpre[6][7] = new Array("耐久x2 デジタルx4", 2, 2, 5, 5, 5, 5);
+
+//サイドステー
 s = 0;
 kaizouSelectIndex[7] = new Array(0, 0);
 kaizouSelect[7] = new Array();
@@ -228,6 +242,8 @@ kaizouTenpreSelect[7][s++] = new Array(0, 1);
 kaizouTenpre[7] = new Array();
 kaizouTenpre[7][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[7][1] = new Array("耐久x6", 4, 4, 4, 4, 1, 1);
+
+//リヤステー
 s = 0;
 kaizouSelectIndex[8] = new Array(0, 1, 1, 0, 0, 0, 0, 1, 0);
 kaizouSelect[8] = new Array();
@@ -245,6 +261,8 @@ kaizouTenpre[8] = new Array();
 kaizouTenpre[8][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[8][1] = new Array("耐久x6", 4, 4, 4, 4, 1, 1);
 kaizouTenpre[8][2] = new Array("耐久x6", 2, 2, 2, 2, 1, 1);
+
+//ローラー
 s = 0;
 kaizouSelectIndex[9] = new Array(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0);
 kaizouSelect[9] = new Array();
@@ -264,6 +282,8 @@ kaizouTenpre[9][0] = new Array("ローラー摩擦を弱めるx4 ローラー抵
 kaizouTenpre[9][1] = new Array("ローラー摩擦を強めるx4 ローラー抵抗抜きx2", 2, 2, 2, 2, 4, 4);
 kaizouTenpre[9][2] = new Array("ローラー摩擦を弱めるx4", 3, 3, 3, 3, 0, 0);
 kaizouTenpre[9][3] = new Array("ローラー摩擦を弱めるx4 軽量化x2", 3, 3, 3, 3, 5, 5);
+
+//ボディオプション
 s = 0;
 kaizouSelectIndex[10] = new Array(0, 0, 0, 0, 1, 0, 0, 0, 0);
 kaizouSelect[10] = new Array();
@@ -284,6 +304,8 @@ kaizouTenpre[10][1] = new Array("ｴｱﾛﾀﾞｳﾝﾌｫｰｽ増加x4 軽�
 kaizouTenpre[10][2] = new Array("軽量化x6", 1, 1, 1, 1, 1, 1);
 kaizouTenpre[10][3] = new Array("耐久x4 軽量化x2", 4, 4, 4, 4, 1, 1);
 kaizouTenpre[10][4] = new Array("耐久x4 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減少x2", 4, 4, 4, 4, 3, 3);
+
+//スタビライザー
 s = 0;
 kaizouSelectIndex[11] = new Array(0, 0);
 kaizouSelect[11] = new Array();
@@ -299,6 +321,8 @@ kaizouTenpre[11] = new Array();
 kaizouTenpre[11][0] = new Array("スタビ摩擦を弱めるx4", 3, 3, 3, 3, 0, 0);
 kaizouTenpre[11][1] = new Array("スタビ摩擦を強めるx6", 2, 2, 2, 2, 1, 1);
 kaizouTenpre[11][2] = new Array("スタビ摩擦を弱めるx4 スタビ摩擦を強めるx2", 3, 3, 3, 3, 2, 2);
+
+//ウェイト
 s = 0;
 kaizouSelectIndex[12] = new Array(0, 0);
 kaizouSelect[12] = new Array();
@@ -307,6 +331,8 @@ s = 0;
 kaizou7SelectIndex[12] = new Array(0, 0);
 kaizou7Select[12] = new Array();
 kaizou7Select[12][s++] = new Array();
+
+//ターミナル
 s = 0;
 kaizouSelectIndex[13] = new Array(0, 0);
 kaizouSelect[13] = new Array();
@@ -321,6 +347,8 @@ kaizouTenpreSelect[13][s++] = new Array(0, 1);
 kaizouTenpre[13] = new Array();
 kaizouTenpre[13][0] = new Array("節電x6", 2, 2, 2, 2, 1, 1);
 kaizouTenpre[13][1] = new Array("節電x4 パワロスx2", 2, 2, 2, 2, 3, 3);
+
+//モーターサポート
 s = 0;
 kaizouSelectIndex[14] = new Array(0, 0);
 kaizouSelect[14] = new Array();
@@ -336,6 +364,8 @@ kaizouTenpre[14] = new Array();
 kaizouTenpre[14][0] = new Array("節電x6", 1, 1, 1, 1, 1, 1);
 kaizouTenpre[14][1] = new Array("軽量化x6", 2, 2, 2, 2, 2, 2);
 kaizouTenpre[14][2] = new Array("耐久x6", 3, 3, 3, 3, 3, 3);
+
+//ピニオンギヤ
 s = 0;
 kaizouSelectIndex[15] = new Array(0, 0);
 kaizouSelect[15] = new Array();
@@ -351,6 +381,8 @@ kaizouTenpre[15] = new Array();
 kaizouTenpre[15][0] = new Array("パワロスx6", 2, 2, 2, 2, 2, 2);
 kaizouTenpre[15][1] = new Array("ギヤ負荷x6", 3, 3, 3, 3, 1, 1);
 kaizouTenpre[15][2] = new Array("ギヤ負荷x4 パワロスx2", 3, 3, 3, 3, 2, 2);
+
+//プロペラシャフト
 s = 0;
 kaizouSelectIndex[16] = new Array(0, 0);
 kaizouSelect[16] = new Array();
@@ -366,6 +398,8 @@ kaizouTenpre[16] = new Array();
 kaizouTenpre[16][0] = new Array("パワロスx6", 2, 2, 2, 2, 2, 2);
 kaizouTenpre[16][1] = new Array("ギヤ負荷x6", 3, 3, 3, 3, 1, 1);
 kaizouTenpre[16][2] = new Array("ギヤ負荷x4 パワロスx2", 3, 3, 3, 3, 2, 2);
+
+//軸受け
 s = 0;
 kaizouSelectIndex[17] = new Array(0, 0);
 kaizouSelect[17] = new Array();
@@ -379,6 +413,8 @@ kaizouTenpreSelect[17] = new Array();
 kaizouTenpreSelect[17][s++] = new Array(0, 0);
 kaizouTenpre[17] = new Array();
 kaizouTenpre[17][0] = new Array("スピロスx6", 3, 3, 2, 2, 2, 2);
+
+//シャフト
 s = 0;
 kaizouSelectIndex[18] = new Array(0, 0);
 kaizouSelect[18] = new Array();
@@ -393,6 +429,8 @@ kaizouTenpreSelect[18][s++] = new Array(0, 1);
 kaizouTenpre[18] = new Array();
 kaizouTenpre[18][0] = new Array("スピロス・スピードx6", 1, 1, 1, 1, 1, 1);
 kaizouTenpre[18][1] = new Array("スピロス・パワーx6", 2, 2, 2, 2, 2, 2);
+
+//ギヤシャフト
 s = 0;
 kaizouSelectIndex[19] = new Array(0, 0);
 kaizouSelect[19] = new Array();
@@ -406,6 +444,8 @@ kaizouTenpreSelect[19] = new Array();
 kaizouTenpreSelect[19][s++] = new Array(0, 0);
 kaizouTenpre[19] = new Array();
 kaizouTenpre[19][0] = new Array("パワロスx6", 2, 2, 1, 1, 1, 1);
+
+//クラウンギヤ
 s = 0;
 kaizouSelectIndex[20] = new Array(0, 0);
 kaizouSelect[20] = new Array();
@@ -414,6 +454,8 @@ s = 0;
 kaizou7SelectIndex[20] = new Array(0, 0);
 kaizou7Select[20] = new Array();
 kaizou7Select[20][s++] = new Array();
+
+//バッテリー
 s = 0;
 kaizouSelectIndex[21] = new Array(0, 0);
 kaizouSelect[21] = new Array();
@@ -812,11 +854,12 @@ selectValue[20] = new Array();
 selectValue[20][s++] = new Array("標準クラウンギヤ", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.5, 700.0, 300.0);
 s = 0;
 selectValue[21] = new Array();
-selectValue[21][s++] = new Array("標準バッテリー", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+selectValue[21][s++] = new Array("ネオチャンプ", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 selectValue[21][s++] = new Array("パワーチャンプゴールド", 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 36.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 50.0);
 
-//2:イイ感じ, 3:職人技, 4:至高の逸品, 5:強化, 6:固定フラグ, 7:タイプ
+//2:イイ感じ, 3:職人技, 4:至高の逸品, 5:強化, 6:UPフラグ(0:半固定, -1:倍率, -2:全固定), 7:タイプ
 var kaizouValue = new Array();
+//モーター
 kaizouValue[0] = new Array();
 kaizouValue[0][0] = new Array();
 kaizouValue[0][0][0] = new Array("慣らし走行 [1]", "ギヤ負荷〇〇〇〇 [8] ", -0.08, -0.096, -0.112, -0.004, -1, 6);
@@ -1177,6 +1220,7 @@ kaizouValue[11][4] = new Array();
 kaizouValue[11][4][0] = new Array("スタビ摩擦を弱める(上級)", "スピード〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 1);
 kaizouValue[11][4][1] = new Array("", "スタビ減速××× [4] ", -0.04, -0.048, -0.056, -0.002, -1, 24);
 
+//ウェイト
 kaizouValue[12] = new Array();
 kaizouValue[12][0] = new Array();
 
@@ -1308,9 +1352,11 @@ kaizouValue[19][3] = new Array();
 kaizouValue[19][3][0] = new Array("回転ブレのチェック(上級)", "パワーロス〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
 kaizouValue[19][3][1] = new Array("", "パワー〇〇 [2(固定UP)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 
+//クラウンギヤ
 kaizouValue[20] = new Array();
 kaizouValue[20][0] = new Array();
 
+//バッテリー
 kaizouValue[21] = new Array();
 kaizouValue[21][0] = new Array();
 
@@ -1320,6 +1366,7 @@ function All_Set() {
 	calcFlg = 0;
 	resultFlg = 0;
 	for (var i = 0; i < nameValue.length; i++) {
+		Menu_Init(i);
 		Type_Init(i);
 		document.getElementById(nameValue[i] + i + '_oldselect').value = -1;
 		Type_Set(i, 1);
@@ -1334,7 +1381,11 @@ function All_Set() {
 }
 
 function View_Set(value1) {
-	var writeValue = "<a name='link" + value1 + "'></a><table class='cstable'><tr><td>" + nameView[value1];
+	var writeValue = "";
+	if (value1 == 0) {
+		writeValue += "<table class='cstable'><tr><td>全パーツ <input type='button' value='至高の逸品' onclick='Shikou_Set(2)'>　<input type='button' value='職人技' onclick='Shikou_Set(1)'>　<input type='button' value='イイ感じ' onclick='Shikou_Set(0)'> </td></tr></table><br>";
+	}
+	writeValue += "<a name='link" + value1 + "'></a><table class='cstable'><tr><td>" + nameView[value1];
 	writeValue += "<span id='id_" + nameValue[value1] + value1 + "'></span></td>";
 	if (value1 == 2) {
 		writeValue += "<td class='cstd'></td>";
@@ -1345,15 +1396,12 @@ function View_Set(value1) {
 		}
 		writeValue += "</td>";
 	}
-	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
-		writeValue += "<td class='cstd'></td>"
-		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
-		writeValue += "<td class='cstd'></td>"
-		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
-		if (value1 == 0) {
-			writeValue += "<td class='cstd'>　</td> <td>全パーツ <input type='button' value='至高の逸品' onclick='Shikou_Set(2)'>　<input type='button' value='職人技' onclick='Shikou_Set(1)'>　<input type='button' value='イイ感じ' onclick='Shikou_Set(0)'> </td>";
-		}
+	if (nameZero[nameCalc[value1]] == 1) {
+		writeValue += "<td class='cstd'></td>";
+		writeValue += "<td>パーツ <input type='button' value='外す' onclick='Parts_Out(" + value1 + ")'></td>";
 	}
+	writeValue += "</tr><tr>";
+
 	if (value1 == 2) {
 		writeValue += "</tr></table>";
 		writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
@@ -1386,8 +1434,11 @@ function View_Set(value1) {
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		writeValue += "<table class='cstable'><tr><td class='cstd'>　</td><td>テンプレ改造 ";
 		writeValue += "<span id='id_" + nameValue[value1] + value1 + "_tenpure'></span>";
-		writeValue += "</td><td class='cstd'>　</td><td class='cstd'><a href='#link0'>モーターへ</a>　</td><td class='cstd'><a href='#link4'>ホイールへ</a>　</td><td class='cstd'><a href='#link11'>ローラーへ</a>　</td><td class='cstd'><a href='#link25'>アクセサリーへ</a>　</td></tr></table>";
-		writeValue += "<table class='cstable'>";
+		writeValue += "</td><td class='cstd'></td>"
+		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
+		writeValue += "<td class='cstd'></td>"
+		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
+		writeValue += "</tr></table><table class='cstable'>";
 		for (var i = 1; i <= slotNum; i++) {
 			writeValue += "<tr><td class='cstd'>　</td><td>スロット" + i + " ";
 			writeValue += "<span id='id_" + nameValue[value1] + value1 + "_slot" + i + "'></span><br>";
@@ -1500,6 +1551,7 @@ function Type_Set(value1, value2) {
 	}
 	document.getElementById(nameValue[value1] + value1 + '_oldselect').value = index;
 	Type_Calc(value1);
+	Menu_Set(value1);
 }
 
 function Type_Slot_Set(value1, value2) {
@@ -1996,6 +2048,68 @@ function View_Diagnosis() {
 	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
 }
 
+function View_Menus() {
+	var menuValue = new Array();
+	menuValue[0] = new Array(-1, 2, 0, 1);
+	menuValue[1] = new Array(-1, -1, 3, -1);
+	menuValue[2] = new Array(4, 6, 5, 7);
+	menuValue[3] = new Array(-1, 8, 9, 10);
+	menuValue[4] = new Array(-1, 14, 15, 16);
+	menuValue[5] = new Array(-1, 11, 12, 13);
+	menuValue[6] = new Array(-1, -1, -1, 17);
+	menuValue[7] = new Array(-1, -1, 19, 18);
+	menuValue[8] = new Array(-1, 20, 21, 22);
+	menuValue[9] = new Array(-1, 23, -1, 24);
+	menuValue[10] = new Array(25, 26, 27, 28);
+	menuValue[11] = new Array(29, 30, 31, 32);
+	menuValue[12] = new Array(-1, -1, 33, -1);
+	var writeValue = "<table class='csmenutable'>";
+	for (var j = 0; j <= 12; j++) {
+		writeValue += "<tr>";
+		for (var i = 0; i < 4; i++) {
+			if (menuValue[j][i] != -1) {
+				writeValue += "<td class='csmenutd'><div class='csmenuimg'><span id='id_menu" + menuValue[j][i] + "_back'></span>";
+				writeValue += "<a href='mains.html#link" + menuValue[j][i] + "' target='mains'><span id='id_menu" + menuValue[j][i] + "_img'></span><div class='csmenutext' onselectstart='return false;' onclick='Menu_Click(" + menuValue[j][i] + ")'><span id='id_menu" + menuValue[j][i] + "_text'></span></div></div></a></td>";
+			} else {
+				writeValue += "<td class='csmenutd'></td>";
+			}
+		}
+		writeValue += "</tr>";
+	}
+	writeValue += "</table>";
+	writeValue += "<input type='hidden' id='menu_oldselect' value='0'>";
+	document.write(writeValue);
+}
+
+function Menu_Init(value1) {
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='img/imgback.png'>";
+}
+
+function Menu_Click(value1) {
+	var oldIndex = window.parent.menus.document.getElementById("menu_oldselect").value;
+	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='img/imgback.png'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='img/imgselect.png'>";
+	window.parent.menus.document.getElementById("menu_oldselect").value = value1;
+}
+
+function Menu_Set(value1) {
+	var index = window.parent.mains.document.getElementById(nameValue[value1] + value1).selectedIndex;
+	var imgName = "set";
+	if (index == 0 && nameZero[nameCalc[value1]] == 1) {
+		imgName = ""
+	}
+	var imgNo = nameCalc[value1];
+	if (value1 >= 25 && value1 <= 32) {
+		imgNo = 13;
+	}
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_img").innerHTML = "<img class='csimg' src='img/img" + imgNo + imgName + ".png' onclick='Menu_Click(" + value1 + ")'>";
+	var partsName = "";
+	if (imgName != "") {
+		partsName = selectValue[nameCalc[value1]][index][0];
+	}
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_text").innerHTML = partsName;
+}
+
 function UrlCalc(value1) {
 	var urlValue = NumToUrl(document.getElementById(nameValue[value1] + value1).selectedIndex);
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
@@ -2155,6 +2269,11 @@ function Shikou_Set(value0) {
 	}
 	resultFlg = 1;
 	Type_Calc(0);
+}
+
+function Parts_Out(value1) {
+	document.getElementById(nameValue[value1] + value1).selectedIndex = 0;
+	Type_Set(value1, nameUpdate[nameCalc[value1]]);
 }
 
 function UrlToNum(value) {
