@@ -7,7 +7,7 @@ var nameCalc = new Array(0, 1, 2, 3, 4, 4, 5, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9
 var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aerodf", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "tirehanpatsu", "tirekei", "rollermasatsu", "rollerteikou", "wave", "offload", "gearrate", "ampere", "brake", "stabilizer", "digital", "taifuu", "taisui");
 var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 ", "スタミナ耐久 ", "重さ ", "ギヤ負荷 ", "パワーロス ", "スピードロス ", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ ", "節電 ", "制振 ", "スラスト角 ", "タイヤ摩擦 ", "タイヤ旋回 ", "タイヤ反発 ", "タイヤ径 ", "ローラー摩擦 ", "ローラー抵抗 ", "ウェーブ ", "オフロード ", "ギヤ比 ", "消費電流 ", "ブレーキ減速 ", "スタビ減速 ", "デジタル ", "耐風 ", "耐水 ");
 
-var nameUpdate = new Array(1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var nameUpdate = new Array(1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h", "dia16taifuu_h", "dia17offload_h", "dia18offloaddirt_h", "dia19taisuikuuten_h", "dia20cornerspeed_h", "dia21raincornerspeed_h", "dia22arrivaltime95", "dia23time100m", "dia24stamina", "dia25", "dia26time25m", "dia27time50m");
@@ -107,21 +107,33 @@ kaizouTenpre[1][3] = new Array("ギヤ負荷x6", 4, 4, 3, 3, 3, 3);
 
 //ボディ
 s = 0;
-kaizouSelectIndex[2] = new Array(0, 0);
+kaizouSelectIndex[2] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2);
 kaizouSelect[2] = new Array();
 kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4);
+kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4, 7);
+kaizouSelect[2][s++] = new Array(0, 1, 2, 3, 4, 8);
 s = 0;
-kaizou7SelectIndex[2] = new Array(0, 0);
+kaizou7SelectIndex[2] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 kaizou7Select[2] = new Array();
 kaizou7Select[2][s++] = new Array(5, 6);
 s = 0;
 kaizouTenpreSelect[2] = new Array();
 kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3);
+kaizouTenpreSelect[2][s++] = new Array(4, 5, 6, 7, 8, 3);
+kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 9, 10, 11);
 kaizouTenpre[2] = new Array();
 kaizouTenpre[2][0] = new Array("軽量x2 節電x4", 5, 5, 4, 4, 4, 4);
 kaizouTenpre[2][1] = new Array("軽量x6", 5, 5, 1, 1, 1, 1);
 kaizouTenpre[2][2] = new Array("軽量x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減少x4", 5, 5, 3, 3, 3, 3);
 kaizouTenpre[2][3] = new Array("軽量x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ増加x4", 5, 5, 2, 2, 2, 2);
+kaizouTenpre[2][4] = new Array("豪の限界軽量化x2 節電x4", 6, 6, 4, 4, 4, 4);
+kaizouTenpre[2][5] = new Array("豪の限界軽量化x2 軽量x2 節電x2", 6, 6, 5, 5, 4, 4);
+kaizouTenpre[2][6] = new Array("豪の限界軽量化x2 軽量x4", 6, 6, 5, 5, 1, 1);
+kaizouTenpre[2][7] = new Array("豪の限界軽量化x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減少x4", 6, 6, 3, 3, 3, 3);
+kaizouTenpre[2][8] = new Array("豪の限界軽量化x2 軽量x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減少x2", 6, 6, 5, 5, 3, 3);
+kaizouTenpre[2][9] = new Array("烈のボディ補強x2 軽量x2 節電x2", 6, 6, 5, 5, 4, 4);
+kaizouTenpre[2][10] = new Array("烈のボディ補強x2 軽量x4", 6, 6, 5, 5, 1, 1);
+kaizouTenpre[2][11] = new Array("烈のボディ補強x2 軽量x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減少x2", 6, 6, 5, 5, 3, 3);
 
 //シャーシ
 s = 0;
@@ -583,7 +595,9 @@ selectValue[2][s++] = new Array("エアロ アバンテ [4]", 1, 11, 0, 0, 0, 20
 selectValue[2][s++] = new Array("ブラックストーカー [3]", 1, 11, 0, 0, 0, 21.0, 1.0, 4.5, 45.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("サイクロンマグナム TRF [4]", 1, 18, 0, 0, 0, 21.0, 1.0, 4.5, 5.0, 10.0, 0.0, 0.0, 0.0, 50.0, 0.0);
 selectValue[2][s++] = new Array("レイホークガンマ [4]", 4, 14, 0, 0, 0, 18.0, 4.0, 10.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
-selectValue[2][s++] = new Array("スピンアックス(ナオSP) [3]", 4, 3, 0, 0, 0, 7.0, 4.0, 10.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//96
+selectValue[2][s++] = new Array("スピンアックス(ナオSP) [3]", 4, 3, 0, 0, 0, 7.0, 4.0, 10.5, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);
+selectValue[2][s++] = new Array("マグナムセイバー プレミアム(仮) [4]", 1, 11, 0, 0, 0, 22.0, 0.0, 4.5, 35.0, 16.0, 0.0, 0.0, 0.0, 40.0, 0.0);
+selectValue[2][s++] = new Array("ソニックセイバー プレミアム(仮) [4]", 4, 14, 0, 0, 0, 15.0, 7.0, 15.0, 35.0, 16.0, 0.0, 0.0, 0.0, 50.0, 0.0);//98
 s = 0;
 var partsGravity = new Array(0, 0, 0, 0, 0.5, -0.5, 0.5, -0.5, 1.0, 0, -0.5, 1.0, 0, -1.0, 1.0, 0, -1.0, -1.0, -1.0, 0, 1.0, 0, -1.0, 0.5, -1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var chassisGravity = new Array(0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025);
@@ -959,6 +973,14 @@ kaizouValue[2][5][1] = new Array("", "スピード〇 [2(固定UP)] ", 1.0, 1.2,
 kaizouValue[2][6] = new Array();
 kaizouValue[2][6][0] = new Array("ボディ補強(コーナー重視)", "コーナー安定〇〇〇 [1.4(固定UP)] ", 1.4, 1.68, 1.96, 0.07, -2, 3);
 kaizouValue[2][6][1] = new Array("", "スピード〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 1);
+
+kaizouValue[2][7] = new Array();
+kaizouValue[2][7][0] = new Array("豪の限界軽量化(仮) [2]", "重さ〇〇〇 [4] ", -0.04, -0.048, -0.056, -0.002, -1, 5);
+kaizouValue[2][7][1] = new Array("", "スピード〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 1);
+kaizouValue[2][7][2] = new Array("", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ× [5] ", -0.05, -0.06, -0.07, -0.0025, -1, 9);
+kaizouValue[2][8] = new Array();
+kaizouValue[2][8][0] = new Array("烈のボディ補強(コーナー重視)(仮) [2]", "パワー〇〇〇 [20] ", 0.2, 0.24, 0.28, 0.01, -1, 2);
+kaizouValue[2][8][1] = new Array("", "コーナー安定〇 [0.5(固定UP)] ", 1.0, 1.2, 1.4, 0.025, -2, 3);
 
 //シャーシ
 kaizouValue[3] = new Array();
