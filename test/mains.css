@@ -1,0 +1,85 @@
+.cstable {
+  border-style: none;
+  border-collapse:separate;
+  border-spacing: 3px;
+}
+td {
+  color: #ffffff;
+  background-color: #800000;
+  padding: 3px;
+  text-align: right;
+  font-size: 14px;
+}
+.cstd {
+  color: #000000;
+  background-color: #000000;
+  padding: 3px;
+  font-size: 14px;
+}
+.csinput {
+  border-style: none;
+  color: #c0c0c0;
+  background-color: #000000;
+  font-size: 14px;
+  width: 72px;
+}
+.csinput1 {
+  border-style: none;
+  color: #000000;
+  background-color: #800000;
+  font-size: 14px;
+  width: 14px;
+}
+.csinput2 {
+  border-style: none;
+  color: #ffffff;
+  background-color: #000000;
+  font-size: 14px;
+  width: 900px;
+}
+select {
+  border-style: none;
+  color: #c0c0c0;
+  font-size: 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0px 30px 0px 0px;
+  background: url("downArrow.png") no-repeat right #000000;
+}
+.csa {
+  text-decoration:none;
+}
+.csmenutable {
+  border-style: none;
+  border-collapse:collapse;
+  border-spacing: 0px;
+  table-layout: fixed;
+}
+.csmenutd {
+  color: #000000;
+  background-color: #000000;
+  padding: 0px 0px 0px 0px;
+}
+.csmenuimg {
+  position: relative;
+  padding: 0px;
+}
+.csmenutext {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 11px;
+  color: #ffffff;
+  padding: 5px;
+  line-height: 11px;
+  text-align: left;
+}
+.csimg {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+.csimgback {
+  vertical-align: bottom;
+}
