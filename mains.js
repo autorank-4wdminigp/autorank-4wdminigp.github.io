@@ -1390,6 +1390,7 @@ function All_Set() {
 	calcFlg = 0;
 	resultFlg = 0;
 	for (var i = 0; i < nameValue.length; i++) {
+		View_Set(i);
 		Menu_Init(i);
 		Type_Init(i);
 		document.getElementById(nameValue[i] + i + '_oldselect').value = -1;
@@ -1397,11 +1398,11 @@ function All_Set() {
 	}
 	UrlSet();
 	calcFlg = 1;
-	for (var i = 0; i < nameValue.length; i++) {
+	for (var i = 0; i < nameValue.length - 1; i++) {
 		Type_Calc(i);
 	}
 	resultFlg = 1;
-	Type_Calc(0);
+	Type_Calc(nameValue.length - 1);
 }
 
 function View_Set(value1) {
@@ -1485,7 +1486,7 @@ function View_Set(value1) {
 	}
 	writeValue += "<input type='hidden' id='" + nameValue[value1] + value1 + "_url' value=''>";
 	writeValue += "<input type='hidden' id='" + nameValue[value1] + value1 + "_oldselect' value='-1'>";
-	document.write(writeValue);
+	document.getElementById("bmain" + value1).innerHTML = writeValue;
 }
 
 function Type_Init(value1) {
@@ -2030,46 +2031,44 @@ function Time_Calc(time1, time2, step, num) {
 }
 
 function View_Result() {
-	document.write("<table class='cstable'><tr>");
-	document.write("<td><input class='csinput1' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>旧アプリ表示　");
-	document.write("<input class='csinput1' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>標準アクセサリー適用表示　</td>");
-	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
+	var writeValue = "<table class='cstable'><tr>";
+	writeValue += "<td><input class='csinput1' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>旧アプリ表示　";
+	writeValue += "<input class='csinput1' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>標準アクセサリー適用表示　</td>";
+	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 1; i < typeValue.length; i++) {
 		if (i > 1 && (i - 1) % 5 == 0) {
-			document.write("</tr>");
-			document.write("<tr><td class='cstd'>　</td>");
+			writeValue += "</tr><tr><td class='cstd'>　</td>";
 		}
-		document.write("<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>");
+		writeValue += "<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>";
 	}
-	document.write("</tr></table>");
-	document.write("<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>");
-	document.write("<table class='cstable'><tr><td class='cstd'>　</td><td><input class='csinput2' type='text' id='dispurl' value=''></td></tr></table>");
+	writeValue += "</tr></table>";
+	writeValue += "<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>";
+	writeValue += "<table class='cstable'><tr><td class='cstd'>　</td><td><input class='csinput2' type='text' id='dispurl' value=''></td></tr></table>";
+	document.getElementById("bmain").innerHTML = writeValue;
 }
 
 function View_Diagnosis() {
-	document.write("<table class='cstable'><tr>");
-	document.write("<td><input class='csinput1' type='radio' id='shindantire1' name='shindantire' onchange='Result_Calc()' checked>マシン診断　");
-	document.write("<input class='csinput1' type='radio' id='shindantire2' name='shindantire' onchange='Result_Calc()'>タイヤ径差表示　");
-	var writeValue = "";
+	var writeValue = "<table class='cstable'><tr>";
+	writeValue += "<td><input class='csinput1' type='radio' id='shindantire1' name='shindantire' onchange='Result_Calc()' checked>マシン診断　";
+	writeValue += "<input class='csinput1' type='radio' id='shindantire2' name='shindantire' onchange='Result_Calc()'>タイヤ径差表示　";
 	writeValue += "<select id='shindantirekei' onchange='Result_Calc()'>";
 	for (var j = 0; j <= 8; j++) {
 		writeValue += "<option value=" + j + ">" + j + "</option>";
 	}
 	writeValue += "</select></td>";
-	document.write(writeValue);
-	document.write("</tr></table><table class='cstable'><tr><td class='cstd'>　</td>");
+	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
 	for (var i = 0; i < diagnosisValue.length; i++) {
 		if (i > 0 && i % 4 == 0) {
-			document.write("</tr>");
-			document.write("<tr><td class='cstd'>　</td>");
+			writeValue += "</tr><tr><td class='cstd'>　</td>";
 		}
-		document.write("<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>");
+		writeValue += "<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>";
 	}
-	document.write("</tr></table>");
-	document.write("<br><font color='#FFA500'>※3 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>");
-	document.write("<br><font color='#FFA500'>※4 ほぼ解明(最適重心未実装)</font>");
-	document.write("<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>");
-	document.write("<br><font color='#FFA500'>※6 情報提供感謝します</font>");
+	writeValue += "</tr></table>";
+	writeValue += "<br><font color='#FFA500'>※3 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>";
+	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明(最適重心未実装)</font>";
+	writeValue += "<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>";
+	writeValue += "<br><font color='#FFA500'>※6 情報提供感謝します</font>";
+	document.getElementById("bmain").innerHTML = writeValue;
 }
 
 function View_Menus() {
@@ -2102,7 +2101,7 @@ function View_Menus() {
 	}
 	writeValue += "</table>";
 	writeValue += "<input type='hidden' id='menu_oldselect' value='0'>";
-	document.write(writeValue);
+	document.getElementById("bmain").innerHTML = writeValue;
 }
 
 function Menu_Init(value1) {
@@ -2288,11 +2287,11 @@ function Shikou_Set(value0) {
 		}
 	}
 	calcFlg = 1;
-	for (var i = 0; i < nameValue.length; i++) {
+	for (var i = 0; i < nameValue.length - 1; i++) {
 		Type_Calc(i);
 	}
 	resultFlg = 1;
-	Type_Calc(0);
+	Type_Calc(nameValue.length - 1);
 }
 
 function Parts_Out(value1) {
