@@ -1458,10 +1458,10 @@ function View_Set(value1) {
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		writeValue += "<table class='cstable'><tr><td class='cstd'>　</td><td>テンプレ改造 ";
 		writeValue += "<span id='id_" + nameValue[value1] + value1 + "_tenpure'></span>";
-		writeValue += "</td><td class='cstd'></td>"
-		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
 		writeValue += "<td class='cstd'></td>"
 		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
+		writeValue += "</td><td class='cstd'></td>"
+		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + value1 + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
 		writeValue += "</tr></table><table class='cstable'>";
 		for (var i = 1; i <= slotNum; i++) {
 			writeValue += "<tr><td class='cstd'>　</td><td>スロット" + i + " ";
