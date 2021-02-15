@@ -1459,9 +1459,9 @@ function View_Set(value1) {
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		writeValue += "<table class='cstable'><tr><td class='cstd'>　</td><td>テンプレ改造 ";
 		writeValue += "<span id='id_" + nameValue[value1] + "_tenpure'></span>";
-		writeValue += "<td class='cstd'></td>"
+		writeValue += "<td class='cstd'></td>";
 		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
-		writeValue += "</td><td class='cstd'></td>"
+		writeValue += "</td><td class='cstd'></td>";
 		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
 		writeValue += "</tr></table><table class='cstable'>";
 		for (var i = 1; i <= slotNum; i++) {
@@ -1596,6 +1596,11 @@ function Type_Tenpre_Set(value1) {
 	var index = document.getElementById(nameValue[value1] + '_tenpure').value;
 	if (index != -1) {
 		for (var i = 1; i <= 6; i++) {
+			if (i == 6) {
+				calcFlg = 1;
+			} else {
+				calcFlg = 0;
+			}
 			document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex = kaizouTenpre[nameCalc[value1]][index][i];
 			Type_Slot_Set(value1, i - 1);
 		}
@@ -1650,12 +1655,12 @@ function Type_Calc(value1) {
 				}
 				document.getElementById(nameValue[value1] + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
 				calcValueSv[typeIndex] += kaizouVal + kyoukaValSv;
-				if (calcValueSv[typeIndex] < 0 && typeIndex != 12) calcValueSv[typeIndex] = 0;
+				//if (calcValueSv[typeIndex] < 0 && typeIndex != 12) calcValueSv[typeIndex] = 0;
 			}
 		}
 		if (value1 == 2) {
 			var nikuVal = document.getElementById(nameValue[value1] + '_niku').selectedIndex;
-			calcValueSv[5] -= nikuVal * document.getElementById(nameValue[value1] + "_" + typeValue[5]).value * 0.02;
+			calcValueSv[5] -= nikuVal * calcValueSvInit[5] * 0.02;
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 			var typeIndex = typeSelect[nameCalc[value1]][i];
@@ -2018,80 +2023,6 @@ function Time_Calc(time1, time2, step, num) {
 	}
 }
 
-function View_Result() {
-	var writeValue = "<table class='cstable'><tr>";
-	writeValue += "<td><input class='csinput1' type='radio' id='disp1' name='disp' onchange='Result_Calc()'>旧アプリ表示　";
-	writeValue += "<input class='csinput1' type='radio' id='disp2' name='disp' onchange='Result_Calc()' checked>標準アクセサリー適用表示　</td>";
-	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
-	for (var i = 1; i < typeValue.length; i++) {
-		if (i > 1 && (i - 1) % 5 == 0) {
-			writeValue += "</tr><tr><td class='cstd'>　</td>";
-		}
-		writeValue += "<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>";
-	}
-	writeValue += "</tr></table>";
-	writeValue += "<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>";
-	writeValue += "<table class='cstable'><tr><td class='cstd'>　</td><td><input class='csinput2' type='text' id='dispurl' value=''></td></tr></table>";
-	document.getElementById("bmain").innerHTML = writeValue;
-}
-
-function View_Diagnosis() {
-	var writeValue = "<table class='cstable'><tr>";
-	writeValue += "<td><input class='csinput1' type='radio' id='shindantire1' name='shindantire' onchange='Result_Calc()' checked>マシン診断　";
-	writeValue += "<input class='csinput1' type='radio' id='shindantire2' name='shindantire' onchange='Result_Calc()'>タイヤ径差表示　";
-	writeValue += "<select id='shindantirekei' onchange='Result_Calc()'>";
-	for (var j = 0; j <= 8; j++) {
-		writeValue += "<option value=" + j + ">" + j + "</option>";
-	}
-	writeValue += "</select></td>";
-	writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
-	for (var i = 0; i < diagnosisValue.length; i++) {
-		if (i > 0 && i % 4 == 0) {
-			writeValue += "</tr><tr><td class='cstd'>　</td>";
-		}
-		writeValue += "<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>";
-	}
-	writeValue += "</tr></table>";
-	writeValue += "<br><font color='#FFA500'>※3 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>";
-	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明(最適重心未実装)</font>";
-	writeValue += "<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>";
-	writeValue += "<br><font color='#FFA500'>※6 情報提供感謝します</font>";
-	document.getElementById("bmain").innerHTML = writeValue;
-}
-
-function View_Menus() {
-	var menuValue = new Array();
-	menuValue[0] = new Array(-1, 2, 0, 1);
-	menuValue[1] = new Array(-1, -1, 3, -1);
-	menuValue[2] = new Array(4, 6, 5, 7);
-	menuValue[3] = new Array(-1, 8, 9, 10);
-	menuValue[4] = new Array(-1, 14, 15, 16);
-	menuValue[5] = new Array(-1, 11, 12, 13);
-	menuValue[6] = new Array(-1, -1, -1, 17);
-	menuValue[7] = new Array(-1, -1, 19, 18);
-	menuValue[8] = new Array(-1, 20, 21, 22);
-	menuValue[9] = new Array(-1, 23, -1, 24);
-	menuValue[10] = new Array(25, 26, 27, 28);
-	menuValue[11] = new Array(29, 30, 31, 32);
-	menuValue[12] = new Array(-1, -1, 33, -1);
-	var writeValue = "<table class='csmenutable'>";
-	for (var j = 0; j <= 12; j++) {
-		writeValue += "<tr>";
-		for (var i = 0; i < 4; i++) {
-			if (menuValue[j][i] != -1) {
-				writeValue += "<td class='csmenutd'><div class='csmenuimg'><span id='id_menu" + menuValue[j][i] + "_back'></span>";
-				writeValue += "<a href='mains.html#link" + menuValue[j][i] + "' target='mains'><span id='id_menu" + menuValue[j][i] + "_img'></span><div class='csmenutext' onselectstart='return false;' onclick='Menu_Click(" + menuValue[j][i] + ")'><span id='id_menu" + menuValue[j][i] + "_text'></span></div></div></a></td>";
-			} else {
-				writeValue += "<td class='csmenutd'></td>";
-			}
-		}
-		writeValue += "</tr>";
-	}
-	writeValue += "</table>";
-	writeValue += "<input type='hidden' id='menu_oldselect' value='0'>";
-	document.getElementById("bmain").innerHTML = writeValue;
-}
-
 function Menu_Init(value1) {
 	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='img/imgback.png'>";
 }
@@ -2107,7 +2038,7 @@ function Menu_Set(value1) {
 	var index = window.parent.mains.document.getElementById(nameValue[value1]).selectedIndex;
 	var imgName = "set";
 	if (index == 0 && nameZero[nameCalc[value1]] == 1) {
-		imgName = ""
+		imgName = "";
 	}
 	var imgNo = nameCalc[value1];
 	if (value1 >= 25 && value1 <= 32) {
