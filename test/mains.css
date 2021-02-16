@@ -64,6 +64,7 @@ select {
 .csmenuimg {
   position: relative;
   padding: 0px;
+  cursor: pointer;
 }
 .csmenutext {
   position: absolute;

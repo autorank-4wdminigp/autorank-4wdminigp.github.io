@@ -23,7 +23,7 @@ function View_Menus() {
 		for (var i = 0; i < 4; i++) {
 			if (menuValue[j][i] != -1) {
 				writeValue += "<td class='csmenutd'><div class='csmenuimg'><span id='id_menu" + menuValue[j][i] + "_back'></span>";
-				writeValue += "<a href='mains.html#' target='mains'><span id='id_menu" + menuValue[j][i] + "_img'></span><div class='csmenutext' onselectstart='return false;' onclick='Menu_Click(" + menuValue[j][i] + ")'><span id='id_menu" + menuValue[j][i] + "_text'></span></div></a></div></td>";
+				writeValue += "<span id='id_menu" + menuValue[j][i] + "_img'></span><div class='csmenutext' onselectstart='return false;' onclick='Menu_Click(" + menuValue[j][i] + ")'><span id='id_menu" + menuValue[j][i] + "_text'></span></div></div></td>";
 			} else {
 				writeValue += "<td class='csmenutd'></td>";
 			}
