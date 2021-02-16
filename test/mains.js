@@ -2311,21 +2311,20 @@ function Shokika_Set(value1) {
 }
 
 function Shikou_Set(value0) {
-	calcFlg = 0;
-	resultFlg = 0;
 	for (var i = 0; i < nameValue.length; i++) {
 		if (kaizouSelect[nameCalc[i]][0].length != 0) {
 			for (var j = 1; j <= slotNum; j++) {
-				document.getElementById(nameValue[i] + '_type' + j).selectedIndex = value0;
+				kaizouArray[i][2 + (j - 1) * 3] = value0;
 			}
 		}
 	}
-	calcFlg = 1;
-	for (var i = 0; i < nameValue.length - 1; i++) {
-		Type_Calc(i);
+	for (var i = 0; i < nameValue.length; i++) {
+		Type_CalcArray(i, 0);
+		UrlCalc(i);
 	}
-	resultFlg = 1;
-	Type_Calc(nameValue.length - 1);
+	Result_Calc();
+	UrlView();
+	Menu_Click(0);
 }
 
 function Parts_Out(value1) {
