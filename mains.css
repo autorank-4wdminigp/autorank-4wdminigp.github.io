@@ -10,6 +10,9 @@ td {
   text-align: right;
   font-size: 14px;
 }
+font {
+  font-size: 14px;
+}
 .cstd {
   color: #000000;
   background-color: #000000;
@@ -64,6 +67,7 @@ select {
 .csmenuimg {
   position: relative;
   padding: 0px;
+  cursor: pointer;
 }
 .csmenutext {
   position: absolute;

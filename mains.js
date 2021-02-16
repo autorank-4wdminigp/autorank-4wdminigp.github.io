@@ -1384,25 +1384,43 @@ kaizouValue[20][0] = new Array();
 kaizouValue[21] = new Array();
 kaizouValue[21][0] = new Array();
 
+var statusArray = new Array();
+var statusArrayInit = new Array();
+var kaizouArray = new Array();
+var kaizouArrayUnit = new Array();
+var oldselectArray;
+var urlArray;
+
 var calcFlg = 0;
 var resultFlg = 0;
 function All_Set() {
-	calcFlg = 0;
-	resultFlg = 0;
 	for (var i = 0; i < nameValue.length; i++) {
-		View_Set(i);
-		Menu_Init(i);
-		Type_Init(i);
-		document.getElementById(nameValue[i] + '_oldselect').value = -1;
-		Type_Set(i, 1);
+		statusArray[i] = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //29
+		statusArrayInit[i] = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //29
+		if (kaizouSelect[nameCalc[i]][0].length != 0) {
+			if (i == 2) {
+				kaizouArray[i] = new Array(0, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 0, 0);
+			} else {
+				kaizouArray[i] = new Array(0, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49);
+			}
+			kaizouArrayUnit[i] = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+		} else {
+			kaizouArray[i] = new Array(0, 0);
+		}
 	}
-	UrlSet();
+	urlArray = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); //33
 	calcFlg = 1;
-	for (var i = 0; i < nameValue.length - 1; i++) {
-		Type_Calc(i);
-	}
 	resultFlg = 1;
-	Type_Calc(nameValue.length - 1);
+	UrlSet();
+	for (var i = 0; i < nameValue.length; i++) {
+		Menu_Init(i);
+		Type_CalcArray(i, 0);
+		UrlCalc(i);
+		Menu_Set(i);
+	}
+	Result_Calc();
+	UrlView();
+	Menu_Click(0);
 }
 
 function View_Set(value1) {
@@ -1484,9 +1502,8 @@ function View_Set(value1) {
 		}
 		writeValue += "</table>";
 	}
-	writeValue += "<input type='hidden' id='" + nameValue[value1] + "_url' value=''>";
-	writeValue += "<input type='hidden' id='" + nameValue[value1] + "_oldselect' value='-1'>";
-	document.getElementById("bmain" + value1).innerHTML = writeValue;
+	oldselectArray = -1;
+	document.getElementById("bmain").innerHTML = writeValue;
 }
 
 function Type_Init(value1) {
@@ -1506,7 +1523,7 @@ function Type_Set(value1, value2) {
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		var sameFlg = 1;
 		if (value2 == 1) {
-			var oldIndex = document.getElementById(nameValue[value1] + '_oldselect').value;
+			var oldIndex = oldselectArray;
 			if (oldIndex != -1 && kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length == kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][oldIndex]].length) {
 				for (var j = 0; j < kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length; j++) {
 					if (kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j] != kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][oldIndex]][j]) {
@@ -1531,17 +1548,23 @@ function Type_Set(value1, value2) {
 			}
 		}
 		if (sameFlg == -1 || (index == 0 && nameZero[nameCalc[value1]] == 1)) {
+			var indexTmp = index;
+			if (nameUpdate[nameCalc[value1]] == 0) {
+				indexTmp = 0;
+			}
+			var kaizouIndex = kaizouSelectIndex[nameCalc[value1]][indexTmp];
+			var kaizou7Index = kaizou7SelectIndex[nameCalc[value1]][indexTmp];
 			var innerValue = "";
 			for (var i = 1; i <= slotNum; i++) {
 				innerValue = "<select id='" + nameValue[value1] + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
 				innerValue += "<option value=-1 selected>改造選択</option>";
 				if (i == 7) {
-					for (var j = 0; j < kaizou7Select[nameCalc[value1]][kaizou7SelectIndex[nameCalc[value1]][index]].length; j++) {
-						innerValue += "<option value=" + kaizou7Select[nameCalc[value1]][kaizou7SelectIndex[nameCalc[value1]][index]][j] + ">" + kaizouValue[nameCalc[value1]][kaizou7Select[nameCalc[value1]][kaizou7SelectIndex[nameCalc[value1]][index]][j]][0][0] + "</option>";
+					for (var j = 0; j < kaizou7Select[nameCalc[value1]][kaizou7Index].length; j++) {
+						innerValue += "<option value=" + kaizou7Select[nameCalc[value1]][kaizou7Index][j] + ">" + kaizouValue[nameCalc[value1]][kaizou7Select[nameCalc[value1]][kaizou7Index][j]][0][0] + "</option>";
 					}
 				} else {
-					for (var j = 0; j < kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length; j++) {
-						innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j]][0][0] + "</option>";
+					for (var j = 0; j < kaizouSelect[nameCalc[value1]][kaizouIndex].length; j++) {
+						innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][kaizouIndex][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][kaizouIndex][j]][0][0] + "</option>";
 					}
 				}
 				document.getElementById("id_" + nameValue[value1] + "_slot" + i).innerHTML = innerValue + "</select>";
@@ -1550,12 +1573,12 @@ function Type_Set(value1, value2) {
 				}
 			}
 			if (kaizouTenpreSelect[nameCalc[value1]] != null) {
-			innerValue = "<select id='" + nameValue[value1] + "_tenpure' onchange='Type_Tenpre_Set(" + value1 + ")'>";
-			innerValue += "<option value=-1 selected>テンプレ選択</option>";
-			for (var j = 0; j < kaizouTenpreSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length; j++) {
-				innerValue += "<option value=" + kaizouTenpreSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j] + ">" + kaizouTenpre[nameCalc[value1]][kaizouTenpreSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j]][0] + "</option>";
-			}
-			document.getElementById("id_" + nameValue[value1] + "_tenpure").innerHTML = innerValue + "</select>";
+				innerValue = "<select id='" + nameValue[value1] + "_tenpure' onchange='Type_Tenpre_Set(" + value1 + ")'>";
+				innerValue += "<option value=-1 selected>テンプレ選択</option>";
+				for (var j = 0; j < kaizouTenpreSelect[nameCalc[value1]][kaizouIndex].length; j++) {
+					innerValue += "<option value=" + kaizouTenpreSelect[nameCalc[value1]][kaizouIndex][j] + ">" + kaizouTenpre[nameCalc[value1]][kaizouTenpreSelect[nameCalc[value1]][kaizouIndex][j]][0] + "</option>";
+				}
+				document.getElementById("id_" + nameValue[value1] + "_tenpure").innerHTML = innerValue + "</select>";
 			}
 		}
 	}
@@ -1574,7 +1597,7 @@ function Type_Set(value1, value2) {
 			document.getElementById(nameValue[value1] + '_' + addTypeValue[-typeSelect[nameCalc[value1]][i]]).value = selectValue[nameCalc[value1]][index][-typeSelect[nameCalc[value1]][i]];
 		}
 	}
-	document.getElementById(nameValue[value1] + '_oldselect').value = index;
+	oldselectArray = index;
 	Type_Calc(value1);
 	Menu_Set(value1);
 }
@@ -1608,37 +1631,60 @@ function Type_Tenpre_Set(value1) {
 	}
 }
 
-function Type_Calc(value1) {
-	if (calcFlg == 0) return 0;
+function Type_CalcArray(value1, viewFlg) {
+	if (viewFlg != 0) {
+		kaizouArray[value1][0] = document.getElementById(nameValue[value1]).selectedIndex;
+	}
+	var nameIndex = kaizouArray[value1][0];
 	if (kaizouSelect[nameCalc[value1]][0].length == 0) {
-		var nameIndex = document.getElementById(nameValue[value1]).value;
 		var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //29
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length - addStatusNum; i++) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i + addStatusNum];
+			statusArray[value1][i] = calcValue[i];
+			statusArrayInit[value1][i] = calcValue[i];
 		}
-		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-			if (typeSelect[nameCalc[value1]][i] >= 0) {
-				document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + "_kaisv").value = calcValue[typeSelect[nameCalc[value1]][i]];
+		if (viewFlg != 0) {
+			for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
+				if (typeSelect[nameCalc[value1]][i] >= 0) {
+					document.getElementById(nameValue[value1] + "_" + typeValue[typeSelect[nameCalc[value1]][i]] + "_kaisv").value = calcValue[typeSelect[nameCalc[value1]][i]];
+				}
 			}
 		}
 	} else {
-		for (var i = 1; i <= slotNum; i++) {
-			for (var j = 1; j <= 3; j++) {
-				document.getElementById(nameValue[value1] + "_slot" + i + "_" + j).value = "";
+		if (viewFlg != 0) {
+			for (var i = 1; i <= slotNum; i++) {
+				for (var j = 1; j <= 3; j++) {
+					document.getElementById(nameValue[value1] + "_slot" + i + "_" + j).value = "";
+					kaizouArrayUnit[value1][j - 1 + (i - 1) * 3] = "";
+				}
 			}
 		}
-		var nameIndex = document.getElementById(nameValue[value1]).value;
 		var calcValueSv = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //29
 		var calcValueSvInit = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //29
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length - addStatusNum; i++) {
 			calcValueSv[i] = selectValue[nameCalc[value1]][nameIndex][i + addStatusNum];
-			calcValueSvInit[i] = selectValue[nameCalc[value1]][nameIndex][i + addStatusNum];
+			calcValueSvInit[i] = calcValueSv[i];
+			statusArrayInit[value1][i] = calcValueSv[i];
 		}
 		for (var i = 1; i <= slotNum; i++) {
-			var slotIndex = document.getElementById(nameValue[value1] + '_slot' + i).value;
+			if (viewFlg != 0) {
+				kaizouArray[value1][1 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex;		
+				kaizouArray[value1][2 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_type' + i).selectedIndex;
+				kaizouArray[value1][3 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_lv' + i).selectedIndex;
+			}
+			var slotIndex = kaizouArray[value1][1 + (i - 1) * 3] - 1;
 			if (slotIndex == -1) continue;
-			var typeVal = document.getElementById(nameValue[value1] + '_type' + i).value;
-			var lvVal = document.getElementById(nameValue[value1] + '_lv' + i).value;
+			var indexTmp = nameIndex;
+			if (nameUpdate[nameCalc[value1]] == 0) {
+				indexTmp = 0;
+			}
+			if (i == 7) {
+				slotIndex = kaizou7Select[nameCalc[value1]][kaizou7SelectIndex[nameCalc[value1]][indexTmp]][slotIndex];
+			} else {
+				slotIndex = kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][indexTmp]][slotIndex];
+			}
+			var typeVal = kaizouArray[value1][2 + (i - 1) * 3] + 2;
+			var lvVal = kaizouArray[value1][3 + (i - 1) * 3] + 1;
 			for (var j = 0; j < kaizouValue[nameCalc[value1]][slotIndex].length; j++) {
 				var typeIndex = kaizouValue[nameCalc[value1]][slotIndex][j][7];
 				var kaizouVal = 0.0;
@@ -1653,25 +1699,47 @@ function Type_Calc(value1) {
 				} else {
 					kyoukaValSv = Math.abs(calcValueSvInit[typeIndex]) * kaizouValue[nameCalc[value1]][slotIndex][j][5] * lvVal;
 				}
-				document.getElementById(nameValue[value1] + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
+				if (viewFlg != 0) {
+					document.getElementById(nameValue[value1] + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
+				}
+				kaizouArrayUnit[value1][j + (i - 1) * 3] = kaizouVal + kyoukaValSv;
 				calcValueSv[typeIndex] += kaizouVal + kyoukaValSv;
 				//if (calcValueSv[typeIndex] < 0 && typeIndex != 12) calcValueSv[typeIndex] = 0;
 			}
 		}
 		if (value1 == 2) {
-			var nikuVal = document.getElementById(nameValue[value1] + '_niku').selectedIndex;
+			if (viewFlg != 0) {
+				kaizouArray[value1][22] = document.getElementById(nameValue[value1] + '_niku').selectedIndex;
+				for (var i = 1; i <= 3; i++) {
+					kaizouArray[value1][22 + i] = document.getElementById(nameValue[value1] + '_bodytokusei' + i).selectedIndex;
+				}
+			}
+			var nikuVal = kaizouArray[value1][22];
 			calcValueSv[5] -= nikuVal * calcValueSvInit[5] * 0.02;
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 			var typeIndex = typeSelect[nameCalc[value1]][i];
 			if (typeIndex >= 0) {
-				document.getElementById(nameValue[value1] + "_" + typeValue[typeIndex] + "_kaisv").value = calcValueSv[typeIndex];
+				if (viewFlg != 0) {
+					document.getElementById(nameValue[value1] + "_" + typeValue[typeIndex] + "_kaisv").value = calcValueSv[typeIndex];
+				}
+				statusArray[value1][typeIndex] = calcValueSv[typeIndex];
 			} else {
-				document.getElementById(nameValue[value1] + "_" + addTypeValue[-typeIndex] + "_kaisv").value = document.getElementById(nameValue[value1] + "_" + addTypeValue[-typeIndex]).value;
+				if (viewFlg != 0) {
+					document.getElementById(nameValue[value1] + "_" + addTypeValue[-typeIndex] + "_kaisv").value = document.getElementById(nameValue[value1] + "_" + addTypeValue[-typeIndex]).value;
+				}
 			}
 		}
 	}
+}
+
+function Type_Calc(value1) {
+	if (calcFlg == 0) return 0;
+	Type_CalcArray(value1, 1);
 	UrlCalc(value1);
+	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+		document.getElementById(nameValue[value1] + "_pres").value = urlArray[value1];
+	}
 	if (resultFlg == 0) return 0;
 	Result_Calc();
 	UrlView();
@@ -1685,15 +1753,15 @@ function Result_Calc() {
 		var disp1Flg = 0;
 		if (disp1) {
 			if (value0 >= 27 && value0 <= 32) {
-				if (window.parent.mains.document.getElementById(nameValue[value0]).value == 0) disp1Flg = 1;
+				if (kaizouArray[value0][0] == 0) disp1Flg = 1;
 			}
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value0]].length; i++) {
 			var typeIndex = typeSelect[nameCalc[value0]][i];
 			if (typeIndex >= 0) {
 				if (disp1Flg == 1 && typeIndex != 5) continue;
-				resultValue[typeIndex] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeIndex]).value;
-				resultValueKaiSv[typeIndex] += 1 * window.parent.mains.document.getElementById(nameValue[value0] + "_" + typeValue[typeIndex] + "_kaisv").value;
+				resultValue[typeIndex] += statusArrayInit[value0][typeIndex];
+				resultValueKaiSv[typeIndex] += statusArray[value0][typeIndex];
 			}
 		}
 	}
@@ -1729,9 +1797,9 @@ function Diagnosis_Calc(resultValueKai) {
 	window.parent.diagnosis.document.getElementById(diagnosisValue[11]).value = weightValue;
 	//ブレーキ性能
 	var brakeValue = resultValueKai[23] / 2000.0;
-	var bodyOption1 = window.parent.mains.document.getElementById(nameValue[2] + "_bodytokusei1").selectedIndex;
-	var bodyOption2 = window.parent.mains.document.getElementById(nameValue[2] + "_bodytokusei2").selectedIndex;
-	var bodyOption3 = window.parent.mains.document.getElementById(nameValue[2] + "_bodytokusei3").selectedIndex;
+	var bodyOption1 = kaizouArray[2][23];
+	var bodyOption2 = kaizouArray[2][24];
+	var bodyOption3 = kaizouArray[2][25];
 	if (brakeValue != 0 && bodyOption1 == 6) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption1 == 26) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.015;
@@ -1750,16 +1818,16 @@ function Diagnosis_Calc(resultValueKai) {
 	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.17;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[2]).value = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
 	//加速度(毎秒)
-	var ftirekeiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[16] + "_kaisv").value;
-	var rtirekeiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[16] + "_kaisv").value;
+	var ftirekeiValue = statusArray[6][16];
+	var rtirekeiValue = statusArray[7][16];
 	var mintiresenkai;
 	var mintirespeedloss;
 	if (ftirekeiValue <= rtirekeiValue) {
-		mintiresenkai = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "_kaisv").value;
-		mintirespeedloss = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[8]).value;
+		mintiresenkai = statusArray[6][14];
+		mintirespeedloss = statusArrayInit[6][8];
 	} else {
-		mintiresenkai = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "_kaisv").value;
-		mintirespeedloss = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[8]).value;
+		mintiresenkai = statusArray[7][14];
+		mintirespeedloss = statusArrayInit[7][8];
 	}
 	var tiresenkaisa = Math.abs(ftirekeiValue - rtirekeiValue);
 	if (shindantire == 2) {
@@ -1802,10 +1870,10 @@ function Diagnosis_Calc(resultValueKai) {
 	var jumpValue = Math.sin(2.0 * 20.0 * (Math.PI / 180.0)) / 9.80665;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[7]).value = speedValue2 * speedValue2 * jumpValue;
 	//前後の重心
-	var chassisIndex = window.parent.mains.document.getElementById(nameValue[3]).selectedIndex;
+	var chassisIndex = kaizouArray[3][0];
 	var gravityValue = 0.0;
 	for (var i = 0; i < nameValue.length; i++) {
-		var weightpartsValue = 1.0 * window.parent.mains.document.getElementById(nameValue[i] + "_" + typeValue[5] + "_kaisv").value;
+		var weightpartsValue = statusArray[i][5];
 		if (i == 3) {
 			gravityValue += baseGravity[chassisIndex] * chassisGravity[chassisIndex] * weightpartsValue;
 		} else {
@@ -1828,10 +1896,10 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 32) ftiregripUp += 0.015;
 	if (bodyOption1 == 33) ftiregripUp += 0.15;
 	if (bodyOption1 == 34) ftiregripUp += 0.015;
-	var ftiregripValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[13] + "_kaisv").value;
-	var rtiregripValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[13] + "_kaisv").value;
+	var ftiregripValue = statusArray[6][13];
+	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (baseGravity[chassisIndex] / 2.0 + gravityValue) + rtiregripValue * (baseGravity[chassisIndex] / 2.0 - gravityValue)) / baseGravity[chassisIndex];
-	//tiregripValue += 1.0 * window.parent.mains.document.getElementById(nameValue[33] + "_" + typeValue[13] + "_kaisv").value;
+	//tiregripValue += statusArray[33][13];
 	window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value = tiregripValue * ftiregripUp / 100.0;
 	//空転
 	window.parent.diagnosis.document.getElementById(diagnosisValue[15]).value = (window.parent.diagnosis.document.getElementById(diagnosisValue[5]).value * 10.0 + 0.3) * 3.6;
@@ -1861,8 +1929,8 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption2 == 13) cornerspeedUp += 0.075;
 	if (bodyOption3 == 3) cornerspeedUp += 0.03;
 	if (bodyOption3 == 13) cornerspeedUp += 0.075;
-	var rollecornerValue1 = 1.0 * window.parent.mains.document.getElementById(nameValue[12] + "_" + typeValue[3] + "_kaisv").value;
-	var rollecornerValue2 = 1.0 * window.parent.mains.document.getElementById(nameValue[15] + "_" + typeValue[3] + "_kaisv").value;
+	var rollecornerValue1 = statusArray[12][3];
+	var rollecornerValue2 = statusArray[15][3];
 	window.parent.diagnosis.document.getElementById(diagnosisValue[20]).value = "調整中";//0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
 	window.parent.diagnosis.document.getElementById(diagnosisValue[21]).value = "調整中";//0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.385) * 3.6;
 	//window.parent.diagnosis.document.getElementById(diagnosisValue[16]).value = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
@@ -1921,30 +1989,30 @@ function Diagnosis_Calc(resultValueKai) {
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
-		if (window.parent.mains.document.getElementById(nameValue[rollerNo[i]]).selectedIndex != 0) {
-			rollermasatsuValue = 1.0 * window.parent.mains.document.getElementById(nameValue[rollerNo[i]] + "_" + typeValue[17] + "_kaisv").value;
+		if (kaizouArray[rollerNo[i]][0] != 0) {
+			rollermasatsuValue = statusArray[rollerNo[i]][17];
 		}
 	}
 	var rollerteikouValue1 = -100.0;
 	rollerNo = new Array(14, 11);
 	for (var i = 0; i < rollerNo.length; i++) {
-		if (window.parent.mains.document.getElementById(nameValue[rollerNo[i]]).selectedIndex != 0) {
-			rollerteikouValue1 = Math.max(rollerteikouValue1, window.parent.mains.document.getElementById(nameValue[rollerNo[i]] + "_" + typeValue[18] + "_kaisv").value);
+		if (kaizouArray[rollerNo[i]][0] != 0) {
+			rollerteikouValue1 = Math.max(rollerteikouValue1, statusArray[rollerNo[i]][18]);
 		}
 	}
 	var rollerteikouValue2 = -100.0;
 	rollerNo = new Array(16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
-		if (window.parent.mains.document.getElementById(nameValue[rollerNo[i]]).selectedIndex != 0) {
-			rollerteikouValue2 = Math.max(rollerteikouValue2, window.parent.mains.document.getElementById(nameValue[rollerNo[i]] + "_" + typeValue[18] + "_kaisv").value);
+		if (kaizouArray[rollerNo[i]][0] != 0) {
+			rollerteikouValue2 = Math.max(rollerteikouValue2, statusArray[rollerNo[i]][18]);
 		}
 	}
 	var rollerteikouValue = Math.max(rollerteikouValue1, rollerteikouValue2);
 	if (rollerteikouValue1 < -10.0 || rollerteikouValue2 < -10.0) {
 		rollerNo = new Array(15, 12);
 		for (var i = 0; i < rollerNo.length; i++) {
-			if (window.parent.mains.document.getElementById(nameValue[rollerNo[i]]).selectedIndex != 0) {
-				rollerteikouValue = Math.max(rollerteikouValue, window.parent.mains.document.getElementById(nameValue[rollerNo[i]] + "_" + typeValue[18] + "_kaisv").value);
+			if (kaizouArray[rollerNo[i]][0] != 0) {
+				rollerteikouValue = Math.max(rollerteikouValue, statusArray[rollerNo[i]][18]);
 			}
 		}
 	}
@@ -1957,11 +2025,11 @@ function Diagnosis_Calc(resultValueKai) {
 	if (rollerteikouValue1 < -10.0) {
 		rollerteikouValue += 1250;
 	}
-	var ftiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[14] + "_kaisv").value;
-	var rtiresenkaiValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[14] + "_kaisv").value;
+	var ftiresenkaiValue = statusArray[6][14];
+	var rtiresenkaiValue = statusArray[7][14];
 	var tiresenkaiValue = (ftiresenkaiValue * (baseGravity[chassisIndex] / 2.0 - gravityValue) + rtiresenkaiValue * (baseGravity[chassisIndex] / 2.0 + gravityValue)) / baseGravity[chassisIndex];
-	var ftireIndex = window.parent.mains.document.getElementById(nameValue[6]).selectedIndex;
-	var rtireIndex = window.parent.mains.document.getElementById(nameValue[7]).selectedIndex;
+	var ftireIndex = kaizouArray[6][0];
+	var rtireIndex = kaizouArray[7][0];
 	var treadValue = 1 * selectValue[5][ftireIndex][2] + selectValue[5][rtireIndex][2];
 	var cornerweightValue = 0.01927774 * (baseGravity[chassisIndex] + treadValue / 12.75) + 0.909200552;
 	var cornerdeceleA = 1.0 / (916.0 - cornerweightValue * Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) / acceleValue2);
@@ -1978,8 +2046,8 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption3 == 7) bodyBoundtime -= 0.018;
 	if (bodyOption3 == 17) bodyBoundtime -= 0.036;
 	var seishinValue = 10.0 * resultValueKai[11];
-	var ftirehanpatsuValue = 1.0 * window.parent.mains.document.getElementById(nameValue[6] + "_" + typeValue[15] + "_kaisv").value;
-	var rtirehanpatsuValue = 1.0 * window.parent.mains.document.getElementById(nameValue[7] + "_" + typeValue[15] + "_kaisv").value;
+	var ftirehanpatsuValue = statusArray[6][15];
+	var rtirehanpatsuValue = statusArray[7][15];
 	var tirehanpatsuValue = ftirehanpatsuValue + rtirehanpatsuValue;
 	var speedValue3 = speedValue2 * 2 * Math.sin(10.0 * (Math.PI / 180.0)) * tirehanpatsuValue / 1000.0 / 9.80665 / (1.0 - tirehanpatsuValue / 1000.0) * bodyBoundtime;
 	x1 = 0.1336667529;
@@ -2032,10 +2100,44 @@ function Menu_Click(value1) {
 	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='img/imgback.png'>";
 	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='img/imgselect.png'>";
 	window.parent.menus.document.getElementById("menu_oldselect").value = value1;
+	
+	calcFlg = 0;
+	resultFlg = 0;
+	View_Set(value1);
+	Type_Init(value1);
+	document.getElementById(nameValue[value1]).selectedIndex =  kaizouArray[value1][0];
+	Type_Set(value1, 1);
+	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
+		if (typeSelect[nameCalc[value1]][i] >= 0) {
+			document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + "_kaisv").value = statusArray[value1][typeSelect[nameCalc[value1]][i]];
+		} else {
+			document.getElementById(nameValue[value1] + '_' + addTypeValue[-typeSelect[nameCalc[value1]][i]] + "_kaisv").value = selectValue[nameCalc[value1]][index][-typeSelect[nameCalc[value1]][i]];
+		}
+	}
+	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+		for (var i = 1; i <= slotNum; i++) {
+			document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex = kaizouArray[value1][1 + (i - 1) * 3];
+			document.getElementById(nameValue[value1] + '_type' + i).selectedIndex = kaizouArray[value1][2 + (i - 1) * 3];
+			document.getElementById(nameValue[value1] + '_lv' + i).selectedIndex = kaizouArray[value1][3 + (i - 1) * 3];
+			Type_Slot_Set(value1, i - 1);
+			for (var j = 0; j < 3; j++) {
+				document.getElementById(nameValue[value1] + "_slot" + i + "_" + (j + 1)).value = kaizouArrayUnit[value1][j + (i - 1) * 3];
+			}
+		}
+		if (value1 == 2) {
+			document.getElementById(nameValue[value1] + '_niku').selectedIndex = kaizouArray[value1][22];
+			for (var i = 1; i <= 3; i++) {
+				document.getElementById(nameValue[value1] + '_bodytokusei' + i).selectedIndex = kaizouArray[value1][22 + i];
+			}
+		}
+		document.getElementById(nameValue[value1] + "_pres").value = urlArray[value1];
+	}
+	calcFlg = 1;
+	resultFlg = 1;
 }
 
 function Menu_Set(value1) {
-	var index = window.parent.mains.document.getElementById(nameValue[value1]).selectedIndex;
+	var index = kaizouArray[value1][0];
 	var imgName = "set";
 	if (index == 0 && nameZero[nameCalc[value1]] == 1) {
 		imgName = "";
@@ -2053,28 +2155,27 @@ function Menu_Set(value1) {
 }
 
 function UrlCalc(value1) {
-	var urlValue = NumToUrl(document.getElementById(nameValue[value1]).selectedIndex);
+	var urlValue = NumToUrl(kaizouArray[value1][0]);
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		for (var i = 1; i <= slotNum; i++) {
-			urlValue += NumToUrl(document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex);
-			urlValue += NumToUrl(document.getElementById(nameValue[value1] + '_type' + i).selectedIndex);
-			urlValue += NumToUrl(document.getElementById(nameValue[value1] + '_lv' + i).selectedIndex);
+			urlValue += NumToUrl(kaizouArray[value1][1 + (i - 1) * 3]);
+			urlValue += NumToUrl(kaizouArray[value1][2 + (i - 1) * 3]);
+			urlValue += NumToUrl(kaizouArray[value1][3 + (i - 1) * 3]);
 		}
 		if (value1 == 2) {
-			urlValue += NumToUrl(document.getElementById(nameValue[value1] + '_niku').selectedIndex);
-			urlValue += NumToUrl(document.getElementById(nameValue[value1] + '_bodytokusei1').selectedIndex);
-			urlValue += NumToUrl(document.getElementById(nameValue[value1] + '_bodytokusei2').selectedIndex);
-			urlValue += NumToUrl(document.getElementById(nameValue[value1] + '_bodytokusei3').selectedIndex);
+			urlValue += NumToUrl(kaizouArray[value1][22]);
+			for (var i = 1; i <= 3; i++) {
+				urlValue += NumToUrl(kaizouArray[value1][22 + i]);
+			}
 		}
-		document.getElementById(nameValue[value1] + "_pres").value = urlValue;
 	}
-	document.getElementById(nameValue[value1] + "_url").value = urlValue;
+	urlArray[value1] = urlValue;
 }
 
 function UrlView() {
 	var urlValue = "";
-	for (var value0 = 0; value0 < nameValue.length; value0++) {
-		urlValue += document.getElementById(nameValue[value0] + "_url").value;
+	for (var i = 0; i < nameValue.length; i++) {
+		urlValue += urlArray[i];
 	}
 	var url = window.parent.document.location.href;
 	var start = url.indexOf("?", 0);
@@ -2100,31 +2201,29 @@ function UrlSet() {
 					charLenTmp++;
 				}
 				index = UrlToNum(str);
-				document.getElementById(nameValue[value1]).selectedIndex = index;
-				Type_Set(value1, nameUpdate[nameCalc[value1]]);
+				kaizouArray[value1][0] = index;
 				if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 					var slotNumTmp = slotNum;
 					if (presetText.length <= (578 + charLenTmp)) slotNumTmp = 6;
 					for (var i = 1; i <= slotNumTmp; i++) {
 						index = UrlToNum(presetText.charAt(pos++));
-						document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex = index;
+						kaizouArray[value1][1 + (i - 1) * 3] = index;
 						index = UrlToNum(presetText.charAt(pos++));
-						document.getElementById(nameValue[value1] + '_type' + i).selectedIndex = index;
+						kaizouArray[value1][2 + (i - 1) * 3] = index;
 						index = UrlToNum(presetText.charAt(pos++));
-						document.getElementById(nameValue[value1] + '_lv' + i).selectedIndex = index;
-						Type_Slot_Set(value1, i - 1);
+						kaizouArray[value1][3 + (i - 1) * 3] = index;
 					}
 					if (value1 == 2) {
 						index = UrlToNum(presetText.charAt(pos++));
-						document.getElementById(nameValue[value1] + '_niku').selectedIndex = index;
+						kaizouArray[value1][22] = index;
 						if (presetText.length != (559 + charLenTmp) && presetText.length != (577 + charLenTmp)) {
 							index = UrlToNum(presetText.charAt(pos++));
-							document.getElementById(nameValue[value1] + '_bodytokusei1').selectedIndex = index;
+							kaizouArray[value1][23] = index;
 						}
 						index = UrlToNum(presetText.charAt(pos++));
-						document.getElementById(nameValue[value1] + '_bodytokusei2').selectedIndex = index;
+						kaizouArray[value1][24] = index;
 						index = UrlToNum(presetText.charAt(pos++));
-						document.getElementById(nameValue[value1] + '_bodytokusei3').selectedIndex = index;
+						kaizouArray[value1][25] = index;
 					}
 				}
 			}
@@ -2146,6 +2245,7 @@ function Preset_Set(value1) {
 		}
 		index = UrlToNum(str);
 		document.getElementById(nameValue[value1]).selectedIndex = index;
+		kaizouArray[value1][0] = index;
 		Type_Set(value1, nameUpdate[nameCalc[value1]]);
 		var slotNumTmp = slotNum;
 		if (presetText.length < (22 + charLenTmp)) slotNumTmp = 6;
@@ -2211,21 +2311,20 @@ function Shokika_Set(value1) {
 }
 
 function Shikou_Set(value0) {
-	calcFlg = 0;
-	resultFlg = 0;
 	for (var i = 0; i < nameValue.length; i++) {
 		if (kaizouSelect[nameCalc[i]][0].length != 0) {
 			for (var j = 1; j <= slotNum; j++) {
-				document.getElementById(nameValue[i] + '_type' + j).selectedIndex = value0;
+				kaizouArray[i][2 + (j - 1) * 3] = value0;
 			}
 		}
 	}
-	calcFlg = 1;
-	for (var i = 0; i < nameValue.length - 1; i++) {
-		Type_Calc(i);
+	for (var i = 0; i < nameValue.length; i++) {
+		Type_CalcArray(i, 0);
+		UrlCalc(i);
 	}
-	resultFlg = 1;
-	Type_Calc(nameValue.length - 1);
+	Result_Calc();
+	UrlView();
+	Menu_Click(0);
 }
 
 function Parts_Out(value1) {
