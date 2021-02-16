@@ -1409,13 +1409,6 @@ function All_Set() {
 		}
 	}
 	urlArray = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); //33
-	calcFlg = 0;
-	resultFlg = 0;
-
-	//View_Set(i);
-	//Type_Init(i);
-	//Type_Set(i, 1);
-
 	calcFlg = 1;
 	resultFlg = 1;
 	UrlSet();
@@ -1427,6 +1420,7 @@ function All_Set() {
 	}
 	Result_Calc();
 	UrlView();
+	Menu_Click(0);
 }
 
 function View_Set(value1) {
@@ -1554,17 +1548,23 @@ function Type_Set(value1, value2) {
 			}
 		}
 		if (sameFlg == -1 || (index == 0 && nameZero[nameCalc[value1]] == 1)) {
+			var indexTmp = index;
+			if (nameUpdate[nameCalc[value1]] == 0) {
+				indexTmp = 0;
+			}
+			var kaizouIndex = kaizouSelectIndex[nameCalc[value1]][indexTmp];
+			var kaizou7Index = kaizou7SelectIndex[nameCalc[value1]][indexTmp];
 			var innerValue = "";
 			for (var i = 1; i <= slotNum; i++) {
 				innerValue = "<select id='" + nameValue[value1] + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
 				innerValue += "<option value=-1 selected>改造選択</option>";
 				if (i == 7) {
-					for (var j = 0; j < kaizou7Select[nameCalc[value1]][kaizou7SelectIndex[nameCalc[value1]][index]].length; j++) {
-						innerValue += "<option value=" + kaizou7Select[nameCalc[value1]][kaizou7SelectIndex[nameCalc[value1]][index]][j] + ">" + kaizouValue[nameCalc[value1]][kaizou7Select[nameCalc[value1]][kaizou7SelectIndex[nameCalc[value1]][index]][j]][0][0] + "</option>";
+					for (var j = 0; j < kaizou7Select[nameCalc[value1]][kaizou7Index].length; j++) {
+						innerValue += "<option value=" + kaizou7Select[nameCalc[value1]][kaizou7Index][j] + ">" + kaizouValue[nameCalc[value1]][kaizou7Select[nameCalc[value1]][kaizou7Index][j]][0][0] + "</option>";
 					}
 				} else {
-					for (var j = 0; j < kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length; j++) {
-						innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j]][0][0] + "</option>";
+					for (var j = 0; j < kaizouSelect[nameCalc[value1]][kaizouIndex].length; j++) {
+						innerValue += "<option value=" + kaizouSelect[nameCalc[value1]][kaizouIndex][j] + ">" + kaizouValue[nameCalc[value1]][kaizouSelect[nameCalc[value1]][kaizouIndex][j]][0][0] + "</option>";
 					}
 				}
 				document.getElementById("id_" + nameValue[value1] + "_slot" + i).innerHTML = innerValue + "</select>";
@@ -1573,12 +1573,12 @@ function Type_Set(value1, value2) {
 				}
 			}
 			if (kaizouTenpreSelect[nameCalc[value1]] != null) {
-			innerValue = "<select id='" + nameValue[value1] + "_tenpure' onchange='Type_Tenpre_Set(" + value1 + ")'>";
-			innerValue += "<option value=-1 selected>テンプレ選択</option>";
-			for (var j = 0; j < kaizouTenpreSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]].length; j++) {
-				innerValue += "<option value=" + kaizouTenpreSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j] + ">" + kaizouTenpre[nameCalc[value1]][kaizouTenpreSelect[nameCalc[value1]][kaizouSelectIndex[nameCalc[value1]][index]][j]][0] + "</option>";
-			}
-			document.getElementById("id_" + nameValue[value1] + "_tenpure").innerHTML = innerValue + "</select>";
+				innerValue = "<select id='" + nameValue[value1] + "_tenpure' onchange='Type_Tenpre_Set(" + value1 + ")'>";
+				innerValue += "<option value=-1 selected>テンプレ選択</option>";
+				for (var j = 0; j < kaizouTenpreSelect[nameCalc[value1]][kaizouIndex].length; j++) {
+					innerValue += "<option value=" + kaizouTenpreSelect[nameCalc[value1]][kaizouIndex][j] + ">" + kaizouTenpre[nameCalc[value1]][kaizouTenpreSelect[nameCalc[value1]][kaizouIndex][j]][0] + "</option>";
+				}
+				document.getElementById("id_" + nameValue[value1] + "_tenpure").innerHTML = innerValue + "</select>";
 			}
 		}
 	}
@@ -1655,7 +1655,7 @@ function Type_CalcArray(value1, viewFlg) {
 			for (var i = 1; i <= slotNum; i++) {
 				for (var j = 1; j <= 3; j++) {
 					document.getElementById(nameValue[value1] + "_slot" + i + "_" + j).value = "";
-					//kaizouArrayUnit[value1][j - 1 + (i - 1) * 3] = "";
+					kaizouArrayUnit[value1][j - 1 + (i - 1) * 3] = "";
 				}
 			}
 		}
@@ -1702,7 +1702,7 @@ function Type_CalcArray(value1, viewFlg) {
 				if (viewFlg != 0) {
 					document.getElementById(nameValue[value1] + "_slot" + i + "_" + (j + 1)).value = kaizouVal + kyoukaValSv;
 				}
-				//kaizouArrayUnit[value1][j + (i - 1) * 3] = kaizouVal + kyoukaValSv;
+				kaizouArrayUnit[value1][j + (i - 1) * 3] = kaizouVal + kyoukaValSv;
 				calcValueSv[typeIndex] += kaizouVal + kyoukaValSv;
 				//if (calcValueSv[typeIndex] < 0 && typeIndex != 12) calcValueSv[typeIndex] = 0;
 			}
@@ -2105,9 +2105,33 @@ function Menu_Click(value1) {
 	resultFlg = 0;
 	View_Set(value1);
 	Type_Init(value1);
+	document.getElementById(nameValue[value1]).selectedIndex =  kaizouArray[value1][0];
 	Type_Set(value1, 1);
-	document.getElementById(nameValue[value1] + "_pres").value = urlArray[value1];
-	Preset_Set(value1);
+	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
+		if (typeSelect[nameCalc[value1]][i] >= 0) {
+			document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + "_kaisv").value = statusArray[value1][typeSelect[nameCalc[value1]][i]];
+		} else {
+			document.getElementById(nameValue[value1] + '_' + addTypeValue[-typeSelect[nameCalc[value1]][i]] + "_kaisv").value = selectValue[nameCalc[value1]][index][-typeSelect[nameCalc[value1]][i]];
+		}
+	}
+	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+		for (var i = 1; i <= slotNum; i++) {
+			document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex = kaizouArray[value1][1 + (i - 1) * 3];
+			document.getElementById(nameValue[value1] + '_type' + i).selectedIndex = kaizouArray[value1][2 + (i - 1) * 3];
+			document.getElementById(nameValue[value1] + '_lv' + i).selectedIndex = kaizouArray[value1][3 + (i - 1) * 3];
+			Type_Slot_Set(value1, i - 1);
+			for (var j = 0; j < 3; j++) {
+				document.getElementById(nameValue[value1] + "_slot" + i + "_" + (j + 1)).value = kaizouArrayUnit[value1][j + (i - 1) * 3];
+			}
+		}
+		if (value1 == 2) {
+			document.getElementById(nameValue[value1] + '_niku').selectedIndex = kaizouArray[value1][22];
+			for (var i = 1; i <= 3; i++) {
+				document.getElementById(nameValue[value1] + '_bodytokusei' + i).selectedIndex = kaizouArray[value1][22 + i];
+			}
+		}
+		document.getElementById(nameValue[value1] + "_pres").value = urlArray[value1];
+	}
 	calcFlg = 1;
 	resultFlg = 1;
 }
@@ -2221,6 +2245,7 @@ function Preset_Set(value1) {
 		}
 		index = UrlToNum(str);
 		document.getElementById(nameValue[value1]).selectedIndex = index;
+		kaizouArray[value1][0] = index;
 		Type_Set(value1, nameUpdate[nameCalc[value1]]);
 		var slotNumTmp = slotNum;
 		if (presetText.length < (22 + charLenTmp)) slotNumTmp = 6;
