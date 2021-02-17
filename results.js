@@ -4,6 +4,9 @@ var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 
 function Result_Calc() {
 	window.parent.mains.Result_Calc();
 }
+function UrlView(value1) {
+	window.parent.mains.UrlView(value1);
+}
 
 function View_Result() {
 	//var typeValue = window.parent.mains.typeValue;
@@ -19,6 +22,8 @@ function View_Result() {
 		writeValue += "<td>" + typeView[i] + "<input class='csinput' type='text' id='" + typeValue[i] + "' value=''><br>改造後 <input class='csinput' type='text' id='" + typeValue[i] + "_kaisv' value=''><br>改造比率[%] <input class='csinput' type='text' id='" + typeValue[i] + "_rate' value=''></td>";
 	}
 	writeValue += "</tr></table>";
+	writeValue += "<br><table class='cstable'><tr><td><input class='csinput1' type='radio' id='history1' name='history' onchange='UrlView(1)' checked>プリセットURL通常　";
+	writeValue += "<input class='csinput1' type='radio' id='history2' name='history' onchange='UrlView(0)'>プリセットURL自動適用　</td></tr></table>";
 	writeValue += "<br><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a>";
 	writeValue += "<table class='cstable'><tr><td class='cstd'>　</td><td><input class='csinput2' type='text' id='dispurl' value=''></td></tr></table>";
 	document.getElementById("bmain").innerHTML = writeValue;

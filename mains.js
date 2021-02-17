@@ -1429,7 +1429,7 @@ function All_Set() {
 		Menu_Set(i);
 	}
 	Result_Calc();
-	UrlView();
+	UrlView(0);
 	Menu_Click(0);
 }
 
@@ -1678,7 +1678,7 @@ function Type_CalcArray(value1, viewFlg) {
 		}
 		for (var i = 1; i <= slotNum; i++) {
 			if (viewFlg != 0) {
-				kaizouArray[value1][1 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex;		
+				kaizouArray[value1][1 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex;
 				kaizouArray[value1][2 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_type' + i).selectedIndex;
 				kaizouArray[value1][3 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_lv' + i).selectedIndex;
 			}
@@ -1752,7 +1752,7 @@ function Type_Calc(value1) {
 	}
 	if (resultFlg == 0) return 0;
 	Result_Calc();
-	UrlView();
+	UrlView(0);
 }
 
 function Result_Calc() {
@@ -2182,17 +2182,25 @@ function UrlCalc(value1) {
 	urlArray[value1] = urlValue;
 }
 
-function UrlView() {
+function UrlView(value1) {
 	var urlValue = "";
 	for (var i = 0; i < nameValue.length; i++) {
 		urlValue += urlArray[i];
+	}
+	var historyValue = "a";
+	if (window.parent.results.document.getElementById('history2').checked) {
+		historyValue = "b";
 	}
 	var url = window.parent.document.location.href;
 	var start = url.indexOf("?", 0);
 	var urlInit = url;
 	if (start != -1) urlInit = url.substring(0, start);
-	window.parent.results.document.getElementById('linkurl').href = urlInit + "?" + urlValue;
-	window.parent.results.document.getElementById('dispurl').value = urlInit + "?" + urlValue;
+	window.parent.results.document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
+	window.parent.results.document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
+	if (historyValue == "b" || value1 == 1) {
+		//window.parent.history.pushState("", "" , "?" + urlValue);
+		window.parent.history.replaceState("", "" , "?" + urlValue + historyValue);
+	}
 }
 
 function UrlSet() {
@@ -2236,6 +2244,10 @@ function UrlSet() {
 						kaizouArray[value1][25] = index;
 					}
 				}
+			}
+			index = UrlToNum(presetText.charAt(pos++));
+			if (index == 1) {
+				window.parent.results.document.getElementById('history2').checked = true;
 			}
 		}
 	}
@@ -2333,7 +2345,7 @@ function Shikou_Set(value0) {
 		UrlCalc(i);
 	}
 	Result_Calc();
-	UrlView();
+	UrlView(0);
 	Menu_Click(0);
 }
 
