@@ -2046,8 +2046,7 @@ function Diagnosis_Calc(resultValueKai) {
 	var ftiresenkaiValue = statusArray[6][14];
 	var rtiresenkaiValue = statusArray[7][14];
 	var tiresenkaiValue = (ftiresenkaiValue * (resultValueKai[31] / 2.0 - gravityValue) + rtiresenkaiValue * (resultValueKai[31] / 2.0 + gravityValue)) / resultValueKai[31];
-	var ftireIndex = kaizouArray[6][0];
-	var rtireIndex = kaizouArray[7][0];
+	//var tiresenkaiValue = resultValueKai[14] / 2.0;
 	var treadValue = Math.sqrt(resultValueKai[30] ** 2 + resultValueKai[31] ** 2);
 	var cornerweightValue = 0.024516625 * treadValue;
 	var cornerdeceleA = 1.0 / (916.0 - cornerweightValue * Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) / acceleValue2);
