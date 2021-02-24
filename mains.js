@@ -426,7 +426,7 @@ kaizou7Select[17] = new Array();
 kaizou7Select[17][s++] = new Array(3, 4);
 s = 0;
 kaizouTenpreSelect[17] = new Array();
-kaizouTenpreSelect[17][s++] = new Array(0, 0);
+kaizouTenpreSelect[17][s++] = [0];
 kaizouTenpre[17] = new Array();
 kaizouTenpre[17][0] = new Array("スピロスx6", 3, 3, 2, 2, 2, 2);
 
@@ -457,7 +457,7 @@ kaizou7Select[19] = new Array();
 kaizou7Select[19][s++] = new Array(2, 3);
 s = 0;
 kaizouTenpreSelect[19] = new Array();
-kaizouTenpreSelect[19][s++] = new Array(0, 0);
+kaizouTenpreSelect[19][s++] = [0];
 kaizouTenpre[19] = new Array();
 kaizouTenpre[19][0] = new Array("パワロスx6", 2, 2, 1, 1, 1, 1);
 
