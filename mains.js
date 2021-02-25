@@ -1912,7 +1912,7 @@ function Diagnosis_Calc(resultValueKai) {
 	if (bodyOption1 == 32) ftiregripUp += 0.015;
 	if (bodyOption1 == 33) ftiregripUp += 0.15;
 	if (bodyOption1 == 34) ftiregripUp += 0.015;
-	if (bodyOption1 == 35) ftiregripUp += 0.075;
+	if (bodyOption1 == 35) ftiregripUp += 0.07;
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
