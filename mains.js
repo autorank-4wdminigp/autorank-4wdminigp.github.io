@@ -1495,7 +1495,7 @@ function View_Set(value1) {
 		writeValue += "<td class='cstd'></td>";
 		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
 		writeValue += "</td><td class='cstd'></td>";
-		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
+		writeValue += "<td>パーツプリセット <input class='csinput_p' type='text' id='" + nameValue[value1] + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
 		writeValue += "</tr></table><table class='cstable'>";
 		for (var i = 1; i <= slotNum; i++) {
 			writeValue += "<tr><td class='cstd'>　</td><td>スロット" + i + " ";
@@ -1588,7 +1588,7 @@ function Type_Set(value1, value2) {
 				}
 			}
 			if (kaizouTenpreSelect[nameCalc[value1]] != null) {
-				innerValue = "<select id='" + nameValue[value1] + "_tenpure' onchange='Type_Tenpre_Set(" + value1 + ")'>";
+				innerValue = "<select class='select_t' id='" + nameValue[value1] + "_tenpure' onchange='Type_Tenpre_Set(" + value1 + ")'>";
 				innerValue += "<option value=-1 selected>テンプレ選択</option>";
 				for (var j = 0; j < kaizouTenpreSelect[nameCalc[value1]][kaizouIndex].length; j++) {
 					innerValue += "<option value=" + kaizouTenpreSelect[nameCalc[value1]][kaizouIndex][j] + ">" + kaizouTenpre[nameCalc[value1]][kaizouTenpreSelect[nameCalc[value1]][kaizouIndex][j]][0] + "</option>";
@@ -2221,7 +2221,7 @@ function UrlSet() {
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
 				var charLenTmp = 0;
-				if (str == "0") {
+				if (str == "0" || str == "-") {
 					str += presetText.charAt(pos++);
 					charLenTmp++;
 				}
@@ -2268,7 +2268,7 @@ function Preset_Set(value1) {
 		calcFlg = 0;
 		var str = presetText.charAt(pos++);
 		var charLenTmp = 0;
-		if (str == "0") {
+		if (str == "0" || str == "-") {
 			str += presetText.charAt(pos++);
 			charLenTmp++;
 		}
@@ -2475,6 +2475,59 @@ function UrlToNum(value) {
 	if (value == "0X") return 110;
 	if (value == "0Y") return 111;
 	if (value == "0Z") return 112;
+	
+	if (value == "-a") return 113;
+	if (value == "-b") return 114;
+	if (value == "-c") return 115;
+	if (value == "-d") return 116;
+	if (value == "-e") return 117;
+	if (value == "-f") return 118;
+	if (value == "-g") return 119;
+	if (value == "-h") return 120;
+	if (value == "-i") return 121;
+	if (value == "-j") return 122;
+	if (value == "-k") return 123;
+	if (value == "-l") return 124;
+	if (value == "-m") return 125;
+	if (value == "-n") return 126;
+	if (value == "-o") return 127;
+	if (value == "-p") return 128;
+	if (value == "-q") return 129;
+	if (value == "-r") return 130;
+	if (value == "-s") return 131;
+	if (value == "-t") return 132;
+	if (value == "-u") return 133;
+	if (value == "-v") return 134;
+	if (value == "-w") return 135;
+	if (value == "-x") return 136;
+	if (value == "-y") return 137;
+	if (value == "-z") return 138;
+	if (value == "-A") return 139;
+	if (value == "-B") return 140;
+	if (value == "-C") return 141;
+	if (value == "-D") return 142;
+	if (value == "-E") return 143;
+	if (value == "-F") return 144;
+	if (value == "-G") return 145;
+	if (value == "-H") return 146;
+	if (value == "-I") return 147;
+	if (value == "-J") return 148;
+	if (value == "-K") return 149;
+	if (value == "-L") return 150;
+	if (value == "-M") return 151;
+	if (value == "-N") return 152;
+	if (value == "-O") return 153;
+	if (value == "-P") return 154;
+	if (value == "-Q") return 155;
+	if (value == "-R") return 156;
+	if (value == "-S") return 157;
+	if (value == "-T") return 158;
+	if (value == "-U") return 159;
+	if (value == "-V") return 160;
+	if (value == "-W") return 161;
+	if (value == "-X") return 162;
+	if (value == "-Y") return 163;
+	if (value == "-Z") return 164;
     return 0;
 }
 
@@ -2592,6 +2645,59 @@ function NumToUrl(value) {
 	if (value == 110) return "0X";
 	if (value == 111) return "0Y";
 	if (value == 112) return "0Z";
-	return "a";
+	
+	if (value == 113) return "-a";
+	if (value == 114) return "-b";
+	if (value == 115) return "-c";
+	if (value == 116) return "-d";
+	if (value == 117) return "-e";
+	if (value == 118) return "-f";
+	if (value == 119) return "-g";
+	if (value == 120) return "-h";
+	if (value == 121) return "-i";
+	if (value == 122) return "-j";
+	if (value == 123) return "-k";
+	if (value == 124) return "-l";
+	if (value == 125) return "-m";
+	if (value == 126) return "-n";
+	if (value == 127) return "-o";
+	if (value == 128) return "-p";
+	if (value == 129) return "-q";
+	if (value == 130) return "-r";
+	if (value == 131) return "-s";
+	if (value == 132) return "-t";
+	if (value == 133) return "-u";
+	if (value == 134) return "-v";
+	if (value == 135) return "-w";
+	if (value == 136) return "-x";
+	if (value == 137) return "-y";
+	if (value == 138) return "-z";
+	if (value == 139) return "-A";
+	if (value == 140) return "-B";
+	if (value == 141) return "-C";
+	if (value == 142) return "-D";
+	if (value == 143) return "-E";
+	if (value == 144) return "-F";
+	if (value == 145) return "-G";
+	if (value == 146) return "-H";
+	if (value == 147) return "-I";
+	if (value == 148) return "-J";
+	if (value == 149) return "-K";
+	if (value == 150) return "-L";
+	if (value == 151) return "-M";
+	if (value == 152) return "-N";
+	if (value == 153) return "-O";
+	if (value == 154) return "-P";
+	if (value == 155) return "-Q";
+	if (value == 156) return "-R";
+	if (value == 157) return "-S";
+	if (value == 158) return "-T";
+	if (value == 159) return "-U";
+	if (value == 160) return "-V";
+	if (value == 161) return "-W";
+	if (value == 162) return "-X";
+	if (value == 163) return "-Y";
+	if (value == 164) return "-Z";
+	return "a";//_.~ !'() =&
 }
 

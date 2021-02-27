@@ -26,6 +26,13 @@ font {
   font-size: 14px;
   width: 72px;
 }
+.csinput_p {
+  border-style: none;
+  color: #c0c0c0;
+  background-color: #000000;
+  font-size: 14px;
+  width: 240px;
+}
 .csinput1 {
   border-style: none;
   color: #000000;
@@ -49,6 +56,17 @@ select {
   appearance: none;
   padding: 0px 30px 0px 0px;
   background: url("downArrow.png") no-repeat right #000000;
+}
+.select_t {
+  border-style: none;
+  color: #c0c0c0;
+  font-size: 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0px 30px 0px 0px;
+  background: url("downArrow.png") no-repeat right #000000;
+  width: 120px;
 }
 .csa {
   text-decoration:none;
