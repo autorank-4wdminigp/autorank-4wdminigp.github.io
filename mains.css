@@ -55,7 +55,7 @@ select {
   -moz-appearance: none;
   appearance: none;
   padding: 0px 30px 0px 0px;
-  background: url("downArrow.png") no-repeat right #000000;
+  background: url("../img/downArrow.png") no-repeat right #000000;
 }
 .select_t {
   border-style: none;
@@ -65,7 +65,7 @@ select {
   -moz-appearance: none;
   appearance: none;
   padding: 0px 30px 0px 0px;
-  background: url("downArrow.png") no-repeat right #000000;
+  background: url("../img/downArrow.png") no-repeat right #000000;
   width: 120px;
 }
 .csa {
