@@ -208,8 +208,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 13) cornerspeedUp += 0.075;
 	var rollecornerValue1 = statusArray[12][3];
 	var rollecornerValue2 = statusArray[15][3];
-	diagnosis[diagnosisValue[20]] = "調整中";//0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
-	diagnosis[diagnosisValue[21]] = "調整中";//0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.385) * 3.6;
+	diagnosis[diagnosisValue[20]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6);
+	diagnosis[diagnosisValue[21]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.35) * 3.6);
 	//diagnosis[diagnosisValue[16]] = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
 
 	//最高速95%到達時間
