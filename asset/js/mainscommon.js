@@ -225,7 +225,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyStamina = 1.0;
 	if (bodyOption1 == 5) bodyStamina += 0.1;
 	if (bodyOption1 == 15) bodyStamina += 0.2;
-	if (bodyOption1 == 35) bodyStamina += 0.1;
+	if (bodyOption1 == 35) bodyStamina += 0.2;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption3 == 5) bodyStamina += 0.05;
