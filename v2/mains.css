@@ -2,7 +2,7 @@
   border-style: none;
   border-collapse:separate;
   border-spacing: 3px;
-  max-width: 100%;
+  width: 100%;
   box-sizing: border-box;
 }
 td {
@@ -53,7 +53,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding: 0px 30px 0px 0px;
+  padding: 0px 15px 0px 0px;
   background: url("downArrow.png") no-repeat right #000000;
 }
 .csa {
@@ -98,6 +98,9 @@ html {
   height: 100%;
   width: 100%;
 }
+body {
+  margin: 5px;
+}
 body.index {
   color: #faf0b4;
   background-color: #47361e;
@@ -140,7 +143,7 @@ header nav {
   justify-content: flex-start;
 }
 header .shrink-content {
-  height: 190px;
+  height: 200px;
 }
 header nav .links {
   flex-grow: 1;
@@ -169,6 +172,7 @@ header .control {
   background-color: black;
   border: solid 1px #bab084;
   border-bottom: none;
+  padding: 5px;
 }
 
 main {
@@ -198,12 +202,16 @@ main {
   flex-direction: row;
 }
 .tab-label {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
   white-space: nowrap;
   text-align: center;
   padding: .5em;
   position: relative;
   cursor: pointer;
   font-size: 13px;
+  margin: 0 1px 5px 0;
 }
 .tab-label::before {
   content: "";
@@ -215,7 +223,6 @@ main {
   bottom: 0;
   left: 0;
   z-index: -1;
-  transform: scale(0.98) perspective(2em) rotateX(-2deg);
 }
 .tab-label.setting {
   grid-row: 2;
@@ -228,9 +235,11 @@ main {
 .tab-label.diagnosis {
   grid-row: 2;
   grid-column: 3;
+  margin-right: 0;
 }
 .tab:checked+.tab-content+label::before {
   background-color: black;
+  border-bottom-width: 3px;
 }
 
 .pane {
@@ -315,13 +324,13 @@ html.simple .detail {
 }
 
 /* for mains.html */ 
-#bmain select.tenpure {
-  width: 140px;
-}
-
 .csinput {
   width: 100%;
   box-sizing: border-box;
+}
+
+.csinput.preset {
+  width: calc(100% - 4em);
 }
 
 .csinput2 {
@@ -348,10 +357,6 @@ html.simple .detail {
 .spec-row span {
   flex: 1 1 100%;
 }
-select.parts {
-  max-width: 200px;
-}
-
-select.tokusei {
-  width: 88px;
+select.parts, select.niku, select.tokusei, select.slot {
+  width: 100%;
 }

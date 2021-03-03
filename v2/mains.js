@@ -1441,19 +1441,7 @@ function All_Set() {
 function View_Set(value1) {
 	var writeValue = "";
 	writeValue += "<a name='link" + value1 + "'></a><table class='cstable'><tr><td>" + nameView[value1];
-	writeValue += "<span id='id_" + nameValue[value1] + "'></span></td>";
-	if (value1 == 2) {
-		writeValue += "<td>肉抜き <select id='" + nameValue[value1] + "_niku' onchange='Type_Calc(" + value1 + ")'>";
-		writeValue += "<option value=0>なし</option>";
-		for (var j = 1; j <= 4; j++) {
-			writeValue += "<option value=" + j + ">" + j + "箇所</option>";
-		}
-		writeValue += "</td>";
-	}
-	if (nameZero[nameCalc[value1]] == 1) {
-		writeValue += "<td>パーツ <input type='button' value='外す' onclick='Parts_Out(" + value1 + ")'></td>";
-	}
-	writeValue += "</tr><tr>";
+	writeValue += "<span id='id_" + nameValue[value1] + "'></span></td></tr><tr>";
 
 	if (value1 == 2) {
 		writeValue += "</tr></table>";
@@ -1462,7 +1450,12 @@ function View_Set(value1) {
 		for (var i = 0; i < selectOption.length; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
-		writeValue += "</select></td><td>アシスト特性 <select id='" + nameValue[value1] + "_bodytokusei2' class='tokusei' onchange='Type_Calc(" + value1 + ")'>";
+		writeValue += "</select></td><td>肉抜き <select id='" + nameValue[value1] + "_niku' class='niku' onchange='Type_Calc(" + value1 + ")'>";
+		writeValue += "<option value=0>なし</option>";
+		for (var j = 1; j <= 4; j++) {
+			writeValue += "<option value=" + j + ">" + j + "箇所</option>";
+		}
+		writeValue += "</td></tr><tr><td>アシスト特性 <select id='" + nameValue[value1] + "_bodytokusei2' class='tokusei' onchange='Type_Calc(" + value1 + ")'>";
 		for (var i = 0; i <= 20; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
@@ -1488,21 +1481,25 @@ function View_Set(value1) {
 		writeValue += "<table class='cstable'><tr>";
 		writeValue += "<td>テンプレ改造 <span id='id_" + nameValue[value1] + "_tenpure'></span></td>";
 		writeValue += "<td>改造 <input type='button' value='初期化' onclick='Shokika_Set(" + value1 + ")'> </td>";
-		writeValue += "<td>パーツプリセット <input class='csinput' type='text' id='" + nameValue[value1] + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td>";
+		if (nameZero[nameCalc[value1]] == 1) {
+			writeValue += "<td>パーツ <input type='button' value='外す' onclick='Parts_Out(" + value1 + ")'></td>";
+		}
+		writeValue += "</tr><td colspan='2'>パーツプリセット <input class='csinput preset' type='text' id='" + nameValue[value1] + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td></tr>";
 		writeValue += "</tr></table><table class='cstable'>";
 		for (var i = 1; i <= slotNum; i++) {
 			writeValue += "<tr><td>スロット" + i + " ";
 			writeValue += "<span id='id_" + nameValue[value1] + "_slot" + i + "'></span><br>";
-			if (i == 1) {
-				writeValue += " <input type='button' value='Lv一括' onclick='Lv_Set(" + value1 + ")'>　";
-			}
 			writeValue += "<select id='" + nameValue[value1] + "_type" + i + "' onchange='Type_Calc(" + value1 + ")'>";
 			writeValue += "<option value=2>イイ感じ</option><option value=3>職人技</option><option value=4 selected>至高の逸品</option></select>　強化Lv ";
 			writeValue += "<select id='" + nameValue[value1] + "_lv" + i + "' onchange='Type_Calc(" + value1 + ")'>";
-			for (var j = 1; j < 50; j++) {
+			for (var j = 1; j <= 50; j++) {
 				writeValue += "<option value=" + j + ">" + j + "</option>";
 			}
-			writeValue += "<option value=" + 50 + " selected>" + 50 + "</option></select></td>";
+			writeValue += "</select>";
+			if (i == 1) {
+				writeValue += " <input type='button' value='Lv一括' onclick='Lv_Set(" + value1 + ")'>　";
+			}
+			writeValue += "</td>";
 			for (var j = 1; j <= 3; j++) {
 				writeValue += "<td class='detail'><span id='id_" + nameValue[value1] + "_slot" + i + "_" + j + "'></span><br><input class='csinput' type='text' id='" + nameValue[value1] + "_slot" + i + "_" + j +"' value=''></td>";
 			}
@@ -1564,7 +1561,7 @@ function Type_Set(value1, value2) {
 			var kaizou7Index = kaizou7SelectIndex[nameCalc[value1]][indexTmp];
 			var innerValue = "";
 			for (var i = 1; i <= slotNum; i++) {
-				innerValue = "<select id='" + nameValue[value1] + "_slot" + i + "' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
+				innerValue = "<select id='" + nameValue[value1] + "_slot" + i + "' class='slot' onchange='Type_Slot_Set(" + value1 + ", " +  (i - 1) + ")'>";
 				innerValue += "<option value=-1 selected>改造選択</option>";
 				if (i == 7) {
 					for (var j = 0; j < kaizou7Select[nameCalc[value1]][kaizou7Index].length; j++) {
