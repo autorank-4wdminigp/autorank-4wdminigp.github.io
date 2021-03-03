@@ -176,7 +176,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//耐水空転
 	var taisuigripUp = 0.0;
+	if (resultValueKai[27] != 0 && bodyOption1 == 10) taisuigripUp += 3000.0;
 	if (resultValueKai[27] != 0 && bodyOption1 == 30) taisuigripUp += 5100.0;
+	if (resultValueKai[27] != 0 && bodyOption2 == 10) taisuigripUp += 1500.0;
+	if (resultValueKai[27] != 0 && bodyOption3 == 10) taisuigripUp += 1500.0;
 	diagnosis[diagnosisValue[19]] = (diagnosis[diagnosisValue[5]] * 10.0 * Math.min(resultValueKai[27] + 200.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
 
 	//耐風最高速
