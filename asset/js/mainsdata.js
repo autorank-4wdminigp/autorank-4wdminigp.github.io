@@ -220,10 +220,11 @@ kaizouTenpre[5][8] = new Array("オフロードx2 パワロスx4", 5, 5, 1, 1, 1
 s = 0;
 kaizouSelectIndex[6] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 3, 0, 0, 0);
 kaizouSelect[6] = new Array();
-kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 4, 6);
+kaizouSelect[6][s++] = new Array(0, 1, 2, 3, 11, 6);
 kaizouSelect[6][s++] = new Array(0, 1, 3, 4, 5, 6);//スライドダンパー
-kaizouSelect[6][s++] = new Array(0, 3, 4, 6);//ジュラルミン
+kaizouSelect[6][s++] = new Array(0, 3, 11, 6);//ジュラルミン
 kaizouSelect[6][s++] = new Array(0, 3, 4, 6, 7);//アルミ可変ダウンスラスト
+
 s = 0;
 kaizou7SelectIndex[6] = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
 kaizou7Select[6] = new Array();
@@ -1144,6 +1145,10 @@ kaizouValue[6][9][0] = new Array("ネジ締め調整(上級)", "コーナー安�
 kaizouValue[6][10] = new Array();
 kaizouValue[6][10][0] = new Array("スライドダンパーグリス調整(デジタル強化)", "デジタル〇〇〇 [5] ", 0.05, 0.06, 0.07, 0.0025, -1, 25);
 kaizouValue[6][10][1] = new Array("", "スタミナ耐久〇〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 4);
+
+kaizouValue[6][11] = new Array();
+kaizouValue[6][11][0] = new Array("スラスト角の増加 [4]", "スラスト角〇 [1] ",  0.01, 0.012, 0.014, 0.0005, -1, 12);
+kaizouValue[6][11][1] = new Array("", "コーナー安定〇 [4] ", 0.04, 0.04, 0.05, 0.002, -1, 3);
 
 //サイドステー
 kaizouValue[7] = new Array();
