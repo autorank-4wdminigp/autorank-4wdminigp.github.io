@@ -232,10 +232,10 @@ kaizou7Select[6][s++] = new Array(8, 9);
 kaizou7Select[6][s++] = new Array(8, 9, 10);
 s = 0;
 kaizouTenpreSelect[6] = new Array();
-kaizouTenpreSelect[6][s++] = new Array(0, 1, 2);
+kaizouTenpreSelect[6][s++] = new Array(0, 1, 2, 8);
 kaizouTenpreSelect[6][s++] = new Array(3, 4);
 kaizouTenpreSelect[6][s++] = new Array(5, 6);
-kaizouTenpreSelect[6][s++] = new Array(5, 7);
+kaizouTenpreSelect[6][s++] = new Array(5, 7, 6);
 kaizouTenpre[6] = new Array();
 kaizouTenpre[6][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[6][1] = new Array("耐久x6", 4, 4, 4, 4, 1, 1);
@@ -245,6 +245,7 @@ kaizouTenpre[6][4] = new Array("軽量x4 スラスト角の減少x2", 2, 2, 2, 2
 kaizouTenpre[6][5] = new Array("耐久x6", 2, 2, 2, 2, 1, 1);
 kaizouTenpre[6][6] = new Array("耐久x2 スラスト角の減少x4", 2, 2, 4, 4, 4, 4);
 kaizouTenpre[6][7] = new Array("耐久x2 デジタルx4", 2, 2, 5, 5, 5, 5);
+kaizouTenpre[6][8] = new Array("軽量x2 スラスト角の増加x4", 3, 3, 5, 5, 5, 5);
 
 //サイドステー
 s = 0;
