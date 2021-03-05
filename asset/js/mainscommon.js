@@ -99,7 +99,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
 	if (bodyOption1 == 22) bodyPower += 0.05;
-	if (bodyOption1 == 30) bodyPower += 0.05;
+	if (bodyOption1 == 30) bodyPower += 0.03;
 	if (bodyOption1 == 31) bodyPower += 0.05;
 	if (bodyOption2 == 2) bodyPower += 0.006;
 	if (bodyOption2 == 12) bodyPower += 0.015;
@@ -176,7 +176,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//耐水空転
 	var taisuigripUp = 0.0;
-	if (resultValueKai[27] != 0 && bodyOption1 == 30) taisuigripUp += 5100.0;
+	if (resultValueKai[27] != 0 && bodyOption1 == 10) taisuigripUp += 2500.0;
+	if (resultValueKai[27] != 0 && bodyOption1 == 30) taisuigripUp += 5000.0;
+	if (resultValueKai[27] != 0 && bodyOption2 == 10) taisuigripUp += 1250.0;
+	if (resultValueKai[27] != 0 && bodyOption3 == 10) taisuigripUp += 1250.0;
 	diagnosis[diagnosisValue[19]] = (diagnosis[diagnosisValue[5]] * 10.0 * Math.min(resultValueKai[27] + 200.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
 
 	//耐風最高速
@@ -205,8 +208,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 13) cornerspeedUp += 0.075;
 	var rollecornerValue1 = statusArray[12][3];
 	var rollecornerValue2 = statusArray[15][3];
-	diagnosis[diagnosisValue[20]] = "調整中";//0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6;
-	diagnosis[diagnosisValue[21]] = "調整中";//0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.385) * 3.6;
+	diagnosis[diagnosisValue[20]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6);
+	diagnosis[diagnosisValue[21]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.35) * 3.6);
 	//diagnosis[diagnosisValue[16]] = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
 
 	//最高速95%到達時間
@@ -225,7 +228,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyStamina = 1.0;
 	if (bodyOption1 == 5) bodyStamina += 0.1;
 	if (bodyOption1 == 15) bodyStamina += 0.2;
-	if (bodyOption1 == 35) bodyStamina += 0.1;
+	if (bodyOption1 == 35) bodyStamina += 0.2;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption3 == 5) bodyStamina += 0.05;
