@@ -99,7 +99,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
 	if (bodyOption1 == 22) bodyPower += 0.05;
-	if (bodyOption1 == 30) bodyPower += 0.05;
+	if (bodyOption1 == 30) bodyPower += 0.03;
 	if (bodyOption1 == 31) bodyPower += 0.05;
 	if (bodyOption2 == 2) bodyPower += 0.006;
 	if (bodyOption2 == 12) bodyPower += 0.015;
