@@ -179,7 +179,6 @@ function Type_Set(value1, value2) {
 	}
 	oldselectArray = index;
 	Type_Calc(value1);
-	Menu_Set(value1);
 }
 
 function Type_Slot_Set(value1, value2) {
@@ -245,6 +244,24 @@ function Menu_Set(value1) {
 	var imgName = "set";
 	if (index == 0 && nameZero[nameCalc[value1]] == 1) {
 		imgName = "";
+	} else {
+		if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+			var slotNumTmp = 6;
+			if (kaizouArray[value1][1 + 6 * 3] != 0) {
+				imgName += "7";
+				slotNumTmp = 7;
+			}
+			var kaizouMax = "";
+			for (var i = 0; i < slotNumTmp; i++) {
+				if (kaizouArray[value1][1 + i * 3] == 0 || kaizouArray[value1][3 + i * 3] != 49) {
+					kaizouMax = "x";
+					break;
+				}
+			}
+			imgName += kaizouMax;
+		} else {
+			imgName += "x";
+		}
 	}
 	var imgNo = nameCalc[value1];
 	if (value1 >= 25 && value1 <= 32) {
@@ -432,6 +449,7 @@ function Type_Calc(value1) {
 	if (calcFlg == 0) return 0;
 	Type_CalcArray(value1, 1);
 	UrlCalc(value1);
+	Menu_Set(value1);
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		document.getElementById(nameValue[value1] + "_pres").value = urlArray[value1];
 	}
