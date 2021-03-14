@@ -186,13 +186,13 @@ function Type_Slot_Set(value1, value2) {
 }
 
 function Menu_Init(value1) {
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='/asset/img/imgback.png'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../../asset/img/imgback.png'>";
 }
 
 function Menu_Click(value1) {
 	var oldIndex = window.parent.menus.document.getElementById("menu_oldselect").value;
-	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='/asset/img/imgback.png'>";
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='/asset/img/imgselect.png'>";
+	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='../../asset/img/imgback.png'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../../asset/img/imgselect.png'>";
 	window.parent.menus.document.getElementById("menu_oldselect").value = value1;
 	
 	calcFlg = 0;
@@ -258,7 +258,7 @@ function Menu_Set(value1) {
 	if (value1 >= 25 && value1 <= 32) {
 		imgNo = 13;
 	}
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_img").innerHTML = "<img class='csimg' src='/asset/img/img" + imgNo + imgName + ".png' onclick='Menu_Click(" + value1 + ")'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_img").innerHTML = "<img class='csimg' src='../../asset/img/img" + imgNo + imgName + ".png' onclick='Menu_Click(" + value1 + ")'>";
 	var partsName = "";
 	if (imgName != "") {
 		partsName = selectValue[nameCalc[value1]][index][0];

@@ -54,7 +54,7 @@ select {
   -moz-appearance: none;
   appearance: none;
   padding: 0px 15px 0px 0px;
-  background: url("/asset/img/downArrow.png") no-repeat right #000000;
+  background: url(../../../asset/img/downArrow.png) no-repeat right #000000;
 }
 .csa {
   text-decoration:none;
@@ -279,7 +279,7 @@ main {
   display: inline-block;
   width: 15px;
   height: 15px;
-  background: url(/asset/img/downArrow.png) no-repeat;
+  background: url(../../../asset/img/downArrow.png) no-repeat;
   background-size: contain;
   vertical-align: middle;
 }
