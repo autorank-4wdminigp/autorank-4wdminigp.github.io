@@ -170,7 +170,6 @@ function Type_Set(value1, value2) {
 	}
 	oldselectArray = index;
 	Type_Calc(value1);
-	Menu_Set(value1);
 }
 
 function Type_Slot_Set(value1, value2) {
@@ -187,13 +186,13 @@ function Type_Slot_Set(value1, value2) {
 }
 
 function Menu_Init(value1) {
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgback.png'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='/asset/img/imgback.png'>";
 }
 
 function Menu_Click(value1) {
 	var oldIndex = window.parent.menus.document.getElementById("menu_oldselect").value;
-	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgback.png'>";
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgselect.png'>";
+	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='/asset/img/imgback.png'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='/asset/img/imgselect.png'>";
 	window.parent.menus.document.getElementById("menu_oldselect").value = value1;
 	
 	calcFlg = 0;
@@ -236,12 +235,30 @@ function Menu_Set(value1) {
 	var imgName = "set";
 	if (index == 0 && nameZero[nameCalc[value1]] == 1) {
 		imgName = "";
+	} else {
+		if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+			var slotNumTmp = 6;
+			if (kaizouArray[value1][1 + 6 * 3] != 0) {
+				imgName += "7";
+				slotNumTmp = 7;
+			}
+			var kaizouMax = "";
+			for (var i = 0; i < slotNumTmp; i++) {
+				if (kaizouArray[value1][1 + i * 3] == 0 || kaizouArray[value1][3 + i * 3] != 49) {
+					kaizouMax = "x";
+					break;
+				}
+			}
+			imgName += kaizouMax;
+		} else {
+			imgName += "x";
+		}
 	}
 	var imgNo = nameCalc[value1];
 	if (value1 >= 25 && value1 <= 32) {
 		imgNo = 13;
 	}
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_img").innerHTML = "<img class='csimg' src='asset/img/img" + imgNo + imgName + ".png' onclick='Menu_Click(" + value1 + ")'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_img").innerHTML = "<img class='csimg' src='/asset/img/img" + imgNo + imgName + ".png' onclick='Menu_Click(" + value1 + ")'>";
 	var partsName = "";
 	if (imgName != "") {
 		partsName = selectValue[nameCalc[value1]][index][0];
@@ -423,6 +440,7 @@ function Type_Calc(value1) {
 	if (calcFlg == 0) return 0;
 	Type_CalcArray(value1, 1);
 	UrlCalc(value1);
+	Menu_Set(value1);
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		document.getElementById(nameValue[value1] + "_pres").value = urlArray[value1];
 	}
