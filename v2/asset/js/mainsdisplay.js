@@ -50,6 +50,7 @@ function View_Set(value1) {
 			writeValue += "<td>パーツ <input type='button' value='外す' onclick='Parts_Out(" + value1 + ")'></td>";
 		}
 		writeValue += "</tr><td colspan='2'>パーツプリセット <input class='csinput preset' type='text' id='" + nameValue[value1] + "_pres' value=''> <input type='button' value='装着' onclick='Preset_Set(" + value1 + ")'> </td></tr>";
+		writeValue += "</tr><td colspan='2'><div>改造結果一括セット</div> <div><input type='button' value='イイ感じ' onclick='Shikou_Set(0, " + value1 + ")'> <input type='button' value='職人技' onclick='Shikou_Set(1, " + value1 + ")'> <input type='button' value='至高の逸品' onclick='Shikou_Set(2, " + value1 + ")'> </div></td></tr>";
 		writeValue += "</tr></table><table class='cstable'>";
 		for (var i = 1; i <= slotNum; i++) {
 			writeValue += "<tr><td>スロット" + i + " ";
@@ -598,11 +599,18 @@ function Shokika_Set(value1) {
 	}
 }
 
-function Shikou_Set(value0) {
-	for (var i = 0; i < nameValue.length; i++) {
-		if (kaizouSelect[nameCalc[i]][0].length != 0) {
-			for (var j = 1; j <= slotNum; j++) {
-				kaizouArray[i][2 + (j - 1) * 3] = value0;
+function Shikou_Set(value, parts) {
+	// 第2引数が指定されていたらパーツ単品のみセットする
+	if (Number.isInteger(parts)) {
+		for (var i = 1; i <= slotNum; i++) {
+			kaizouArray[parts][2 + (i - 1) * 3] = value;
+		}
+	} else {
+		for (var i = 0; i < nameValue.length; i++) {
+			if (kaizouSelect[nameCalc[i]][0].length != 0) {
+				for (var j = 1; j <= slotNum; j++) {
+					kaizouArray[i][2 + (j - 1) * 3] = value;
+				}
 			}
 		}
 	}
@@ -612,7 +620,9 @@ function Shikou_Set(value0) {
 	}
 	All_Calc();
 	UrlView(0);
-	Menu_Click(0);
+
+	// 全パーツにセットする場合はモーターを選択状態にする
+	Menu_Click(Number.isInteger(parts) ? parts : 0);
 }
 
 function Parts_Out(value1) {
