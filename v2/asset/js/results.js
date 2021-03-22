@@ -27,6 +27,10 @@ function View_Result() {
 	document.getElementById("bmain").innerHTML = writeValue;
 }
 
-window.addEventListener("load", function() {
+if (window.parent.mains.document.readyState === "complete") {
 	View_Result();
-});
+} else {
+	window.parent.mains.addEventListener("load", function() {
+		View_Result();
+	});
+}
