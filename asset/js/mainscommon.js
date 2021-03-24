@@ -159,7 +159,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 23) ftiregripUp += 0.015;
 	if (bodyOption1 == 24) ftiregripUp += 0.15;
 	if (bodyOption1 == 26) ftiregripUp += 0.015;
-	if (bodyOption1 == 27) ftiregripUp += 0.07;
+	if (bodyOption1 == 27) ftiregripUp += 0.1;
 	if (bodyOption1 == 29) ftiregripUp += 0.015;
 	if (bodyOption1 == 30) ftiregripUp += 0.015;
 	if (bodyOption1 == 31) ftiregripUp += 0.015;
