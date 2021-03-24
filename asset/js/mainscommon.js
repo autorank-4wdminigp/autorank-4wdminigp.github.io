@@ -118,7 +118,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 21) bodySpeed += 0.04;
 	if (bodyOption1 == 23) bodySpeed += 0.03;
 	if (bodyOption1 == 26) bodySpeed += 0.03;
-	if (bodyOption1 == 27) bodySpeed += 0.07;
+	if (bodyOption1 == 27) bodySpeed += 0.06;
 	if (bodyOption1 == 29) bodySpeed += 0.03;
 	if (bodyOption1 == 32) bodySpeed += 0.07;
 	if (bodyOption1 == 34) bodySpeed += 0.03;
