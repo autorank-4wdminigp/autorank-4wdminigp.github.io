@@ -123,6 +123,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 21) bodySpeed += 0.04;
 	if (bodyOption1 == 23) bodySpeed += 0.03;
 	if (bodyOption1 == 26) bodySpeed += 0.03;
+	if (bodyOption1 == 27) bodySpeed += 0.06;
 	if (bodyOption1 == 29) bodySpeed += 0.03;
 	if (bodyOption1 == 32) bodySpeed += 0.07;
 	if (bodyOption1 == 34) bodySpeed += 0.03;
@@ -163,6 +164,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 23) ftiregripUp += 0.015;
 	if (bodyOption1 == 24) ftiregripUp += 0.15;
 	if (bodyOption1 == 26) ftiregripUp += 0.015;
+	if (bodyOption1 == 27) ftiregripUp += 0.1;
 	if (bodyOption1 == 29) ftiregripUp += 0.015;
 	if (bodyOption1 == 30) ftiregripUp += 0.015;
 	if (bodyOption1 == 31) ftiregripUp += 0.015;
@@ -315,6 +317,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyBoundtime = 1.0;
 	if (bodyOption1 == 7) bodyBoundtime -= 0.06;
 	if (bodyOption1 == 17) bodyBoundtime -= 0.12;
+	if (bodyOption1 == 27) bodyBoundtime -= 0.12;
 	if (bodyOption2 == 7) bodyBoundtime -= 0.018;
 	if (bodyOption2 == 17) bodyBoundtime -= 0.036;
 	if (bodyOption3 == 7) bodyBoundtime -= 0.018;
