@@ -27,10 +27,9 @@ function View_Result() {
 	document.getElementById("bmain").innerHTML = writeValue;
 }
 
+// mains のロード完了チェック後にViewを構成する
 if (window.parent.mains.document.readyState === "complete") {
 	View_Result();
 } else {
-	window.parent.mains.addEventListener("load", function() {
-		View_Result();
-	});
+	window.parent.mains.addEventListener("load", View_Result);
 }
