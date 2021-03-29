@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ミニ四駆超速グランプリ 改造シミュレータ 【ミニ四駆超速GP】</title>
+<link rel="stylesheet" type="text/css" href="asset/css/mains.css">
+</head>
+<body class="index" link="#faf0b4" vlink="#faf0b4" alink="#ddaaff">
+  <header>
+    <div class="title-wrap">
+      <h1>ミニ四駆超速GP 改造シミュレータ</h1>
+    </div>
+    <div class="nav-wrap shrink shrink-v">
+      <input id="nav-shrink-toggle" class="shrink-toggle" name="nav-shrink-toggle" type="checkbox"/>
+      <label class="shrink-label" for="nav-shrink-toggle"></label>
+      <nav class="shrink-content">
+        <span class="ver">【伝承アップデートVer】</span>
+        <span class="links">
+          <a href='https://jbbs.shitaraba.net/netgame/16513/' target='_blank' rel='noopener'>掲示板</a>
+          <a href='https://autorank-4wdminigp.github.io/new/' target='_blank' rel='noopener'>New</a>
+          <a href='https://autorank-4wdminigp.github.io/old/' target='_blank' rel='noopener'>Old</a>
+        </span>
+        <p class="notice">※ プリセットURLを開く、または自動適用をチェックしてブックマークしておくことで再開できます。</p>
+        <p class="notice">※ ▲ や ◀ をクリックすることで表示領域の拡縮が可能です。</p>
+        <div class="control">
+          <table class='cstable'>
+            <tr>
+              <td><a href='' id='linkurl' target='_blank' rel='noopener'>プリセットURL</a></td>
+              <td><label><input class='csinput1' type='radio' id='history1' name='history' onchange='results.UrlView(1)' checked>手動</label></td>
+              <td><label><input class='csinput1' type='radio' id='history2' name='history' onchange='results.UrlView(0)'>自動適用</label></td>
+            </tr>
+            <tr>
+              <td colspan="3"><input class='csinput' type='text' id='dispurl' value=''></td>
+            </tr>
+            <tr><td>
+              <label class="simple-label" for="simple">
+                <input class="simple-check" type="checkbox" id="simple" name="simple" checked>表示項目を減らす
+              </label>
+            </td></tr>
+          </table>
+        </div>
+        <!-- <img src="http://www.rays-counter.com/d454_f8_022/5e72639299d00/" border="0"> -->
+      </nav>
+    </div>
+  </header>
+  <main class="tabs">
+    <!--div class="tabs"-->
+      <input id="tab-setting" class="tab" type="radio" name="tab" checked/>
+      <section class="tab-content setting">
+        <div class="pane menus shrink shrink-h">
+          <input id="menus-shrink-toggle" class="shrink-toggle" name="menus-shrink-toggle" type="checkbox"/>
+          <label class="shrink-label" for="menus-shrink-toggle"></label>
+          <IFRAME id="menus" class="shrink-content" src="menus.html" name="menus" frameBorder=0>★インラインフレーム★</IFRAME>
+        </div>
+        <IFRAME class="pane mains" src="mains.html" name="mains" frameBorder=0>★インラインフレーム★</IFRAME>
+      </section>
+      <label class="tab-label setting" for="tab-setting">セッティング</label>
+  
+      <input id="tab-results" class="tab" type="radio" name="tab">
+      <section class="tab-content results">
+        <IFRAME class="pane" src="results.html" name="results" frameBorder=0>★インラインフレーム★</IFRAME>
+      </section>
+      <label class="tab-label results" for="tab-results">マシン詳細</label>
+  
+      <input id="tab-diagnosis" class="tab" type="radio" name="tab">
+      <div class="tab-content diagnosis">
+        <IFRAME class="pane" src="diagnosis.html" name="diagnosis" frameBorder=0>★インラインフレーム★</IFRAME>
+      </div>
+      <label class="tab-label diagnosis" for="tab-diagnosis">マシン診断</label>
+    <!--/div-->
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var simpleCheck = document.querySelector("#simple");
+      function simplify (doc) {
+        var cl = doc.querySelector("html").classList;
+        if (simpleCheck.checked) cl.add("simple");
+        else cl.remove("simple");
+      }
+      function simplifyAll () {
+        for (var i = 0; i < frames.length; i++) {
+          simplify(frames[i].document);
+        }
+      }
+      for (var i = 0; i < frames.length; i++) {
+        frames[i].addEventListener("load", function(e) {
+          simplify(e.srcElement);
+        });
+      }
+      simpleCheck.addEventListener("change", function(e) {
+        simplifyAll();
+      });
+    });
+  </script>
+</body>
+</html>

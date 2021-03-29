@@ -37,6 +37,11 @@ function Result_Calc(disp1) {
 			}
 		}
 	}
+	// 総合評価の計算
+	for (var i = 1; i < 6; i++) {
+		result.value[34] += result.value[i];
+		result.valueKaiSv[34] += result.valueKaiSv[i];
+	}
 	return result;
 }
 
