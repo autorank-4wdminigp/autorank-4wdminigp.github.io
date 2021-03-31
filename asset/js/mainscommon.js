@@ -126,7 +126,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 27) bodySpeed += 0.06;
 	if (bodyOption1 == 29) bodySpeed += 0.03;
 	if (bodyOption1 == 32) bodySpeed += 0.07;
-	if (bodyOption1 == 34) bodySpeed += 0.03;
+	if (bodyOption1 == 34) bodySpeed += 0.035; //エアロストリーム
 	if (bodyOption1 == 35) bodySpeed += 0.03;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
@@ -160,18 +160,19 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//タイヤグリップ
 	var ftiregripUp = 1.0;
-	if (bodyOption1 == 22) ftiregripUp += 0.015;
-	if (bodyOption1 == 23) ftiregripUp += 0.015;
-	if (bodyOption1 == 24) ftiregripUp += 0.15;
-	if (bodyOption1 == 26) ftiregripUp += 0.015;
-	if (bodyOption1 == 27) ftiregripUp += 0.1;
-	if (bodyOption1 == 29) ftiregripUp += 0.015;
-	if (bodyOption1 == 30) ftiregripUp += 0.015;
-	if (bodyOption1 == 31) ftiregripUp += 0.015;
-	if (bodyOption1 == 32) ftiregripUp += 0.015;
-	if (bodyOption1 == 33) ftiregripUp += 0.15;
-	if (bodyOption1 == 34) ftiregripUp += 0.015;
-	if (bodyOption1 == 35) ftiregripUp += 0.07;
+	if (bodyOption1 == 21) ftiregripUp += 0.06; //かっとびマシン
+	if (bodyOption1 == 22) ftiregripUp += 0.06; //パワーブースト
+	if (bodyOption1 == 23) ftiregripUp += 0.06; //流星
+	if (bodyOption1 == 24) ftiregripUp += 0.15; //パワードリフト
+	if (bodyOption1 == 26) ftiregripUp += 0.015; //紅い閃光
+	if (bodyOption1 == 27) ftiregripUp += 0.1; //ドラゴンビート
+	if (bodyOption1 == 29) ftiregripUp += 0.06; //ワイルドラン
+	if (bodyOption1 == 30) ftiregripUp += 0.06; //ハイドロウェーブ
+	if (bodyOption1 == 31) ftiregripUp += 0.06; //アースエナジー
+	if (bodyOption1 == 32) ftiregripUp += 0.06; //高貴な走り
+	if (bodyOption1 == 33) ftiregripUp += 0.15; //気高き力
+	if (bodyOption1 == 34) ftiregripUp += 0.06; //エアロストリーム
+	if (bodyOption1 == 35) ftiregripUp += 0.07; //GPチップγ
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -208,7 +209,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var cornerspeedUp = 1.0;
 	if (bodyOption1 == 3) cornerspeedUp += 0.1;
 	if (bodyOption1 == 13) cornerspeedUp += 0.15;
-	if (bodyOption1 == 23) cornerspeedUp += 0.1;
+	if (bodyOption1 == 23) cornerspeedUp += 0.125; //流星
 	if (bodyOption2 == 3) cornerspeedUp += 0.03;
 	if (bodyOption2 == 13) cornerspeedUp += 0.075;
 	if (bodyOption3 == 3) cornerspeedUp += 0.03;
