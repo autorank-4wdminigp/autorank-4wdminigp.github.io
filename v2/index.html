@@ -47,49 +47,59 @@
   <main class="tabs">
     <!--div class="tabs"-->
       <input id="tab-setting" class="tab" type="radio" name="tab" checked/>
-      <section class="tab-content setting">
+      <article class="tab-content setting">
         <div class="pane menus shrink shrink-h">
           <input id="menus-shrink-toggle" class="shrink-toggle" name="menus-shrink-toggle" type="checkbox"/>
           <label class="shrink-label" for="menus-shrink-toggle"></label>
-          <IFRAME id="menus" class="shrink-content" src="menus.html" name="menus" frameBorder=0>★インラインフレーム★</IFRAME>
+          <div id="menus" class="shrink-content">
+            <section id="menus-main"></section>
+          </div>
         </div>
-        <IFRAME class="pane mains" src="mains.html" name="mains" frameBorder=0>★インラインフレーム★</IFRAME>
-      </section>
+        <div class="pane mains" >
+          <section id="mains-main"></section>
+        </div>
+      </article>
       <label class="tab-label setting" for="tab-setting">セッティング</label>
   
       <input id="tab-results" class="tab" type="radio" name="tab">
-      <section class="tab-content results">
-        <IFRAME class="pane" src="results.html" name="results" frameBorder=0>★インラインフレーム★</IFRAME>
-      </section>
+      <article class="tab-content results">
+        <div class="pane">
+          <section id="results-main"></section>
+        </div>
+      </article>
       <label class="tab-label results" for="tab-results">マシン詳細</label>
   
       <input id="tab-diagnosis" class="tab" type="radio" name="tab">
-      <div class="tab-content diagnosis">
-        <IFRAME class="pane" src="diagnosis.html" name="diagnosis" frameBorder=0>★インラインフレーム★</IFRAME>
-      </div>
+      <article class="tab-content diagnosis">
+        <div class="pane">
+          <section id="diagnosis-main"></section>
+        </div>
+      </article>
       <label class="tab-label diagnosis" for="tab-diagnosis">マシン診断</label>
     <!--/div-->
   </main>
+  <script type="text/javascript" src="../asset/js/mainsdata.js"></script>
+  <script type="text/javascript" src="../asset/js/mainscommon.js"></script>
+  <script type="text/javascript" src="asset/js/mainsdisplay.js"></script>
+  <script type="text/javascript" src="asset/js/menus.js"></script>
+  <script type="text/javascript" src="asset/js/results.js"></script>
+  <script type="text/javascript" src="asset/js/diagnosis.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      View_Menus();
+      View_Result();
+      View_Diagnosis();
+      All_Set();
+
       var simpleCheck = document.querySelector("#simple");
       function simplify (doc) {
         var cl = doc.querySelector("html").classList;
         if (simpleCheck.checked) cl.add("simple");
         else cl.remove("simple");
       }
-      function simplifyAll () {
-        for (var i = 0; i < frames.length; i++) {
-          simplify(frames[i].document);
-        }
-      }
-      for (var i = 0; i < frames.length; i++) {
-        frames[i].addEventListener("load", function(e) {
-          simplify(e.srcElement);
-        });
-      }
+      simplify(document);
       simpleCheck.addEventListener("change", function(e) {
-        simplifyAll();
+        simplify(document);
       });
     });
   </script>
