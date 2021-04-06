@@ -99,6 +99,7 @@ html {
   width: 100%;
 }
 body {
+  -webkit-overflow-scrolling: touch;
   margin: 5px;
 }
 body.index {
