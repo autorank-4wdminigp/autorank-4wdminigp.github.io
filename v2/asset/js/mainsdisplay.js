@@ -75,7 +75,7 @@ function View_Set(value1) {
 		writeValue += "</table>";
 	}
 	oldselectArray = -1;
-	document.getElementById("bmain").innerHTML = writeValue;
+	document.getElementById("mains-main").innerHTML = writeValue;
 }
 
 function Type_Init(value1) {
@@ -186,87 +186,6 @@ function Type_Slot_Set(value1, value2) {
 	Type_Calc(value1);
 }
 
-function Menu_Init(value1) {
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgback.png'>";
-}
-
-function Menu_Click(value1) {
-	var oldIndex = window.parent.menus.document.getElementById("menu_oldselect").value;
-	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgback.png'>";
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgselect.png'>";
-	window.parent.menus.document.getElementById("menu_oldselect").value = value1;
-	
-	calcFlg = 0;
-	resultFlg = 0;
-	View_Set(value1);
-	Type_Init(value1);
-	document.getElementById(nameValue[value1]).selectedIndex =  kaizouArray[value1][0];
-	Type_Set(value1, 1);
-	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
-		if (typeSelect[nameCalc[value1]][i] >= 0) {
-			document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + "_kaisv").value = statusArray[value1][typeSelect[nameCalc[value1]][i]];
-		} else {
-			document.getElementById(nameValue[value1] + '_' + addTypeValue[-typeSelect[nameCalc[value1]][i]] + "_kaisv").value = selectValue[nameCalc[value1]][index][-typeSelect[nameCalc[value1]][i]];
-		}
-	}
-	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
-		for (var i = 1; i <= slotNum; i++) {
-			document.getElementById(nameValue[value1] + '_slot' + i).selectedIndex = kaizouArray[value1][1 + (i - 1) * 3];
-			document.getElementById(nameValue[value1] + '_type' + i).selectedIndex = kaizouArray[value1][2 + (i - 1) * 3];
-			document.getElementById(nameValue[value1] + '_lv' + i).selectedIndex = kaizouArray[value1][3 + (i - 1) * 3];
-			Type_Slot_Set(value1, i - 1);
-			for (var j = 0; j < 3; j++) {
-				document.getElementById(nameValue[value1] + "_slot" + i + "_" + (j + 1)).value = kaizouArrayUnit[value1][j + (i - 1) * 3];
-			}
-		}
-		if (value1 == 2) {
-			document.getElementById(nameValue[value1] + '_niku').selectedIndex = kaizouArray[value1][22];
-			for (var i = 1; i <= 3; i++) {
-				document.getElementById(nameValue[value1] + '_bodytokusei' + i).selectedIndex = kaizouArray[value1][22 + i];
-			}
-		}
-		document.getElementById(nameValue[value1] + "_pres").value = urlArray[value1];
-	}
-	calcFlg = 1;
-	resultFlg = 1;
-}
-
-function Menu_Set(value1) {
-	var index = kaizouArray[value1][0];
-	var imgName = "set";
-	if (index == 0 && nameZero[nameCalc[value1]] == 1) {
-		imgName = "";
-	} else {
-		if (kaizouSelect[nameCalc[value1]][0].length != 0) {
-			var slotNumTmp = 6;
-			if (kaizouArray[value1][1 + 6 * 3] != 0) {
-				imgName += "7";
-				slotNumTmp = 7;
-			}
-			var kaizouMax = "";
-			for (var i = 0; i < slotNumTmp; i++) {
-				if (kaizouArray[value1][1 + i * 3] == 0 || kaizouArray[value1][3 + i * 3] != 49) {
-					kaizouMax = "x";
-					break;
-				}
-			}
-			imgName += kaizouMax;
-		} else {
-			imgName += "x";
-		}
-	}
-	var imgNo = nameCalc[value1];
-	if (value1 >= 25 && value1 <= 32) {
-		imgNo = 13;
-	}
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_img").innerHTML = "<img class='csimg' src='../asset/img/img" + imgNo + imgName + ".png' onclick='Menu_Click(" + value1 + ")'>";
-	var partsName = "";
-	if (imgName != "") {
-		partsName = selectValue[nameCalc[value1]][index][0];
-	}
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_text").innerHTML = partsName;
-}
-
 function All_Set() {
 	for (var i = 0; i < nameValue.length; i++) {
 		statusArray[i] = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //33
@@ -299,23 +218,23 @@ function All_Set() {
 
 // マシン詳細とマシン診断の計算を実行する
 function All_Calc() {
-	var disp1 = window.parent.results.document.getElementById('disp1').checked;
+	var disp1 = document.getElementById('disp1').checked;
 	var result = Result_Calc(disp1);
 	for (var i = 1; i < typeValue.length; i++) {
-		window.parent.results.document.getElementById(typeValue[i]).value = result.value[i];
-		window.parent.results.document.getElementById(typeValue[i] + "_kaisv").value = result.valueKaiSv[i];
+		document.getElementById(typeValue[i]).value = result.value[i];
+		document.getElementById(typeValue[i] + "_kaisv").value = result.valueKaiSv[i];
 		var rate = result.value[i] == 0 ? 0 : result.valueKaiSv[i] / result.value[i] * 100.0 - 100.0;
-		window.parent.results.document.getElementById(typeValue[i] + "_rate").value = rate;
+		document.getElementById(typeValue[i] + "_rate").value = rate;
 	}
 	var shindantire = 1;
 	var shindantirekei = 0;
-	if (window.parent.diagnosis.document.getElementById('shindantire2').checked) {
+	if (document.getElementById('shindantire2').checked) {
 		shindantire = 2;
-		shindantirekei = window.parent.diagnosis.document.getElementById('shindantirekei').selectedIndex;
+		shindantirekei = document.getElementById('shindantirekei').selectedIndex;
 	}
 	var diagnosis = Diagnosis_Calc(result.valueKaiSv, shindantire, shindantirekei);
 	for (var key in diagnosis) {
-		window.parent.diagnosis.document.getElementById(key).value = diagnosis[key];
+		document.getElementById(key).value = diagnosis[key];
 	}
 }
 
@@ -453,23 +372,23 @@ function Type_Calc(value1) {
 function UrlView(value1) {
 	var urlValue = urlArray.join("");
 	var historyValue = "a";
-	if (window.parent.document.getElementById('history2').checked) {
+	if (document.getElementById('history2').checked) {
 		historyValue = "b";
 	}
-	var url = window.parent.document.location.href;
+	var url = document.location.href;
 	var start = url.indexOf("?", 0);
 	var urlInit = url;
 	if (start != -1) urlInit = url.substring(0, start);
-	window.parent.document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
-	window.parent.document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
+	document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
+	document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
 	if (historyValue == "b" || value1 == 1) {
-		//window.parent.history.pushState("", "" , "?" + urlValue);
-		window.parent.history.replaceState("", "" , "?" + urlValue + historyValue);
+		//history.pushState("", "" , "?" + urlValue);
+		history.replaceState("", "" , "?" + urlValue + historyValue);
 	}
 }
 
 function UrlSet() {
-	var url = window.parent.document.location.href;
+	var url = document.location.href;
 	var start = url.indexOf("?", 0);
 	if (start != -1) {
 		var presetText = url.substring(start + 1);
@@ -513,7 +432,7 @@ function UrlSet() {
 			}
 			index = UrlToNum(presetText.charAt(pos++));
 			if (index == 1) {
-				window.parent.document.getElementById('history2').checked = true;
+				document.getElementById('history2').checked = true;
 			}
 		}
 	}
