@@ -173,6 +173,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 33) ftiregripUp += 0.15; //気高き力
 	if (bodyOption1 == 34) ftiregripUp += 0.06; //エアロストリーム
 	if (bodyOption1 == 35) ftiregripUp += 0.07; //GPチップγ
+	if (bodyOption1 == 36) ftiregripUp += 0.06; //サンダードリフト
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -250,6 +251,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 24) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 33) bodyCornerdecele -= 0.85;
 	if (bodyOption1 == 34) bodyCornerdecele -= 0.75;
+	if (bodyOption1 == 36) bodyCornerdecele -= 0.75;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.375;
 	if (bodyOption3 == 4) bodyCornerdecele -= 0.35;
