@@ -86,6 +86,12 @@ select {
   line-height: 11px;
   text-align: left;
 }
+.csmenutext span {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
 .csimg {
   position: absolute;
   top: 4px;
@@ -97,25 +103,20 @@ select {
 html {
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 body {
-  -webkit-overflow-scrolling: touch;
-  margin: 5px;
-}
-body.index {
   color: #faf0b4;
   background-color: #47361e;
+  position: relative;
   margin:0px;
   padding:0px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-body.index {
+  max-width: 1280px;
+  height: auto;
   display: flex;
   flex-direction: column;
+  -webkit-overflow-scrolling: touch;
 }
 header {
   margin: 0 5px;
@@ -172,24 +173,28 @@ header .control {
   width: 100%;
   background-color: black;
   border: solid 1px #bab084;
-  border-bottom: none;
   padding: 5px;
+  margin-bottom: 1em;
 }
 
 main {
   position: relative;
   flex: 1 1 100%;
   margin: 0 5px;
-  overflow: auto;
+  overflow: visible;
 }
 
+.tab {
+  display: none;
+}
+.setting {
+  display: flex;
+}
+/*
 .tabs {
   display: grid;
   grid-template-rows: 1fr 2em;
   grid-template-columns: 1fr 1fr 1fr;
-}
-.tab {
-  display: none;
 }
 .tab-content {
   display: none;
@@ -241,6 +246,34 @@ main {
 .tab:checked+.tab-content+label::before {
   background-color: black;
   border-bottom-width: 3px;
+}
+*/
+
+.articles {
+  display: flex;
+  flex-direction: column;
+}
+.tab-content {
+  border: solid 1px #bab084;
+  margin-bottom: 1em;
+}
+.tab-label.setting {
+  order: 1;
+}
+.tab-content.setting {
+  order: 2;
+}
+.tab-label.results {
+  order: 3;
+}
+.tab-content.results {
+  order: 4;
+}
+.tab-label.diagnosis {
+  order: 5;
+}
+.tab-content.diagnosis {
+  order: 6;
 }
 
 .pane {
