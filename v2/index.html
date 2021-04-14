@@ -45,7 +45,7 @@
       </nav>
     </div>
   </header>
-  <main class="tabs articles">
+  <main class="tabs articles shrink shrink-v">
     <!--div class="tabs"-->
       <input id="tab-setting" class="tab" type="radio" name="tab" checked/>
       <article class="tab-content setting">
@@ -63,7 +63,9 @@
       <label class="tab-label setting" for="tab-setting">セッティング</label>
   
       <input id="tab-results" class="tab" type="radio" name="tab">
-      <article class="tab-content results">
+      <input id="results-shrink-toggle" class="shrink-toggle" name="results-shrink-toggle" type="checkbox"/>
+      <label class="shrink-label shrink-label-results" for="results-shrink-toggle"></label>
+      <article class="tab-content results shrink-content">
         <div class="pane">
           <section id="results-main"></section>
         </div>

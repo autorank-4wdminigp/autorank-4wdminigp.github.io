@@ -266,6 +266,9 @@ main {
 .tab-label.results {
   order: 3;
 }
+.shrink-label-results {
+  order: 3;
+}
 .tab-content.results {
   order: 4;
 }
@@ -398,7 +401,7 @@ html.simple .detail {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  /*text-align: right;*/
+  width: 100%;
 }
 .spec-row span {
   flex: 1 1 100%;
