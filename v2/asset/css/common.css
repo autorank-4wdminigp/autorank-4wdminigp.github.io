@@ -1,0 +1,200 @@
+.cstable {
+  border-style: none;
+  border-collapse:separate;
+  border-spacing: 3px;
+  width: 100%;
+  box-sizing: border-box;
+}
+td {
+  color: #ffffff;
+  background-color: #800000;
+  padding: 3px;
+  text-align: left;
+  font-size: 16px;
+  vertical-align: bottom;
+}
+td input {
+  font-size: 13px;
+  margin-left: auto;
+}
+font {
+  font-size: 13px;
+}
+.cstd {
+  color: #000000;
+  background-color: #000000;
+  padding: 3px;
+  font-size: 13px;
+}
+.csinput {
+  border-style: none;
+  color: #c0c0c0;
+  background-color: #000000;
+  font-size: 16px;
+}
+.csinput1 {
+  border-style: none;
+  color: #000000;
+  background-color: #800000;
+  font-size: 16px;
+  width: 14px;
+}
+.csinput2 {
+  border-style: none;
+  color: #ffffff;
+  background-color: #000000;
+  font-size: 16px;
+  width: 900px;
+}
+select {
+  border-style: none;
+  color: #c0c0c0;
+  font-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0px 15px 0px 0px;
+  background: url(../../../asset/img/downArrow.png) no-repeat right #000000;
+}
+.csa {
+  text-decoration:none;
+}
+.csmenutable {
+  border-style: none;
+  border-collapse:collapse;
+  border-spacing: 0px;
+  table-layout: fixed;
+  margin-left: auto;
+}
+.csmenutd {
+  color: #000000;
+  background-color: #000000;
+  padding: 0px 0px 0px 0px;
+}
+.csmenuimg {
+  position: relative;
+  padding: 0px;
+  cursor: pointer;
+}
+.csmenutext {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 11px;
+  color: #ffffff;
+  padding: 5px;
+  line-height: 11px;
+  text-align: left;
+}
+.csmenutext span {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+.csimg {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+.csimgback {
+  vertical-align: bottom;
+}
+header {
+  margin: 0 5px;
+}
+header h1 {
+  font-size: 18px;
+  margin: 5px 0;
+}
+header .ver {
+  text-align: right;
+  font-size: 14px;
+}
+header .notice {
+  font-size: 10px;
+  color: #FFA500;
+}
+header .nav-wrap {
+  position: static;
+  overflow: hidden;
+}
+header nav {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+header .shrink-content {
+  
+}
+header nav .links {
+  flex-grow: 1;
+  text-align: right;
+  font-size: 14px;
+}
+header nav .notice {
+  flex: 1 1 100%;
+}
+header nav .notice:nth-of-type(2) {
+  margin-top: 0;
+}
+header .shrink-label {
+  content: "";
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  height: 34px;
+  justify-content: center;
+  flex-flow: column;
+}
+
+imple-label {
+  color: #fff;
+  background-color: #800;
+  padding: 3px;
+  font-size: 12px;
+}
+html.simple .detail {
+  display: none;
+}
+
+/* for mains.html */ 
+.csinput {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.csinput.preset {
+  width: calc(100% - 4em);
+}
+
+.csinput2 {
+  width: 280px;
+}
+.spec-label {
+  padding-right: 5px;
+}
+.specs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+.spec-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.spec-row span {
+  flex: 1 1 100%;
+}
+select.parts, select.niku, select.tokusei, select.slot, select.tenpure {
+  width: 100%;
+}

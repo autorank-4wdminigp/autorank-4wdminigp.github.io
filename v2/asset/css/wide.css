@@ -1,0 +1,133 @@
+html {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+body {
+  color: #faf0b4;
+  background-color: #47361e;
+  position: relative;
+  margin:0px;
+  padding:0px;
+  max-width: 1280px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+}
+
+header .control {
+  position: relative;
+  width: 100%;
+  background-color: black;
+  border: solid 1px #bab084;
+  padding: 5px;
+  margin-bottom: 1em;
+}
+
+main {
+  position: relative;
+  flex: 1 1 100%;
+  margin: 0 5px;
+  overflow: visible;
+}
+
+.tab {
+  display: none;
+}
+.setting {
+  display: flex;
+}
+
+.articles {
+  display: flex;
+  flex-direction: column;
+}
+.tab-content {
+  margin-bottom: 1em;
+}
+.tab-label.setting {
+  order: 1;
+}
+.tab-content.setting {
+  order: 2;
+}
+.tab-label.results {
+  display: none;
+}
+.tab-content.results {
+  order: 4;
+}
+.tab-label.diagnosis {
+  order: 5;
+}
+.tab-content.diagnosis {
+  order: 6;
+}
+
+.pane {
+  display: block;
+  position: relative;
+  border-style: solid;
+  border-width: thin;
+  color: #faf0b4;
+  background-color: #000000;
+  border-color: #bab084;
+  width: 100%;
+  height: auto;
+  overflow: auto;
+}
+.pane.menus {
+  width: auto;
+  flex: 0 0 auto;
+}
+.pane.mains {
+  width: 100%;
+  min-width: 300px;
+  flex: 1 1 100%;
+  overflow: auto;
+}
+.pane section {
+  padding: 5px;
+}
+
+.shrink-toggle {
+  display: none;
+}
+.shrink-label {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  cursor: pointer;
+}
+.shrink-label::after {
+  content: "⊟";
+}
+.shrink-toggle:checked + .shrink-label::after {
+  content: "⊞";
+}
+.shrink-content {
+  width: auto;
+  height: auto;
+  /*transition: all 0.2s ease-out;*/
+  overflow: auto;
+}
+.shrink-toggle:checked + .shrink-label + .shrink-content {
+  display: none;
+}
+
+.menus {
+  overflow: visible;
+  border-right: none;
+}
+.menus .shrink-label {
+  display: none;
+}
+#menus {
+  display: block;
+}
+
+.shrink-label.shrink-label-results {
+  display: inline;
+}
