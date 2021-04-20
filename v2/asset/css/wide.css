@@ -92,17 +92,13 @@ main {
   padding: 5px;
 }
 
-.shrink-toggle {
-  display: none;
-}
-.shrink-label {
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-  cursor: pointer;
-}
 .shrink-label::after {
+  display: inline;
   content: "⊟";
+  width: auto;
+  height: auto;
+  background: none;
+  transform: none !important;
 }
 .shrink-toggle:checked + .shrink-label::after {
   content: "⊞";
@@ -110,8 +106,6 @@ main {
 .shrink-content {
   width: auto;
   height: auto;
-  /*transition: all 0.2s ease-out;*/
-  overflow: auto;
 }
 .shrink-toggle:checked + .shrink-label + .shrink-content {
   display: none;
@@ -130,4 +124,8 @@ main {
 
 .shrink-label.shrink-label-results {
   display: inline;
+}
+
+.for-narrow {
+  display: none;
 }
