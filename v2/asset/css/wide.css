@@ -131,3 +131,12 @@ main {
 .for-narrow {
   display: none;
 }
+
+header .nav-shrink-label {
+  display: none;
+}
+#navigation {
+  display: flex;
+  width: auto;
+  height: auto;
+}
