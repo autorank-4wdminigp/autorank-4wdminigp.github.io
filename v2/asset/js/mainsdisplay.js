@@ -381,6 +381,7 @@ function UrlView(value1) {
 	if (start != -1) urlInit = url.substring(0, start);
 	document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
 	document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
+	document.getElementById('v1url').href = urlInit.replace("v2/", "") + "?" + urlValue + historyValue;
 	if (historyValue == "b" || value1 == 1) {
 		//history.pushState("", "" , "?" + urlValue);
 		history.replaceState("", "" , "?" + urlValue + historyValue);
