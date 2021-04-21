@@ -548,3 +548,25 @@ function Parts_Out(value1) {
 	document.getElementById(nameValue[value1]).selectedIndex = 0;
 	Type_Set(value1, nameUpdate[nameCalc[value1]]);
 }
+
+function Get_Storage(category, key) {
+	var container = localStorage.getItem("simulator");
+	if (!container) {
+		return;
+	}
+	try {
+		return JSON.parse(container)[category][key];
+	} catch (e) {
+		return;
+	}
+}
+
+function Set_Storage(category, key, value) {
+	var container = localStorage.getItem("simulator") || "{}";
+	container = JSON.parse(container);
+	if (!container[category]) {
+		container[category] = {};
+	}
+	container[category][key] = value;
+	localStorage.setItem("simulator", JSON.stringify(container));
+}

@@ -15,7 +15,7 @@
     </div>
     <div class="nav-wrap shrink shrink-v">
       <input id="nav-shrink-toggle" class="shrink-toggle" name="nav-shrink-toggle" type="checkbox"/>
-      <label class="shrink-label" for="nav-shrink-toggle"></label>
+      <label class="shrink-label nav-shrink-label" for="nav-shrink-toggle"></label>
       <nav class="shrink-content">
         <span class="ver">【伝承アップデートVer】</span>
         <span class="links">
@@ -38,7 +38,7 @@
             </tr>
             <tr><td>
               <label class="simple-label" for="simple">
-                <input class="simple-check" type="checkbox" id="simple" name="simple" checked>表示項目を減らす
+                <input class="simple-check" type="checkbox" id="simple" name="simple">詳細表示
               </label>
             </td></tr>
           </table>
@@ -90,6 +90,20 @@
   <script type="text/javascript" src="asset/js/results.js"></script>
   <script type="text/javascript" src="asset/js/diagnosis.js"></script>
   <script>
+    (function Init_Toggles(qs) {
+      qs.forEach(function(q) {
+        var el = document.querySelector(q);
+        var val = Get_Storage("state", q);
+        // undefined の場合初期値を適用
+        if (val !== undefined) {
+          el.checked = val;
+        }
+        el.addEventListener("change", function(e) {
+          Set_Storage("state", q, e.target.checked);
+        });
+      });
+    })(["#nav-shrink-toggle", "#simple"]);
+
     document.addEventListener("DOMContentLoaded", function() {
       View_Menus();
       View_Result();
@@ -99,7 +113,7 @@
       var simpleCheck = document.querySelector("#simple");
       function simplify (doc) {
         var cl = doc.querySelector("html").classList;
-        if (simpleCheck.checked) cl.add("simple");
+        if (!simpleCheck.checked) cl.add("simple");
         else cl.remove("simple");
       }
       simplify(document);
