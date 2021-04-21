@@ -120,6 +120,8 @@ main {
 }
 #menus {
   display: block;
+  width: auto;
+  height: auto;
 }
 
 .shrink-label.shrink-label-results {
