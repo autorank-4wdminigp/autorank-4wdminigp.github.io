@@ -104,6 +104,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
 	if (bodyOption1 == 22) bodyPower += 0.05;
+	if (bodyOption1 == 25) bodyPower += 0.06;
 	if (bodyOption1 == 30) bodyPower += 0.03;
 	if (bodyOption1 == 31) bodyPower += 0.03;
 	if (bodyOption2 == 2) bodyPower += 0.006;
@@ -164,6 +165,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 22) ftiregripUp += 0.06; //パワーブースト
 	if (bodyOption1 == 23) ftiregripUp += 0.06; //流星
 	if (bodyOption1 == 24) ftiregripUp += 0.15; //パワードリフト
+	if (bodyOption1 == 25) ftiregripUp += 0.06; //アクセルアーマー
 	if (bodyOption1 == 26) ftiregripUp += 0.015; //紅い閃光
 	if (bodyOption1 == 27) ftiregripUp += 0.1; //ドラゴンビート
 	if (bodyOption1 == 29) ftiregripUp += 0.06; //ワイルドラン
@@ -211,6 +213,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 3) cornerspeedUp += 0.1;
 	if (bodyOption1 == 13) cornerspeedUp += 0.15;
 	if (bodyOption1 == 23) cornerspeedUp += 0.125; //流星
+	if (bodyOption1 == 25) cornerspeedUp += 0.15;
 	if (bodyOption2 == 3) cornerspeedUp += 0.03;
 	if (bodyOption2 == 13) cornerspeedUp += 0.075;
 	if (bodyOption3 == 3) cornerspeedUp += 0.03;
@@ -237,6 +240,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyStamina = 1.0;
 	if (bodyOption1 == 5) bodyStamina += 0.1;
 	if (bodyOption1 == 15) bodyStamina += 0.2;
+	if (bodyOption1 == 25) bodyStamina += 0.2;
 	if (bodyOption1 == 35) bodyStamina += 0.2;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
@@ -245,7 +249,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[24]] = (resultValueKai[4] + resultValueKai[28]) * bodyStamina;
 
 	//コーナー減速率
-	var bodyCornerdecele = 1.0;
+	var bodyCornerdecele = 1.0; //旋回
 	if (bodyOption1 == 4) bodyCornerdecele -= 0.7;
 	if (bodyOption1 == 14) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 24) bodyCornerdecele -= 0.75;
@@ -256,14 +260,14 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.375;
 	if (bodyOption3 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption3 == 14) bodyCornerdecele -= 0.375;
-	var bodyCornerdecele2 = 1.0;
+	var bodyCornerdecele2 = 1.0; //摩擦
 	if (bodyOption1 == 4) bodyCornerdecele2 -= 0.17;
 	if (bodyOption1 == 14) bodyCornerdecele2 -= 0.2;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
 	if (bodyOption3 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption3 == 14) bodyCornerdecele2 -= 0.1;
-	var bodyCornerdecele3 = 1.0;
+	var bodyCornerdecele3 = 1.0; //抵抗
 	if (bodyOption1 == 24) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 33) bodyCornerdecele3 -= 0.7;
 	var rollermasatsuValue = 0.0;
