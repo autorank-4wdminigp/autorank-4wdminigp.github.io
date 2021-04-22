@@ -31,6 +31,23 @@ header .control {
   padding: 5px;
 }
 
+.notice-arrow::after {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url(../../../asset/img/downArrow.png) no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+.notice-arrow.up::after {
+  transform: rotate(180deg);
+}
+.notice-arrow.left::after {
+  transform: rotate(90deg);
+}
+
+
 main {
   position: relative;
   flex: 1 1 100%;
@@ -181,6 +198,6 @@ main {
   left: 1px;
   z-index: 10;
 }
-.menus .shrink-content {
-  
+.for-wide {
+  display: none;
 }

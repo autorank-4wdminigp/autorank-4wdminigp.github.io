@@ -470,6 +470,7 @@ function UrlView(value1) {
 	if (start != -1) urlInit = url.substring(0, start);
 	window.parent.results.document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
 	window.parent.results.document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
+	window.parent.document.getElementById('v2url').href = urlInit + "v2/?" + urlValue + historyValue;
 	if (historyValue == "b" || value1 == 1) {
 		//window.parent.history.pushState("", "" , "?" + urlValue);
 		window.parent.history.replaceState("", "" , "?" + urlValue + historyValue);

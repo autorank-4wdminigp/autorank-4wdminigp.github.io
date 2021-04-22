@@ -15,16 +15,16 @@
     </div>
     <div class="nav-wrap shrink shrink-v">
       <input id="nav-shrink-toggle" class="shrink-toggle" name="nav-shrink-toggle" type="checkbox"/>
-      <label class="shrink-label" for="nav-shrink-toggle"></label>
-      <nav class="shrink-content">
+      <label class="shrink-label nav-shrink-label" for="nav-shrink-toggle"></label>
+      <nav id="navigation" class="shrink-content">
         <span class="ver">【伝承アップデートVer】</span>
         <span class="links">
           <a href='https://jbbs.shitaraba.net/netgame/16513/' target='_blank' rel='noopener'>掲示板</a>
-          <a href='https://autorank-4wdminigp.github.io/new/' target='_blank' rel='noopener'>New</a>
-          <a href='https://autorank-4wdminigp.github.io/old/' target='_blank' rel='noopener'>Old</a>
+          <a id='v1url' href='#' target='_blank' rel='noopener'>旧UI</a>
         </span>
         <p class="notice">※ プリセットURLを開く、または自動適用をチェックしてブックマークしておくことで再開できます。</p>
-        <p class="notice">※ ▲ や ◀ をクリックすることで表示領域の拡縮が可能です。</p>
+        <p class="notice for-narrow">※ <span class="notice-arrow up"></span> / <span class="notice-arrow left"></span> をクリックすると表示領域の 縮小/展開 が可能です。</p>
+        <p class="notice for-wide">※ ⊞ / ⊟ をクリックすると表示領域の 縮小/展開 が可能です。</p>
         <div class="control">
           <table class='cstable'>
             <tr>
@@ -37,7 +37,7 @@
             </tr>
             <tr><td>
               <label class="simple-label" for="simple">
-                <input class="simple-check" type="checkbox" id="simple" name="simple" checked>表示項目を減らす
+                <input class="simple-check" type="checkbox" id="simple" name="simple">詳細表示
               </label>
             </td></tr>
           </table>
@@ -89,6 +89,20 @@
   <script type="text/javascript" src="asset/js/results.js"></script>
   <script type="text/javascript" src="asset/js/diagnosis.js"></script>
   <script>
+    (function Init_Toggles(qs) {
+      qs.forEach(function(q) {
+        var el = document.querySelector(q);
+        var val = Get_Storage("state", q);
+        // undefined の場合初期値を適用
+        if (val !== undefined) {
+          el.checked = val;
+        }
+        el.addEventListener("change", function(e) {
+          Set_Storage("state", q, e.target.checked);
+        });
+      });
+    })(["#nav-shrink-toggle", "#simple"]);
+
     document.addEventListener("DOMContentLoaded", function() {
       View_Menus();
       View_Result();
@@ -98,7 +112,7 @@
       var simpleCheck = document.querySelector("#simple");
       function simplify (doc) {
         var cl = doc.querySelector("html").classList;
-        if (simpleCheck.checked) cl.add("simple");
+        if (!simpleCheck.checked) cl.add("simple");
         else cl.remove("simple");
       }
       simplify(document);

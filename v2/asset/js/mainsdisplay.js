@@ -381,6 +381,7 @@ function UrlView(value1) {
 	if (start != -1) urlInit = url.substring(0, start);
 	document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
 	document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
+	document.getElementById('v1url').href = urlInit.replace("v2/", "") + "?" + urlValue + historyValue;
 	if (historyValue == "b" || value1 == 1) {
 		//history.pushState("", "" , "?" + urlValue);
 		history.replaceState("", "" , "?" + urlValue + historyValue);
@@ -547,4 +548,26 @@ function Shikou_Set(value, parts) {
 function Parts_Out(value1) {
 	document.getElementById(nameValue[value1]).selectedIndex = 0;
 	Type_Set(value1, nameUpdate[nameCalc[value1]]);
+}
+
+function Get_Storage(category, key) {
+	var container = localStorage.getItem("simulator");
+	if (!container) {
+		return;
+	}
+	try {
+		return JSON.parse(container)[category][key];
+	} catch (e) {
+		return;
+	}
+}
+
+function Set_Storage(category, key, value) {
+	var container = localStorage.getItem("simulator") || "{}";
+	container = JSON.parse(container);
+	if (!container[category]) {
+		container[category] = {};
+	}
+	container[category][key] = value;
+	localStorage.setItem("simulator", JSON.stringify(container));
 }
