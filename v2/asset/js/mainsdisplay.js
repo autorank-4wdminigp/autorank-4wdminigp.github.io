@@ -383,6 +383,38 @@ function UrlView(value1) {
 	if (historyValue == "b" || value1 == 1) {
 		history.replaceState("", "", search);
 	}
+	var shortBtn = document.getElementById('short');
+	shortBtn.value = "短縮";
+	shortBtn.disabled = false;
+}
+
+function UrlShort() {
+	var btn = document.getElementById('short');
+	btn.disabled = true;
+	btn.value = "短縮中";
+
+	var url = document.getElementById('linkurl').href;
+	fetch("https://is.gd/create.php?format=simple&url=" + encodeURIComponent(url),
+		{
+			method: "GET",
+			mode: "no-cors",
+			redirect: "follow"
+		}
+	)
+	.then(r => {
+		console.log(r);
+		if (r.ok) {
+			btn.value = "短縮完了";
+			document.getElementById('linkurl').href = r.body();
+			document.getElementById('dispurl').value = r.body();
+		} else {
+			btn.value = "短縮失敗";
+		}
+	})
+	.catch(e => {
+		console.log(e);
+		btn.value = "短縮失敗";
+	});
 }
 
 function UrlSet() {

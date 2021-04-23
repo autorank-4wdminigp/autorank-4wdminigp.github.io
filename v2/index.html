@@ -33,7 +33,10 @@
               <td><label><input class='csinput1' type='radio' id='history2' name='history' onchange='results.UrlView(0)'>自動適用</label></td>
             </tr>
             <tr>
-              <td colspan="3"><input class='csinput' type='text' id='dispurl' value=''></td>
+              <td colspan="3"><div class="url-box">
+                <input class='csinput dispurl' type='text' id='dispurl' value=''>
+                <input id='short' type='button' value='短縮' onclick='UrlShort()'/>
+              </div></td>
             </tr>
             <tr><td>
               <label class="simple-label" for="simple">

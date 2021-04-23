@@ -241,3 +241,12 @@ select.parts, select.niku, select.tokusei, select.slot, select.tenpure {
 .shrink-h .shrink-toggle:checked + .shrink-label + .shrink-content {
   width: 0;
 }
+
+.url-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.url-box input:disabled {
+  color: rgb(32, 32, 32);
+}
