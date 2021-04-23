@@ -394,21 +394,27 @@ function UrlShort() {
 	btn.value = "短縮中";
 
 	var url = document.getElementById('linkurl').href;
-	fetch("https://is.gd/create.php?format=simple&url=" + encodeURIComponent(url),
+	fetch("https://is.gd/create.php?format=json&url=" + encodeURIComponent(url),
 		{
 			method: "GET",
-			mode: "no-cors",
 			redirect: "follow"
 		}
 	)
 	.then(r => {
 		console.log(r);
 		if (r.ok) {
-			btn.value = "短縮完了";
-			document.getElementById('linkurl').href = r.body();
-			document.getElementById('dispurl').value = r.body();
+			return r.json();
 		} else {
-			btn.value = "短縮失敗";
+			return Promise.reject(r);
+		}
+	})
+	.then(body => {
+		if (body.shorturl) {
+			btn.value = "短縮完了";
+			document.getElementById('linkurl').href = body.shorturl;
+			document.getElementById('dispurl').value = body.shorturl;
+		} else {
+			return Promise.reject(body);
 		}
 	})
 	.catch(e => {
