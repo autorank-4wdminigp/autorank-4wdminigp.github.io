@@ -375,16 +375,13 @@ function UrlView(value1) {
 	if (document.getElementById('history2').checked) {
 		historyValue = "b";
 	}
-	var url = document.location.href;
-	var start = url.indexOf("?", 0);
-	var urlInit = url;
-	if (start != -1) urlInit = url.substring(0, start);
-	document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
-	document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
-	document.getElementById('v1url').href = urlInit.replace("v2/", "") + "?" + urlValue + historyValue;
+	var base = location.origin + location.pathname;
+	var search = "?" + urlValue + historyValue;
+	document.getElementById('linkurl').href = base + search;
+	document.getElementById('dispurl').value = base + search;
+	document.getElementById('v1url').href = base.replace("v2/", "") + search;
 	if (historyValue == "b" || value1 == 1) {
-		//history.pushState("", "" , "?" + urlValue);
-		history.replaceState("", "" , "?" + urlValue + historyValue);
+		history.replaceState("", "", search);
 	}
 }
 
