@@ -104,7 +104,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
 	if (bodyOption1 == 22) bodyPower += 0.05;
-	if (bodyOption1 == 25) bodyPower += 0.06;
+	if (bodyOption1 == 25) bodyPower += 0.075;
 	if (bodyOption1 == 30) bodyPower += 0.03;
 	if (bodyOption1 == 31) bodyPower += 0.03;
 	if (bodyOption2 == 2) bodyPower += 0.006;
@@ -165,7 +165,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 22) ftiregripUp += 0.06; //パワーブースト
 	if (bodyOption1 == 23) ftiregripUp += 0.06; //流星
 	if (bodyOption1 == 24) ftiregripUp += 0.15; //パワードリフト
-	if (bodyOption1 == 25) ftiregripUp += 0.06; //アクセルアーマー
+	if (bodyOption1 == 25) ftiregripUp += 0.07; //アクセルアーマー
 	if (bodyOption1 == 26) ftiregripUp += 0.015; //紅い閃光
 	if (bodyOption1 == 27) ftiregripUp += 0.1; //ドラゴンビート
 	if (bodyOption1 == 29) ftiregripUp += 0.06; //ワイルドラン
