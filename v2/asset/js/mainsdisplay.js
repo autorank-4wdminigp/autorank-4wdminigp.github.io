@@ -375,17 +375,52 @@ function UrlView(value1) {
 	if (document.getElementById('history2').checked) {
 		historyValue = "b";
 	}
-	var url = document.location.href;
-	var start = url.indexOf("?", 0);
-	var urlInit = url;
-	if (start != -1) urlInit = url.substring(0, start);
-	document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
-	document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
-	document.getElementById('v1url').href = urlInit.replace("v2/", "") + "?" + urlValue + historyValue;
+	var base = location.origin + location.pathname;
+	var search = "?" + urlValue + historyValue;
+	document.getElementById('linkurl').href = base + search;
+	document.getElementById('dispurl').value = base + search;
+	document.getElementById('v1url').href = base.replace("v2/", "") + search;
 	if (historyValue == "b" || value1 == 1) {
-		//history.pushState("", "" , "?" + urlValue);
-		history.replaceState("", "" , "?" + urlValue + historyValue);
+		history.replaceState("", "", search);
 	}
+	var shortBtn = document.getElementById('short');
+	shortBtn.value = "短縮";
+	shortBtn.disabled = false;
+}
+
+function UrlShort() {
+	var btn = document.getElementById('short');
+	btn.disabled = true;
+	btn.value = "短縮中";
+
+	var url = document.getElementById('linkurl').href;
+	fetch("https://is.gd/create.php?format=json&url=" + encodeURIComponent(url),
+		{
+			method: "GET",
+			redirect: "follow"
+		}
+	)
+	.then(r => {
+		console.log(r);
+		if (r.ok) {
+			return r.json();
+		} else {
+			return Promise.reject(r);
+		}
+	})
+	.then(body => {
+		if (body.shorturl) {
+			btn.value = "短縮完了";
+			document.getElementById('linkurl').href = body.shorturl;
+			document.getElementById('dispurl').value = body.shorturl;
+		} else {
+			return Promise.reject(body);
+		}
+	})
+	.catch(e => {
+		console.log(e);
+		btn.value = "短縮失敗";
+	});
 }
 
 function UrlSet() {

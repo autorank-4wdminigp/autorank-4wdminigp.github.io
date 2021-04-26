@@ -464,16 +464,22 @@ function UrlView(value1) {
 	if (window.parent.results.document.getElementById('history2').checked) {
 		historyValue = "b";
 	}
-	var url = window.parent.document.location.href;
-	var start = url.indexOf("?", 0);
-	var urlInit = url;
-	if (start != -1) urlInit = url.substring(0, start);
-	window.parent.results.document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
-	window.parent.results.document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
-	window.parent.document.getElementById('v2url').href = urlInit + "v2/?" + urlValue + historyValue;
+	var base = location.origin + location.pathname;
+
+	// baseからfilenameを消す
+	var tmp = base.split("/");
+	tmp.pop();
+	base = tmp.join("/") + "/";
+
+	var search = "?" + urlValue + historyValue;
+	var url = base + search;
+	var v2url = base + "v2/" + search;
+
+	window.parent.results.document.getElementById('linkurl').href = url;
+	window.parent.results.document.getElementById('dispurl').value = url;
+	window.parent.document.getElementById('v2url').href = v2url;
 	if (historyValue == "b" || value1 == 1) {
-		//window.parent.history.pushState("", "" , "?" + urlValue);
-		window.parent.history.replaceState("", "" , "?" + urlValue + historyValue);
+		window.parent.history.replaceState("", "", search);
 	}
 }
 
