@@ -72,6 +72,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[12]] = brakeValue;
 
 	//バッテリー消費量
+	var batteryIndex = kaizouArray[33][0];
+	var batteryPower = new Array(1.0, 1.03);
+	var batteryCapacity = new Array(950, 1250);
 	var setsudenUp = 1.0;
 	var setsudenValue = resultValueKai[10];
 	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.4;
@@ -82,7 +85,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.17;
-	diagnosis[diagnosisValue[2]] = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
+	var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
+	diagnosis[diagnosisValue[2]] = batteryValue;
 
 	//加速度(毎秒)
 	var ftirekeiValue = statusArray[6][16];
@@ -134,9 +138,22 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 1) bodySpeed += 0.006;
 	if (bodyOption3 == 11) bodySpeed += 0.015;
 	var spowerValue = (1.0 - (weightValue * rtirekeiValue / 2000.0 * (resultValueKai[8] + speedlossValue) / 10.0 + resultValueKai[6]) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]) - bodyPowerloss * resultValueKai[7] / 10000.0);
-	var speedValue2 = (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21] * spowerValue - resultValueKai[9] / 1000.0;
+	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
+	var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
 	diagnosis[diagnosisValue[0]] = speedValue2 * 3.6;
 	diagnosis[diagnosisValue[1]] = speedValue2;
+
+	//消費電流量
+	var currentValue = 2.25 * 10.0 * bodyPower * resultValueKai[2] * (speedValue / speedValue2) * batteryValue / 3600.0 / 1000.0 / batteryCapacity[batteryIndex];
+	diagnosis[diagnosisValue[28]] = currentValue;
+
+	//最高速25%減少
+	var speed25dec = (0.75 * speedValue2 + resultValueKai[9] / 1000.0) / spowerValue / speedValue * resultValueKai[1];
+	diagnosis[diagnosisValue[29]] = -1.0 * Math.log((speed25dec * 2 - resultValueKai[1]) / resultValueKai[1]) / currentValue;
+
+	//10秒後最高速
+	diagnosis[diagnosisValue[30]] = ((1.0 + Math.exp(-1.0 * currentValue * 10.0 )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
+	diagnosis[diagnosisValue[31]] = ((1.0 + Math.exp(-1.0 * currentValue * 20.0 )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
 
 	//ジャンプ飛距離
 	var jumpValue = Math.sin(2.0 * 20.0 * (Math.PI / 180.0)) / 9.80665;
@@ -228,13 +245,31 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
 
 	//100m走
-	diagnosis[diagnosisValue[23]] = Time_Calc(0.0, 100.0, 100.0, 7, speedValue2, acceleValue2, 100.0);
+	//diagnosis[diagnosisValue[23]] = Time_Calc(0.0, 100.0, 100.0, 7, speedValue2, acceleValue2, 100.0);
 
 	//25m走
-	diagnosis[diagnosisValue[26]] = Time_Calc(0.0, 25.0, 25.0, 5, speedValue2, acceleValue2, 25.0);
+	//diagnosis[diagnosisValue[26]] = Time_Calc(0.0, 25.0, 25.0, 5, speedValue2, acceleValue2, 25.0);
 
 	//50m走
-	diagnosis[diagnosisValue[27]] = Time_Calc(0.0, 50.0, 50.0, 6, speedValue2, acceleValue2, 50.0);
+	//diagnosis[diagnosisValue[27]] = Time_Calc(0.0, 50.0, 50.0, 6, speedValue2, acceleValue2, 50.0);
+
+	var tdistanceflg = 0;
+	var tdistance = 0.0;
+	for (var t = 0.01; t < 100.0; t += 0.01) {
+		var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0;
+		var tspeed = tspeedmax * (1.0 - Math.exp(-4.0 * acceleValue2 / tspeedmax * t));
+		tdistance += tspeed * 0.01;
+		if (tdistanceflg == 0 && tdistance >= 25.0) {
+			diagnosis[diagnosisValue[26]] = t;
+			tdistanceflg = 1;
+		} else if (tdistanceflg == 1 && tdistance >= 50.0) {
+			diagnosis[diagnosisValue[27]] = t;
+			tdistanceflg = 2;
+		} else if (tdistanceflg == 2 && tdistance >= 100.0) {
+			diagnosis[diagnosisValue[23]] = t;
+			break;
+		}
+	}
 
 	//スタミナ耐久
 	var bodyStamina = 1.0;
