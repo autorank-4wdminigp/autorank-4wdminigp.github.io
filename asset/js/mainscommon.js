@@ -67,6 +67,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyOption3 = kaizouArray[2][25];
 	if (brakeValue != 0 && bodyOption1 == 6) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption1 == 26) brakeValue += 0.05;
+	if (brakeValue != 0 && bodyOption1 == 37) brakeValue += 0.06;
 	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.015;
 	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.015;
 	diagnosis[diagnosisValue[12]] = brakeValue;
@@ -111,6 +112,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 25) bodyPower += 0.075;
 	if (bodyOption1 == 30) bodyPower += 0.03;
 	if (bodyOption1 == 31) bodyPower += 0.03;
+	if (bodyOption1 == 37) bodyPower += 0.03;
 	if (bodyOption2 == 2) bodyPower += 0.006;
 	if (bodyOption2 == 12) bodyPower += 0.015;
 	if (bodyOption3 == 2) bodyPower += 0.006;
@@ -193,6 +195,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 34) ftiregripUp += 0.06; //エアロストリーム
 	if (bodyOption1 == 35) ftiregripUp += 0.07; //GPチップγ
 	if (bodyOption1 == 36) ftiregripUp += 0.07; //サンダードリフト
+	if (bodyOption1 == 37) ftiregripUp += 0.07; //エアブレーキ
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
