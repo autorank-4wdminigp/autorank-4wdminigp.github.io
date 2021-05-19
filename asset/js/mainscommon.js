@@ -70,9 +70,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (brakeValue != 0 && bodyOption1 == 26) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption1 == 37) brakeValue += 0.06;
 	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.015;
-	if (brakeValue != 0 && bodyOption2 == 16) brakeValue += 0.018;
+	if (brakeValue != 0 && bodyOption2 == 16) brakeValue += 0.03;
 	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.015;
-	if (brakeValue != 0 && bodyOption2 == 16) brakeValue += 0.018;
+	if (brakeValue != 0 && bodyOption3 == 16) brakeValue += 0.03;
 	diagnosis[diagnosisValue[12]] = brakeValue;
 
 	//バッテリー消費量
