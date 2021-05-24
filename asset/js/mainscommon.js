@@ -116,6 +116,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 30) bodyPower += 0.03;
 	if (bodyOption1 == 31) bodyPower += 0.03;
 	if (bodyOption1 == 37) bodyPower += 0.03;
+	if (bodyOption1 == 39) bodyPower += 0.03;
 	if (bodyOption2 == 2) bodyPower += 0.006;
 	if (bodyOption2 == 12) bodyPower += 0.015;
 	if (bodyOption3 == 2) bodyPower += 0.006;
@@ -138,6 +139,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 32) bodySpeed += 0.07;
 	if (bodyOption1 == 34) bodySpeed += 0.035; //エアロストリーム
 	if (bodyOption1 == 35) bodySpeed += 0.03;
+	if (bodyOption1 == 38) bodySpeed += 0.03;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption3 == 1) bodySpeed += 0.006;
@@ -199,6 +201,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 35) ftiregripUp += 0.07; //GPチップγ
 	if (bodyOption1 == 36) ftiregripUp += 0.07; //サンダードリフト
 	if (bodyOption1 == 37) ftiregripUp += 0.03; //エアブレーキ
+	if (bodyOption1 == 38) ftiregripUp += 0.07; //Shooting Stars
+	if (bodyOption1 == 39) ftiregripUp += 0.07; //バイパードリフト
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -217,7 +221,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[19]] = (diagnosis[diagnosisValue[5]] * 10.0 * Math.min(resultValueKai[27] + 200.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
 
 	//耐風最高速
-	diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26], 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
+	var taifuugripUp = 0.0;
+	if (resultValueKai[26] != 0 && bodyOption1 == 38) taifuugripUp += 5000.0;
+	diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
 
 	//芝最高速
 	var bodyOffload = 0.0;
@@ -299,6 +305,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 33) bodyCornerdecele -= 0.85;
 	if (bodyOption1 == 34) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 36) bodyCornerdecele -= 0.75;
+	if (bodyOption1 == 39) bodyCornerdecele -= 0.75;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.375;
 	if (bodyOption3 == 4) bodyCornerdecele -= 0.35;
