@@ -88,6 +88,8 @@ function Type_Init(value1) {
 		innerValue += "</option>";
 	}
 	document.getElementById("id_" + nameValue[value1]).innerHTML = innerValue + "</select>";
+
+	Select_Set();
 }
 
 function Type_Set(value1, value2) {
@@ -605,4 +607,15 @@ function Set_Storage(category, key, value) {
 	}
 	container[category][key] = value;
 	localStorage.setItem("simulator", JSON.stringify(container));
+}
+
+function Select_Set() {
+	tail.select("select.parts", {
+		animate: false,
+		openAbove: false,
+		width: "100%",
+		locale: "ja",
+		search: true,
+		searchMinLength: 2,
+	});
 }
