@@ -88,8 +88,6 @@ function Type_Init(value1) {
 		innerValue += "</option>";
 	}
 	document.getElementById("id_" + nameValue[value1]).innerHTML = innerValue + "</select>";
-
-	Select_Set();
 }
 
 function Type_Set(value1, value2) {
