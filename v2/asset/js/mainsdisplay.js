@@ -614,6 +614,6 @@ function Select_Set() {
 		width: "100%",
 		locale: "ja",
 		search: true,
-		searchMinLength: 2,
+		searchMinLength: 0,
 	});
 }
