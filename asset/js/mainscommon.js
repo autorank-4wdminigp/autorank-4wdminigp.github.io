@@ -116,7 +116,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 30) bodyPower += 0.03;
 	if (bodyOption1 == 31) bodyPower += 0.03;
 	if (bodyOption1 == 37) bodyPower += 0.03;
-	if (bodyOption1 == 39) bodyPower += 0.03;
+	if (bodyOption1 == 39) bodyPower += 0.02;
 	if (bodyOption2 == 2) bodyPower += 0.006;
 	if (bodyOption2 == 12) bodyPower += 0.015;
 	if (bodyOption3 == 2) bodyPower += 0.006;
@@ -396,6 +396,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	x10 = 0.0000084761;
 	x11 = 0.0000000075;
 	diagnosis[diagnosisValue[8]] = x1 + x2 * speedValue3 + x3 * tirehanpatsuValue + x4 * gravityValue + x5 * weightValue + x6 * seishinValue + x7 * speedValue3 * speedValue3 + x8 * tirehanpatsuValue * tirehanpatsuValue + x9 * gravityValue * gravityValue + x10 * weightValue * weightValue + x11 * seishinValue * seishinValue;
+
+	for (var i = 0; i < diagnosisValue.length; i++) {
+		if (Math.abs(diagnosis[diagnosisValue[i]]) < 0.00000000000001) diagnosis[diagnosisValue[i]] = 0;
+	}
 
 	return diagnosis;
 }
