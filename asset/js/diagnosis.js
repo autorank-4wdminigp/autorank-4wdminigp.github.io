@@ -24,9 +24,9 @@ function View_Diagnosis() {
 		writeValue += "<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>";
 	}
 	writeValue += "</tr></table>";
-	writeValue += "<br><font color='#FFA500'>※3 参考値です(ブレーキは考慮せず、速いマシンの場合は表示より少し大きくなり、遅い場合は少し小さくなります)</font>";
-	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明(最適重心未実装)</font>";
-	writeValue += "<br><font color='#FFA500'>※5 参考値です(2次多項式の重回帰分析による近似式)</font>";
+	writeValue += "<br><font color='#FFA500'>※3 誤差少しあり(電池消耗、速度が遅い場合のジャンプ角度低下、ブレーキが強い場合のウイリー未実装)</font>";
+	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明(重心未実装)</font>";
+	writeValue += "<br><font color='#FFA500'>※5 誤差あり(電池消耗、速度が遅い場合のジャンプ角度低下、ブレーキが強い場合のウイリー未実装)</font>";
 	writeValue += "<br><font color='#FFA500'>※6 情報提供感謝します</font>";
 	document.getElementById("bmain").innerHTML = writeValue;
 }
