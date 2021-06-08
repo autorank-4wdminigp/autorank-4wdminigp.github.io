@@ -371,6 +371,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var slopeSpeedInit = speedValue2;
 	if (brakeValue != 0) {
 		slopeSpeedInit -= (10.0 + 10.0 * brakeValue - 0.17 * acceleValue2) * brakeValue;
+		if (slopeSpeedInit < 0.0) slopeSpeedInit = 0.0;
 	}
 	var slopeAccele = -Math.sin(slopeAngle * (Math.PI / 180.0)) * 9.80665;
 	var slopeTime = 0.0;
@@ -411,6 +412,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	slopeSpeedInit = speedValue2;
 	if (brakeValue != 0) {
 		slopeSpeedInit -= (10.0 + 10.0 * brakeValue - 0.17 * acceleValue2) * brakeValue;
+		if (slopeSpeedInit < 0.0) slopeSpeedInit = 0.0;
 	}
 	slopeAccele = -Math.sin(slopeAngle * (Math.PI / 180.0)) * 9.80665;
 	slopeTime = 0.0;
