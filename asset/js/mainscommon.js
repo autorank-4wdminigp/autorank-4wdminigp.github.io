@@ -131,6 +131,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodySpeed = 1.0;
 	if (bodyOption1 == 1) bodySpeed += 0.02;
 	if (bodyOption1 == 11) bodySpeed += 0.03;
+	if (bodyOption1 == 41) bodySpeed += 0.04;
 	if (bodyOption1 == 21) bodySpeed += 0.04;
 	if (bodyOption1 == 23) bodySpeed += 0.03;
 	if (bodyOption1 == 26) bodySpeed += 0.03;
@@ -142,8 +143,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 38) bodySpeed += 0.03;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
+	if (bodyOption2 == 41) bodySpeed += 0.015;
 	if (bodyOption3 == 1) bodySpeed += 0.006;
-	if (bodyOption3 == 11) bodySpeed += 0.015;
+	if (bodyOption3 == 11) bodySpeed += 0.02;
+	if (bodyOption3 == 41) bodySpeed += 0.02;
 	var spowerValue = (1.0 - (weightValue * rtirekeiValue / 2000.0 * (resultValueKai[8] + speedlossValue) / 10.0 + resultValueKai[6]) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]) - bodyPowerloss * resultValueKai[7] / 10000.0);
 	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
 	var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
@@ -297,6 +300,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyCornerdecele = 1.0; //旋回
 	if (bodyOption1 == 4) bodyCornerdecele -= 0.7;
 	if (bodyOption1 == 14) bodyCornerdecele -= 0.75;
+	if (bodyOption1 == 44) bodyCornerdecele -= 0.8;
 	if (bodyOption1 == 24) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 33) bodyCornerdecele -= 0.85;
 	if (bodyOption1 == 34) bodyCornerdecele -= 0.75;
@@ -304,15 +308,20 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 39) bodyCornerdecele -= 0.75;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.42;
+	if (bodyOption2 == 44) bodyCornerdecele -= 0.5;
 	if (bodyOption3 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption3 == 14) bodyCornerdecele -= 0.42;
+	if (bodyOption3 == 44) bodyCornerdecele -= 0.5;
 	var bodyCornerdecele2 = 1.0; //摩擦
 	if (bodyOption1 == 4) bodyCornerdecele2 -= 0.17;
 	if (bodyOption1 == 14) bodyCornerdecele2 -= 0.2;
+	if (bodyOption1 == 44) bodyCornerdecele2 -= 0.25;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
+	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.125;
 	if (bodyOption3 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption3 == 14) bodyCornerdecele2 -= 0.1;
+	if (bodyOption3 == 44) bodyCornerdecele2 -= 0.125;
 	var bodyCornerdecele3 = 1.0; //抵抗
 	if (bodyOption1 == 24) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 33) bodyCornerdecele3 -= 0.7;
