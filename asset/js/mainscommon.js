@@ -143,10 +143,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 38) bodySpeed += 0.03;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
-	if (bodyOption2 == 41) bodySpeed += 0.015;
+	if (bodyOption2 == 41) bodySpeed += 0.025;
 	if (bodyOption3 == 1) bodySpeed += 0.006;
-	if (bodyOption3 == 11) bodySpeed += 0.02;
-	if (bodyOption3 == 41) bodySpeed += 0.02;
+	if (bodyOption3 == 11) bodySpeed += 0.015;
+	if (bodyOption3 == 41) bodySpeed += 0.025;
 	var spowerValue = (1.0 - (weightValue * rtirekeiValue / 2000.0 * (resultValueKai[8] + speedlossValue) / 10.0 + resultValueKai[6]) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]) - bodyPowerloss * resultValueKai[7] / 10000.0);
 	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
 	var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
