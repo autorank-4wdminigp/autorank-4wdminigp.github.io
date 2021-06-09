@@ -146,48 +146,6 @@ main {
   padding: 5px;
 }
 
-.shrink-toggle {
-  display: none;
-}
-.shrink-label {
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-}
-.shrink-label::after {
-  content: "";
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  background: url(../../../asset/img/downArrow.png) no-repeat;
-  background-size: contain;
-  vertical-align: middle;
-}
-.shrink-content {
-  width: 100%;
-  height: 100%;
-  /*transition: all 0.2s ease-out;*/
-  overflow: auto;
-}
-.shrink-v .shrink-label::after {
-  transform: rotate(180deg);
-}
-.shrink-v .shrink-toggle:checked + .shrink-label::after {
-  transform: none;
-}
-.shrink-v .shrink-toggle:checked + .shrink-label + .shrink-content {
-  height: 0;
-}
-.shrink-h .shrink-label::after {
-  transform: rotate(90deg);
-}
-.shrink-h .shrink-toggle:checked + .shrink-label::after {
-  transform: rotate(-90deg);
-}
-.shrink-h .shrink-toggle:checked + .shrink-label + .shrink-content {
-  width: 0;
-}
-
 .menus {
   overflow: visible;
   border-right: solid 1px #bab084;
