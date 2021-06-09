@@ -407,11 +407,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyBoundtime = 1.0; //タイヤ反発
 	if (bodyOption1 == 7) bodyBoundtime -= 0.05;
 	if (bodyOption1 == 17) bodyBoundtime -= 0.10;
-	if (bodyOption1 == 27) bodyBoundtime -= 0.12;
 	if (bodyOption2 == 7) bodyBoundtime -= 0.04;
 	if (bodyOption2 == 17) bodyBoundtime -= 0.08;
 	if (bodyOption3 == 7) bodyBoundtime -= 0.04;
 	if (bodyOption3 == 17) bodyBoundtime -= 0.08;
+	var bodyBoundtime2 = 1.0; //制振
+	if (bodyOption1 == 27) bodyBoundtime2 += 2.0;
 	var seishinValue = resultValueKai[11];
 	var ftirehanpatsuValue = statusArray[6][15];
 	var rtirehanpatsuValue = statusArray[7][15];
@@ -441,15 +442,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	}
 	slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
 	var hanpatsuValue;
-	var seishinValueInit = weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0) * (tirehanpatsuValue * bodyBoundtime / 1000.0 - (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665 / (2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) + (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665));
+	var seishinValueInit = weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0) * (tirehanpatsuValue * bodyBoundtime / 1000.0 - (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665 / (2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) + (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665)) / bodyBoundtime2;
 	if (seishinValueInit < 0) {
-		//bodyBoundtime = (bodyBoundtime - 1.0) / 5.0 + 1.0;
-		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValue / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
+		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValue * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
 	} else if (seishinValueInit > seishinValue) {
-		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValue / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0));
+		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValue * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0));
 	} else {
-		//bodyBoundtime = (bodyBoundtime - 1.0) / 5.0 + 1.0;
-		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValueInit / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) - (seishinValue - seishinValueInit) / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
+		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValueInit * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) - (seishinValue - seishinValueInit) * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
 	}
 	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.00005 * gravityValue;
 	diagnosis[diagnosisValue[8]] = boundtimeValue;
