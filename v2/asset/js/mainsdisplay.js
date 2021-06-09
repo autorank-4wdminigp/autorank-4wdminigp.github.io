@@ -21,11 +21,11 @@ function View_Set(value1) {
 			writeValue += "<option value=" + j + ">" + j + "箇所</option>";
 		}
 		writeValue += "</td></tr><tr><td>アシスト特性 <select id='" + nameValue[value1] + "_bodytokusei2' class='tokusei' onchange='Type_Calc(" + value1 + ")'>";
-		for (var i = 0; i <= 20; i++) {
+		for (var i = 0; i < selectOption.length; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
 		writeValue += "</select></td><td>アシスト特性 <select id='" + nameValue[value1] + "_bodytokusei3' class='tokusei' onchange='Type_Calc(" + value1 + ")'>";
-		for (var i = 0; i <= 20; i++) {
+		for (var i = 0; i < selectOption.length; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
 		writeValue += "</select></td>";
