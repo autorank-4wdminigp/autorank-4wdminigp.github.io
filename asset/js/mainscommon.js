@@ -264,21 +264,54 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	//50m走
 	//diagnosis[diagnosisValue[27]] = Time_Calc(0.0, 50.0, 50.0, 6, speedValue2, acceleValue2, 50.0);
 
-	var tdistanceflg = 0;
+	//var tdistanceflg = 0;
+	//var tdistance = 0.0;
+	//for (var t = 0.01; t < 100.0; t += 0.01) {
+	//	var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0;
+	//	var tspeed = tspeedmax * (1.0 - Math.exp(-4.0 * acceleValue2 / tspeedmax * t));
+	//	tdistance += tspeed * 0.01;
+	//	if (tdistanceflg == 0 && tdistance >= 25.0) {
+	//		diagnosis[diagnosisValue[26]] = t;
+	//		tdistanceflg = 1;
+	//	} else if (tdistanceflg == 1 && tdistance >= 50.0) {
+	//		diagnosis[diagnosisValue[27]] = t;
+	//		tdistanceflg = 2;
+	//	} else if (tdistanceflg == 2 && tdistance >= 100.0) {
+	//		diagnosis[diagnosisValue[23]] = t;
+	//		break;
+	//	}
+	//}
+
+	var tdistanceArray = new Array(25.0, 50.0, 100.0);
+	var tdiagnosisArray = new Array(26, 27, 23);
 	var tdistance = 0.0;
-	for (var t = 0.01; t < 100.0; t += 0.01) {
-		var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0;
-		var tspeed = tspeedmax * (1.0 - Math.exp(-4.0 * acceleValue2 / tspeedmax * t));
-		tdistance += tspeed * 0.01;
-		if (tdistanceflg == 0 && tdistance >= 25.0) {
-			diagnosis[diagnosisValue[26]] = t;
-			tdistanceflg = 1;
-		} else if (tdistanceflg == 1 && tdistance >= 50.0) {
-			diagnosis[diagnosisValue[27]] = t;
-			tdistanceflg = 2;
-		} else if (tdistanceflg == 2 && tdistance >= 100.0) {
-			diagnosis[diagnosisValue[23]] = t;
-			break;
+	var tspeed = 0.0;
+	var tspeedTime = 0.0;
+	var tspeedBack = 0.0;
+	var tdistanceBack = 0.0;
+	for (var m = 0; m < 3; m++) {
+		for (var i = 2; i <= 4; i++) {
+			var timeUnit = Math.pow(10, i);
+			for (var j = 1; j <= 10000; j++) {
+				var t = tspeedTime + j / timeUnit;
+				var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0;
+				var taccele = 4.0 * acceleValue2 * (1.0 - tspeed / tspeedmax);
+				tspeedBack = tspeed;
+				tdistanceBack = tdistance;
+				tspeed += taccele / timeUnit;
+				tdistance += tspeed / timeUnit;
+				if (tdistance >= tdistanceArray[m]) {
+					if (i < 4) {
+						tspeedTime += (j - 1) / timeUnit;
+						tspeed = tspeedBack;
+						tdistance = tdistanceBack;
+					} else {
+						tspeedTime += j / timeUnit;
+						diagnosis[diagnosisValue[tdiagnosisArray[m]]] = t;
+					}
+					break;
+				}
+			}
 		}
 	}
 
