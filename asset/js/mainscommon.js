@@ -348,13 +348,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyCornerdecele2 = 1.0; //摩擦
 	if (bodyOption1 == 4) bodyCornerdecele2 -= 0.17;
 	if (bodyOption1 == 14) bodyCornerdecele2 -= 0.2;
-	if (bodyOption1 == 44) bodyCornerdecele2 -= 0.25;
+	if (bodyOption1 == 44) bodyCornerdecele2 -= 0.5;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
-	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.125;
+	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.25;
 	if (bodyOption3 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption3 == 14) bodyCornerdecele2 -= 0.1;
-	if (bodyOption3 == 44) bodyCornerdecele2 -= 0.125;
+	if (bodyOption3 == 44) bodyCornerdecele2 -= 0.25;
 	var bodyCornerdecele3 = 1.0; //抵抗
 	if (bodyOption1 == 24) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 33) bodyCornerdecele3 -= 0.7;
