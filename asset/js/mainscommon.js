@@ -145,13 +145,14 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 1) bodySpeed += 0.006;
 	if (bodyOption3 == 11) bodySpeed += 0.015;
 	if (bodyOption3 == 41) bodySpeed += 0.025;
-	var hoseiPowerlossStr = "";
-	var hoseiNotDfStr = "";
+	var hoseiSpeedStr = "";
+	var hoseiAcceleStr = "";
 	var powerlossValue = resultValueKai[7];
 	var powerlossMax = ((0.000025 * powerlossValue + 0.75) - (weightValue * rtirekeiValue / 2000.0 * (resultValueKai[8] + speedlossValue) / 10.0 + resultValueKai[6]) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
 	if (powerlossValue > powerlossMax) {
 		powerlossValue = powerlossMax;
-		hoseiPowerlossStr = "PL)";
+		hoseiSpeedStr = "PL)";
+		hoseiAcceleStr = "PL)";
 	}
 	var spowerValue = (1.0 - (weightValue * rtirekeiValue / 2000.0 * (resultValueKai[8] + speedlossValue) / 10.0 + resultValueKai[6]) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]) - bodyPowerloss * powerlossValue / 10000.0);
 	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
@@ -159,15 +160,14 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var speedValueNotDf = speedValue * spowerValue / 2.0;
 	if (speedValueNotDf > speedValue2) {
 		speedValue2 = speedValueNotDf;
-		hoseiPowerlossStr = "";
-		hoseiNotDfStr = "DF)";
+		hoseiSpeedStr = "DF)";
 	}
-	diagnosis[diagnosisValue[0]] = hoseiPowerlossStr + hoseiNotDfStr + (speedValue2 * 3.6);
-	diagnosis[diagnosisValue[1]] = hoseiPowerlossStr + hoseiNotDfStr + speedValue2;
+	diagnosis[diagnosisValue[0]] = hoseiSpeedStr + (speedValue2 * 3.6);
+	diagnosis[diagnosisValue[1]] = hoseiSpeedStr + speedValue2;
 
 	//加速度(毎秒)
 	var acceleValue2 = ((10.0 * bodyPower * resultValueKai[2] * (1.0 - bodyPowerloss * powerlossValue / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (rtirekeiValue / 2000.0 * weightValue) - (resultValueKai[8] + speedlossValue) / 10.0) / 4000.0;
-	diagnosis[diagnosisValue[3]] = hoseiPowerlossStr + acceleValue2;
+	diagnosis[diagnosisValue[3]] = hoseiAcceleStr + acceleValue2;
 
 	//消費電流量
 	var currentValue = 2.25 * 10.0 * bodyPower * resultValueKai[2] * (speedValue / speedValue2) * batteryValue / 3600.0 / 1000.0 / batteryCapacity[batteryIndex];
