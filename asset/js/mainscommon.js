@@ -148,13 +148,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var hoseiSpeedStr = "";
 	var hoseiAcceleStr = "";
 	var powerlossValue = resultValueKai[7];
-	var powerlossMax = ((0.000025 * powerlossValue + 0.75) - (weightValue * rtirekeiValue / 2000.0 * (resultValueKai[8] + speedlossValue) / 10.0 + resultValueKai[6]) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
+	var powerlossMax = ((0.000025 * powerlossValue + 0.75) - (resultValueKai[6] + (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
 	if (powerlossValue > powerlossMax) {
 		powerlossValue = powerlossMax;
 		hoseiSpeedStr = "PL)";
 		hoseiAcceleStr = "PL)";
 	}
-	var spowerValue = (1.0 - (weightValue * rtirekeiValue / 2000.0 * (resultValueKai[8] + speedlossValue) / 10.0 + resultValueKai[6]) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]) - bodyPowerloss * powerlossValue / 10000.0);
+	var spowerValue = (1.0 - bodyPowerloss * powerlossValue / 10000.0 - (resultValueKai[6] + (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]));
 	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
 	var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
 	var speedValueNotDf = speedValue * spowerValue / 2.0;
@@ -166,7 +166,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[1]] = hoseiSpeedStr + speedValue2;
 
 	//加速度(毎秒)
-	var acceleValue2 = ((10.0 * bodyPower * resultValueKai[2] * (1.0 - bodyPowerloss * powerlossValue / 10000.0) * resultValueKai[21] - resultValueKai[6]) / (rtirekeiValue / 2000.0 * weightValue) - (resultValueKai[8] + speedlossValue) / 10.0) / 4000.0;
+	var acceleValue = (10.0 * bodyPower * resultValueKai[2] / 1000.0) / 4.0 * resultValueKai[21] / (rtirekeiValue / 2000.0 * weightValue);
+	var acceleValue2 = acceleValue * spowerValue;
 	diagnosis[diagnosisValue[3]] = hoseiAcceleStr + acceleValue2;
 
 	//消費電流量
@@ -238,7 +239,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	//耐風最高速
 	var taifuugripUp = 0.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 38) taifuugripUp += 5000.0;
-	diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
+	var taifuuFuka = (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue * 0.086 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
+	diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	//diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
 
 	//芝最高速
 	var bodyOffload = 0.0;
@@ -247,10 +250,14 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 50000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 15000.0;
-	diagnosis[diagnosisValue[17]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
+	var shibaFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.068 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
+	diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	//diagnosis[diagnosisValue[17]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
 
 	//ダート最高速
-	diagnosis[diagnosisValue[18]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
+	var dirtFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.048 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
+	diagnosis[diagnosisValue[18]] = Math.max(speedValue * (spowerValue - dirtFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	//diagnosis[diagnosisValue[18]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
 
 	//コーナー安定速度
 	var cornerspeedUp = 1.0;
