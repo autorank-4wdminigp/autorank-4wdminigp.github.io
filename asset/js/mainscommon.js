@@ -423,7 +423,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[14]] = rollerteikouValue;
 	var masatsuValue = rollerangleValue * rollermasatsuValue;
 	if (rollerteikouValue1 < -10.0) {
-		rollerteikouValue += 1250;
+		rollerteikouValue += 1250.0;
 	}
 	var ftiresenkaiValue = statusArray[6][14];
 	var rtiresenkaiValue = statusArray[7][14];
@@ -437,8 +437,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var senkaiC = -0.000000095868573 * (resultValueKai[30] + resultValueKai[31] * 2 + Math.abs(senkaisaValue) * 3) + 0.000032630514858;
 	var senkaiA = 45.188272213660500 * senkaisaValue - 0.008372879447291;
 	var cornerweightValue = (senkaiC * (gravityValue + senkaiA) * (gravityValue + senkaiA) + 0.024516625024408 - senkaiC * senkaiA * senkaiA) * treadValue;
-	var cornerdeceleA = 2.0 * (1.0 - cornerweightValue * Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) / (4.0 * acceleValue2 * 458.0));
-	var cornerdeceleValue = cornerdeceleA / (1.0 + Math.sqrt(1.0 + cornerdeceleA * speedValue2 * speedValue2 / (acceleValue2 * 458.0) * (masatsuValue * bodyCornerdecele2 * (1.0 + Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) * 0.000280569811045) + rollerteikouValue / 20.0 * bodyCornerdecele3)));
+	var cornerdeceleA = (1.0 - cornerweightValue * Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) / (4.0 * acceleValue2 * 458.0));
+	var cornerdeceleValue = cornerdeceleA / (0.5 + Math.sqrt(0.25 + 2.0 * cornerdeceleA * speedValue2 * speedValue2 / (4.0 * acceleValue2 * 458.0) * (masatsuValue * bodyCornerdecele2 * (1.0 + Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) * 0.000280569811045) + rollerteikouValue / 20.0 * bodyCornerdecele3)));
 	diagnosis[diagnosisValue[6]] = cornerdeceleValue;
 
 	//ジャンプ飛距離
