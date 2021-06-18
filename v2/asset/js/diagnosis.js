@@ -17,7 +17,7 @@
 	}
 	writeValue += "</select></td></tr></table>";
 	writeValue += "<br><font color='#FFA500'>※3 誤差少しあり(電池消耗、速度が遅い場合のジャンプ角度低下、ブレーキが強い場合のウイリー未実装)</font>";
-	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明(重心未実装)</font>";
+	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明((重心ありやスラスト角ありは誤差少しあり)</font>";
 	writeValue += "<br><font color='#FFA500'>※5 誤差あり(電池消耗、速度が遅い場合のジャンプ角度低下、ブレーキが強い場合のウイリー未実装)</font>";
 	writeValue += "<br><font color='#FFA500'>※6 情報提供感謝します</font>";
 	document.getElementById("diagnosis-main").innerHTML = writeValue;
