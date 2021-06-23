@@ -359,13 +359,13 @@ kaizou7Select[11][s++] = new Array(3, 4);
 s = 0;
 kaizouTenpreSelect[11] = new Array();
 kaizouTenpreSelect[11][s++] = new Array(0, 1, 2);
-kaizouTenpreSelect[11][s++] = new Array(0, 1, 2, 3, 4);
+kaizouTenpreSelect[11][s++] = new Array(3, 4, 1, 2);
 kaizouTenpre[11] = new Array();
 kaizouTenpre[11][0] = new Array("スタビ摩擦を弱めるx4", 3, 3, 3, 3, 0, 0);
 kaizouTenpre[11][1] = new Array("スタビ摩擦を強めるx6", 2, 2, 2, 2, 1, 1);
 kaizouTenpre[11][2] = new Array("スタビ摩擦を弱めるx4 スタビ摩擦を強めるx2", 3, 3, 3, 3, 2, 2);
-kaizouTenpre[11][3] = new Array("スタビ摩擦を弱める(パワー重視)x4", 4, 4, 4, 4, 0, 0);
-kaizouTenpre[11][4] = new Array("スタビ摩擦を弱める(パワー重視)x4 スタビ摩擦を強めるx2", 4, 4, 4, 4, 2, 2);
+kaizouTenpre[11][3] = new Array("スタビ摩擦を弱めるx4 スタビ摩擦を弱める(パワー重視)x2", 3, 3, 3, 3, 4, 4);
+kaizouTenpre[11][4] = new Array("スタビ摩擦を弱める(パワー重視)x4 スタビ摩擦を弱めるx2", 4, 4, 4, 4, 3, 3);
 
 //ウェイト
 s = 0;
@@ -1382,7 +1382,7 @@ kaizouValue[11][4][0] = new Array("スタビ摩擦を弱める(上級)", "スピ
 kaizouValue[11][4][1] = new Array("", "スタビ減速××× [4] ", -0.04, -0.048, -0.056, -0.002, -1, 24);
 
 kaizouValue[11][5] = new Array();
-kaizouValue[11][5][0] = new Array("スタビ摩擦を弱める(パワー重視)(仮) [4]", "パワー〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
+kaizouValue[11][5][0] = new Array("スタビ摩擦を弱める(パワー重視) [4](仮)", "パワー〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 kaizouValue[11][5][1] = new Array("", "スタビ減速×× [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 24);
 
 
