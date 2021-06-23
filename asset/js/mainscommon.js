@@ -93,22 +93,24 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[2]] = batteryValue;
 
 	//異径スピロス
+	var bodySpeedloss = 1.0;
+	if (bodyOption1 == 51) bodySpeedloss -= 0.1;
 	var ftirekeiValue = statusArray[6][16];
 	var rtirekeiValue = statusArray[7][16];
 	var mintiresenkai;
-	var mintirespeedloss;
+	var mintirekei;
 	if (ftirekeiValue <= rtirekeiValue) {
 		mintiresenkai = statusArray[6][14];
-		mintirespeedloss = statusArrayInit[6][8];
+		mintirekei = ftirekeiValue;
 	} else {
 		mintiresenkai = statusArray[7][14];
-		mintirespeedloss = statusArrayInit[7][8];
+		mintirekei = rtirekeiValue;
 	}
 	var tirekeisa = Math.abs(ftirekeiValue - rtirekeiValue);
 	if (shindantire == 2) {
 		tirekeisa = shindantirekei;
 	}
-	var speedlossValue = 28.0 * tirekeisa * mintiresenkai * 1000.0 / mintirespeedloss;
+	var speedlossValue = 800.0 * tirekeisa * mintiresenkai / mintirekei;
 	var bodyPower = 1.0;
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
@@ -139,6 +141,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 34) bodySpeed += 0.035; //エアロストリーム
 	if (bodyOption1 == 35) bodySpeed += 0.03;
 	if (bodyOption1 == 38) bodySpeed += 0.03;
+	if (bodyOption1 == 51) bodySpeed += 0.03;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -148,13 +151,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var hoseiSpeedStr = "";
 	var hoseiAcceleStr = "";
 	var powerlossValue = resultValueKai[7];
-	var powerlossMax = ((0.000025 * powerlossValue + 0.75) - (resultValueKai[6] + (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
+	var powerlossMax = ((0.000025 * powerlossValue + 0.75) - (resultValueKai[6] + (bodySpeedloss * resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
 	if (powerlossValue > powerlossMax) {
 		powerlossValue = powerlossMax;
 		hoseiSpeedStr = "PL)";
 		hoseiAcceleStr = "PL)";
 	}
-	var spowerValue = (1.0 - bodyPowerloss * powerlossValue / 10000.0 - (resultValueKai[6] + (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]));
+	var spowerValue = (1.0 - bodyPowerloss * powerlossValue / 10000.0 - (resultValueKai[6] + (bodySpeedloss * resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]));
 	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
 	var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
 	var speedValueNotDf = speedValue * spowerValue / 2.0;
@@ -219,6 +222,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 37) ftiregripUp += 0.03; //エアブレーキ
 	if (bodyOption1 == 38) ftiregripUp += 0.07; //Shooting Stars
 	if (bodyOption1 == 39) ftiregripUp += 0.07; //バイパードリフト
+	if (bodyOption1 == 51) ftiregripUp += 0.07; //GPチップXSP
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -315,17 +319,22 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	for (var m = 0; m < 3; m++) {
 		diagnosis[diagnosisValue[tdiagnosisArray[m]]] = "";
 	}
-	if (speedValue2 >= 1.5) {
+	if (speedValue2 >= 1.75) {
 		for (var m = 0; m < 3; m++) {
 			for (var i = 2; i <= 5; i++) {
 				var timeUnit = Math.pow(10, i);
 				for (var j = 1; j <= 10000; j++) {
 					var t = tspeedTime + j / timeUnit;
 					var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0;
-					var taccele = 4.0 * acceleValue2 * (1.0 - tspeed / tspeedmax);
+					//var taccele = 4.0 * acceleValue2 * (1.0 - tspeed / tspeedmax);
+					var tspeedK1 = 4.0 * acceleValue2 * (1.0 - tspeed / tspeedmax) / timeUnit;
+					var tspeedK2 = 4.0 * acceleValue2 * (1.0 - (tspeed + tspeedK1 / 2.0) / tspeedmax) / timeUnit;
+					var tspeedK3 = 4.0 * acceleValue2 * (1.0 - (tspeed + tspeedK2 / 2.0) / tspeedmax) / timeUnit;
+					var tspeedK4 = 4.0 * acceleValue2 * (1.0 - (tspeed + tspeedK3) / tspeedmax) / timeUnit;
 					tspeedBack = tspeed;
 					tdistanceBack = tdistance;
-					tspeed += taccele / timeUnit;
+					//tspeed += taccele / timeUnit;
+					tspeed += (tspeedK1 + tspeedK2 * 2.0 + tspeedK3 * 2.0 + tspeedK4) / 6.0;
 					tdistance += tspeed / timeUnit;
 					if (tdistance >= tdistanceArray[m]) {
 						if (i < 5) {
