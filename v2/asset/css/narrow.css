@@ -159,3 +159,11 @@ main {
 .for-wide {
   display: none;
 }
+
+#mains-main .cstable {
+  table-layout: fixed;
+}
+
+.tail-select .select-label {
+  padding-right: 16px;
+}
