@@ -33,11 +33,11 @@ function View_Set(value1) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
 		writeValue += "</select></td><td>アシスト特性 <select id='" + nameValue[value1] + "_bodytokusei2' onchange='Type_Calc(" + value1 + ")'>";
-		for (var i = 0; i <= 20; i++) {
+		for (var i = 0; i < selectOption.length; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
 		writeValue += "</select></td><td>アシスト特性 <select id='" + nameValue[value1] + "_bodytokusei3' onchange='Type_Calc(" + value1 + ")'>";
-		for (var i = 0; i <= 20; i++) {
+		for (var i = 0; i < selectOption.length; i++) {
 			writeValue += "<option value=" + i + ">" + selectOption[i] + "</option>";
 		}
 		writeValue += "</select></td>";
@@ -464,22 +464,16 @@ function UrlView(value1) {
 	if (window.parent.results.document.getElementById('history2').checked) {
 		historyValue = "b";
 	}
-	var base = location.origin + location.pathname;
-
-	// baseからfilenameを消す
-	var tmp = base.split("/");
-	tmp.pop();
-	base = tmp.join("/") + "/";
-
-	var search = "?" + urlValue + historyValue;
-	var url = base + search;
-	var v2url = base + "v2/" + search;
-
-	window.parent.results.document.getElementById('linkurl').href = url;
-	window.parent.results.document.getElementById('dispurl').value = url;
-	window.parent.document.getElementById('v2url').href = v2url;
+	var url = window.parent.document.location.href;
+	var start = url.indexOf("?", 0);
+	var urlInit = url;
+	if (start != -1) urlInit = url.substring(0, start);
+	window.parent.results.document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
+	window.parent.results.document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
+	window.parent.document.getElementById('v2url').href = urlInit + "v2/?" + urlValue + historyValue;
 	if (historyValue == "b" || value1 == 1) {
-		window.parent.history.replaceState("", "", search);
+		//window.parent.history.pushState("", "" , "?" + urlValue);
+		window.parent.history.replaceState("", "" , "?" + urlValue + historyValue);
 	}
 }
 
