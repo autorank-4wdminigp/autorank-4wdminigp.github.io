@@ -94,7 +94,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//異径スピロス
 	var bodySpeedloss = 1.0;
-	if (bodyOption1 == 51) bodySpeedloss -= 0.1;
+	if (bodyOption1 == 51) bodySpeedloss -= 0.15;
 	var ftirekeiValue = statusArray[6][16];
 	var rtirekeiValue = statusArray[7][16];
 	var mintiresenkai;
@@ -151,13 +151,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var hoseiSpeedStr = "";
 	var hoseiAcceleStr = "";
 	var powerlossValue = resultValueKai[7];
-	var powerlossMax = ((0.000025 * powerlossValue + 0.75) - (resultValueKai[6] + (bodySpeedloss * resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
+	var powerlossMax = ((0.000025 * powerlossValue + 0.75) - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
 	if (powerlossValue > powerlossMax) {
 		powerlossValue = powerlossMax;
 		hoseiSpeedStr = "PL)";
 		hoseiAcceleStr = "PL)";
 	}
-	var spowerValue = (1.0 - bodyPowerloss * powerlossValue / 10000.0 - (resultValueKai[6] + (bodySpeedloss * resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]));
+	var spowerValue = (1.0 - bodyPowerloss * powerlossValue / 10000.0 - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]));
 	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
 	var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
 	var speedValueNotDf = speedValue * spowerValue / 2.0;
