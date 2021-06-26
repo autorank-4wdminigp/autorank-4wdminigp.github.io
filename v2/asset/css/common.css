@@ -53,7 +53,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding: 0px 15px 0px 0px;
+  padding: 2px 15px 2px 2px;
   background: url(../../../asset/img/downArrow.png) no-repeat right #000000;
 }
 .csa {
@@ -249,4 +249,22 @@ select.parts, select.niku, select.tokusei, select.slot, select.tenpure {
 
 .url-box input:disabled {
   color: rgb(32, 32, 32);
+}
+
+.tail-select .select-label {
+  color: #c0c0c0;
+  background-color: black;
+}
+
+.tail-select .select-dropdown {
+  background-color: black;
+}
+
+.tail-select .select-label:after {
+  top: 13px;
+  right: 5px;
+  opacity: 1;
+  border-top: 8px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
 }

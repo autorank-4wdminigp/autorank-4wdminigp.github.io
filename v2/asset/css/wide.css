@@ -90,6 +90,7 @@ main {
 }
 .pane section {
   padding: 5px;
+  /* overflow: visible; */
 }
 
 .shrink-label::after {

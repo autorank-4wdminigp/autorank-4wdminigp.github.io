@@ -51,6 +51,7 @@ function Menu_Click(value1) {
 	View_Set(value1);
 	Type_Init(value1);
 	document.getElementById(nameValue[value1]).selectedIndex =  kaizouArray[value1][0];
+	Select_Set();
 	Type_Set(value1, 1);
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 		if (typeSelect[nameCalc[value1]][i] >= 0) {

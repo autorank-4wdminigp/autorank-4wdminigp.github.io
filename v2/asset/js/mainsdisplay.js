@@ -606,3 +606,14 @@ function Set_Storage(category, key, value) {
 	container[category][key] = value;
 	localStorage.setItem("simulator", JSON.stringify(container));
 }
+
+function Select_Set() {
+	tail.select("select.parts", {
+		animate: false,
+		openAbove: false,
+		width: "100%",
+		locale: "ja",
+		search: true,
+		searchMinLength: 0,
+	});
+}
