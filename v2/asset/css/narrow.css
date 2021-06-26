@@ -167,3 +167,7 @@ main {
 .tail-select .select-label {
   padding-right: 16px;
 }
+
+.tab-content.results .shrink-toggle:checked + .shrink-label + .shrink-content {
+  height: auto;
+}
