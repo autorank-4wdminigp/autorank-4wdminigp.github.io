@@ -3,6 +3,9 @@
 var calcFlg = 0;
 var resultFlg = 0;
 
+// パーツ選択UIのインスタンス
+var partsSelector;
+
 function View_Set(value1) {
 	var writeValue = "";
 	writeValue += "<a name='link" + value1 + "'></a><table class='cstable'><tr><td>" + nameView[value1];
@@ -527,6 +530,8 @@ function Preset_Set(value1) {
 			Type_Slot_Set(value1, i - 1);
 		}
 	}
+	
+	Select_Reload();
 }
 
 function Lv_Set(value1) {
@@ -607,8 +612,12 @@ function Set_Storage(category, key, value) {
 	localStorage.setItem("simulator", JSON.stringify(container));
 }
 
+// パーツ選択UIの初期化
 function Select_Set() {
-	tail.select("select.parts", {
+	if (partsSelector) {
+		partsSelector.remove();
+	}
+	partsSelector = tail.select("select.parts", {
 		animate: false,
 		openAbove: false,
 		width: "100%",
@@ -616,4 +625,9 @@ function Select_Set() {
 		search: true,
 		searchMinLength: 0,
 	});
+}
+
+// パーツ選択UIを再読み込み(プリセット装着時など用)
+function Select_Reload() {
+	partsSelector.reload();
 }
