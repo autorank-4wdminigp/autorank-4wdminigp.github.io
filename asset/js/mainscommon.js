@@ -220,7 +220,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 35) ftiregripUp += 0.07; //GPチップγ
 	if (bodyOption1 == 36) ftiregripUp += 0.07; //サンダードリフト
 	if (bodyOption1 == 37) ftiregripUp += 0.03; //エアブレーキ
-	if (bodyOption1 == 38) ftiregripUp += 0.07; //Shooting Stars
+	if (bodyOption1 == 38) ftiregripUp += 0.1; //Shooting Stars
 	if (bodyOption1 == 39) ftiregripUp += 0.07; //バイパードリフト
 	if (bodyOption1 == 51) ftiregripUp += 0.07; //GPチップXSP
 	var ftiregripValue = statusArray[6][13];
