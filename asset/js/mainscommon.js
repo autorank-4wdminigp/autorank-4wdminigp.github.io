@@ -142,6 +142,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 35) bodySpeed += 0.03;
 	if (bodyOption1 == 38) bodySpeed += 0.03;
 	if (bodyOption1 == 51) bodySpeed += 0.03;
+	if (bodyOption1 == 52) bodySpeed += 0.04;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -223,6 +224,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 38) ftiregripUp += 0.1; //Shooting Stars
 	if (bodyOption1 == 39) ftiregripUp += 0.07; //バイパードリフト
 	if (bodyOption1 == 51) ftiregripUp += 0.07; //GPチップXSP
+	if (bodyOption1 == 52) ftiregripUp += 0.07; //ZMCジェット
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -358,6 +360,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 15) bodyStamina += 0.2;
 	if (bodyOption1 == 25) bodyStamina += 0.2;
 	if (bodyOption1 == 35) bodyStamina += 0.2;
+	if (bodyOption1 == 52) bodyStamina += 0.1;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption3 == 5) bodyStamina += 0.05;
