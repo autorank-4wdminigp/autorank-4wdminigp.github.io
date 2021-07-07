@@ -57,7 +57,7 @@ function Menu_Click(value1) {
 		if (typeSelect[nameCalc[value1]][i] >= 0) {
 			document.getElementById(nameValue[value1] + '_' + typeValue[typeSelect[nameCalc[value1]][i]] + "_kaisv").value = statusArray[value1][typeSelect[nameCalc[value1]][i]];
 		} else {
-			document.getElementById(nameValue[value1] + '_' + addTypeValue[-typeSelect[nameCalc[value1]][i]] + "_kaisv").value = selectValue[nameCalc[value1]][index][-typeSelect[nameCalc[value1]][i]];
+			document.getElementById(nameValue[value1] + '_' + addTypeValue[-typeSelect[nameCalc[value1]][i]] + "_kaisv").value = selectValue[nameCalc[value1]][kaizouArray[value1][0]][-typeSelect[nameCalc[value1]][i]];
 		}
 	}
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
