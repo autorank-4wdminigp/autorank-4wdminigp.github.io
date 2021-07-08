@@ -193,6 +193,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 		var weightpartsValue = statusArray[i][5];
 		if (i == 3) {
 			gravityValue += resultValueKai[31] * chassisGravity[chassisIndex] * weightpartsValue;
+		} else if (i == 0) {
+			gravityValue += resultValueKai[31] * selectValue[3][chassisIndex][3] / 10000.0 * weightpartsValue;
+		} else if (i == 33) {
+			gravityValue += resultValueKai[31] * selectValue[3][chassisIndex][4] / 10000.0 * weightpartsValue;
 		} else {
 			gravityValue += resultValueKai[31] * partsGravity[i] * weightpartsValue;
 		}
