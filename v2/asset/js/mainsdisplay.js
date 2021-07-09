@@ -632,7 +632,3 @@ function Select_Set() {
 function Select_Reload() {
 	partsSelector.reload();
 }
-
-function Check_Integrity() {
-	
-}
