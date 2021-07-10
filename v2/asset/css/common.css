@@ -268,3 +268,11 @@ select.parts, select.niku, select.tokusei, select.slot, select.tenpure {
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
+
+.tail-select input {
+  user-select: auto;
+  -o-user-select: auto;
+  -ms-user-select: auto;
+  -moz-user-select: auto;
+  -webkit-user-select: auto;
+}

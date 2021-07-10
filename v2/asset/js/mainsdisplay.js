@@ -588,6 +588,7 @@ function Shikou_Set(value, parts) {
 function Parts_Out(value1) {
 	document.getElementById(nameValue[value1]).selectedIndex = 0;
 	Type_Set(value1, nameUpdate[nameCalc[value1]]);
+	Select_Reload();
 }
 
 function Get_Storage(category, key) {
