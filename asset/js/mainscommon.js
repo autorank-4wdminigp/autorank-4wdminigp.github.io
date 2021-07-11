@@ -8,6 +8,13 @@ var kaizouArray = [];
 var kaizouArrayUnit = [];
 // 各パーツの改造状態を記録した文字列の配列(URL用)
 var urlArray = [];
+// チャート描画用のオブジェクト
+var chartValues = {
+	speedDecrement: {
+		time: [],
+		speed: []
+	}
+}
 
 // マシン詳細の計算
 // disp1: true -> 旧アプリ表示, false -> 標準アクセサリー適用表
@@ -182,9 +189,23 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var speed25dec = (0.75 * speedValue2 + resultValueKai[9] / 1000.0) / spowerValue / speedValue * resultValueKai[1];
 	diagnosis[diagnosisValue[29]] = -1.0 * Math.log((speed25dec * 2 - resultValueKai[1]) / resultValueKai[1]) / currentValue;
 
+	//t秒後最高速
+	function speedTs(n) {
+		return ((1.0 + Math.exp(-1.0 * currentValue * n )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
+	}
 	//10秒後最高速
-	diagnosis[diagnosisValue[30]] = ((1.0 + Math.exp(-1.0 * currentValue * 10.0 )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
-	diagnosis[diagnosisValue[31]] = ((1.0 + Math.exp(-1.0 * currentValue * 20.0 )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
+	diagnosis[diagnosisValue[30]] = speedTs(10.0);
+	//20秒後最高速
+	diagnosis[diagnosisValue[31]] = speedTs(20.0);
+	//n秒後最高速
+	var time = [];
+	var speed = [];
+	for (var i = 0; i <= 60; i+=5) {
+		time.push(i);
+		speed.push(speedTs(i));
+	}
+	chartValues.speedDecrement.time = time;
+	chartValues.speedDecrement.speed = speed;
 
 	//前後の重心
 	var chassisIndex = kaizouArray[3][0];

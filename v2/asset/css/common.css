@@ -276,3 +276,11 @@ select.parts, select.niku, select.tokusei, select.slot, select.tenpure {
   -moz-user-select: auto;
   -webkit-user-select: auto;
 }
+
+#chart div {
+  width: 100%!important;
+}
+
+#chart div svg {
+  width: 100%!important;
+}

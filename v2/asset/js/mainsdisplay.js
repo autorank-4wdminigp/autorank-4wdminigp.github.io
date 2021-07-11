@@ -239,6 +239,7 @@ function All_Calc() {
 	for (var key in diagnosis) {
 		document.getElementById(key).value = diagnosis[key];
 	}
+	Update_Chart();
 }
 
 function Type_Tenpre_Set(value1) {
