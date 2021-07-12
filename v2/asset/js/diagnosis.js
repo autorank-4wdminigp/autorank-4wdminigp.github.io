@@ -33,15 +33,36 @@ function View_Chart() {
 		},
 		chart: {
 			type: 'line',
+			backgroundColor: 'black'
 		},
+		colors: [
+			'#ffa500',
+			'#800000'
+		],
 		xAxis: {
 			title: {
-				text: '経過時間[s]'
+				text: '経過時間[s]',
+				style: {
+					color: 'white'
+				}
+			},
+			labels: {
+				style: {
+					color: 'white'
+				}
 			}
 		},
 		yAxis: {
 			title: {
-				text: undefined
+				text: '最高速度[km/h]',
+				style: {
+					color: 'white'
+				}
+			},
+			labels: {
+				style: {
+					color: 'white'
+				}
 			}
 		},
 		series: [{
@@ -51,7 +72,10 @@ function View_Chart() {
 		legend: {
 			enabled: false
 		},
-		responsive: {}
+		responsive: {},
+		credits: {
+			enabled: false
+		}
 	});	
 }
 
