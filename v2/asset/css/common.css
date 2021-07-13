@@ -277,10 +277,37 @@ select.parts, select.niku, select.tokusei, select.slot, select.tenpure {
   -webkit-user-select: auto;
 }
 
+#chart {
+  height: 300px;
+}
+
 #chart div {
   width: 100%!important;
 }
 
 #chart div svg {
   width: 100%!important;
+}
+
+.btn-lock {
+  position: relative;
+  top: -30px;
+  left: 5px;
+}
+
+.tooltip-title, .tooltip-points {
+  color: white;
+  text-align: right;
+}
+
+.tooltip-series-name {
+  font-weight: bold;
+}
+
+.tooltip-point-value {
+  color: white;
+}
+
+.highcharts-button-box {
+  height: 30px;
 }

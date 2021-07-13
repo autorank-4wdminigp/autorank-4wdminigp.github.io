@@ -12,7 +12,8 @@ var urlArray = [];
 var chartValues = {
 	speedDecrement: {
 		time: [],
-		speed: []
+		current: [],
+		lock: []
 	}
 }
 
@@ -190,22 +191,22 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[29]] = -1.0 * Math.log((speed25dec * 2 - resultValueKai[1]) / resultValueKai[1]) / currentValue;
 
 	//t秒後最高速
-	function speedTs(n) {
+	function calcSpeed(n) {
 		return ((1.0 + Math.exp(-1.0 * currentValue * n )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
 	}
 	//10秒後最高速
-	diagnosis[diagnosisValue[30]] = speedTs(10.0);
+	diagnosis[diagnosisValue[30]] = calcSpeed(10.0);
 	//20秒後最高速
-	diagnosis[diagnosisValue[31]] = speedTs(20.0);
+	diagnosis[diagnosisValue[31]] = calcSpeed(20.0);
 	//n秒後最高速
 	var time = [];
 	var speed = [];
 	for (var i = 0; i <= 60; i+=5) {
 		time.push(i);
-		speed.push(speedTs(i));
+		speed.push(calcSpeed(i));
 	}
 	chartValues.speedDecrement.time = time;
-	chartValues.speedDecrement.speed = speed;
+	chartValues.speedDecrement.current = speed;
 
 	//前後の重心
 	var chassisIndex = kaizouArray[3][0];
