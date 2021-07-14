@@ -85,6 +85,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.5;
 	if (setsudenValue != 0 && bodyOption1 == 32) setsudenUp -= 0.1;
 	if (setsudenValue != 0 && bodyOption1 == 33) setsudenUp -= 0.1;
+	if (setsudenValue != 0 && bodyOption1 == 53) setsudenUp += 0.4;
+	if (setsudenValue != 0 && bodyOption1 == 54) setsudenUp += 0.4;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
@@ -114,16 +116,20 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyPower = 1.0;
 	if (bodyOption1 == 2) bodyPower += 0.02;
 	if (bodyOption1 == 12) bodyPower += 0.03;
+	if (bodyOption1 == 42) bodyPower += 0.04;
 	if (bodyOption1 == 22) bodyPower += 0.05;
 	if (bodyOption1 == 25) bodyPower += 0.075;
 	if (bodyOption1 == 30) bodyPower += 0.03;
 	if (bodyOption1 == 31) bodyPower += 0.03;
 	if (bodyOption1 == 37) bodyPower += 0.03;
 	if (bodyOption1 == 39) bodyPower += 0.02;
+	if (bodyOption1 == 54) bodyPower += 0.04;
 	if (bodyOption2 == 2) bodyPower += 0.006;
 	if (bodyOption2 == 12) bodyPower += 0.015;
+	if (bodyOption2 == 42) bodyPower += 0.025;
 	if (bodyOption3 == 2) bodyPower += 0.006;
 	if (bodyOption3 == 12) bodyPower += 0.015;
+	if (bodyOption3 == 42) bodyPower += 0.025;
 	var bodyPowerloss = 1.0;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 
@@ -143,6 +149,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 38) bodySpeed += 0.03;
 	if (bodyOption1 == 51) bodySpeed += 0.03;
 	if (bodyOption1 == 52) bodySpeed += 0.05;
+	if (bodyOption1 == 53) bodySpeed += 0.04;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -229,6 +236,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 39) ftiregripUp += 0.07; //バイパードリフト
 	if (bodyOption1 == 51) ftiregripUp += 0.07; //GPチップXSP
 	if (bodyOption1 == 52) ftiregripUp += 0.07; //ZMCジェット
+	if (bodyOption1 == 53) ftiregripUp += 0.07; //シャイニングスピード
+	if (bodyOption1 == 54) ftiregripUp += 0.07; //シャイニングパワー
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
