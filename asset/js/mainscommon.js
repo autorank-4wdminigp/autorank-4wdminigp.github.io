@@ -85,8 +85,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.5;
 	if (setsudenValue != 0 && bodyOption1 == 32) setsudenUp -= 0.1;
 	if (setsudenValue != 0 && bodyOption1 == 33) setsudenUp -= 0.1;
-	if (setsudenValue != 0 && bodyOption1 == 53) setsudenUp += 0.4;
-	if (setsudenValue != 0 && bodyOption1 == 54) setsudenUp += 0.4;
+	if (setsudenValue != 0 && bodyOption1 == 53) setsudenUp += 0.2;
+	if (setsudenValue != 0 && bodyOption1 == 54) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
@@ -123,7 +123,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 31) bodyPower += 0.03;
 	if (bodyOption1 == 37) bodyPower += 0.03;
 	if (bodyOption1 == 39) bodyPower += 0.02;
-	if (bodyOption1 == 54) bodyPower += 0.04;
+	if (bodyOption1 == 54) bodyPower += 0.05;
 	if (bodyOption2 == 2) bodyPower += 0.006;
 	if (bodyOption2 == 12) bodyPower += 0.015;
 	if (bodyOption2 == 42) bodyPower += 0.025;
