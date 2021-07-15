@@ -8,7 +8,7 @@
 		}
 		writeValue += "<td>" + diagnosisView[i] + "<input class='csinput' type='text' id='" + diagnosisValue[i] + "' value=''></td>";
 	}
-	writeValue += "</tr><tr><td colspan='4'>t秒後最高速度(仮)(時速) <div id='chart'></div></td></tr></table><table class='cstable'><tr class='specs'>";
+	writeValue += "</tr><tr><td colspan='4'>t秒後最高速度(仮)(時速)<font color='#FFA500'>※7</font><div id='chart'></div></td></tr></table><table class='cstable'><tr class='specs'>";
 	writeValue += "<td><input class='csinput1' type='radio' id='shindantire1' name='shindantire' onchange='All_Calc()' checked>マシン診断　";
 	writeValue += "<input class='csinput1' type='radio' id='shindantire2' name='shindantire' onchange='All_Calc()'>タイヤ径差表示　";
 	writeValue += "<select id='shindantirekei' onchange='All_Calc()'>";
@@ -20,6 +20,7 @@
 	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明((重心ありやスラスト角ありは誤差少しあり)</font>";
 	writeValue += "<br><font color='#FFA500'>※5 誤差あり(電池消耗、速度が遅い場合のジャンプ角度低下、ブレーキが強い場合のウイリー未実装)</font>";
 	writeValue += "<br><font color='#FFA500'>※6 情報提供感謝します</font>";
+	writeValue += "<br><font color='#FFA500'>※7 ロックを押すと表示中の線を固定して他のセットとの比較が可能です。既にロック中の線がある場合は古い方を破棄します。</font>";
 	document.getElementById("diagnosis-main").innerHTML = writeValue;
 	View_Chart();
 }
