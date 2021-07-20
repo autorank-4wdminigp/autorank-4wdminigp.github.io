@@ -8,14 +8,6 @@ var kaizouArray = [];
 var kaizouArrayUnit = [];
 // 各パーツの改造状態を記録した文字列の配列(URL用)
 var urlArray = [];
-// チャート描画用のオブジェクト
-var chartValues = {
-	speedDecrement: {
-		time: [],
-		current: [],
-		lock: []
-	}
-}
 
 // マシン詳細の計算
 // disp1: true -> 旧アプリ表示, false -> 標準アクセサリー適用表
@@ -197,23 +189,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var speed25dec = (0.75 * speedValue2 + resultValueKai[9] / 1000.0) / spowerValue / speedValue * resultValueKai[1];
 	diagnosis[diagnosisValue[29]] = -1.0 * Math.log((speed25dec * 2 - resultValueKai[1]) / resultValueKai[1]) / currentValue;
 
-	//t秒後最高速
-	function calcSpeed(n) {
-		return ((1.0 + Math.exp(-1.0 * currentValue * n )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
-	}
 	//10秒後最高速
-	diagnosis[diagnosisValue[30]] = calcSpeed(10.0);
-	//20秒後最高速
-	diagnosis[diagnosisValue[31]] = calcSpeed(20.0);
-	//n秒後最高速
-	var time = [];
-	var speed = [];
-	for (var i = 0; i <= 60; i+=5) {
-		time.push(i);
-		speed.push(calcSpeed(i));
-	}
-	chartValues.speedDecrement.time = time;
-	chartValues.speedDecrement.current = speed;
+	diagnosis[diagnosisValue[30]] = ((1.0 + Math.exp(-1.0 * currentValue * 10.0 )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
+	diagnosis[diagnosisValue[31]] = ((1.0 + Math.exp(-1.0 * currentValue * 20.0 )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
 
 	//前後の重心
 	var chassisIndex = kaizouArray[3][0];
@@ -489,11 +467,11 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[6]] = cornerdeceleValue;
 
 	//ジャンプ飛距離
-	var slopeLength = 0.07;
-	var slopeAngle = 20.81;
+	var slopeLength = 0.45;
+	var slopeAngle = 14.0;
 	var slopeSpeedInit = speedValue2;
 	if (brakeValue != 0) {
-		slopeSpeedInit -= (10.0 + 10.0 * brakeValue - 0.17 * acceleValue2) * brakeValue;
+		slopeSpeedInit -= 18.0 * brakeValue;
 		if (slopeSpeedInit < 0.0) slopeSpeedInit = 0.0;
 	}
 	var slopeAccele = -Math.sin(slopeAngle * (Math.PI / 180.0)) * 9.80665;
@@ -513,7 +491,18 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 		}
 	}
 	var slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
-	diagnosis[diagnosisValue[7]] = slopeSpeed * slopeSpeed * Math.sin(2.0 * slopeAngle * (Math.PI / 180.0)) / 9.80665 + 0.00005 * gravityValue;
+	var jumpValue = 0.001;
+	if (slopeSpeed > 3.9) {
+		slopeSpeed = slopeSpeed - (4.4 / (slopeSpeed - 3.9) + 1.0);
+		if (slopeSpeed > 0.0) {
+			jumpValue = slopeSpeed * slopeSpeed * Math.sin(2.0 * slopeAngle * (Math.PI / 180.0)) / 9.80665 - 0.031 * gravityValue;
+			if (jumpValue < 0.3) {
+				jumpValue = 0.001;
+			}
+		}
+	}
+	diagnosis[diagnosisValue[7]] = jumpValue;
+	//diagnosis[diagnosisValue[7]] = slopeSpeed * slopeSpeed * Math.sin(2.0 * slopeAngle * (Math.PI / 180.0)) / 9.80665 + 0.00005 * gravityValue;
 	//var jumpValue = Math.sin(2.0 * 20.0 * (Math.PI / 180.0)) / 9.80665;
 	//diagnosis[diagnosisValue[7]] = speedValue2 * speedValue2 * jumpValue;
 
@@ -530,12 +519,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var seishinValue = resultValueKai[11];
 	var ftirehanpatsuValue = statusArray[6][15];
 	var rtirehanpatsuValue = statusArray[7][15];
-	var tirehanpatsuValue = ftirehanpatsuValue + rtirehanpatsuValue;
-	slopeLength = 0.07;
-	slopeAngle = 10.0;
+	//var tirehanpatsuValue = ftirehanpatsuValue + rtirehanpatsuValue;
+	var tirehanpatsuValue = (ftirehanpatsuValue + rtirehanpatsuValue) / 2.0;
+	slopeLength = 0.45;
+	slopeAngle = 14.0;
 	slopeSpeedInit = speedValue2;
 	if (brakeValue != 0) {
-		slopeSpeedInit -= (10.0 + 10.0 * brakeValue - 0.17 * acceleValue2) * brakeValue;
+		slopeSpeedInit -= 18.0 * brakeValue;
 		if (slopeSpeedInit < 0.0) slopeSpeedInit = 0.0;
 	}
 	slopeAccele = -Math.sin(slopeAngle * (Math.PI / 180.0)) * 9.80665;
@@ -555,6 +545,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 		}
 	}
 	slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
+	slopeSpeed = slopeSpeed - (4.4 / (slopeSpeed - 3.9) + 1.0);
 	var hanpatsuValue;
 	var seishinValueInit = weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0) * (tirehanpatsuValue * bodyBoundtime / 1000.0 - (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665 / (2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) + (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665)) / bodyBoundtime2;
 	if (seishinValueInit < 0) {
@@ -564,7 +555,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	} else {
 		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValueInit * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) - (seishinValue - seishinValueInit) * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
 	}
-	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.00005 * gravityValue;
+	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.0005 * gravityValue;
+	if (jumpValue == 0.001) {
+		boundtimeValue = 0.001;
+	}
 	diagnosis[diagnosisValue[8]] = boundtimeValue;
 
 	for (var i = 0; i < diagnosisValue.length; i++) {
