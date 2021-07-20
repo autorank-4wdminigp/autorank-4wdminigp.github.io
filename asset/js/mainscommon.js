@@ -8,6 +8,14 @@ var kaizouArray = [];
 var kaizouArrayUnit = [];
 // 各パーツの改造状態を記録した文字列の配列(URL用)
 var urlArray = [];
+// チャート描画用のオブジェクト
+var chartValues = {
+	speedDecrement: {
+		time: [],
+		current: [],
+		lock: []
+	}
+}
 
 // マシン詳細の計算
 // disp1: true -> 旧アプリ表示, false -> 標準アクセサリー適用表
@@ -189,9 +197,23 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var speed25dec = (0.75 * speedValue2 + resultValueKai[9] / 1000.0) / spowerValue / speedValue * resultValueKai[1];
 	diagnosis[diagnosisValue[29]] = -1.0 * Math.log((speed25dec * 2 - resultValueKai[1]) / resultValueKai[1]) / currentValue;
 
+	//t秒後最高速
+	function calcSpeed(n) {
+		return ((1.0 + Math.exp(-1.0 * currentValue * n )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
+	}
 	//10秒後最高速
-	diagnosis[diagnosisValue[30]] = ((1.0 + Math.exp(-1.0 * currentValue * 10.0 )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
-	diagnosis[diagnosisValue[31]] = ((1.0 + Math.exp(-1.0 * currentValue * 20.0 )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
+	diagnosis[diagnosisValue[30]] = calcSpeed(10.0);
+	//20秒後最高速
+	diagnosis[diagnosisValue[31]] = calcSpeed(20.0);
+	//n秒後最高速
+	var time = [];
+	var speed = [];
+	for (var i = 0; i <= 60; i+=5) {
+		time.push(i);
+		speed.push(calcSpeed(i));
+	}
+	chartValues.speedDecrement.time = time;
+	chartValues.speedDecrement.current = speed;
 
 	//前後の重心
 	var chassisIndex = kaizouArray[3][0];
@@ -555,7 +577,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	} else {
 		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValueInit * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) - (seishinValue - seishinValueInit) * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
 	}
-	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.0005 * gravityValue;
+	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.00005 * gravityValue;
 	if (jumpValue == 0.001) {
 		boundtimeValue = 0.001;
 	}
