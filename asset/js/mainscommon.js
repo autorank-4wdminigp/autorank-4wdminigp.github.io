@@ -158,6 +158,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 51) bodySpeed += 0.03;
 	if (bodyOption1 == 52) bodySpeed += 0.05;
 	if (bodyOption1 == 53) bodySpeed += 0.04;
+	if (bodyOption1 == 55) bodySpeed += 0.02;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -260,6 +261,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 52) ftiregripUp += 0.07; //ZMCジェット
 	if (bodyOption1 == 53) ftiregripUp += 0.07; //シャイニングスピード
 	if (bodyOption1 == 54) ftiregripUp += 0.07; //シャイニングパワー
+	if (bodyOption1 == 55) ftiregripUp += 0.15; //バスターターン
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -414,6 +416,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 34) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 36) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 39) bodyCornerdecele -= 0.75;
+	if (bodyOption1 == 55) bodyCornerdecele -= 0.85;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.42;
 	if (bodyOption2 == 44) bodyCornerdecele -= 0.5;
@@ -433,6 +436,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyCornerdecele3 = 1.0; //抵抗
 	if (bodyOption1 == 24) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 33) bodyCornerdecele3 -= 0.7;
+	if (bodyOption1 == 55) bodyCornerdecele3 -= 0.8;
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
@@ -481,7 +485,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	//var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue * bodyCornerdecele2 * (1.0 + Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) * 0.0005611396) + rollerteikouValue / 20.0 * bodyCornerdecele3)));
 	var tiresenkaiValue = resultValueKai[14];
 	var senkaisaValue = (rtiresenkaiValue - ftiresenkaiValue) / tiresenkaiValue;
-	var senkaiC = -0.000000095868573 * (resultValueKai[30] + resultValueKai[31] * 2 + Math.abs(senkaisaValue) * 3) + 0.000032630514858;
+	var senkaiC = -0.000000095868573 * (resultValueKai[30] + resultValueKai[31] * 2.0 + Math.abs(senkaisaValue) * 3.0) + 0.000032630514858;
 	var senkaiA = 45.188272213660500 * senkaisaValue - 0.008372879447291;
 	var cornerweightValue = (senkaiC * (gravityValue + senkaiA) * (gravityValue + senkaiA) + 0.024516625024408 - senkaiC * senkaiA * senkaiA) * treadValue;
 	var cornerdeceleA = (1.0 - cornerweightValue * Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) / (4.0 * acceleValue2 * 458.0));
@@ -515,18 +519,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
 	var jumpValue = 0.001;
 	if (slopeSpeed > 3.9) {
-		slopeSpeed = slopeSpeed - (4.4 / (slopeSpeed - 3.9) + 1.0);
+		slopeSpeed -= (4.4 / (slopeSpeed - 3.9) + 1.0);
 		if (slopeSpeed > 0.0) {
 			jumpValue = slopeSpeed * slopeSpeed * Math.sin(2.0 * slopeAngle * (Math.PI / 180.0)) / 9.80665 - 0.031 * gravityValue;
-			if (jumpValue < 0.3) {
-				jumpValue = 0.001;
-			}
+			if (jumpValue < 0.3) jumpValue = 0.001;
 		}
 	}
 	diagnosis[diagnosisValue[7]] = jumpValue;
-	//diagnosis[diagnosisValue[7]] = slopeSpeed * slopeSpeed * Math.sin(2.0 * slopeAngle * (Math.PI / 180.0)) / 9.80665 + 0.00005 * gravityValue;
-	//var jumpValue = Math.sin(2.0 * 20.0 * (Math.PI / 180.0)) / 9.80665;
-	//diagnosis[diagnosisValue[7]] = speedValue2 * speedValue2 * jumpValue;
 
 	//バウンド時間
 	var bodyBoundtime = 1.0; //タイヤ反発
@@ -567,7 +566,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 		}
 	}
 	slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
-	slopeSpeed = slopeSpeed - (4.4 / (slopeSpeed - 3.9) + 1.0);
+	slopeSpeed -= (4.4 / (slopeSpeed - 3.9) + 1.0);
 	var hanpatsuValue;
 	var seishinValueInit = weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0) * (tirehanpatsuValue * bodyBoundtime / 1000.0 - (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665 / (2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) + (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665)) / bodyBoundtime2;
 	if (seishinValueInit < 0) {
@@ -578,9 +577,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValueInit * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) - (seishinValue - seishinValueInit) * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
 	}
 	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.0005 * gravityValue;
-	if (jumpValue == 0.001) {
-		boundtimeValue = 0.001;
-	}
+	if (jumpValue == 0.001) boundtimeValue = 0.001;
 	diagnosis[diagnosisValue[8]] = boundtimeValue;
 
 	for (var i = 0; i < diagnosisValue.length; i++) {
