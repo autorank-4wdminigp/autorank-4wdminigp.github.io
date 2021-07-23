@@ -466,14 +466,24 @@ function UrlView(value1) {
 	}
 	var url = window.parent.document.location.href;
 	var start = url.indexOf("?", 0);
-	var urlInit = url;
-	if (start != -1) urlInit = url.substring(0, start);
-	window.parent.results.document.getElementById('linkurl').href = urlInit + "?" + urlValue + historyValue;
-	window.parent.results.document.getElementById('dispurl').value = urlInit + "?" + urlValue + historyValue;
-	window.parent.document.getElementById('v2url').href = urlInit + "v2/?" + urlValue + historyValue;
+	var base = url;
+	if (start != -1) base = url.substring(0, start);
+
+	var filename = "";
+	var tmp = base.split("/");
+	if (tmp[tmp.length-1] == "index.html") filename = "index.html";
+	tmp.pop();
+	base = tmp.join("/") + "/";
+
+	var search = "?" + urlValue + historyValue;
+	var url = base + filename + search;
+	var v2url = base + "v2/" + filename + search;
+
+	window.parent.results.document.getElementById('linkurl').href = url;
+	window.parent.results.document.getElementById('dispurl').value = url;
+	window.parent.document.getElementById('v2url').href = v2url;
 	if (historyValue == "b" || value1 == 1) {
-		//window.parent.history.pushState("", "" , "?" + urlValue);
-		window.parent.history.replaceState("", "" , "?" + urlValue + historyValue);
+		window.parent.history.replaceState("", "", search);
 	}
 }
 
