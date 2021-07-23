@@ -520,11 +520,20 @@ function UrlSet() {
 						kaizouArray[value1][22] = index;
 						if (presetText.length != (559 + charLenTmp) && presetText.length != (577 + charLenTmp)) {
 							index = UrlToNum(presetText.charAt(pos++));
+							if (index > 60) {
+								index += UrlToNum(presetText.charAt(pos++));
+							}
 							kaizouArray[value1][23] = index;
 						}
 						index = UrlToNum(presetText.charAt(pos++));
+						if (index > 60) {
+							index += UrlToNum(presetText.charAt(pos++));
+						}
 						kaizouArray[value1][24] = index;
 						index = UrlToNum(presetText.charAt(pos++));
+						if (index > 60) {
+							index += UrlToNum(presetText.charAt(pos++));
+						}
 						kaizouArray[value1][25] = index;
 					}
 				}
