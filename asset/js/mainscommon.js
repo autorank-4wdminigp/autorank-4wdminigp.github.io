@@ -623,12 +623,8 @@ function Time_Calc(time1, time2, step, num, speed, accele, distance) {
 function UrlCalc(value1) {
 	var urlValue =  "";
 	if (kaizouArray[value1][0] >= 61) {
-		for (var i = 61; i <= 244; i += 61) {
-			if (kaizouArray[value1][0] < i + 61) {
-				urlValue = NumToUrl(i) + NumToUrl(kaizouArray[value1][0] - i);
-				break;
-			}
-		}
+		var n = kaizouArray[value1][0] % 61;
+		urlValue = NumToUrl(kaizouArray[value1][0] - n) + NumToUrl(n);
 	} else {
 		urlValue = NumToUrl(kaizouArray[value1][0]);
 	}
@@ -642,12 +638,8 @@ function UrlCalc(value1) {
 			urlValue += NumToUrl(kaizouArray[value1][22]);
 			for (var i = 1; i <= 3; i++) {
 				if (kaizouArray[value1][22 + i] >= 61) {
-					for (var n = 61; n <= 244; n += 61) {
-						if (kaizouArray[value1][22 + i] < n + 61) {
-							urlValue += NumToUrl(n) + NumToUrl(kaizouArray[value1][22 + i] - n);
-							break;
-						}
-					}
+					var n = kaizouArray[value1][22 + i] % 61;
+					urlValue += NumToUrl(kaizouArray[value1][22 + i] - n) + NumToUrl(n);
 				} else {
 					urlValue += NumToUrl(kaizouArray[value1][22 + i]);
 				}
