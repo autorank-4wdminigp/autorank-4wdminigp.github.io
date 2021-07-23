@@ -469,9 +469,8 @@ function UrlView(value1) {
 	var base = url;
 	if (start != -1) base = url.substring(0, start);
 
-	var filename = "";
 	var tmp = base.split("/");
-	if (tmp[tmp.length-1] == "index.html") filename = "index.html";
+	var filename = tmp[tmp.length-1];
 	tmp.pop();
 	base = tmp.join("/") + "/";
 
