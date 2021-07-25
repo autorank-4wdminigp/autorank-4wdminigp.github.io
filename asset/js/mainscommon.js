@@ -261,7 +261,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 52) ftiregripUp += 0.07; //ZMCジェット
 	if (bodyOption1 == 53) ftiregripUp += 0.07; //シャイニングスピード
 	if (bodyOption1 == 54) ftiregripUp += 0.07; //シャイニングパワー
-	if (bodyOption1 == 55) ftiregripUp += 0.15; //バスターターン
+	if (bodyOption1 == 55) ftiregripUp += 0.2; //バスターターン
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -416,7 +416,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 34) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 36) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 39) bodyCornerdecele -= 0.75;
-	if (bodyOption1 == 55) bodyCornerdecele -= 0.85;
+	if (bodyOption1 == 55) bodyCornerdecele -= 0.83;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.42;
 	if (bodyOption2 == 44) bodyCornerdecele -= 0.5;
@@ -427,6 +427,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 4) bodyCornerdecele2 -= 0.17;
 	if (bodyOption1 == 14) bodyCornerdecele2 -= 0.2;
 	if (bodyOption1 == 44) bodyCornerdecele2 -= 0.5;
+	if (bodyOption1 == 55) bodyCornerdecele2 -= 0.5;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
 	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.25;
@@ -436,7 +437,6 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyCornerdecele3 = 1.0; //抵抗
 	if (bodyOption1 == 24) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 33) bodyCornerdecele3 -= 0.7;
-	if (bodyOption1 == 55) bodyCornerdecele3 -= 0.8;
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
