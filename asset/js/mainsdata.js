@@ -4,7 +4,7 @@ var nameView = new Array("モーター ", "ギヤ ", "ボディ ", "シャーシ
 //0:モーター, 1:ギヤ, 2:ボディ, 3:シャーシ, 4:ホイール, 5:タイヤ, 6:フロントステー, 7:サイドステー, 8:リヤステー, 9:ローラー, 10:ボディオプション, 11:スタビライザー, 12:ウェイト, 13:ターミナル, 14:モーターサポート, 15:ピニオンギヤ, 16:プロペラシャフト, 17:軸受け, 18:シャフト, 19:ギヤシャフト, 20:クラウンギヤ, 21:バッテリー
 var nameCalc = new Array(0, 1, 2, 3, 4, 4, 5, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 10, 11, 11, 11, 12, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21);
 
-var nameUpdate = new Array(1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var nameUpdate = new Array(1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aerodf", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "tirehanpatsu", "tirekei", "rollermasatsu", "rollerteikou", "wave", "offload", "gearrate", "ampere", "brake", "stabilizer", "digital", "taifuu", "taisui", "curvestamina", "jumpstamina", "tread", "wheelbase", "rollerwidth", "rollerbase", "total");
@@ -293,19 +293,22 @@ kaizouTenpre[6][8] = new Array("軽量x2 スラスト角の増加x4", 3, 3, 5, 5
 
 //サイドステー
 s = 0;
-kaizouSelectIndex[7] = new Array(0, 0);
+kaizouSelectIndex[7] = new Array(0, 0, 0, 0, 0, 1);
 kaizouSelect[7] = new Array();
 kaizouSelect[7][s++] = new Array(0, 1, 2, 3);
+kaizouSelect[7][s++] = new Array(0, 1, 2, 3, 6);//軽量化(コーナー重視)
 s = 0;
-kaizou7SelectIndex[7] = new Array(0, 0);
+kaizou7SelectIndex[7] = new Array(0, 0, 0, 0, 0, 0);
 kaizou7Select[7] = new Array();
 kaizou7Select[7][s++] = new Array(4, 5);
 s = 0;
 kaizouTenpreSelect[7] = new Array();
 kaizouTenpreSelect[7][s++] = new Array(0, 1);
+kaizouTenpreSelect[7][s++] = new Array(0, 1, 2);
 kaizouTenpre[7] = new Array();
 kaizouTenpre[7][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[7][1] = new Array("耐久x6", 4, 4, 4, 4, 1, 1);
+kaizouTenpre[7][2] = new Array("軽量x2 軽量(コーナー重視)x4", 3, 3, 5, 5, 5, 5);
 
 //リヤステー
 s = 0;
@@ -374,7 +377,7 @@ s = 0;
 kaizouSelectIndex[11] = new Array(0, 0, 0, 0, 0, 0, 1);
 kaizouSelect[11] = new Array();
 kaizouSelect[11][s++] = new Array(0, 1, 2);
-kaizouSelect[11][s++] = new Array(0, 1, 2, 5); //パワー
+kaizouSelect[11][s++] = new Array(0, 1, 2, 5);//パワー
 s = 0;
 kaizou7SelectIndex[11] = new Array(0, 0, 0, 0, 0, 0, 0);
 kaizou7Select[11] = new Array();
@@ -1329,6 +1332,10 @@ kaizouValue[7][4][0] = new Array("超剛性強化", "スタミナ耐久〇〇〇
 kaizouValue[7][4][1] = new Array("", "(仮)カーブ耐久〇〇〇 [3] ", 0.03, 0.036, 0.042, 0.0015, -1, 28);
 kaizouValue[7][5] = new Array();
 kaizouValue[7][5][0] = new Array("ネジ締め調整(上級)", "コーナー安定〇〇〇 [12] ", 0.12, 0.144, 0.168, 0.006, -1, 3);
+
+kaizouValue[7][6] = new Array();
+kaizouValue[7][6][0] = new Array("軽量化(コーナー重視) [4]", "コーナー安定〇〇 [8] ", 0.08, 0.096, 0.112, 0.004, -1, 3);
+kaizouValue[7][6][1] = new Array("", "重さ〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 5);
 
 //リヤステー
 kaizouValue[8] = new Array();
