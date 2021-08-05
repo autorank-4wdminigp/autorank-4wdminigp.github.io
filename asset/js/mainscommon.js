@@ -281,7 +281,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//耐風最高速
 	var taifuugripUp = 0.0;
-	if (resultValueKai[26] != 0 && bodyOption1 == 38) taifuugripUp += 5000.0;
+	if (resultValueKai[26] != 0 && bodyOption1 == 38) taifuugripUp += 4000.0;
 	var taifuuFuka = (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue * 0.086 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
 	diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
