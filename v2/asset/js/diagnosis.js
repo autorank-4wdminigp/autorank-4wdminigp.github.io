@@ -117,7 +117,7 @@ function Update_Chart() {
 		series: [{
 			data: csd.current
 		}, {
-			data: csd.lock.speed
+			data: csd.lock
 		}]
 	});
 }
