@@ -64,11 +64,22 @@ function View_Chart() {
 				}
 			}
 		},
+		zAxis: {
+			title: {
+				text: '走行距離[m]',
+			},
+			visible: false,
+		},
 		series: [{
 			name: '現在のセット',
 		}, {
 			name: 'ロック中'
 		}],
+		plotOptions: {
+			series: {
+				keys: ['y', 'distance']
+			}
+		},
 		legend: {
 			enabled: false
 		},
@@ -79,7 +90,7 @@ function View_Chart() {
 			headerFormat: '<div class="tooltip-title">{point.key} s</div>',
 			pointFormat:'<div class="tooltip-points">' +
 			'<span class="tooltip-series-name" style="color: {series.color}">{series.name}: </span>' +
-			'<span class="tooltip-point-value">{point.y} km/h</span></div>',
+			'<span class="tooltip-point-value">{point.y} km/h ({point.distance} m)</span></div>',
 			valueDecimals: 3
 		},
 		responsive: {},
@@ -91,20 +102,22 @@ function View_Chart() {
 	});	
 }
 
+let csd = chartValues.speedDecrement;
+
 function Lock_Line() {
-	chartValues.speedDecrement.lock = chartValues.speedDecrement.current.concat();
+	csd.lock = csd.current.concat();
 	Update_Chart();
 }
 
 function Update_Chart() {
 	chart.update({
 		xAxis: {
-			categories: chartValues.speedDecrement.time
+			categories: csd.time
 		},
 		series: [{
-			data: chartValues.speedDecrement.current
+			data: csd.current
 		}, {
-			data: chartValues.speedDecrement.lock
+			data: csd.lock.speed
 		}]
 	});
 }
