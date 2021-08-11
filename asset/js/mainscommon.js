@@ -312,11 +312,22 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption2 == 13) cornerspeedUp += 0.075;
 	if (bodyOption3 == 3) cornerspeedUp += 0.03;
 	if (bodyOption3 == 13) cornerspeedUp += 0.075;
-	var rollecornerValue1 = statusArray[12][3];
-	var rollecornerValue2 = statusArray[15][3];
-	diagnosis[diagnosisValue[20]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6);
-	diagnosis[diagnosisValue[21]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.35) * 3.6);
+	//var rollecornerValue1 = statusArray[12][3];
+	//var rollecornerValue2 = statusArray[15][3];
+	//diagnosis[diagnosisValue[20]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6);
+	//diagnosis[diagnosisValue[21]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.35) * 3.6);
 	//diagnosis[diagnosisValue[16]] = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
+	var cornerInValue = 0.0;
+	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+	for (var i = 0; i < nameValue.length; i++) {
+		if (i != 12 && i != 15) {
+			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]];
+		} else {
+			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]] * 0.2;
+		}
+	}
+	diagnosis[diagnosisValue[20]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp) * 3.6;
+	diagnosis[diagnosisValue[21]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp * 0.38) * 3.6;
 
 	//最高速95%到達時間
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
