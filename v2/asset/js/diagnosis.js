@@ -65,12 +65,6 @@ function View_Chart() {
 				}
 			}
 		},
-		zAxis: {
-			title: {
-				text: '走行距離[m]',
-			},
-			visible: false,
-		},
 		series: [{
 			name: '現在のセット',
 		}, {
