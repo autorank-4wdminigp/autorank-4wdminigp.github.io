@@ -21,7 +21,7 @@
 	writeValue += "<br><font color='#FFA500'>※5 誤差あり(電池消耗未実装)</font>";
 	writeValue += "<br><font color='#FFA500'>※6 情報提供感謝します</font>";
 	writeValue += "<br><font color='#FFA500'>※7 ロックを押すと表示中の線を固定して他のセットとの比較が可能です。既にロック中の線がある場合は古い方を破棄します。</font>";
-	writeValue += "<br><font color='#FFA500'>※8 ツールチップ中の括弧内数値は、初速を最高速として各時刻まで無負荷走行した距離の近似値です。</font>";
+	writeValue += "<br><font color='#FFA500'>※8 ツールチップ中の括弧内数値は、初速を最高速として各時刻まで直線を無負荷走行した距離の近似値です。</font>";
 	document.getElementById("diagnosis-main").innerHTML = writeValue;
 	View_Chart();
 }
