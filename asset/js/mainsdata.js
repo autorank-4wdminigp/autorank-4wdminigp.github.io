@@ -308,7 +308,7 @@ kaizouTenpreSelect[7][s++] = new Array(0, 1, 2);
 kaizouTenpre[7] = new Array();
 kaizouTenpre[7][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[7][1] = new Array("耐久x6", 4, 4, 4, 4, 1, 1);
-kaizouTenpre[7][2] = new Array("軽量x2 軽量(コーナー重視)x4", 3, 3, 5, 5, 5, 5);
+kaizouTenpre[7][2] = new Array("軽量x5 軽量(コーナー重視)x1", 3, 3, 2, 2, 2, 5);
 
 //リヤステー
 s = 0;
@@ -1334,7 +1334,7 @@ kaizouValue[7][5] = new Array();
 kaizouValue[7][5][0] = new Array("ネジ締め調整(上級)", "コーナー安定〇〇〇 [12] ", 0.12, 0.144, 0.168, 0.006, -1, 3);
 
 kaizouValue[7][6] = new Array();
-kaizouValue[7][6][0] = new Array("軽量化(コーナー重視) [4]", "コーナー安定〇〇 [8] ", 0.08, 0.096, 0.112, 0.004, -1, 3);
+kaizouValue[7][6][0] = new Array("軽量化(コーナー重視) [1]", "コーナー安定〇〇 [8] ", 0.08, 0.096, 0.112, 0.004, -1, 3);
 kaizouValue[7][6][1] = new Array("", "重さ〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 5);
 
 //リヤステー
