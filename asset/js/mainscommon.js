@@ -349,6 +349,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	}
 	diagnosis[diagnosisValue[20]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp) * 3.6;
 	diagnosis[diagnosisValue[21]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp * 0.38) * 3.6;
+	diagnosis[diagnosisValue[36]] = cornerInValue * cornerspeedUp;
+	diagnosis[diagnosisValue[37]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerspeedUp) * 3.6;
+	diagnosis[diagnosisValue[38]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerspeedUp * 0.38) * 3.6;
 
 	//最高速95%到達時間
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
