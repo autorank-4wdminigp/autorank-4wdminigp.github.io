@@ -202,19 +202,40 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	function calcSpeed(n) {
 		return ((1.0 + Math.exp(-1.0 * currentValue * n )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
 	}
+	//シンプソン法による走行距離導出
+	function simpson(f, t1, t2, n) {
+		var h = (t2 - t1) / (2.0 * n);
+		var s = f(t1) + f(t2);
+		for (var i = 1; i < n; i++) {
+			s = s + 4.0 * f(t1 + (2.0 * i - 1.0) * h) + 2.0 * f(t1 + 2.0 * i * h);
+		}
+		s = s + 4.0 * f(t1 + (2.0 * n - 1.0) * h);
+		s = s * (h / 3.0);
+		return s;
+	}
+	/* シンプソン法のテストコード
+	function testFunc(x) {
+		return Math.pow(x, 2) + 3;
+	}
+	console.log(simpson(testFunc, 1, 2, 10), 16/3);*/
+
 	//10秒後最高速
 	diagnosis[diagnosisValue[30]] = calcSpeed(10.0);
 	//20秒後最高速
 	diagnosis[diagnosisValue[31]] = calcSpeed(20.0);
 	//n秒後最高速
-	var time = [];
-	var speed = [];
-	for (var i = 0; i <= 60; i+=5) {
+	var step = 1;
+	var max = 60;
+	var time = [0];
+	var current = [[calcSpeed(0), 0]];
+	var distance = 0;
+	for (var i = step; i <= max; i+=step) {
 		time.push(i);
-		speed.push(calcSpeed(i));
+		distance += simpson(calcSpeed, i - step, i, 10) / 3.6;
+		current.push([calcSpeed(i), distance.toFixed(2)]);
 	}
 	chartValues.speedDecrement.time = time;
-	chartValues.speedDecrement.current = speed;
+	chartValues.speedDecrement.current = current;
 
 	//前後の重心
 	var chassisIndex = kaizouArray[3][0];
