@@ -442,7 +442,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 45) bodyStamina += 0.15;
 	var staminaValue = (resultValueKai[4] + resultValueKai[28]) * bodyStamina;
 	diagnosis[diagnosisValue[24]] = staminaValue;
-	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125
+	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
+	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / ((0.8 + 0.7) * speedValue2 * speedValue2 * weightValue * 0.45); //0.458 0.573 0.688
 
 	//コーナー減速率
 	var bodyCornerdecele = 1.0; //旋回
