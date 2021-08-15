@@ -436,10 +436,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 52) bodyStamina += 0.1;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
-	if (bodyOption2 == 45) bodyStamina += 0.15;
+	if (bodyOption2 == 45) bodyStamina += 0.2;
 	if (bodyOption3 == 5) bodyStamina += 0.05;
 	if (bodyOption3 == 15) bodyStamina += 0.1;
-	if (bodyOption3 == 45) bodyStamina += 0.15;
+	if (bodyOption3 == 45) bodyStamina += 0.2;
 	var staminaValue = (resultValueKai[4] + resultValueKai[28]) * bodyStamina;
 	diagnosis[diagnosisValue[24]] = staminaValue;
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
