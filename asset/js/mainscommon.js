@@ -327,12 +327,15 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var cornerspeedUp = 1.0;
 	if (bodyOption1 == 3) cornerspeedUp += 0.1;
 	if (bodyOption1 == 13) cornerspeedUp += 0.15;
+	if (bodyOption1 == 43) cornerspeedUp += 0.2;
 	if (bodyOption1 == 23) cornerspeedUp += 0.125; //流星
 	if (bodyOption1 == 25) cornerspeedUp += 0.15;
 	if (bodyOption2 == 3) cornerspeedUp += 0.03;
 	if (bodyOption2 == 13) cornerspeedUp += 0.075;
+	if (bodyOption2 == 43) cornerspeedUp += 0.15;
 	if (bodyOption3 == 3) cornerspeedUp += 0.03;
 	if (bodyOption3 == 13) cornerspeedUp += 0.075;
+	if (bodyOption3 == 43) cornerspeedUp += 0.15;
 	//var rollecornerValue1 = statusArray[12][3];
 	//var rollecornerValue2 = statusArray[15][3];
 	//diagnosis[diagnosisValue[20]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6);
