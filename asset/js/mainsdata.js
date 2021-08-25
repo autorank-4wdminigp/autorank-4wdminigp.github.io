@@ -198,7 +198,7 @@ kaizou7Select[3][s++] = new Array(9, 13);
 s = 0;
 kaizouTenpreSelect[3] = new Array();
 kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8);
-kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
 kaizouTenpre[3] = new Array();
 kaizouTenpre[3][0] = new Array("ギヤ負荷x6", 6, 6, 1, 1, 1, 1);
 kaizouTenpre[3][1] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
@@ -211,8 +211,9 @@ kaizouTenpre[3][7] = new Array("軽量x2 スラスト角の減少x4", 3, 3, 9, 9
 kaizouTenpre[3][8] = new Array("軽量x4 スラスト角の減少x2", 3, 3, 2, 2, 9, 9);
 kaizouTenpre[3][9] = new Array("新 ギヤ負荷x6", 4, 4, 6, 6, 1, 1);
 kaizouTenpre[3][10] = new Array("新 軽量x6", 3, 3, 5, 5, 2, 2);
-kaizouTenpre[3][11] = new Array("新 軽量x4 ギヤ負荷x2", 3, 3, 5, 5, 4, 4);
-kaizouTenpre[3][12] = new Array("新 軽量x2 ギヤ負荷x4", 3, 3, 4, 4, 6, 6);
+kaizouTenpre[3][11] = new Array("新 軽量(通常)x4 ギヤ負荷x2", 3, 3, 2, 2, 4, 4);
+kaizouTenpre[3][12] = new Array("新 軽量(剛性抜き)x4 ギヤ負荷x2", 3, 3, 5, 5, 4, 4);
+kaizouTenpre[3][13] = new Array("新 軽量x2 ギヤ負荷x4", 3, 3, 4, 4, 6, 6);
 
 //ホイール
 s = 0;
