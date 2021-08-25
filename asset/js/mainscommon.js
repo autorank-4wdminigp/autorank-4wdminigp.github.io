@@ -47,8 +47,8 @@ function Result_Calc(disp1) {
 	}
 	// 総合評価の計算
 	for (var i = 1; i < 6; i++) {
-		result.value[34] += result.value[i];
-		result.valueKaiSv[34] += result.valueKaiSv[i];
+		result.value[35] += result.value[i];
+		result.valueKaiSv[35] += result.valueKaiSv[i];
 	}
 	return result;
 }
@@ -159,6 +159,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 52) bodySpeed += 0.05;
 	if (bodyOption1 == 53) bodySpeed += 0.04;
 	if (bodyOption1 == 55) bodySpeed += 0.02;
+	if (bodyOption1 == 56) bodySpeed += 0.09;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -283,6 +284,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 53) ftiregripUp += 0.07; //シャイニングスピード
 	if (bodyOption1 == 54) ftiregripUp += 0.07; //シャイニングパワー
 	if (bodyOption1 == 55) ftiregripUp += 0.2; //バスターターン
+	if (bodyOption1 == 56) ftiregripUp += 0.08; //マックスストーム
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -459,6 +461,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 36) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 39) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 55) bodyCornerdecele -= 0.83;
+	if (bodyOption1 == 56) bodyCornerdecele += 0.7;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.42;
 	if (bodyOption2 == 44) bodyCornerdecele -= 0.5;
@@ -470,6 +473,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 14) bodyCornerdecele2 -= 0.2;
 	if (bodyOption1 == 44) bodyCornerdecele2 -= 0.5;
 	if (bodyOption1 == 55) bodyCornerdecele2 -= 0.5;
+	if (bodyOption1 == 56) bodyCornerdecele2 += 0.17;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
 	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.25;
@@ -525,7 +529,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	//var cornerweightValue = 0.024516625 * treadValue;
 	//var cornerdeceleA = 1.0 / (916.0 - cornerweightValue * Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) / acceleValue2);
 	//var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue * bodyCornerdecele2 * (1.0 + Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) * 0.0005611396) + rollerteikouValue / 20.0 * bodyCornerdecele3)));
-	var tiresenkaiValue = resultValueKai[14];
+	var tiresenkaiValue = resultValueKai[14] + resultValueKai[34] * 2.0;
 	var senkaisaValue = (rtiresenkaiValue - ftiresenkaiValue) / tiresenkaiValue;
 	var senkaiC = -0.000000095868573 * (resultValueKai[30] + resultValueKai[31] * 2.0 + Math.abs(senkaisaValue) * 3.0) + 0.000032630514858;
 	var senkaiA = 45.188272213660500 * senkaisaValue - 0.008372879447291;
