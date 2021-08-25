@@ -211,7 +211,7 @@ kaizouTenpre[3][7] = new Array("軽量x2 スラスト角の減少x4", 3, 3, 9, 9
 kaizouTenpre[3][8] = new Array("軽量x4 スラスト角の減少x2", 3, 3, 2, 2, 9, 9);
 kaizouTenpre[3][9] = new Array("新 ギヤ負荷x6", 4, 4, 6, 6, 1, 1);
 kaizouTenpre[3][10] = new Array("新 軽量x6", 3, 3, 5, 5, 2, 2);
-kaizouTenpre[3][11] = new Array("新 軽量x4 ギヤ負荷x2", 3, 3, 5, 5, 6, 6);
+kaizouTenpre[3][11] = new Array("新 軽量x4 ギヤ負荷x2", 3, 3, 5, 5, 4, 4);
 kaizouTenpre[3][12] = new Array("新 軽量x2 ギヤ負荷x4", 3, 3, 4, 4, 6, 6);
 
 //ホイール
