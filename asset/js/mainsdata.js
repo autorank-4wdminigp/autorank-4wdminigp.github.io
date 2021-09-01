@@ -217,30 +217,34 @@ kaizouTenpre[3][13] = new Array("新 軽量x2 ギヤ負荷x4", 3, 3, 4, 4, 6, 6)
 
 //ホイール
 s = 0;
-kaizouSelectIndex[4] = new Array(0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 2, 3, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0);
+kaizouSelectIndex[4] = new Array(0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 2, 3, 0, 1, 0, 1, 2, 3, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4, 0, 0);
 kaizouSelect[4] = new Array();
 kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6);
 kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6);//リヤ
 kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6, 7);//小径ワンウェイ 大径ワンウェイ・フロント
 kaizouSelect[4][s++] = new Array(1, 2, 3, 4, 5, 6, 7);//大径ワンウェイ・リヤ
+kaizouSelect[4][s++] = new Array(0, 2, 3, 4, 5, 6, 7, 11);//小径ワンウェイ(パワー重視)
 s = 0;
-kaizou7SelectIndex[4] = new Array(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+kaizou7SelectIndex[4] = new Array(0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0);
 kaizou7Select[4] = new Array();
 kaizou7Select[4][s++] = new Array(8, 9);
-kaizou7Select[4][s++] = new Array(10, 9);//リヤ
-kaizou7Select[4][s++] = new Array(8, 10, 9);//ワンウェイ
+kaizou7Select[4][s++] = new Array(10, 9);//小径ワンウェイ
+kaizou7Select[4][s++] = new Array(8, 10, 9);//大径ワンウェイ
 s = 0;
 kaizouTenpreSelect[4] = new Array();
 kaizouTenpreSelect[4][s++] = new Array(0, 1, 2);
 kaizouTenpreSelect[4][s++] = new Array(0, 1, 2);
 kaizouTenpreSelect[4][s++] = new Array(3, 1, 2);
 kaizouTenpreSelect[4][s++] = new Array(3, 1, 2, 4);
+kaizouTenpreSelect[4][s++] = new Array(3, 1, 2, 5, 6);
 kaizouTenpre[4] = new Array();
 kaizouTenpre[4][0] = new Array("パワロスx6", 1, 1, 1, 1, 1, 1);
 kaizouTenpre[4][1] = new Array("スピロスx6", 2, 2, 2, 2, 2, 2);
 kaizouTenpre[4][2] = new Array("軽量x6", 4, 4, 3, 3, 3, 3);
 kaizouTenpre[4][3] = new Array("パワロスx6", 7, 7, 7, 7, 1, 1);
 kaizouTenpre[4][4] = new Array("パワロススピートx6", 1, 1, 1, 1, 1, 1);
+kaizouTenpre[4][5] = new Array("パワロスx5 ギヤ抵抗調整(パワー重視)x1", 7, 7, 7, 7, 1, 8);
+kaizouTenpre[4][6] = new Array("スピロスx5 ギヤ抵抗調整(パワー重視)x1", 2, 2, 2, 2, 2, 8);
 
 //タイヤ
 s = 0;
@@ -1257,6 +1261,10 @@ kaizouValue[4][9][1] = new Array("", "パワーロス〇 [2] ", -0.02, -0.024, -
 kaizouValue[4][10] = new Array();
 kaizouValue[4][10][0] = new Array("ギヤ抵抗調整", "ウェーブ〇〇〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 19);
 kaizouValue[4][10][1] = new Array("", "スピード〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 1);
+
+kaizouValue[4][11] = new Array();
+kaizouValue[4][11][0] = new Array("ギヤ抵抗調整(パワー重視) [1?]", "ウェーブ〇〇 [3] ", 0.03, 0.036, 0.042, 0.0015, -1, 19);
+kaizouValue[4][11][1] = new Array("", "パワー〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 
 //タイヤ
 kaizouValue[5] = new Array();
