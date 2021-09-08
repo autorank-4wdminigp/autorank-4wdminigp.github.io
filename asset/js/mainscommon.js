@@ -285,6 +285,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 54) ftiregripUp += 0.07; //シャイニングパワー
 	if (bodyOption1 == 55) ftiregripUp += 0.2; //バスターターン
 	if (bodyOption1 == 56) ftiregripUp += 0.08; //マックスストーム
+	if (bodyOption1 == 57) ftiregripUp += 0.08; //空気の刃
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
@@ -332,6 +333,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 43) cornerspeedUp += 0.2;
 	if (bodyOption1 == 23) cornerspeedUp += 0.125; //流星
 	if (bodyOption1 == 25) cornerspeedUp += 0.15;
+	if (bodyOption1 == 57) cornerspeedUp += 0.2;
 	if (bodyOption2 == 3) cornerspeedUp += 0.03;
 	if (bodyOption2 == 13) cornerspeedUp += 0.075;
 	if (bodyOption2 == 43) cornerspeedUp += 0.15;
@@ -448,8 +450,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var staminaValue = (resultValueKai[4] + resultValueKai[28]) * bodyStamina;
 	diagnosis[diagnosisValue[24]] = staminaValue;
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
-	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / ((0.8 + 0.7) * speedValue2 * speedValue2 * weightValue * 0.45); //0.458 0.573 0.688
-	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / (0.9 * 0.9 * speedValue2 * speedValue2 * weightValue * 0.45 + 0.8 * 0.8 * speedValue2 * speedValue2 * weightValue * 0.45);
+	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / ((0.9 * 0.9 + 0.8 * 0.8) * speedValue2 * speedValue2 * weightValue * 0.45); //0.458 0.573 0.688
+	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / (0.9 * 0.9 * speedValue2 * speedValue2 * weightValue * 0.8); //0.458 0.573 0.688
 
 	//コーナー減速率
 	var bodyCornerdecele = 1.0; //旋回
@@ -463,6 +465,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 39) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 55) bodyCornerdecele -= 0.83;
 	if (bodyOption1 == 56) bodyCornerdecele += 0.7;
+	if (bodyOption1 == 57) bodyCornerdecele -= 0.8;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.42;
 	if (bodyOption2 == 44) bodyCornerdecele -= 0.5;
@@ -547,6 +550,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[33]] = calcCornerdecele(540.0 + 115.0 + 66.0 / 2.0);
 	diagnosis[diagnosisValue[34]] = calcCornerdecele(600.0 - 115.0 * 2.0 + 66.0 / 2.0);
 	diagnosis[diagnosisValue[35]] = calcCornerdecele(600.0 + 115.0 * 2.0 + 66.0 / 2.0);
+	tiresenkaiValue = (rtiresenkaiValue + resultValueKai[34]) * 2.0;
+	senkaisaValue = 0.0;
+	senkaiC = -0.000000095868573 * (resultValueKai[30] + resultValueKai[31] * 2.0 + Math.abs(senkaisaValue) * 3.0) + 0.000032630514858;
+	senkaiA = 45.188272213660500 * senkaisaValue - 0.008372879447291;
+	cornerweightValue = (senkaiC * (gravityValue + senkaiA) * (gravityValue + senkaiA) + 0.024516625024408 - senkaiC * senkaiA * senkaiA) * treadValue;
+	diagnosis[diagnosisValue[39]] = calcCornerdecele(458.0);
 
 	//ジャンプ飛距離
 	var slopeLength = 0.45;
@@ -643,29 +652,29 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	return diagnosis;
 }
 
-function Time_Calc(time1, time2, step, num, speed, accele, distance) {
-	if ((speed * (time1 + step * 0.5) + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * (time1 + step * 0.5)) - 1.0)) > distance) {
-		if (num == 1) {
-			for (var t = time1; t <= (time1 + step * 0.5); t += 0.01) {
-				if ((speed * t + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * t) - 1.0)) >= distance) {
-					return t;
-				}
-			}
-		} else {
-			return Time_Calc(time1, time1 + step * 0.5, step * 0.5, num - 1, speed, accele, distance);
-		}
-	} else {
-		if (num == 1) {
-			for (var t = (time1 + step * 0.5); t <= time2; t += 0.01) {
-				if ((speed * t + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * t) - 1.0)) >= distance) {
-					return  t;
-				}
-			}
-		} else {
-			return Time_Calc(time1 + step * 0.5, time2, step * 0.5, num - 1, speed, accele, distance);
-		}
-	}
-}
+//function Time_Calc(time1, time2, step, num, speed, accele, distance) {
+//	if ((speed * (time1 + step * 0.5) + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * (time1 + step * 0.5)) - 1.0)) > distance) {
+//		if (num == 1) {
+//			for (var t = time1; t <= (time1 + step * 0.5); t += 0.01) {
+//				if ((speed * t + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * t) - 1.0)) >= distance) {
+//					return t;
+//				}
+//			}
+//		} else {
+//			return Time_Calc(time1, time1 + step * 0.5, step * 0.5, num - 1, speed, accele, distance);
+//		}
+//	} else {
+//		if (num == 1) {
+//			for (var t = (time1 + step * 0.5); t <= time2; t += 0.01) {
+//				if ((speed * t + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * t) - 1.0)) >= distance) {
+//					return  t;
+//				}
+//			}
+//		} else {
+//			return Time_Calc(time1 + step * 0.5, time2, step * 0.5, num - 1, speed, accele, distance);
+//		}
+//	}
+//}
 
 function UrlCalc(value1) {
 	var urlValue =  "";
