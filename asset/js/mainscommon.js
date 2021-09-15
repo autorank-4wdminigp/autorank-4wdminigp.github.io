@@ -262,7 +262,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//タイヤグリップ
 	var ftiregripUp = 1.0;
-	if (bodyOption1 == 62) ftiregripUp += 0.1;
+	if (bodyOption1 == 62) ftiregripUp += 0.2;
 	if (bodyOption1 == 21) ftiregripUp += 0.06; //かっとびマシン
 	if (bodyOption1 == 22) ftiregripUp += 0.06; //パワーブースト
 	if (bodyOption1 == 23) ftiregripUp += 0.06; //流星
@@ -289,8 +289,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 56) ftiregripUp += 0.08; //マックスストーム
 	if (bodyOption1 == 57) ftiregripUp += 0.07; //空気の刃
 	if (bodyOption1 == 58) ftiregripUp += 0.1; //ウインドダッシュ
-	if (bodyOption2 == 62) ftiregripUp += 0.05;
-	if (bodyOption3 == 62) ftiregripUp += 0.05;
+	if (bodyOption2 == 62) ftiregripUp += 0.16;
+	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
