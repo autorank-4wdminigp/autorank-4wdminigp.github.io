@@ -162,7 +162,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 53) bodySpeed += 0.04;
 	if (bodyOption1 == 55) bodySpeed += 0.02;
 	if (bodyOption1 == 56) bodySpeed += 0.09;
-	if (bodyOption1 == 59) bodySpeed += 0.03;
+	if (bodyOption1 == 59) bodySpeed += 0.02;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -172,7 +172,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var hoseiSpeedStr = "";
 	var hoseiAcceleStr = "";
 	var powerlossValue = resultValueKai[7];
-	var powerlossMax = ((0.000025 * powerlossValue + 0.75) - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
+	var powerlossMax = ((0.25 * powerlossValue / 10000.0 + 0.75) - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
 	if (powerlossValue > powerlossMax) {
 		powerlossValue = powerlossMax;
 		hoseiSpeedStr = "PL)";
@@ -291,7 +291,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 56) ftiregripUp += 0.08; //マックスストーム
 	if (bodyOption1 == 57) ftiregripUp += 0.07; //空気の刃
 	if (bodyOption1 == 58) ftiregripUp += 0.1; //ウインドダッシュ
-	if (bodyOption1 == 59) ftiregripUp += 0.15; //プラズマ
+	if (bodyOption1 == 59) ftiregripUp += 0.08; //プラズマ
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
