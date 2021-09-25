@@ -291,7 +291,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 56) ftiregripUp += 0.08; //マックスストーム
 	if (bodyOption1 == 57) ftiregripUp += 0.07; //空気の刃
 	if (bodyOption1 == 58) ftiregripUp += 0.1; //ウインドダッシュ
-	if (bodyOption1 == 59) ftiregripUp += 0.08; //プラズマ
+	if (bodyOption1 == 59) ftiregripUp += 0.07; //プラズマ
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
