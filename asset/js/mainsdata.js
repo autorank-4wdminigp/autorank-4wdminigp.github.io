@@ -451,12 +451,15 @@ kaizou7Select[14][s++] = new Array(3, 4);
 s = 0;
 kaizouTenpreSelect[14] = new Array();
 kaizouTenpreSelect[14][s++] = new Array(0, 1, 2);
-kaizouTenpreSelect[14][s++] = new Array(0, 1, 3);
+kaizouTenpreSelect[14][s++] = new Array(0, 1, 3, 4, 5);
 kaizouTenpre[14] = new Array();
 kaizouTenpre[14][0] = new Array("節電x6", 1, 1, 1, 1, 1, 1);
 kaizouTenpre[14][1] = new Array("軽量化x6", 2, 2, 2, 2, 2, 2);
 kaizouTenpre[14][2] = new Array("耐久x6", 3, 3, 3, 3, 3, 3);
 kaizouTenpre[14][3] = new Array("耐久(パワー重視)x1 耐久x5", 4, 3, 3, 3, 3, 3);
+kaizouTenpre[14][4] = new Array("耐久(パワー重視)x1 節電x5", 4, 1, 1, 1, 1, 1);
+kaizouTenpre[14][5] = new Array("耐久(パワー重視)x1 軽量化x5", 4, 2, 2, 2, 2, 2);
+
 
 //ピニオンギヤ
 s = 0;
@@ -1533,7 +1536,7 @@ kaizouValue[14][4] = new Array();
 kaizouValue[14][4][0] = new Array("超剛性強化", "スタミナ耐久〇〇〇 [6] ", 0.06, 0.072, 0.084, 0.003, -1, 4);
 
 kaizouValue[14][5] = new Array();
-kaizouValue[14][5][0] = new Array("剛性補強(パワー重視) [1?]", "パワー〇〇 [2(固定UP)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
+kaizouValue[14][5][0] = new Array("剛性補強(パワー重視) [1]", "パワー〇〇 [2(固定UP)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 kaizouValue[14][5][1] = new Array("", "スタミナ耐久〇〇 [4] ", 0.04, 0.048, 0.056, 0.002, -1, 4);
 
 //ピニオンギヤ
