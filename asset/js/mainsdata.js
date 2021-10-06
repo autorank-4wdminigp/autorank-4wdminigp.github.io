@@ -28,7 +28,7 @@ var s;
 var typeSelect = new Array();
 typeSelect[0] = new Array(1, 2, 3, 4, 5, 6, 22);
 typeSelect[1] = new Array(1, 2, 3, 4, 5, 6, 7, 21);
-typeSelect[2] = new Array(1, 2, 3, 4, 5, 9, 10, 19, 20, 26, 29);
+typeSelect[2] = new Array(1, 2, 3, 4, 5, 9, 10, 19, 20, 23, 26, 29);
 typeSelect[3] = new Array(1, 2, 3, 4, 5, 6, 11, 12, 28, 29, 30, 31, 32, 33, 34, -3, -4);
 typeSelect[4] = new Array(1, 2, 3, 4, 5, 7, 8, 11, 19, 28, 29);
 typeSelect[5] = new Array(1, 2, 3, 4, 5, 7, 8, 13, 14, 15, 16, 20, 27, 28, 29, 30);
