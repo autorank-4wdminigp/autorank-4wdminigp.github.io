@@ -77,6 +77,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (brakeValue != 0 && bodyOption1 == 16) brakeValue += 0.06;
 	if (brakeValue != 0 && bodyOption1 == 26) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption1 == 37) brakeValue += 0.06;
+	if (brakeValue != 0 && bodyOption1 == 60) brakeValue += 0.06;
 	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.015;
 	if (brakeValue != 0 && bodyOption2 == 16) brakeValue += 0.03;
 	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.015;
@@ -163,6 +164,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 55) bodySpeed += 0.02;
 	if (bodyOption1 == 56) bodySpeed += 0.09;
 	if (bodyOption1 == 59) bodySpeed += 0.02;
+	if (bodyOption1 == 60) bodySpeed += 0.02;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -292,6 +294,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 57) ftiregripUp += 0.07; //空気の刃
 	if (bodyOption1 == 58) ftiregripUp += 0.1; //ウインドダッシュ
 	if (bodyOption1 == 59) ftiregripUp += 0.07; //プラズマ
+	if (bodyOption1 == 60) ftiregripUp += 0.07; //レーザーコントロール
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -476,6 +479,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 56) bodyCornerdecele += 0.7;
 	if (bodyOption1 == 57) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 59) bodyCornerdecele -= 0.75;
+	if (bodyOption1 == 60) bodyCornerdecele -= 0.75;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.42;
 	if (bodyOption2 == 44) bodyCornerdecele -= 0.5;
