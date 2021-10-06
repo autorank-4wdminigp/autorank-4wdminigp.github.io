@@ -504,6 +504,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 33) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 57) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 59) bodyCornerdecele3 -= 0.7;
+	if (bodyOption1 == 60) bodyCornerdecele3 -= 0.7;
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
