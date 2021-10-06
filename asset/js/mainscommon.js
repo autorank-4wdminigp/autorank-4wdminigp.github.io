@@ -300,7 +300,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var ftiregripValue = statusArray[6][13];
 	var rtiregripValue = statusArray[7][13];
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
-	tiregripValue += statusArray[29][13];
+	//tiregripValue += statusArray[29][13];
 	//tiregripValue += statusArray[33][13];
 	diagnosis[diagnosisValue[5]] = tiregripValue * ftiregripUp / 100.0;
 
