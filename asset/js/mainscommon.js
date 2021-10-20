@@ -47,8 +47,8 @@ function Result_Calc(disp1) {
 	}
 	// 総合評価の計算
 	for (var i = 1; i < 6; i++) {
-		result.value[35] += result.value[i];
-		result.valueKaiSv[35] += result.valueKaiSv[i];
+		result.value[40] += result.value[i];
+		result.valueKaiSv[40] += result.valueKaiSv[i];
 	}
 	return result;
 }
@@ -96,6 +96,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption1 == 33) setsudenUp -= 0.1;
 	if (setsudenValue != 0 && bodyOption1 == 53) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption1 == 54) setsudenUp += 0.2;
+	if (setsudenValue != 0 && bodyOption1 == 65) setsudenUp += 0.15;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
@@ -123,24 +124,24 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	}
 	var speedlossValue = 800.0 * tirekeisa * mintiresenkai / mintirekei;
 	var bodyPower = 1.0;
-	if (bodyOption1 == 2) bodyPower += 0.02;
-	if (bodyOption1 == 12) bodyPower += 0.03;
-	if (bodyOption1 == 42) bodyPower += 0.04;
-	if (bodyOption1 == 22) bodyPower += 0.05;
+	if (bodyOption1 == 2) bodyPower += 0.06;
+	if (bodyOption1 == 12) bodyPower += 0.12;
+	if (bodyOption1 == 42) bodyPower += 0.15;
+	if (bodyOption1 == 22) bodyPower += 0.12;
 	if (bodyOption1 == 25) bodyPower += 0.075;
 	if (bodyOption1 == 30) bodyPower += 0.03;
-	if (bodyOption1 == 31) bodyPower += 0.03;
+	if (bodyOption1 == 31) bodyPower += 0.12;
 	if (bodyOption1 == 37) bodyPower += 0.03;
 	if (bodyOption1 == 39) bodyPower += 0.02;
-	if (bodyOption1 == 54) bodyPower += 0.05;
-	if (bodyOption1 == 58) bodyPower += 0.03;
+	if (bodyOption1 == 54) bodyPower += 0.12;
+	if (bodyOption1 == 58) bodyPower += 0.12;
 	if (bodyOption1 == 59) bodyPower += 0.075;
-	if (bodyOption2 == 2) bodyPower += 0.006;
-	if (bodyOption2 == 12) bodyPower += 0.015;
-	if (bodyOption2 == 42) bodyPower += 0.025;
-	if (bodyOption3 == 2) bodyPower += 0.006;
-	if (bodyOption3 == 12) bodyPower += 0.015;
-	if (bodyOption3 == 42) bodyPower += 0.025;
+	if (bodyOption2 == 2) bodyPower += 0.024;
+	if (bodyOption2 == 12) bodyPower += 0.06;
+	if (bodyOption2 == 42) bodyPower += 0.1;
+	if (bodyOption3 == 2) bodyPower += 0.024;
+	if (bodyOption3 == 12) bodyPower += 0.06;
+	if (bodyOption3 == 42) bodyPower += 0.1;
 	var bodyPowerloss = 1.0;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 
@@ -161,10 +162,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 51) bodySpeed += 0.03;
 	if (bodyOption1 == 52) bodySpeed += 0.05;
 	if (bodyOption1 == 53) bodySpeed += 0.04;
-	if (bodyOption1 == 55) bodySpeed += 0.02;
+	if (bodyOption1 == 55) bodySpeed += 0.05;
 	if (bodyOption1 == 56) bodySpeed += 0.09;
 	if (bodyOption1 == 59) bodySpeed += 0.02;
 	if (bodyOption1 == 60) bodySpeed += 0.02;
+	if (bodyOption1 == 64) bodySpeed += 0.065;
+	if (bodyOption1 == 65) bodySpeed += 0.05;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -182,12 +185,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	}
 	var spowerValue = (1.0 - bodyPowerloss * powerlossValue / 10000.0 - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]));
 	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
-	var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
-	var speedValueNotDf = speedValue * spowerValue / 2.0;
-	if (speedValueNotDf > speedValue2) {
-		speedValue2 = speedValueNotDf;
-		hoseiSpeedStr = "DF)";
-	}
+	//var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
+	var speedValue2 = speedValue * spowerValue;
+	//var speedValueNotDf = speedValue * spowerValue / 2.0;
+	//if (speedValueNotDf > speedValue2) {
+	//	speedValue2 = speedValueNotDf;
+	//	hoseiSpeedStr = "DF)";
+	//}
 	diagnosis[diagnosisValue[0]] = hoseiSpeedStr + (speedValue2 * 3.6);
 	diagnosis[diagnosisValue[1]] = hoseiSpeedStr + speedValue2;
 
@@ -201,12 +205,14 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[28]] = currentValue;
 
 	//最高速25%減少
-	var speed25dec = (0.75 * speedValue2 + resultValueKai[9] / 1000.0) / spowerValue / speedValue * resultValueKai[1];
+	//var speed25dec = (0.75 * speedValue2 + resultValueKai[9] / 1000.0) / spowerValue / speedValue * resultValueKai[1];
+	var speed25dec = (0.75 * speedValue2) / spowerValue / speedValue * resultValueKai[1];
 	diagnosis[diagnosisValue[29]] = -1.0 * Math.log((speed25dec * 2 - resultValueKai[1]) / resultValueKai[1]) / currentValue;
 
 	//t秒後最高速
 	function calcSpeed(n) {
-		return ((1.0 + Math.exp(-1.0 * currentValue * n )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
+		//return ((1.0 + Math.exp(-1.0 * currentValue * n )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0) * 3.6;
+		return ((1.0 + Math.exp(-1.0 * currentValue * n )) / 2.0 * speedValue * spowerValue) * 3.6;
 	}
 	//シンプソン法による走行距離導出
 	function simpson(f, t1, t2, n) {
@@ -251,9 +257,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 		if (i == 3) {
 			gravityValue += resultValueKai[31] * chassisGravity[chassisIndex] * weightpartsValue;
 		} else if (i == 0) {
-			gravityValue += resultValueKai[31] * selectValue[3][chassisIndex][3] / 10000.0 * weightpartsValue;
+			gravityValue += resultValueKai[31] * resultValueKai[38] / 10000.0 * weightpartsValue;
 		} else if (i == 33) {
-			gravityValue += resultValueKai[31] * selectValue[3][chassisIndex][4] / 10000.0 * weightpartsValue;
+			gravityValue += resultValueKai[31] * resultValueKai[39] / 10000.0 * weightpartsValue;
 		} else {
 			gravityValue += resultValueKai[31] * partsGravity[i] * weightpartsValue;
 		}
@@ -295,6 +301,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 58) ftiregripUp += 0.1; //ウインドダッシュ
 	if (bodyOption1 == 59) ftiregripUp += 0.07; //プラズマ
 	if (bodyOption1 == 60) ftiregripUp += 0.07; //レーザーコントロール
+	if (bodyOption1 == 64) ftiregripUp += 0.1; //疾風
+	if (bodyOption1 == 65) ftiregripUp += 0.07; //デュアルサプレッション
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -320,39 +328,42 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (resultValueKai[26] != 0 && bodyOption1 == 38) taifuugripUp += 4000.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 58) taifuugripUp += 4000.0;
 	var taifuuFuka = (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue * 0.086 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
-	diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	//diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka), speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
 
 	//芝最高速
 	var bodyOffload = 0.0;
-	if (resultValueKai[20] != 0 && bodyOption1 == 9) bodyOffload += 50000.0;
-	if (resultValueKai[20] != 0 && bodyOption1 == 29) bodyOffload += 50000.0;
-	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 50000.0;
-	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 15000.0;
-	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 15000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 9) bodyOffload += 20000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 29) bodyOffload += 20000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 20000.0;
+	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 10000.0;
+	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 10000.0;
 	var shibaFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.068 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
-	diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	//diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka), speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[17]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
 
 	//ダート最高速
 	var dirtFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.048 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
-	diagnosis[diagnosisValue[18]] = Math.max(speedValue * (spowerValue - dirtFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	//diagnosis[diagnosisValue[18]] = Math.max(speedValue * (spowerValue - dirtFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
+	diagnosis[diagnosisValue[18]] = Math.max(speedValue * (spowerValue - dirtFuka), speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[18]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
 
 	//コーナー安定速度
 	var cornerspeedUp = 1.0;
-	if (bodyOption1 == 3) cornerspeedUp += 0.1;
-	if (bodyOption1 == 13) cornerspeedUp += 0.15;
-	if (bodyOption1 == 43) cornerspeedUp += 0.2;
-	if (bodyOption1 == 23) cornerspeedUp += 0.125; //流星
-	if (bodyOption1 == 25) cornerspeedUp += 0.15;
-	if (bodyOption1 == 57) cornerspeedUp += 0.2;
-	if (bodyOption2 == 3) cornerspeedUp += 0.03;
-	if (bodyOption2 == 13) cornerspeedUp += 0.075;
-	if (bodyOption2 == 43) cornerspeedUp += 0.15;
-	if (bodyOption3 == 3) cornerspeedUp += 0.03;
-	if (bodyOption3 == 13) cornerspeedUp += 0.075;
-	if (bodyOption3 == 43) cornerspeedUp += 0.15;
+	if (bodyOption1 == 3) cornerspeedUp += 0.4;
+	if (bodyOption1 == 13) cornerspeedUp += 0.5;
+	if (bodyOption1 == 43) cornerspeedUp += 0.6;
+	if (bodyOption1 == 23) cornerspeedUp += 0.5; //流星
+	if (bodyOption1 == 25) cornerspeedUp += 0.4;
+	if (bodyOption1 == 57) cornerspeedUp += 0.6;
+	if (bodyOption2 == 3) cornerspeedUp += 0.3;
+	if (bodyOption2 == 13) cornerspeedUp += 0.35;
+	if (bodyOption2 == 43) cornerspeedUp += 0.4;
+	if (bodyOption3 == 3) cornerspeedUp += 0.3;
+	if (bodyOption3 == 13) cornerspeedUp += 0.35;
+	if (bodyOption3 == 43) cornerspeedUp += 0.4;
 	//var rollecornerValue1 = statusArray[12][3];
 	//var rollecornerValue2 = statusArray[15][3];
 	//diagnosis[diagnosisValue[20]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6);
@@ -419,7 +430,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 				var timeUnit = Math.pow(10, i);
 				for (var j = 1; j <= 10000; j++) {
 					var t = tspeedTime + j / timeUnit;
-					var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0;
+					//var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0;
+					var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue;
 					//var taccele = 4.0 * acceleValue2 * (1.0 - tspeed / tspeedmax);
 					var tspeedK1 = 4.0 * acceleValue2 * (1.0 - tspeed / tspeedmax) / timeUnit;
 					var tspeedK2 = 4.0 * acceleValue2 * (1.0 - (tspeed + tspeedK1 / 2.0) / tspeedmax) / timeUnit;
@@ -483,10 +495,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 60) bodyCornerdecele -= 0.75;
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.42;
-	if (bodyOption2 == 44) bodyCornerdecele -= 0.5;
+	if (bodyOption2 == 44) bodyCornerdecele -= 0.45;
 	if (bodyOption3 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption3 == 14) bodyCornerdecele -= 0.42;
-	if (bodyOption3 == 44) bodyCornerdecele -= 0.5;
+	if (bodyOption3 == 44) bodyCornerdecele -= 0.45;
 	var bodyCornerdecele2 = 1.0; //摩擦
 	if (bodyOption1 == 4) bodyCornerdecele2 -= 0.17;
 	if (bodyOption1 == 14) bodyCornerdecele2 -= 0.2;
@@ -495,13 +507,14 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 56) bodyCornerdecele2 += 0.17;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
-	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.25;
+	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.3;
 	if (bodyOption3 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption3 == 14) bodyCornerdecele2 -= 0.1;
-	if (bodyOption3 == 44) bodyCornerdecele2 -= 0.25;
+	if (bodyOption3 == 44) bodyCornerdecele2 -= 0.3;
 	var bodyCornerdecele3 = 1.0; //抵抗
 	if (bodyOption1 == 24) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 33) bodyCornerdecele3 -= 0.7;
+	if (bodyOption1 == 55) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 57) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 59) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 60) bodyCornerdecele3 -= 0.7;
@@ -620,6 +633,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 17) bodyBoundtime -= 0.08;
 	var bodyBoundtime2 = 1.0; //制振
 	if (bodyOption1 == 27) bodyBoundtime2 += 2.0;
+	if (bodyOption1 == 65) bodyBoundtime2 += 4.0;
 	var seishinValue = resultValueKai[11];
 	var ftirehanpatsuValue = statusArray[6][15];
 	var rtirehanpatsuValue = statusArray[7][15];
