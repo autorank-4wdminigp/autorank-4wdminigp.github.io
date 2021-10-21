@@ -156,7 +156,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 27) bodySpeed += 0.06;
 	if (bodyOption1 == 29) bodySpeed += 0.03;
 	if (bodyOption1 == 32) bodySpeed += 0.07;
-	if (bodyOption1 == 34) bodySpeed += 0.035; //エアロストリーム
+	if (bodyOption1 == 34) bodySpeed += 0.035;
 	if (bodyOption1 == 35) bodySpeed += 0.03;
 	if (bodyOption1 == 38) bodySpeed += 0.03;
 	if (bodyOption1 == 51) bodySpeed += 0.03;
@@ -225,11 +225,6 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 		s = s * (h / 3.0);
 		return s;
 	}
-	/* シンプソン法のテストコード
-	function testFunc(x) {
-		return Math.pow(x, 2) + 3;
-	}
-	console.log(simpson(testFunc, 1, 2, 10), 16/3);*/
 
 	//10秒後最高速
 	diagnosis[diagnosisValue[30]] = calcSpeed(10.0);
@@ -355,7 +350,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 3) cornerspeedUp += 0.4;
 	if (bodyOption1 == 13) cornerspeedUp += 0.5;
 	if (bodyOption1 == 43) cornerspeedUp += 0.6;
-	if (bodyOption1 == 23) cornerspeedUp += 0.5; //流星
+	if (bodyOption1 == 23) cornerspeedUp += 0.5;
 	if (bodyOption1 == 25) cornerspeedUp += 0.4;
 	if (bodyOption1 == 57) cornerspeedUp += 0.6;
 	if (bodyOption2 == 3) cornerspeedUp += 0.3;
@@ -364,12 +359,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 3) cornerspeedUp += 0.3;
 	if (bodyOption3 == 13) cornerspeedUp += 0.35;
 	if (bodyOption3 == 43) cornerspeedUp += 0.4;
-	//var rollecornerValue1 = statusArray[12][3];
-	//var rollecornerValue2 = statusArray[15][3];
-	//diagnosis[diagnosisValue[20]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp) * 3.6);
-	//diagnosis[diagnosisValue[21]] = "仮)" + (0.385 * Math.sqrt((resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2) * cornerspeedUp * 0.35) * 3.6);
-	//diagnosis[diagnosisValue[16]] = resultValueKai[3] - (rollecornerValue1 + rollecornerValue2) + (rollecornerValue1 + rollecornerValue2) * 0.2;
-	var cornerInValue = 0.0;
+	var cornerInValue = 0.0 - resultValueKai[35];
 	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 	for (var i = 0; i < nameValue.length; i++) {
 		if (i != 12 && i != 15) {
@@ -386,33 +376,6 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//最高速95%到達時間
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
-
-	//100m走
-	//diagnosis[diagnosisValue[23]] = Time_Calc(0.0, 100.0, 100.0, 7, speedValue2, acceleValue2, 100.0);
-
-	//25m走
-	//diagnosis[diagnosisValue[26]] = Time_Calc(0.0, 25.0, 25.0, 5, speedValue2, acceleValue2, 25.0);
-
-	//50m走
-	//diagnosis[diagnosisValue[27]] = Time_Calc(0.0, 50.0, 50.0, 6, speedValue2, acceleValue2, 50.0);
-
-	//var tdistanceflg = 0;
-	//var tdistance = 0.0;
-	//for (var t = 0.01; t < 100.0; t += 0.01) {
-	//	var tspeedmax = (1.0 + Math.exp(-1.0 * currentValue * t )) / 2.0 * speedValue * spowerValue - resultValueKai[9] / 1000.0;
-	//	var tspeed = tspeedmax * (1.0 - Math.exp(-4.0 * acceleValue2 / tspeedmax * t));
-	//	tdistance += tspeed * 0.01;
-	//	if (tdistanceflg == 0 && tdistance >= 25.0) {
-	//		diagnosis[diagnosisValue[26]] = t;
-	//		tdistanceflg = 1;
-	//	} else if (tdistanceflg == 1 && tdistance >= 50.0) {
-	//		diagnosis[diagnosisValue[27]] = t;
-	//		tdistanceflg = 2;
-	//	} else if (tdistanceflg == 2 && tdistance >= 100.0) {
-	//		diagnosis[diagnosisValue[23]] = t;
-	//		break;
-	//	}
-	//}
 
 	var tdistanceArray = new Array(25.0, 50.0, 100.0);
 	var tdiagnosisArray = new Array(26, 27, 23);
@@ -472,7 +435,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 5) bodyStamina += 0.05;
 	if (bodyOption3 == 15) bodyStamina += 0.1;
 	if (bodyOption3 == 45) bodyStamina += 0.2;
-	var staminaValue = (resultValueKai[4] + resultValueKai[28]) * bodyStamina;
+	var staminaValue = (resultValueKai[4] + resultValueKai[28] - resultValueKai[36]) * bodyStamina;
 	diagnosis[diagnosisValue[24]] = staminaValue;
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
 	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / ((0.9 * 0.9 + 0.8 * 0.8) * speedValue2 * speedValue2 * weightValue * 0.45); //0.458 0.573 0.688
@@ -560,10 +523,6 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var ftiresenkaiValue = statusArray[6][14];
 	var rtiresenkaiValue = statusArray[7][14];
 	var treadValue = Math.sqrt(resultValueKai[30] * resultValueKai[30] + resultValueKai[31] * resultValueKai[31]);
-	//var tiresenkaiValue = (ftiresenkaiValue * (resultValueKai[31] / 2.0 - gravityValue) + rtiresenkaiValue * (resultValueKai[31] / 2.0 + gravityValue)) / resultValueKai[31];
-	//var cornerweightValue = 0.024516625 * treadValue;
-	//var cornerdeceleA = 1.0 / (916.0 - cornerweightValue * Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) / acceleValue2);
-	//var cornerdeceleValue = 1.0 / (cornerdeceleA * 458.0 + Math.sqrt((cornerdeceleA * 458.0) * (cornerdeceleA * 458.0) + cornerdeceleA * speedValue2 * speedValue2 / acceleValue2 * (masatsuValue * bodyCornerdecele2 * (1.0 + Math.max(tiresenkaiValue * bodyCornerdecele, 1.0) * 0.0005611396) + rollerteikouValue / 20.0 * bodyCornerdecele3)));
 	var tiresenkaiValue = resultValueKai[14] + resultValueKai[34] * 2.0;
 	var senkaisaValue = (rtiresenkaiValue - ftiresenkaiValue) / tiresenkaiValue;
 	var senkaiC = -0.000000095868573 * (resultValueKai[30] + resultValueKai[31] * 2.0 + Math.abs(senkaisaValue) * 3.0) + 0.000032630514858;
@@ -683,30 +642,6 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	return diagnosis;
 }
-
-//function Time_Calc(time1, time2, step, num, speed, accele, distance) {
-//	if ((speed * (time1 + step * 0.5) + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * (time1 + step * 0.5)) - 1.0)) > distance) {
-//		if (num == 1) {
-//			for (var t = time1; t <= (time1 + step * 0.5); t += 0.01) {
-//				if ((speed * t + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * t) - 1.0)) >= distance) {
-//					return t;
-//				}
-//			}
-//		} else {
-//			return Time_Calc(time1, time1 + step * 0.5, step * 0.5, num - 1, speed, accele, distance);
-//		}
-//	} else {
-//		if (num == 1) {
-//			for (var t = (time1 + step * 0.5); t <= time2; t += 0.01) {
-//				if ((speed * t + speed * speed / (4.0 * accele) * (Math.exp(- 4.0 * accele / speed * t) - 1.0)) >= distance) {
-//					return  t;
-//				}
-//			}
-//		} else {
-//			return Time_Calc(time1 + step * 0.5, time2, step * 0.5, num - 1, speed, accele, distance);
-//		}
-//	}
-//}
 
 function UrlCalc(value1) {
 	var urlValue =  "";
