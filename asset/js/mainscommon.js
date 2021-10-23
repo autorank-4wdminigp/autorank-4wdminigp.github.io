@@ -47,8 +47,8 @@ function Result_Calc(disp1) {
 	}
 	// 総合評価の計算
 	for (var i = 1; i < 6; i++) {
-		result.value[40] += result.value[i];
-		result.valueKaiSv[40] += result.valueKaiSv[i];
+		result.value[typeValue.length - 1] += result.value[i];
+		result.valueKaiSv[typeValue.length - 1] += result.valueKaiSv[i];
 	}
 	return result;
 }
@@ -345,35 +345,6 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[18]] = Math.max(speedValue * (spowerValue - dirtFuka), speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[18]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
 
-	//コーナー安定速度
-	var cornerspeedUp = 1.0;
-	if (bodyOption1 == 3) cornerspeedUp += 0.4;
-	if (bodyOption1 == 13) cornerspeedUp += 0.5;
-	if (bodyOption1 == 43) cornerspeedUp += 0.6;
-	if (bodyOption1 == 23) cornerspeedUp += 0.5;
-	if (bodyOption1 == 25) cornerspeedUp += 0.4;
-	if (bodyOption1 == 57) cornerspeedUp += 0.6;
-	if (bodyOption2 == 3) cornerspeedUp += 0.3;
-	if (bodyOption2 == 13) cornerspeedUp += 0.35;
-	if (bodyOption2 == 43) cornerspeedUp += 0.4;
-	if (bodyOption3 == 3) cornerspeedUp += 0.3;
-	if (bodyOption3 == 13) cornerspeedUp += 0.35;
-	if (bodyOption3 == 43) cornerspeedUp += 0.4;
-	var cornerInValue = 0.0 - resultValueKai[35];
-	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-	for (var i = 0; i < nameValue.length; i++) {
-		if (i != 12 && i != 15) {
-			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]];
-		} else {
-			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]] * 0.2;
-		}
-	}
-	diagnosis[diagnosisValue[20]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp) * 3.6;
-	diagnosis[diagnosisValue[21]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp * 0.38) * 3.6;
-	diagnosis[diagnosisValue[36]] = cornerInValue * cornerspeedUp;
-	diagnosis[diagnosisValue[37]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerspeedUp) * 3.6;
-	diagnosis[diagnosisValue[38]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerspeedUp * 0.38) * 3.6;
-
 	//最高速95%到達時間
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
 
@@ -546,6 +517,35 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	senkaiA = 45.188272213660500 * senkaisaValue - 0.008372879447291;
 	cornerweightValue = (senkaiC * (gravityValue + senkaiA) * (gravityValue + senkaiA) + 0.024516625024408 - senkaiC * senkaiA * senkaiA) * treadValue;
 	diagnosis[diagnosisValue[39]] = calcCornerdecele(458.0);
+
+	//コーナー安定速度
+	var cornerspeedUp = 1.0;
+	if (bodyOption1 == 3) cornerspeedUp += 0.4;
+	if (bodyOption1 == 13) cornerspeedUp += 0.5;
+	if (bodyOption1 == 43) cornerspeedUp += 0.6;
+	if (bodyOption1 == 23) cornerspeedUp += 0.5;
+	if (bodyOption1 == 25) cornerspeedUp += 0.4;
+	if (bodyOption1 == 57) cornerspeedUp += 0.6;
+	if (bodyOption2 == 3) cornerspeedUp += 0.3;
+	if (bodyOption2 == 13) cornerspeedUp += 0.35;
+	if (bodyOption2 == 43) cornerspeedUp += 0.4;
+	if (bodyOption3 == 3) cornerspeedUp += 0.3;
+	if (bodyOption3 == 13) cornerspeedUp += 0.35;
+	if (bodyOption3 == 43) cornerspeedUp += 0.4;
+	var cornerInValue = 0.0 - resultValueKai[35];
+	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+	for (var i = 0; i < nameValue.length; i++) {
+		if (i != 12 && i != 15 || (rollerteikouValue1 < -10.0 || rollerteikouValue2 < -10.0)) {
+			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]];
+		} else {
+			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]] * 0.2;
+		}
+	}
+	diagnosis[diagnosisValue[20]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp) * 3.6;
+	diagnosis[diagnosisValue[21]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp * 0.38) * 3.6;
+	diagnosis[diagnosisValue[36]] = cornerInValue * cornerspeedUp;
+	diagnosis[diagnosisValue[37]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerspeedUp) * 3.6;
+	diagnosis[diagnosisValue[38]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerspeedUp * 0.38) * 3.6;
 
 	//ジャンプ飛距離
 	var slopeLength = 0.45;
