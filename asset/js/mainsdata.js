@@ -155,7 +155,7 @@ kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 41, 42, 43);
 kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 44, 45, 46);
 kaizouTenpreSelect[2][s++] = new Array(47, 48, 49, 50, 51, 3);
 kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 52, 53);
-kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 54, 55, 56);
+kaizouTenpreSelect[2][s++] = new Array(54, 1, 2, 3, 55, 56);
 kaizouTenpre[2] = new Array();
 kaizouTenpre[2][0] = new Array("軽量x2 節電x4", 5, 5, 4, 4, 4, 4);
 kaizouTenpre[2][1] = new Array("軽量x6", 5, 5, 1, 1, 1, 1);
@@ -212,8 +212,8 @@ kaizouTenpre[2][51] = new Array("冷却能力強化x1 軽量x2 ｴｱﾛﾀﾞ�
 kaizouTenpre[2][52] = new Array("軽量化(耐風重視)x4 軽量x2", 6, 6, 6, 6, 5, 5);
 kaizouTenpre[2][53] = new Array("軽量化(オフロード重視)x4 軽量x2", 7, 7, 7, 7, 5, 5);
 kaizouTenpre[2][54] = new Array("冷却能力向上(重心移動)x1 軽量x2 節電x3", 6, 5, 5, 4, 4, 4);
-kaizouTenpre[2][55] = new Array("冷却能力向上(重心移動)x1 軽量x5", 6, 5, 5, 1, 1, 1);
-kaizouTenpre[2][56] = new Array("冷却能力向上(重心移動)x1 軽量x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減少x3", 6, 5, 5, 3, 3, 3);
+kaizouTenpre[2][55] = new Array("冷却能力向上(重心移動)x1 軽量x1 節電x4", 6, 5, 4, 4, 4, 4);
+kaizouTenpre[2][56] = new Array("冷却能力向上(重心移動)x1 軽量x5", 6, 5, 5, 1, 1, 1);
 
 //シャーシ
 s = 0;
