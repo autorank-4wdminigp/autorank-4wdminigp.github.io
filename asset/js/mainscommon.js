@@ -123,6 +123,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 		tirekeisa = shindantirekei;
 	}
 	var speedlossValue = 800.0 * tirekeisa * mintiresenkai / mintirekei;
+	//パワー
 	var bodyPower = 1.0;
 	if (bodyOption1 == 2) bodyPower += 0.06;
 	if (bodyOption1 == 12) bodyPower += 0.12;
@@ -168,6 +169,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 60) bodySpeed += 0.02;
 	if (bodyOption1 == 64) bodySpeed += 0.065;
 	if (bodyOption1 == 65) bodySpeed += 0.05;
+	if (bodyOption1 == 66) bodySpeed += 0.02;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -298,6 +300,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 60) ftiregripUp += 0.07; //レーザーコントロール
 	if (bodyOption1 == 64) ftiregripUp += 0.1; //疾風
 	if (bodyOption1 == 65) ftiregripUp += 0.07; //デュアルサプレッション
+	if (bodyOption1 == 66) ftiregripUp += 0.07; //フォーミュラレイ
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -400,6 +403,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 25) bodyStamina += 0.2;
 	if (bodyOption1 == 35) bodyStamina += 0.2;
 	if (bodyOption1 == 52) bodyStamina += 0.1;
+	if (bodyOption1 == 66) bodyStamina += 0.2;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption2 == 45) bodyStamina += 0.2;
