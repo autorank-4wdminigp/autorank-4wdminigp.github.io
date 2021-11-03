@@ -75,7 +75,7 @@ kaizouTenpreSelect[0][s++] = new Array(0, 1, 2);
 kaizouTenpreSelect[0][s++] = new Array(3, 4, 5, 6);
 kaizouTenpreSelect[0][s++] = new Array(7, 8, 9);
 kaizouTenpreSelect[0][s++] = new Array(0, 1, 2, 10, 11, 12);
-kaizouTenpreSelect[0][s++] = new Array(13, 14, 15);
+kaizouTenpreSelect[0][s++] = new Array(13, 14, 15, 16);
 kaizouTenpre[0] = new Array();
 kaizouTenpre[0][0] = new Array("スピードx4 バランスx2", 5, 5, 5, 5, 6, 6);
 kaizouTenpre[0][1] = new Array("スピードx2 パワーx2 バランスx2", 5, 5, 4, 4, 6, 6);
@@ -91,8 +91,9 @@ kaizouTenpre[0][10] = new Array("スピードx4 低電圧x2", 5, 5, 5, 5, 7, 7);
 kaizouTenpre[0][11] = new Array("スピードx2 バランスx2 低電圧x2", 5, 5, 6, 6, 7, 7);
 kaizouTenpre[0][12] = new Array("パワーx2 バランスx2 低電圧x2", 4, 4, 6, 6, 7, 7);
 kaizouTenpre[0][13] = new Array("スピードx6", 5, 5, 7, 7, 3, 3);
-kaizouTenpre[0][14] = new Array("スピードx4 低電圧x2", 5, 5, 7, 7, 8, 8);
+kaizouTenpre[0][14] = new Array("スピードx4 低電圧(パワー)x2", 5, 5, 7, 7, 8, 8);
 kaizouTenpre[0][15] = new Array("スピードx2 パワーx4", 5, 5, 6, 6, 8, 8);
+kaizouTenpre[0][16] = new Array("パワーx4 低電圧(スピード)x2", 6, 6, 8, 8, 7, 7);
 
 //ギヤ
 s = 0;
