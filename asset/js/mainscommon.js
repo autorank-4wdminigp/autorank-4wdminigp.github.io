@@ -351,11 +351,29 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[18]] = Math.max(speedValue * (spowerValue - dirtFuka), speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[18]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
 
+	//ウェーブ
+	var bodyWave = 0.0;
+	if (resultValueKai[19] != 0 && bodyOption1 == 68) bodyWave += 25000.0;
+	if (resultValueKai[19] != 0 && bodyOption1 == 39) bodyWave += 4000.0;
+	if (resultValueKai[19] != 0 && bodyOption2 == 68) bodyWave += 15000.0;
+	if (resultValueKai[19] != 0 && bodyOption3 == 68) bodyWave += 15000.0;
+
+	//デジタル
+	var bodyDigital = 0.0;
+	if (resultValueKai[25] != 0 && bodyOption1 == 36) bodyDigital += 5000.0;
+	if (resultValueKai[25] != 0 && bodyOption1 == 39) bodyDigital += 4000.0;
+	if (resultValueKai[25] != 0 && bodyOption1 == 66) bodyDigital += 7000.0;
+
+	diagnosis[diagnosisValue[40]] = bodyOffload + resultValueKai[20];
+	diagnosis[diagnosisValue[41]] = bodyWave + resultValueKai[19];
+	diagnosis[diagnosisValue[42]] = bodyDigital + resultValueKai[25];
+
 	//最高速95%到達時間
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
 
 	var tdistanceArray = new Array(25.0, 50.0, 100.0);
 	var tdiagnosisArray = new Array(26, 27, 23);
+
 	var tdistance = 0.0;
 	var tspeed = 0.0;
 	var tspeedTime = 0.0;
