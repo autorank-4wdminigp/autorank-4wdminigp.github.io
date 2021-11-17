@@ -333,10 +333,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	//芝最高速
 	var bodyOffload = 0.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 9) bodyOffload += 20000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 19) bodyOffload += 25000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 29) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 10000.0;
+	if (resultValueKai[20] != 0 && bodyOption2 == 19) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 10000.0;
+	if (resultValueKai[20] != 0 && bodyOption3 == 19) bodyOffload += 15000.0;
 	var shibaFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.068 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
 	//diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
 	diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka), speedValue2 / 5.0) * 3.6;
