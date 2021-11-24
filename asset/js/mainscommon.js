@@ -97,6 +97,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption1 == 53) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption1 == 54) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption1 == 65) setsudenUp += 0.15;
+	if (setsudenValue != 0 && bodyOption1 == 70) setsudenUp -= 0.4;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
@@ -137,6 +138,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 54) bodyPower += 0.12;
 	if (bodyOption1 == 58) bodyPower += 0.12;
 	if (bodyOption1 == 59) bodyPower += 0.075;
+	if (bodyOption1 == 70) bodyPower += 0.12;
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
@@ -170,6 +172,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 64) bodySpeed += 0.065;
 	if (bodyOption1 == 65) bodySpeed += 0.05;
 	if (bodyOption1 == 66) bodySpeed += 0.02;
+	if (bodyOption1 == 70) bodySpeed += 0.09;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -301,6 +304,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 64) ftiregripUp += 0.1; //疾風
 	if (bodyOption1 == 65) ftiregripUp += 0.07; //デュアルサプレッション
 	if (bodyOption1 == 66) ftiregripUp += 0.07; //フォーミュラレイ
+	if (bodyOption1 == 70) ftiregripUp += 0.03; //フレイムバード
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
