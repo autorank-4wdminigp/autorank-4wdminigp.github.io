@@ -109,15 +109,14 @@ kaizou7Select[1][s++] = new Array(5, 6);
 s = 0;
 kaizouTenpreSelect[1] = new Array();
 kaizouTenpreSelect[1][s++] = new Array(0, 1, 2, 3);
-kaizouTenpreSelect[1][s++] = new Array(0, 1, 2, 3, 4, 5, 6);
+kaizouTenpreSelect[1][s++] = new Array(0, 1, 2, 3, 4, 5);
 kaizouTenpre[1] = new Array();
 kaizouTenpre[1][0] = new Array("パワロスx6", 5, 5, 2, 2, 2, 2);
 kaizouTenpre[1][1] = new Array("パワロスx4 ギヤ負荷x2", 5, 5, 2, 2, 4, 4);
 kaizouTenpre[1][2] = new Array("パワロスx2 ギヤ負荷x4", 5, 5, 4, 4, 3, 3);
 kaizouTenpre[1][3] = new Array("ギヤ負荷x6", 4, 4, 3, 3, 3, 3);
-kaizouTenpre[1][4] = new Array("パワロスx4 節電x2", 5, 5, 2, 2, 6, 6);
-kaizouTenpre[1][5] = new Array("パワロスx4 耐風x2", 5, 5, 2, 2, 7, 7);
-kaizouTenpre[1][6] = new Array("パワロスx2 節電x2 耐風x2", 5, 5, 6, 6, 7, 7);
+kaizouTenpre[1][4] = new Array("パワロスx2 節電x4", 5, 5, 6, 6, 6, 6);
+kaizouTenpre[1][5] = new Array("パワロスx2 耐風x4", 5, 5, 7, 7, 7, 7);
 
 //ボディ
 s = 0;
@@ -1257,10 +1256,10 @@ kaizouValue[1][6][0] = new Array("ギヤフローティング加工(上級)", "�
 kaizouValue[1][6][1] = new Array("", "パワー〇〇 [2(固定UP)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 
 kaizouValue[1][7] = new Array();
-kaizouValue[1][7][0] = new Array("ギヤ慣らし(節電重視) [2?]", "節電〇〇 [15] ", 0.15, 0.18, 0.21, 0.0075, -1, 10);
+kaizouValue[1][7][0] = new Array("ギヤ慣らし(節電重視) [4]", "節電〇〇 [15] ", 0.15, 0.18, 0.21, 0.0075, -1, 10);
 kaizouValue[1][7][1] = new Array("", "パワーロス〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 7);
 kaizouValue[1][8] = new Array();
-kaizouValue[1][8][0] = new Array("ギヤ位置の固定(耐風重視) [2?]", "耐風〇〇 [300(固定UP)] ", 150.0, 180.0, 210.0, 15.0, -2, 26);
+kaizouValue[1][8][0] = new Array("ギヤ位置の固定(耐風重視) [4]", "耐風〇〇 [300(固定UP)] ", 150.0, 180.0, 210.0, 15.0, -2, 26);
 kaizouValue[1][8][1] = new Array("", "パワーロス〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 7);
 
 //ボディ
