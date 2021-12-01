@@ -326,13 +326,16 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[19]] = (diagnosis[diagnosisValue[5]] * 10.0 * Math.min(resultValueKai[27] + 200.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
 
 	//耐風最高速
-	var taifuugripUp = 0.0;
-	if (resultValueKai[26] != 0 && bodyOption1 == 38) taifuugripUp += 4000.0;
-	if (resultValueKai[26] != 0 && bodyOption1 == 58) taifuugripUp += 4000.0;
-	var taifuuFuka = (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue * 0.086 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
+	var bodyTaifuu = 0.0;
+	if (resultValueKai[26] != 0 && bodyOption1 == 72) bodyTaifuu += 15000.0;
+	if (resultValueKai[26] != 0 && bodyOption1 == 38) bodyTaifuu += 4000.0;
+	if (resultValueKai[26] != 0 && bodyOption1 == 58) bodyTaifuu += 4000.0;
+	if (resultValueKai[26] != 0 && bodyOption2 == 72) bodyTaifuu += 7000.0;
+	if (resultValueKai[26] != 0 && bodyOption3 == 72) bodyTaifuu += 7000.0;
+	var taifuuFuka = (1.0 - Math.min(resultValueKai[26] + bodyTaifuu, 10000.0) / 10000.0) * weightValue * 0.086 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
 	//diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
 	diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka), speedValue2 / 5.0) * 3.6;
-	//diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26] + taifuugripUp, 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
+	//diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26] + bodyTaifuu, 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
 
 	//芝最高速
 	var bodyOffload = 0.0;
@@ -371,6 +374,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[40]] = bodyOffload + resultValueKai[20];
 	diagnosis[diagnosisValue[41]] = bodyWave + resultValueKai[19];
 	diagnosis[diagnosisValue[42]] = bodyDigital + resultValueKai[25];
+	diagnosis[diagnosisValue[43]] = bodyTaifuu + resultValueKai[26];
 
 	//最高速95%到達時間
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
