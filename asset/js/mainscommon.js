@@ -371,10 +371,17 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (resultValueKai[25] != 0 && bodyOption1 == 39) bodyDigital += 4000.0;
 	if (resultValueKai[25] != 0 && bodyOption1 == 66) bodyDigital += 7000.0;
 
+	//ｴｱﾛﾀﾞｳﾝﾌｫｰｽ
+	var bodyAerodf = 0.0;
+	if (bodyOption1 == 75) bodyAerodf += 1500.0;
+	if (bodyOption2 == 75) bodyAerodf += 1000.0;
+	if (bodyOption3 == 75) bodyAerodf += 1000.0;
+
 	diagnosis[diagnosisValue[40]] = bodyOffload + resultValueKai[20];
 	diagnosis[diagnosisValue[41]] = bodyWave + resultValueKai[19];
 	diagnosis[diagnosisValue[42]] = bodyDigital + resultValueKai[25];
 	diagnosis[diagnosisValue[43]] = bodyTaifuu + resultValueKai[26];
+	diagnosis[diagnosisValue[44]] = bodyAerodf + resultValueKai[9];
 
 	//最高速95%到達時間
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
