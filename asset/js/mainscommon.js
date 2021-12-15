@@ -367,9 +367,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//デジタル
 	var bodyDigital = 0.0;
+	if (resultValueKai[25] != 0 && bodyOption1 == 78) bodyDigital += 25000.0;
 	if (resultValueKai[25] != 0 && bodyOption1 == 36) bodyDigital += 5000.0;
 	if (resultValueKai[25] != 0 && bodyOption1 == 39) bodyDigital += 4000.0;
 	if (resultValueKai[25] != 0 && bodyOption1 == 66) bodyDigital += 7000.0;
+	if (resultValueKai[25] != 0 && bodyOption2 == 78) bodyDigital += 15000.0;
+	if (resultValueKai[25] != 0 && bodyOption3 == 78) bodyDigital += 15000.0;
 
 	//ｴｱﾛﾀﾞｳﾝﾌｫｰｽ
 	var bodyAerodf = 0.0;
