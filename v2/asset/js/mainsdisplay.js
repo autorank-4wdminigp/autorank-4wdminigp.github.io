@@ -434,7 +434,8 @@ function UrlSet() {
 		var presetText = url.substring(start + 1);
 		var index = 0;
 		var pos = 0;
-		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668
+		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668 22x31+4+3=689
+			var indexEnd = UrlToNum(presetText.charAt(presetText.length - 1));
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
 				var charLenTmp = 0;
@@ -480,7 +481,7 @@ function UrlSet() {
 				}
 			}
 			index = UrlToNum(presetText.charAt(pos++));
-			if (index == 1) {
+			if (index == 1 || indexEnd == 1) {
 				document.getElementById('history2').checked = true;
 			}
 		}
