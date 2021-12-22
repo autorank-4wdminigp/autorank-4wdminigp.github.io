@@ -75,13 +75,16 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyOption3 = kaizouArray[2][25];
 	if (brakeValue != 0 && bodyOption1 == 6) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption1 == 16) brakeValue += 0.06;
+	if (brakeValue != 0 && bodyOption1 == 86) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption1 == 26) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption1 == 37) brakeValue += 0.06;
 	if (brakeValue != 0 && bodyOption1 == 60) brakeValue += 0.06;
 	if (brakeValue != 0 && bodyOption2 == 6) brakeValue += 0.015;
 	if (brakeValue != 0 && bodyOption2 == 16) brakeValue += 0.03;
+	if (brakeValue != 0 && bodyOption2 == 86) brakeValue += 0.015;
 	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.015;
 	if (brakeValue != 0 && bodyOption3 == 16) brakeValue += 0.03;
+	if (brakeValue != 0 && bodyOption3 == 86) brakeValue += 0.015;
 	diagnosis[diagnosisValue[12]] = brakeValue;
 
 	//バッテリー消費量
@@ -92,6 +95,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var setsudenValue = resultValueKai[10];
 	if (setsudenValue != 0 && bodyOption1 == 8) setsudenUp += 0.4;
 	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.5;
+	if (setsudenValue != 0 && bodyOption1 == 48) setsudenUp += 0.55;
+	if (setsudenValue != 0 && bodyOption1 == 88) setsudenUp += 0.4;
 	if (setsudenValue != 0 && bodyOption1 == 32) setsudenUp -= 0.1;
 	if (setsudenValue != 0 && bodyOption1 == 33) setsudenUp -= 0.1;
 	if (setsudenValue != 0 && bodyOption1 == 53) setsudenUp += 0.2;
@@ -100,8 +105,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption1 == 70) setsudenUp -= 0.4;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
+	if (setsudenValue != 0 && bodyOption2 == 48) setsudenUp += 0.2;
+	if (setsudenValue != 0 && bodyOption2 == 88) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.17;
+	if (setsudenValue != 0 && bodyOption3 == 48) setsudenUp += 0.2;
+	if (setsudenValue != 0 && bodyOption3 == 88) setsudenUp += 0.12;
 	var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
 	diagnosis[diagnosisValue[2]] = batteryValue;
 
@@ -129,6 +138,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 2) bodyPower += 0.06;
 	if (bodyOption1 == 12) bodyPower += 0.12;
 	if (bodyOption1 == 42) bodyPower += 0.15;
+	if (bodyOption1 == 82) bodyPower += 0.12;
 	if (bodyOption1 == 22) bodyPower += 0.12;
 	if (bodyOption1 == 25) bodyPower += 0.075;
 	if (bodyOption1 == 30) bodyPower += 0.03;
@@ -142,9 +152,11 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
+	if (bodyOption2 == 82) bodyPower += 0.06;
 	if (bodyOption3 == 2) bodyPower += 0.024;
 	if (bodyOption3 == 12) bodyPower += 0.06;
 	if (bodyOption3 == 42) bodyPower += 0.1;
+	if (bodyOption3 == 82) bodyPower += 0.06;
 	var bodyPowerloss = 1.0;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 
@@ -153,6 +165,11 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 1) bodySpeed += 0.02;
 	if (bodyOption1 == 11) bodySpeed += 0.03;
 	if (bodyOption1 == 41) bodySpeed += 0.04;
+	if (bodyOption1 == 82) bodySpeed += 0.03;
+	if (bodyOption1 == 84) bodySpeed += 0.03;
+	if (bodyOption1 == 85) bodySpeed += 0.03;
+	if (bodyOption1 == 86) bodySpeed += 0.03;
+	if (bodyOption1 == 88) bodySpeed += 0.03;
 	if (bodyOption1 == 21) bodySpeed += 0.04;
 	if (bodyOption1 == 23) bodySpeed += 0.03;
 	if (bodyOption1 == 26) bodySpeed += 0.03;
@@ -173,12 +190,23 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 65) bodySpeed += 0.05;
 	if (bodyOption1 == 66) bodySpeed += 0.02;
 	if (bodyOption1 == 70) bodySpeed += 0.09;
+	if (bodyOption1 == 80) bodySpeed += 0.04;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
+	if (bodyOption2 == 82) bodySpeed += 0.015;
+	if (bodyOption2 == 84) bodySpeed += 0.015;
+	if (bodyOption2 == 85) bodySpeed += 0.015;
+	if (bodyOption2 == 86) bodySpeed += 0.015;
+	if (bodyOption2 == 88) bodySpeed += 0.015;
 	if (bodyOption3 == 1) bodySpeed += 0.006;
 	if (bodyOption3 == 11) bodySpeed += 0.015;
 	if (bodyOption3 == 41) bodySpeed += 0.025;
+	if (bodyOption3 == 82) bodySpeed += 0.015;
+	if (bodyOption3 == 84) bodySpeed += 0.015;
+	if (bodyOption3 == 85) bodySpeed += 0.015;
+	if (bodyOption3 == 86) bodySpeed += 0.015;
+	if (bodyOption3 == 88) bodySpeed += 0.015;
 	var hoseiSpeedStr = "";
 	var hoseiAcceleStr = "";
 	var powerlossValue = resultValueKai[7];
@@ -305,6 +333,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 65) ftiregripUp += 0.07; //デュアルサプレッション
 	if (bodyOption1 == 66) ftiregripUp += 0.07; //フォーミュラレイ
 	if (bodyOption1 == 70) ftiregripUp += 0.03; //フレイムバード
+	if (bodyOption1 == 80) ftiregripUp += 0.07; //サバンナフォース
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -343,6 +372,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (resultValueKai[20] != 0 && bodyOption1 == 19) bodyOffload += 25000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 29) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 20000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 80) bodyOffload += 25000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 19) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 10000.0;
@@ -439,6 +469,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 5) bodyStamina += 0.1;
 	if (bodyOption1 == 15) bodyStamina += 0.2;
 	if (bodyOption1 == 45) bodyStamina += 0.3;
+	if (bodyOption1 == 85) bodyStamina += 0.2;
 	if (bodyOption1 == 25) bodyStamina += 0.2;
 	if (bodyOption1 == 35) bodyStamina += 0.2;
 	if (bodyOption1 == 52) bodyStamina += 0.1;
@@ -446,9 +477,11 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption2 == 45) bodyStamina += 0.2;
+	if (bodyOption2 == 85) bodyStamina += 0.1;
 	if (bodyOption3 == 5) bodyStamina += 0.05;
 	if (bodyOption3 == 15) bodyStamina += 0.1;
 	if (bodyOption3 == 45) bodyStamina += 0.2;
+	if (bodyOption3 == 85) bodyStamina += 0.1;
 	var staminaValue = (resultValueKai[4] + resultValueKai[28] - resultValueKai[36]) * bodyStamina;
 	diagnosis[diagnosisValue[24]] = staminaValue;
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
@@ -460,6 +493,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 4) bodyCornerdecele -= 0.7;
 	if (bodyOption1 == 14) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 44) bodyCornerdecele -= 0.8;
+	if (bodyOption1 == 84) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 24) bodyCornerdecele -= 0.75;
 	if (bodyOption1 == 33) bodyCornerdecele -= 0.85;
 	if (bodyOption1 == 34) bodyCornerdecele -= 0.75;
@@ -473,21 +507,26 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption2 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption2 == 14) bodyCornerdecele -= 0.42;
 	if (bodyOption2 == 44) bodyCornerdecele -= 0.45;
+	if (bodyOption2 == 84) bodyCornerdecele -= 0.42;
 	if (bodyOption3 == 4) bodyCornerdecele -= 0.35;
 	if (bodyOption3 == 14) bodyCornerdecele -= 0.42;
 	if (bodyOption3 == 44) bodyCornerdecele -= 0.45;
+	if (bodyOption3 == 84) bodyCornerdecele -= 0.42;
 	var bodyCornerdecele2 = 1.0; //摩擦
 	if (bodyOption1 == 4) bodyCornerdecele2 -= 0.17;
 	if (bodyOption1 == 14) bodyCornerdecele2 -= 0.2;
 	if (bodyOption1 == 44) bodyCornerdecele2 -= 0.5;
+	if (bodyOption1 == 84) bodyCornerdecele2 -= 0.2;
 	if (bodyOption1 == 55) bodyCornerdecele2 -= 0.5;
 	if (bodyOption1 == 56) bodyCornerdecele2 += 0.17;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
 	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.3;
+	if (bodyOption2 == 84) bodyCornerdecele2 -= 0.1;
 	if (bodyOption3 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption3 == 14) bodyCornerdecele2 -= 0.1;
 	if (bodyOption3 == 44) bodyCornerdecele2 -= 0.3;
+	if (bodyOption3 == 84) bodyCornerdecele2 -= 0.1;
 	var bodyCornerdecele3 = 1.0; //抵抗
 	if (bodyOption1 == 24) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 33) bodyCornerdecele3 -= 0.7;
