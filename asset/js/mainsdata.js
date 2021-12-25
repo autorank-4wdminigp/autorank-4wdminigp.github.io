@@ -476,10 +476,11 @@ kaizouTenpre[10][4] = new Array("耐久x4 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ減�
 
 //スタビライザー
 s = 0;
-kaizouSelectIndex[11] = new Array(0, 0, 0, 0, 0, 0, 1, 0);
+kaizouSelectIndex[11] = new Array(0, 0, 0, 0, 0, 0, 1, 2);
 kaizouSelect[11] = new Array();
 kaizouSelect[11][s++] = new Array(0, 1, 2);
 kaizouSelect[11][s++] = new Array(0, 1, 2, 5);//ハイマイウントチューブスタビ パワー重視
+kaizouSelect[11][s++] = new Array(0, 1, 6);//ハイマイウントボールスタビ
 s = 0;
 kaizou7SelectIndex[11] = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 kaizou7Select[11] = new Array();
@@ -488,12 +489,14 @@ s = 0;
 kaizouTenpreSelect[11] = new Array();
 kaizouTenpreSelect[11][s++] = new Array(0, 1, 2);
 kaizouTenpreSelect[11][s++] = new Array(3, 4, 1, 2);
+kaizouTenpreSelect[11][s++] = new Array(5, 1);
 kaizouTenpre[11] = new Array();
 kaizouTenpre[11][0] = new Array("スタビ摩擦を弱めるx4", 3, 3, 3, 3, 0, 0);
 kaizouTenpre[11][1] = new Array("スタビ摩擦を強めるx6", 2, 2, 2, 2, 1, 1);
 kaizouTenpre[11][2] = new Array("スタビ摩擦を弱めるx4 スタビ摩擦を強めるx2", 3, 3, 3, 3, 2, 2);
 kaizouTenpre[11][3] = new Array("スタビ摩擦を弱めるx4 スタビ摩擦を弱める(パワー重視)x2", 3, 3, 3, 3, 4, 4);
 kaizouTenpre[11][4] = new Array("スタビ摩擦を弱める(パワー重視)x4 スタビ摩擦を弱めるx2", 4, 4, 4, 4, 3, 3);
+kaizouTenpre[11][5] = new Array("スタビ摩擦を弱めるx6", 3, 3, 3, 3, 3, 3);
 
 //ウェイト
 s = 0;
@@ -1732,7 +1735,9 @@ kaizouValue[11][4][1] = new Array("", "スタビ減速××× [4] ", -0.04, -0.04
 kaizouValue[11][5] = new Array();
 kaizouValue[11][5][0] = new Array("スタビ摩擦を弱める(パワー重視) [4]", "パワー〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 kaizouValue[11][5][1] = new Array("", "スタビ減速×× [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 24);
-
+kaizouValue[11][6] = new Array();
+kaizouValue[11][6][0] = new Array("スタビ摩擦を弱める", "スピード〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 1);
+kaizouValue[11][6][1] = new Array("", "スタビ減速×× [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 24);
 
 //ウェイト
 kaizouValue[12] = new Array();
