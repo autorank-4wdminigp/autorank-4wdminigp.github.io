@@ -407,6 +407,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	//ｴｱﾛﾀﾞｳﾝﾌｫｰｽ
 	var bodyAerodf = 0.0;
 	if (bodyOption1 == 75) bodyAerodf += 1500.0;
+	if (bodyOption1 == 64) bodyAerodf += 500.0;
 	if (bodyOption2 == 75) bodyAerodf += 1000.0;
 	if (bodyOption3 == 75) bodyAerodf += 1000.0;
 
