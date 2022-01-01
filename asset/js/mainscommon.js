@@ -632,7 +632,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//ジャンプ飛距離
 	var slopeLength = 0.45;
-	var slopeAngle = 13.0;
+	var slopeAngle = 14.0;
 	var slopeSpeedInit = speedValue2;
 	if (brakeValue != 0) {
 		slopeSpeedInit -= 19.0 * brakeValue;
@@ -659,7 +659,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var jumpValue = 0.001;
 	var aeroGain = -0.0000570419 * slopeSpeed + 0.0002438302;
 	var gravityGain = (0.1 / (slopeSpeed - 0.05) - 0.0367);
-	slopeSpeed -= -0.00165508 * slopeSpeed * slopeSpeed - 0.013221958 * slopeSpeed + 0.709568892;
+	slopeSpeed -= -0.00159932 * slopeSpeed * slopeSpeed + 0.020913802 * slopeSpeed + 0.685663298;
 	if (slopeSpeed > 0.0) {
 		jumpValue = slopeSpeed * slopeSpeed * Math.sin(2.0 * slopeAngle * (Math.PI / 180.0)) / 9.80665 + gravityGain * gravityValue + aeroGain * (bodyAerodf + resultValueKai[9]);
 	
