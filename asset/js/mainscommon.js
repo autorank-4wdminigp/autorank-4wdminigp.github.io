@@ -632,36 +632,38 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//ジャンプ飛距離
 	var slopeLength = 0.45;
-	var slopeAngle = 14.0;
+	var slopeAngle = 13.0;
 	var slopeSpeedInit = speedValue2;
 	if (brakeValue != 0) {
-		slopeSpeedInit -= 18.0 * brakeValue;
+		slopeSpeedInit -= 19.0 * brakeValue;
 		if (slopeSpeedInit < 0.0) slopeSpeedInit = 0.0;
 	}
-	var slopeAccele = -Math.sin(slopeAngle * (Math.PI / 180.0)) * 9.80665;
-	var slopeTime = 0.0;
-	for (var i = 0; i <= 5; i++) {
-		var timeUnit = Math.pow(10, i);
-		for (var j = 1; j <= 100; j++) {
-			var t = slopeTime + j / timeUnit;
-			if (speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2)) * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * (Math.exp(-4.0 * acceleValue2 / speedValue2 * t) - 1.0) >= slopeLength) {
-				if (i < 5) {
-					slopeTime += (j - 1) / timeUnit;
-				} else {
-					slopeTime += j / timeUnit;
-				}
-				break;
-			}
-		}
-	}
-	var slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
+	//var slopeAccele = -Math.sin(slopeAngle * (Math.PI / 180.0)) * 9.80665;
+	//var slopeTime = 0.0;
+	//for (var i = 0; i <= 5; i++) {
+	//	var timeUnit = Math.pow(10, i);
+	//	for (var j = 1; j <= 100; j++) {
+	//		var t = slopeTime + j / timeUnit;
+	//		if (speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2)) * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * (Math.exp(-4.0 * acceleValue2 / speedValue2 * t) - 1.0) >= slopeLength) {
+	//			if (i < 5) {
+	//				slopeTime += (j - 1) / timeUnit;
+	//			} else {
+	//				slopeTime += j / timeUnit;
+	//			}
+	//			break;
+	//		}
+	//	}
+	//}
+	//var slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
+	var slopeSpeed = slopeSpeedInit;
 	var jumpValue = 0.001;
-	if (slopeSpeed > 3.9) {
-		slopeSpeed -= (4.4 / (slopeSpeed - 3.9) + 1.0);
-		if (slopeSpeed > 0.0) {
-			jumpValue = slopeSpeed * slopeSpeed * Math.sin(2.0 * slopeAngle * (Math.PI / 180.0)) / 9.80665 - 0.031 * gravityValue;
-			if (jumpValue < 0.3) jumpValue = 0.001;
-		}
+	var aeroGain = -0.0000570419 * slopeSpeed + 0.0002438302;
+	var gravityGain = (0.1 / (slopeSpeed - 0.05) - 0.0367);
+	slopeSpeed -= -0.00165508 * slopeSpeed * slopeSpeed - 0.013221958 * slopeSpeed + 0.709568892;
+	if (slopeSpeed > 0.0) {
+		jumpValue = slopeSpeed * slopeSpeed * Math.sin(2.0 * slopeAngle * (Math.PI / 180.0)) / 9.80665 + gravityGain * gravityValue + aeroGain * (bodyAerodf + resultValueKai[9]);
+	
+		if (jumpValue < 1.3) jumpValue = 0.001;
 	}
 	diagnosis[diagnosisValue[7]] = jumpValue;
 
