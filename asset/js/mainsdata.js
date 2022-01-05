@@ -263,7 +263,7 @@ kaizouTenpreSelect[3] = new Array();
 kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8);
 kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
 kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 14, 15);
-kaizouTenpreSelect[3][s++] = new Array(16, 17, 18, 19);
+kaizouTenpreSelect[3][s++] = new Array(16, 17, 18, 19, 20);
 kaizouTenpre[3] = new Array();
 kaizouTenpre[3][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[3][1] = new Array("軽量x4 ギヤ負荷x2", 3, 3, 2, 2, 6, 6);
@@ -285,6 +285,7 @@ kaizouTenpre[3][16] = new Array("軽量x6", 6, 6, 2, 2, 2, 2);
 kaizouTenpre[3][17] = new Array("軽量x4 ギヤ負荷x2", 6, 6, 2, 2, 5, 5);
 kaizouTenpre[3][18] = new Array("軽量x2 ギヤ負荷x4", 6, 6, 5, 5, 3, 3);
 kaizouTenpre[3][19] = new Array("ギヤ負荷x6", 5, 5, 3, 3, 3, 3);
+kaizouTenpre[3][20] = new Array("軽量x4 制振x2", 6, 6, 2, 2, 7, 7);
 
 //ホイール
 s = 0;
@@ -1491,16 +1492,16 @@ kaizouValue[3][18][1] = new Array("", "スピード〇 [2(固定UP)] ", 1.0, 1.2
 kaizouValue[3][18][2] = new Array("", "スタミナ耐久× [1] ", -0.01, -0.012, -0.014, -0.0005, -1, 4);
 
 kaizouValue[3][19] = new Array();
-kaizouValue[3][19][0] = new Array("ギヤカバー固定 [4?]", "スタミナ耐久〇 [2] ", 0.02, 0.024, 0.028, 0.001, -1, 4);
+kaizouValue[3][19][0] = new Array("ギヤカバー固定", "スタミナ耐久〇 [2] ", 0.02, 0.024, 0.028, 0.001, -1, 4);
 kaizouValue[3][19][1] = new Array("", "パワー〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 2);
 kaizouValue[3][20] = new Array();
-kaizouValue[3][20][0] = new Array("グリスアップ(Fグリス) [?]", "パワー〇〇 [2(固定UP)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
+kaizouValue[3][20][0] = new Array("グリスアップ(Fグリス)", "パワー〇〇 [2(固定UP)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 kaizouValue[3][20][1] = new Array("", "ギヤ負荷〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 6);
 kaizouValue[3][21] = new Array();
-kaizouValue[3][21][0] = new Array("モーター位置の固定 [2?]", "ギヤ負荷〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 6);
+kaizouValue[3][21][0] = new Array("モーター位置の固定 [2]", "ギヤ負荷〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 6);
 kaizouValue[3][21][1] = new Array("", "パワー〇〇 [2(固定UP)] ", 1.5, 1.8, 2.1, 0.1, -2, 2);
 kaizouValue[3][22] = new Array();
-kaizouValue[3][22][0] = new Array("剛性抜き(VZ) [1?星7?]", "制振〇〇 [700(固定UP)] ", 350.0, 420.0, 490.0, 35.0, -2, 11);
+kaizouValue[3][22][0] = new Array("剛性抜き(VZ) [2]", "制振〇〇 [700(固定UP)] ", 350.0, 420.0, 490.0, 35.0, -2, 11);
 kaizouValue[3][22][1] = new Array("", "コーナー安定〇 [1.74(固定UP)] ", 3.5, 4.2, 4.9, 0.087, -2, 3);
 kaizouValue[3][22][2] = new Array("", "スタミナ耐久× [1] ", -0.01, -0.012, -0.014, -0.0005, -1, 4);
 
