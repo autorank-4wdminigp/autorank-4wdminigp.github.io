@@ -681,45 +681,53 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var seishinValue = resultValueKai[11];
 	var ftirehanpatsuValue = statusArray[6][15];
 	var rtirehanpatsuValue = statusArray[7][15];
-	//var tirehanpatsuValue = ftirehanpatsuValue + rtirehanpatsuValue;
-	var tirehanpatsuValue = (ftirehanpatsuValue + rtirehanpatsuValue) / 2.0;
+	var tirehanpatsuValue = ftirehanpatsuValue + rtirehanpatsuValue;
 	slopeLength = 0.45;
 	slopeAngle = 14.0;
 	slopeSpeedInit = speedValue2;
 	if (brakeValue != 0) {
-		slopeSpeedInit -= 18.0 * brakeValue;
+		slopeSpeedInit -= 19.0 * brakeValue;
 		if (slopeSpeedInit < 0.0) slopeSpeedInit = 0.0;
 	}
-	slopeAccele = -Math.sin(slopeAngle * (Math.PI / 180.0)) * 9.80665;
-	slopeTime = 0.0;
-	for (var i = 0; i <= 5; i++) {
-		var timeUnit = Math.pow(10, i);
-		for (var j = 1; j <= 100; j++) {
-			var t = slopeTime + j / timeUnit;
-			if (speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2)) * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * (Math.exp(-4.0 * acceleValue2 / speedValue2 * t) - 1.0) >= slopeLength) {
-				if (i < 5) {
-					slopeTime += (j - 1) / timeUnit;
-				} else {
-					slopeTime += j / timeUnit;
-				}
-				break;
-			}
-		}
-	}
-	slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
-	slopeSpeed -= (4.4 / (slopeSpeed - 3.9) + 1.0);
+	//slopeAccele = -Math.sin(slopeAngle * (Math.PI / 180.0)) * 9.80665;
+	//slopeTime = 0.0;
+	//for (var i = 0; i <= 5; i++) {
+	//	var timeUnit = Math.pow(10, i);
+	//	for (var j = 1; j <= 100; j++) {
+	//		var t = slopeTime + j / timeUnit;
+	//		if (speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2)) * t + speedValue2 * speedValue2 / (4.0 * acceleValue2) * (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * (Math.exp(-4.0 * acceleValue2 / speedValue2 * t) - 1.0) >= slopeLength) {
+	//			if (i < 5) {
+	//				slopeTime += (j - 1) / timeUnit;
+	//			} else {
+	//				slopeTime += j / timeUnit;
+	//			}
+	//			break;
+	//		}
+	//	}
+	//}
+	//slopeSpeed = speedValue2 * (1.0 + slopeAccele / (4.0 * acceleValue2) - (1.0 + slopeAccele / (4.0 * acceleValue2) - slopeSpeedInit / speedValue2) * Math.exp(-4.0 * acceleValue2 / speedValue2 * slopeTime));
+	slopeSpeed = slopeSpeedInit;
+	slopeSpeed -= -0.032010716 * slopeSpeed * slopeSpeed + 1.252790836 * slopeSpeed - 4.291695325;
 	var hanpatsuValue;
-	var seishinValueInit = weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0) * (tirehanpatsuValue * bodyBoundtime / 1000.0 - (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665 / (2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) + (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665)) / bodyBoundtime2;
-	if (seishinValueInit < 0) {
-		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValue * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
-	} else if (seishinValueInit > seishinValue) {
+	var hanpatsuStr = "";
+	//var seishinValueInit = weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0) * (tirehanpatsuValue * bodyBoundtime / 1000.0 - (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665 / (2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) + (slopeSpeed / 300.0 + 0.00005 * gravityValue) * 9.80665)) / bodyBoundtime2;
+	//if (seishinValueInit < 0) {
+	//	hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValue * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
+	//	hanpatsuStr = "制)";
+	//} else if (seishinValueInit > seishinValue) {
 		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValue * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0));
+	//} else {
+	//	hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValueInit * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) - (seishinValue - seishinValueInit) * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
+	//	hanpatsuStr = "制)";
+	//}
+	if (jumpValue > 2.2) {
+		aeroGain = -0.000001;
 	} else {
-		hanpatsuValue = tirehanpatsuValue * bodyBoundtime / 1000.0 - seishinValueInit * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) - (seishinValue - seishinValueInit) * bodyBoundtime2 / (weightValue * (63.0 - 50.0 * tirehanpatsuValue * bodyBoundtime / 1000.0)) / 5.0;
+		aeroGain = 0.000001;
 	}
-	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.0005 * gravityValue;
-	if (jumpValue == 0.001) boundtimeValue = 0.001;
-	diagnosis[diagnosisValue[8]] = boundtimeValue;
+	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.0004 * gravityValue + aeroGain * (bodyAerodf + resultValueKai[9]);
+	if (jumpValue == 0.001 || boundtimeValue < 0.001) boundtimeValue = 0.001;
+	diagnosis[diagnosisValue[8]] = hanpatsuStr + boundtimeValue;
 
 	for (var i = 0; i < diagnosisValue.length; i++) {
 		if (diagnosis[diagnosisValue[i]] != "" && Math.abs(diagnosis[diagnosisValue[i]]) < 0.00000000000001) diagnosis[diagnosisValue[i]] = 0;
