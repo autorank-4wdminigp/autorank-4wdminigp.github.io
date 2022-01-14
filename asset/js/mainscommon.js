@@ -103,6 +103,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption1 == 54) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption1 == 65) setsudenUp += 0.15;
 	if (setsudenValue != 0 && bodyOption1 == 70) setsudenUp -= 0.4;
+	if (setsudenValue != 0 && bodyOption1 == 91) setsudenUp += 0.15;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption2 == 48) setsudenUp += 0.2;
@@ -149,6 +150,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 58) bodyPower += 0.12;
 	if (bodyOption1 == 59) bodyPower += 0.075;
 	if (bodyOption1 == 70) bodyPower += 0.12;
+	if (bodyOption1 == 94) bodyPower += 0.2;
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
@@ -191,6 +193,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 66) bodySpeed += 0.02;
 	if (bodyOption1 == 70) bodySpeed += 0.09;
 	if (bodyOption1 == 80) bodySpeed += 0.04;
+	if (bodyOption1 == 91) bodySpeed += 0.045;
+	if (bodyOption1 == 92) bodySpeed += 0.06
+	if (bodyOption1 == 93) bodySpeed += 0.045;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -334,6 +339,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 66) ftiregripUp += 0.07; //フォーミュラレイ
 	if (bodyOption1 == 70) ftiregripUp += 0.03; //フレイムバード
 	if (bodyOption1 == 80) ftiregripUp += 0.07; //サバンナフォース
+	if (bodyOption1 == 91) ftiregripUp += 0.07; //ロードの意志
+	if (bodyOption1 == 92) ftiregripUp += 0.07; //ライトニングアタック
+	if (bodyOption1 == 93) ftiregripUp += 0.07; //タービュランサー
+	if (bodyOption1 == 94) ftiregripUp += 0.1; //カエザル･フェルス
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -373,6 +382,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (resultValueKai[20] != 0 && bodyOption1 == 29) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 80) bodyOffload += 25000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 94) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 19) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 10000.0;
@@ -535,6 +545,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 57) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 59) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 60) bodyCornerdecele3 -= 0.7;
+	if (bodyOption1 == 93) bodyCornerdecele3 -= 0.5;
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
@@ -616,7 +627,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 13) cornerspeedUp += 0.35;
 	if (bodyOption3 == 43) cornerspeedUp += 0.4;
 	var cornerInValue = 0.0 - resultValueKai[35];
-	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3.0);
 	for (var i = 0; i < nameValue.length; i++) {
 		if (i != 12 && i != 15 || (rollerteikouValue1 < -10.0 || rollerteikouValue2 < -10.0)) {
 			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]];
