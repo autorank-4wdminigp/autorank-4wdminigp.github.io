@@ -507,9 +507,9 @@ kaizou7Select[11] = new Array();
 kaizou7Select[11][s++] = new Array(3, 4);
 s = 0;
 kaizouTenpreSelect[11] = new Array();
-kaizouTenpreSelect[11][s++] = new Array(0, 1, 2);
-kaizouTenpreSelect[11][s++] = new Array(3, 4, 1, 2);
-kaizouTenpreSelect[11][s++] = new Array(5, 1);
+kaizouTenpreSelect[11][s++] = new Array(0, 2, 1, 6);
+kaizouTenpreSelect[11][s++] = new Array(3, 4, 2, 1, 6);
+kaizouTenpreSelect[11][s++] = new Array(5, 1, 6);
 kaizouTenpre[11] = new Array();
 kaizouTenpre[11][0] = new Array("スタビ摩擦を弱めるx4", 3, 3, 3, 3, 0, 0);
 kaizouTenpre[11][1] = new Array("スタビ摩擦を強めるx6", 2, 2, 2, 2, 1, 1);
@@ -517,6 +517,7 @@ kaizouTenpre[11][2] = new Array("スタビ摩擦を弱めるx4 スタビ摩擦�
 kaizouTenpre[11][3] = new Array("スタビ摩擦を弱めるx4 スタビ摩擦を弱める(パワー重視)x2", 3, 3, 3, 3, 4, 4);
 kaizouTenpre[11][4] = new Array("スタビ摩擦を弱める(パワー重視)x4 スタビ摩擦を弱めるx2", 4, 4, 4, 4, 3, 3);
 kaizouTenpre[11][5] = new Array("スタビ摩擦を弱めるx6", 3, 3, 3, 3, 3, 3);
+kaizouTenpre[11][6] = new Array("スタビ摩擦を強めるx4 スタビ摩擦を弱めるx2", 2, 2, 2, 2, 3, 3);
 
 //ウェイト
 s = 0;
@@ -689,10 +690,11 @@ kaizou7Select[22] = new Array();
 kaizou7Select[22][s++] = new Array(3, 4);
 s = 0;
 kaizouTenpreSelect[22] = new Array();
-kaizouTenpreSelect[22][s++] = new Array(0, 1);
+kaizouTenpreSelect[22][s++] = new Array(0, 1, 2);
 kaizouTenpre[22] = new Array();
 kaizouTenpre[22][0] = new Array("スタビ摩擦を弱めるx6", 3, 3, 3, 3, 3, 3);
 kaizouTenpre[22][1] = new Array("スタビ摩擦を強めるx6", 2, 2, 2, 2, 1, 1);
+kaizouTenpre[22][2] = new Array("スタビ摩擦を強めるx4 スタビ摩擦を弱めるx2", 2, 2, 2, 2, 3, 3);
 
 //1:適正(0:なし, 1:St, 2:U, 3:Kp, 4:Co, 5:J, 6:R, 7:W, 8:Of, 9:Di, 10:Wa, 11:S), 2:ボディオプション(0:なし, 1:スピードUP, 2:パワーUP, 3:コーナー安定UP, 4:コーナー速度UP, 5:スタミナ耐久UP, 6:ブレーキ効果UP, 7:バウンド抑制UP, 8:節電UP, 9:オフロード特効UP, 10:耐水UP, 11:スピードUP+, 12:パワーUP+, 13:コーナー安定UP+, 14:コーナー速度UP+, 15:スタミナ耐久UP+, 16:ブレーキ効果UP+, 17:バウンド抑制UP+, 18:節電UP+, 19:オフロード特効UP+, 20:耐水UP+, 21:かっとびマシン, 22:パワーブースト, 23:流星, 24:パワードリフト, 25:アクセルアーマー, 26:紅い閃光, 27:ドラゴンビート, 28:, 29:ワイルドラン, 30:ハイドロウェーブ, 31:アースエナジー, 32:高貴な走り, 33:気高き力, 34:エアロストリーム, 35:GPチップγ, 36:サンダードリフト, 37:エアブレーキ, 38:Shooting Stars, 39:バイパードリフト, 40:, 41:スピードUP++, 42:パワーUP++, 43:コーナー安定UP++, 44:コーナー速度UP++, 45:スタミナ耐久UP++, 46:ブレーキ効果UP++, 47:バウンド抑制UP++, 48:節電UP++, 49:オフロード特効UP++, 50:耐水UP++, 51:GPチップXSP, 52:ZMCジェット, 53:シャイニングスピード, 54:シャイニングパワー, 55:バスターターン, 56:マックスストーム, 57:空気の刃, 58:ウインドダッシュ, 59:プラズマ, 60:レーザーコントロール, 61:タイヤ摩擦UP, 62:タイヤ摩擦UP+, 63:タイヤ摩擦UP++, 64:疾風, 65:デュアルサプレッション, 66:フォーミュラレイ, 67:ウェーブUP, 68:ウェーブUP+, 69:ウェーブUP++, 70:フレイムバード, 71:耐風UP, 72:耐風UP+, 73:耐風UP++, 74:ｴｱﾛﾀﾞｳﾝﾌｫｰｽUP, 75:ｴｱﾛﾀﾞｳﾝﾌｫｰｽUP+, 76:ｴｱﾛﾀﾞｳﾝﾌｫｰｽUP++, 77:デジタルUP, 78:デジタルUP+, 79:デジタルUP++, 80:サバンナフォース, 81:スピードUP+&スピードUP+, 82:スピードUP+&パワーUP+, 83:スピードUP+&コーナー安定UP+, 84:スピードUP+&コーナー速度UP+, 85:スピードUP+&スタミナ耐久UP+, 86:スピードUP+&ブレーキ効果UP, 87:スピードUP+&バウンド抑制UP+, 88:スピードUP+&節電UP, 89:スピードUP+&オフロード特効UP+, 90:スピードUP+&耐水UP+, 91:ロードの意志, 92:ライトニングアタック, 93:タービュランサー, 94:カエザル･フェルス)
 var selectProper = new Array("－", "St", "U", "Kp", "Co", "J", "R", "W", "Of", "Di", "Wa", "S");
