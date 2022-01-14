@@ -537,6 +537,9 @@ function UrlSet() {
 						}
 						kaizouArray[value1][25] = index;
 					}
+					if (value1 == 34 && presetText.length <= (690 + charLenTmp)) {
+						kaizouArray[34][0] = 0;
+					}
 				}
 			}
 			index = UrlToNum(presetText.charAt(pos++));
