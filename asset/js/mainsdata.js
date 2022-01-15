@@ -267,7 +267,7 @@ kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 21, 6, 7, 8);
 kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 4, 5, 21, 6, 7, 8, 9, 10, 11, 12, 13);
 kaizouTenpreSelect[3][s++] = new Array(0, 1, 2, 3, 14, 15);
 kaizouTenpreSelect[3][s++] = new Array(16, 17, 18, 19, 20, 22, 23);
-kaizouTenpreSelect[3][s++] = new Array(16, 17, 18, 19, 20, 22, 23);
+kaizouTenpreSelect[3][s++] = new Array(16, 17, 18, 19, 20, 22, 23, 24);
 kaizouTenpre[3] = new Array();
 kaizouTenpre[3][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[3][1] = new Array("軽量x4 ギヤ負荷x2", 3, 3, 2, 2, 6, 6);
@@ -293,6 +293,7 @@ kaizouTenpre[3][20] = new Array("軽量x4 制振x2", 6, 6, 2, 2, 7, 7);
 kaizouTenpre[3][21] = new Array("制振x2 軽量x4", 8, 8, 3, 3, 2, 2);
 kaizouTenpre[3][22] = new Array("軽量x5 制振x1", 6, 6, 2, 2, 2, 7);
 kaizouTenpre[3][23] = new Array("軽量x2 ギヤ負荷x2 制振x2", 6, 6, 5, 5, 7, 7);
+kaizouTenpre[3][24] = new Array("軽量x2 耐久x4", 6, 6, 4, 4, 4, 4);
 
 //ホイール
 s = 0;
