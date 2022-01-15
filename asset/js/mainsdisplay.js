@@ -2,6 +2,7 @@
 
 var calcFlg = 0;
 var resultFlg = 0;
+var selectMenuIndex = 0;
 
 function View_Set(value1) {
 	var writeValue = "";
@@ -200,10 +201,20 @@ function Menu_Init(value1) {
 
 function Menu_Click(value1) {
 	var oldIndex = window.parent.menus.document.getElementById("menu_oldselect").value;
-	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgback.png'>";
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgselect.png'>";
+	//window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgback.png'>";
+	//window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgselect.png'>";
 	window.parent.menus.document.getElementById("menu_oldselect").value = value1;
-	
+	var oldImg = "";
+	if (selectValue[nameCalc[oldIndex]][kaizouArray[oldIndex][0]][3] >= 1) {
+		oldImg = "l";
+	}
+	var newImg = "";
+	if (selectValue[nameCalc[value1]][kaizouArray[value1][0]][3] >= 1) {
+		newImg = "l";
+	}
+	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgback" + oldImg + ".png'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='asset/img/imgselect" + newImg + ".png'>";
+	selectMenuIndex = value1;
 	calcFlg = 0;
 	resultFlg = 0;
 	View_Set(value1);
@@ -273,6 +284,15 @@ function Menu_Set(value1) {
 		partsName = selectValue[nameCalc[value1]][index][0];
 	}
 	window.parent.menus.document.getElementById("id_menu" + value1 + "_text").innerHTML = partsName;
+	var newImg = "";
+	if (selectValue[nameCalc[value1]][index][3] >= 1) {
+		newImg = "l";
+	}
+	var selectImg = "back";
+	if (selectMenuIndex == value1) {
+		selectImg = "select";
+	}
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='asset/img/img" + selectImg + newImg + ".png'>";
 }
 
 function All_Set() {
@@ -493,7 +513,7 @@ function UrlSet() {
 		var presetText = url.substring(start + 1);
 		var index = 0;
 		var pos = 0;
-		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668 22x31+4+3=689
+		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668 22x31+4+3=689 22x32+4+3=711
 			var indexEnd = UrlToNum(presetText.charAt(presetText.length - 1));
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
