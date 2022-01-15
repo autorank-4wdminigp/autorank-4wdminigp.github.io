@@ -55,8 +55,8 @@ function Menu_Click(value1) {
 	if (selectValue[nameCalc[value1]][kaizouArray[value1][0]][3] >= 1) {
 		newImg = "l";
 	}
-	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgback" + oldImg + ".png'>";
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgselect" + newImg + ".png'>";
+	document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgback" + oldImg + ".png'>";
+	document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgselect" + newImg + ".png'>";
 	selectMenuIndex = value1;
 	calcFlg = 0;
 	resultFlg = 0;
@@ -136,5 +136,5 @@ function Menu_Set(value1) {
 	if (selectMenuIndex == value1) {
 		selectImg = "select";
 	}
-	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/img" + selectImg + newImg + ".png'>";
+	document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/img" + selectImg + newImg + ".png'>";
 }
