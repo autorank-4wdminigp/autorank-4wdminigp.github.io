@@ -292,7 +292,7 @@ kaizouTenpre[3][19] = new Array("ギヤ負荷x6", 5, 5, 3, 3, 3, 3);
 kaizouTenpre[3][20] = new Array("軽量x4 制振x2", 6, 6, 2, 2, 7, 7);
 kaizouTenpre[3][21] = new Array("制振x2 軽量x4", 8, 8, 3, 3, 2, 2);
 kaizouTenpre[3][22] = new Array("軽量x5 制振x1", 6, 6, 2, 2, 2, 7);
-kaizouTenpre[3][23] = new Array("軽量x2 ギヤ負荷x2 制振x2", 6, 6, 3, 3, 7, 7);
+kaizouTenpre[3][23] = new Array("軽量x2 ギヤ負荷x2 制振x2", 6, 6, 5, 5, 7, 7);
 
 //ホイール
 s = 0;
@@ -1745,7 +1745,6 @@ kaizouValue[8][9][0] = new Array("ブレーキ減速強化", "ブレーキ減速
 kaizouValue[8][10] = new Array();
 kaizouValue[8][10][0] = new Array("ブレーキ減速弱化", "ブレーキ減速×× [10] ", -0.1, -0.12, -0.14, -0.005, -1, 23);
 
-
 //ローラー
 kaizouValue[9] = new Array();
 kaizouValue[9][0] = new Array();
@@ -1779,8 +1778,6 @@ kaizouValue[9][8][1] = new Array("", "ローラー抵抗〇〇〇 [4] ", -0.04, 
 kaizouValue[9][9] = new Array();
 kaizouValue[9][9][0] = new Array("ローラー真円出し", "コーナー安定〇〇 [8] ", 0.08, 0.096, 0.112, 0.004, -1, 3);
 kaizouValue[9][9][1] = new Array("", "スピード〇 [2(固定UP)] ", 1.0, 1.2, 1.4, 0.1, -2, 1);
-
-
 
 //ボディオプション
 kaizouValue[10] = new Array();
