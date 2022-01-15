@@ -1,4 +1,6 @@
-﻿function View_Menus() {
+﻿var selectMenuIndex = 0;
+
+function View_Menus() {
 	var menuValue = new Array();
 	menuValue[0] = new Array(-1, 2, 0, 1);
 	menuValue[1] = new Array(34, -1, 3, -1);
@@ -42,10 +44,20 @@ function Menu_Init(value1) {
 
 function Menu_Click(value1) {
 	var oldIndex = document.getElementById("menu_oldselect").value;
-	document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgback.png'>";
-	document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgselect.png'>";
+	//document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgback.png'>";
+	//document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgselect.png'>";
 	document.getElementById("menu_oldselect").value = value1;
-
+	var oldImg = "";
+	if (selectValue[nameCalc[oldIndex]][kaizouArray[oldIndex][0]][3] >= 1) {
+		oldImg = "l";
+	}
+	var newImg = "";
+	if (selectValue[nameCalc[value1]][kaizouArray[value1][0]][3] >= 1) {
+		newImg = "l";
+	}
+	window.parent.menus.document.getElementById("id_menu" + oldIndex + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgback" + oldImg + ".png'>";
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/imgselect" + newImg + ".png'>";
+	selectMenuIndex = value1;
 	calcFlg = 0;
 	resultFlg = 0;
 	View_Set(value1);
@@ -116,4 +128,13 @@ function Menu_Set(value1) {
 		partsName = selectValue[nameCalc[value1]][index][0];
 	}
 	document.getElementById("id_menu" + value1 + "_text").innerHTML = partsName;
+	var newImg = "";
+	if (selectValue[nameCalc[value1]][index][3] >= 1) {
+		newImg = "l";
+	}
+	var selectImg = "back";
+	if (selectMenuIndex == value1) {
+		selectImg = "select";
+	}
+	window.parent.menus.document.getElementById("id_menu" + value1 + "_back").innerHTML = "<img class='csimgback' src='../asset/img/img" + selectImg + newImg + ".png'>";
 }
