@@ -387,11 +387,11 @@ kaizou7Select[6][s++] = new Array(8, 9);
 kaizou7Select[6][s++] = new Array(8, 9, 10);//スライドダンパー
 s = 0;
 kaizouTenpreSelect[6] = new Array();
-kaizouTenpreSelect[6][s++] = new Array(0, 1, 10, 2, 8);
+kaizouTenpreSelect[6][s++] = new Array(0, 1, 12, 10, 2, 8);
 kaizouTenpreSelect[6][s++] = new Array(3, 4);
 kaizouTenpreSelect[6][s++] = new Array(5, 11, 6);
 kaizouTenpreSelect[6][s++] = new Array(5, 7, 6);
-kaizouTenpreSelect[6][s++] = new Array(0, 1, 10, 2, 8, 9);
+kaizouTenpreSelect[6][s++] = new Array(0, 1, 12, 10, 2, 8, 9);
 kaizouTenpre[6] = new Array();
 kaizouTenpre[6][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[6][1] = new Array("耐久x6", 4, 4, 4, 4, 1, 1);
@@ -405,6 +405,7 @@ kaizouTenpre[6][8] = new Array("軽量x2 スラスト角の増加x4", 3, 3, 5, 5
 kaizouTenpre[6][9] = new Array("軽量x5 軽量(コーナー重視)x1", 3, 3, 2, 2, 2, 7);
 kaizouTenpre[6][10] = new Array("耐久x4 スラスト角の減少x2", 4, 4, 4, 4, 6, 6);
 kaizouTenpre[6][11] = new Array("耐久x4 スラスト角の減少x2", 2, 2, 2, 2, 4, 4);
+kaizouTenpre[6][12] = new Array("耐久x4 軽量x2", 4, 4, 4, 4, 3, 3);
 
 //サイドステー
 s = 0;
@@ -418,12 +419,13 @@ kaizou7Select[7] = new Array();
 kaizou7Select[7][s++] = new Array(4, 5);
 s = 0;
 kaizouTenpreSelect[7] = new Array();
-kaizouTenpreSelect[7][s++] = new Array(0, 1);
-kaizouTenpreSelect[7][s++] = new Array(0, 1, 2);
+kaizouTenpreSelect[7][s++] = new Array(0, 1, 3);
+kaizouTenpreSelect[7][s++] = new Array(0, 1, 3, 2);
 kaizouTenpre[7] = new Array();
 kaizouTenpre[7][0] = new Array("軽量x6", 3, 3, 2, 2, 2, 2);
 kaizouTenpre[7][1] = new Array("耐久x6", 4, 4, 4, 4, 1, 1);
 kaizouTenpre[7][2] = new Array("軽量x5 軽量(コーナー重視)x1", 3, 3, 2, 2, 2, 5);
+kaizouTenpre[7][3] = new Array("耐久x4 軽量x2", 4, 4, 4, 4, 3, 3);
 
 //リヤステー
 s = 0;
@@ -440,7 +442,7 @@ kaizou7Select[8][s++] = new Array(4, 5, 6, 8);//スライドダンパー
 kaizou7Select[8][s++] = new Array(9, 10);//リヤブレーキ
 s = 0;
 kaizouTenpreSelect[8] = new Array();
-kaizouTenpreSelect[8][s++] = new Array(0, 1);
+kaizouTenpreSelect[8][s++] = new Array(0, 1, 5);
 kaizouTenpreSelect[8][s++] = [2];
 kaizouTenpreSelect[8][s++] = new Array(3, 4);
 kaizouTenpre[8] = new Array();
@@ -449,6 +451,7 @@ kaizouTenpre[8][1] = new Array("耐久x6", 4, 4, 4, 4, 1, 1);
 kaizouTenpre[8][2] = new Array("耐久x6", 2, 2, 2, 2, 1, 1);
 kaizouTenpre[8][3] = new Array("耐久x6", 4, 4, 4, 4, 3, 3);
 kaizouTenpre[8][4] = new Array("軽量x4 耐久x2", 2, 2, 2, 2, 4, 4);
+kaizouTenpre[8][5] = new Array("耐久x4 軽量x2", 4, 4, 4, 4, 3, 3);
 
 //ローラー
 s = 0;
@@ -464,7 +467,7 @@ kaizou7Select[9][s++] = new Array(5, 6, 7);//アルミ
 kaizou7Select[9][s++] = new Array(8, 9);//ハイトローラー
 s = 0;
 kaizouTenpreSelect[9] = new Array();
-kaizouTenpreSelect[9][s++] = new Array(0, 1, 2, 3, 4);
+kaizouTenpreSelect[9][s++] = new Array(0, 1, 2, 3, 4, 5);
 kaizouTenpreSelect[9][s++] = new Array(0, 1, 2, 4);
 kaizouTenpre[9] = new Array();
 kaizouTenpre[9][0] = new Array("ローラー摩擦を弱めるx4 ローラー抵抗抜きx2", 3, 3, 3, 3, 4, 4);
@@ -472,6 +475,7 @@ kaizouTenpre[9][1] = new Array("ローラー摩擦を強めるx4 ローラー抵
 kaizouTenpre[9][2] = new Array("ローラー摩擦を弱めるx4", 3, 3, 3, 3, 0, 0);
 kaizouTenpre[9][3] = new Array("ローラー摩擦を弱めるx4 軽量化x2", 3, 3, 3, 3, 5, 5);
 kaizouTenpre[9][4] = new Array("ローラー摩擦を弱めるx4 ローラー摩擦を強めるx2", 3, 3, 3, 3, 2, 2);
+kaizouTenpre[9][5] = new Array("軽量化x4 ローラー抵抗抜きx2", 5, 5, 5, 5, 4, 4);
 
 //ボディオプション
 s = 0;
