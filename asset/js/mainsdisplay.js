@@ -557,8 +557,13 @@ function UrlSet() {
 						}
 						kaizouArray[value1][25] = index;
 					}
-					if (value1 == 34 && presetText.length <= (690 + charLenTmp)) {
-						kaizouArray[34][0] = 0;
+					if ((value1 == 32 && presetText.length <= (669 + charLenTmp)) || (value1 == 34 && presetText.length <= (690 + charLenTmp))) {
+						kaizouArray[value1][0] = 0;
+						for (var i = 1; i <= slotNumTmp; i++) {
+							kaizouArray[value1][1 + (i - 1) * 3] = 0;
+							kaizouArray[value1][2 + (i - 1) * 3] = 2;
+							kaizouArray[value1][3 + (i - 1) * 3] = 49;
+						}
 					}
 				}
 			}
