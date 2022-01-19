@@ -151,6 +151,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 59) bodyPower += 0.075;
 	if (bodyOption1 == 70) bodyPower += 0.12;
 	if (bodyOption1 == 94) bodyPower += 0.2;
+	if (bodyOption1 == 95) bodyPower += 0.06;
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
@@ -196,6 +197,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 91) bodySpeed += 0.045;
 	if (bodyOption1 == 92) bodySpeed += 0.06
 	if (bodyOption1 == 93) bodySpeed += 0.045;
+	if (bodyOption1 == 95) bodySpeed += 0.04;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -343,6 +345,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 92) ftiregripUp += 0.07; //ライトニングアタック
 	if (bodyOption1 == 93) ftiregripUp += 0.07; //タービュランサー
 	if (bodyOption1 == 94) ftiregripUp += 0.1; //カエザル･フェルス
+	if (bodyOption1 == 95) ftiregripUp += 0.2; //ハリケーンフェザー
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -620,6 +623,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 23) cornerspeedUp += 0.5;
 	if (bodyOption1 == 25) cornerspeedUp += 0.4;
 	if (bodyOption1 == 57) cornerspeedUp += 0.6;
+	if (bodyOption1 == 95) cornerspeedUp += 0.6;
 	if (bodyOption2 == 3) cornerspeedUp += 0.3;
 	if (bodyOption2 == 13) cornerspeedUp += 0.35;
 	if (bodyOption2 == 43) cornerspeedUp += 0.4;
