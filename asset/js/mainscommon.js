@@ -112,7 +112,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 48) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption3 == 88) setsudenUp += 0.12;
-	var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0);
+	var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0001);
 	diagnosis[diagnosisValue[2]] = batteryValue;
 
 	//異径スピロス
