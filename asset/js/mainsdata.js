@@ -177,7 +177,7 @@ kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 44, 45, 46);
 kaizouTenpreSelect[2][s++] = new Array(47, 48, 49, 50, 51, 3);
 kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 52, 53);
 kaizouTenpreSelect[2][s++] = new Array(54, 1, 2, 3, 55, 56);
-kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 57, 58);
+kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 57, 58, 73);
 kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 59, 60);
 kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 61, 62);
 kaizouTenpreSelect[2][s++] = new Array(0, 1, 2, 3, 63, 64);
@@ -257,6 +257,7 @@ kaizouTenpre[2][69] = new Array("烈の超ボディ補強x1 軽量x2 節電x3", 
 kaizouTenpre[2][70] = new Array("烈の超ボディ補強x1 軽量x1 節電x4", 6, 5, 4, 4, 4, 4);
 kaizouTenpre[2][71] = new Array("烈の超ボディ補強x1 軽量x5", 6, 5, 5, 1, 1, 1);
 kaizouTenpre[2][72] = new Array("烈の超ボディ補強x1 軽量x2 ｴｱﾛﾀﾞｳﾝﾌｫｰｽ増加x3", 6, 5, 5, 2, 2, 2);
+kaizouTenpre[2][73] = new Array("ボディ補強(耐久&軽量化)x4 軽量化(デジタル重視)x2", 7, 7, 7, 7, 6, 6);
 
 //シャーシ
 s = 0;
