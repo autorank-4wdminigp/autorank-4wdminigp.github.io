@@ -152,14 +152,17 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 70) bodyPower += 0.12;
 	if (bodyOption1 == 94) bodyPower += 0.2;
 	if (bodyOption1 == 95) bodyPower += 0.06;
+	if (bodyOption1 == 105) bodyPower += 0.12;
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
 	if (bodyOption2 == 82) bodyPower += 0.06;
+	if (bodyOption2 == 105) bodyPower += 0.06;
 	if (bodyOption3 == 2) bodyPower += 0.024;
 	if (bodyOption3 == 12) bodyPower += 0.06;
 	if (bodyOption3 == 42) bodyPower += 0.1;
 	if (bodyOption3 == 82) bodyPower += 0.06;
+	if (bodyOption3 == 105) bodyPower += 0.06;
 	var bodyPowerloss = 1.0;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 
@@ -488,14 +491,17 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 35) bodyStamina += 0.2;
 	if (bodyOption1 == 52) bodyStamina += 0.1;
 	if (bodyOption1 == 66) bodyStamina += 0.2;
+	if (bodyOption1 == 105) bodyStamina += 0.2;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption2 == 45) bodyStamina += 0.2;
 	if (bodyOption2 == 85) bodyStamina += 0.1;
+	if (bodyOption2 == 105) bodyStamina += 0.1;
 	if (bodyOption3 == 5) bodyStamina += 0.05;
 	if (bodyOption3 == 15) bodyStamina += 0.1;
 	if (bodyOption3 == 45) bodyStamina += 0.2;
 	if (bodyOption3 == 85) bodyStamina += 0.1;
+	if (bodyOption3 == 105) bodyStamina += 0.1;
 	var staminaValue = (resultValueKai[4] + resultValueKai[28] - resultValueKai[36]) * bodyStamina;
 	diagnosis[diagnosisValue[24]] = staminaValue;
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
