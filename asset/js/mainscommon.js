@@ -153,6 +153,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 94) bodyPower += 0.2;
 	if (bodyOption1 == 95) bodyPower += 0.06;
 	if (bodyOption1 == 105) bodyPower += 0.12;
+	if (bodyOption1 == 114) bodyPower += 0.15;
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
@@ -165,6 +166,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 105) bodyPower += 0.06;
 	var bodyPowerloss = 1.0;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
+	if (bodyOption1 == 111) bodyPowerloss -= 0.08;
 
 	//最高速度
 	var bodySpeed = 1.0;
@@ -201,6 +203,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 92) bodySpeed += 0.06
 	if (bodyOption1 == 93) bodySpeed += 0.045;
 	if (bodyOption1 == 95) bodySpeed += 0.04;
+	if (bodyOption1 == 111) bodySpeed += 0.04;
+	if (bodyOption1 == 112) bodySpeed += 0.02;
+	if (bodyOption1 == 113) bodySpeed += 0.04;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -349,6 +354,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 93) ftiregripUp += 0.07; //タービュランサー
 	if (bodyOption1 == 94) ftiregripUp += 0.1; //カエザル･フェルス
 	if (bodyOption1 == 95) ftiregripUp += 0.2; //ハリケーンフェザー
+	if (bodyOption1 == 111) ftiregripUp += 0.07; //ロードアセンション
+	if (bodyOption1 == 112) ftiregripUp += 0.07; //エアロブラスト
+	if (bodyOption1 == 113) ftiregripUp += 0.07; //バーニングイグニッション
+	if (bodyOption1 == 114) ftiregripUp += 0.1; //ライジングフォルス
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -374,6 +383,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (resultValueKai[26] != 0 && bodyOption1 == 72) bodyTaifuu += 15000.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 38) bodyTaifuu += 4000.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 58) bodyTaifuu += 4000.0;
+	if (resultValueKai[26] != 0 && bodyOption1 == 112) bodyTaifuu += 6000.0;
 	if (resultValueKai[26] != 0 && bodyOption2 == 72) bodyTaifuu += 7000.0;
 	if (resultValueKai[26] != 0 && bodyOption3 == 72) bodyTaifuu += 7000.0;
 	var taifuuFuka = (1.0 - Math.min(resultValueKai[26] + bodyTaifuu, 10000.0) / 10000.0) * weightValue * 0.086 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
@@ -492,6 +502,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 52) bodyStamina += 0.1;
 	if (bodyOption1 == 66) bodyStamina += 0.2;
 	if (bodyOption1 == 105) bodyStamina += 0.2;
+	if (bodyOption1 == 113) bodyStamina += 0.15;
+	if (bodyOption1 == 114) bodyStamina += 0.1;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption2 == 45) bodyStamina += 0.2;
