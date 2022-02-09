@@ -206,6 +206,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 111) bodySpeed += 0.04;
 	if (bodyOption1 == 112) bodySpeed += 0.02;
 	if (bodyOption1 == 113) bodySpeed += 0.04;
+	if (bodyOption1 == 115) bodySpeed += 0.04;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -358,6 +359,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 112) ftiregripUp += 0.07; //エアロブラスト
 	if (bodyOption1 == 113) ftiregripUp += 0.07; //バーニングイグニッション
 	if (bodyOption1 == 114) ftiregripUp += 0.1; //ライジングフォルス
+	if (bodyOption1 == 115) ftiregripUp += 0.07; //スクァルス
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -374,6 +376,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var taisuigripUp = 0.0;
 	if (resultValueKai[27] != 0 && bodyOption1 == 10) taisuigripUp += 2500.0;
 	if (resultValueKai[27] != 0 && bodyOption1 == 30) taisuigripUp += 5000.0;
+	if (resultValueKai[27] != 0 && bodyOption1 == 115) taisuigripUp += 5000.0;
 	if (resultValueKai[27] != 0 && bodyOption2 == 10) taisuigripUp += 1250.0;
 	if (resultValueKai[27] != 0 && bodyOption3 == 10) taisuigripUp += 1250.0;
 	diagnosis[diagnosisValue[19]] = (diagnosis[diagnosisValue[5]] * 10.0 * Math.min(resultValueKai[27] + 200.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
@@ -442,6 +445,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[42]] = bodyDigital + resultValueKai[25];
 	diagnosis[diagnosisValue[43]] = bodyTaifuu + resultValueKai[26];
 	diagnosis[diagnosisValue[44]] = bodyAerodf + resultValueKai[9];
+	diagnosis[diagnosisValue[45]] = taisuigripUp + resultValueKai[27];
 
 	//最高速95%到達時間
 	diagnosis[diagnosisValue[22]] = - speedValue2 / (4.0 * acceleValue2) * Math.log(0.05);
