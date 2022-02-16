@@ -97,6 +97,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption1 == 18) setsudenUp += 0.5;
 	if (setsudenValue != 0 && bodyOption1 == 48) setsudenUp += 0.55;
 	if (setsudenValue != 0 && bodyOption1 == 88) setsudenUp += 0.4;
+	if (setsudenValue != 0 && bodyOption1 == 108) setsudenUp += 0.4;
 	if (setsudenValue != 0 && bodyOption1 == 32) setsudenUp -= 0.1;
 	if (setsudenValue != 0 && bodyOption1 == 33) setsudenUp -= 0.1;
 	if (setsudenValue != 0 && bodyOption1 == 53) setsudenUp += 0.2;
@@ -108,10 +109,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption2 == 48) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption2 == 88) setsudenUp += 0.12;
+	if (setsudenValue != 0 && bodyOption2 == 108) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption3 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption3 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption3 == 48) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption3 == 88) setsudenUp += 0.12;
+	if (setsudenValue != 0 && bodyOption3 == 108) setsudenUp += 0.12;
 	var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0001);
 	diagnosis[diagnosisValue[2]] = batteryValue;
 
@@ -140,6 +143,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 12) bodyPower += 0.12;
 	if (bodyOption1 == 42) bodyPower += 0.15;
 	if (bodyOption1 == 82) bodyPower += 0.12;
+	if (bodyOption1 == 105) bodyPower += 0.12;
+	if (bodyOption1 == 108) bodyPower += 0.12;
 	if (bodyOption1 == 22) bodyPower += 0.12;
 	if (bodyOption1 == 25) bodyPower += 0.075;
 	if (bodyOption1 == 30) bodyPower += 0.03;
@@ -152,18 +157,19 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 70) bodyPower += 0.12;
 	if (bodyOption1 == 94) bodyPower += 0.2;
 	if (bodyOption1 == 95) bodyPower += 0.06;
-	if (bodyOption1 == 105) bodyPower += 0.12;
 	if (bodyOption1 == 114) bodyPower += 0.15;
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
 	if (bodyOption2 == 82) bodyPower += 0.06;
 	if (bodyOption2 == 105) bodyPower += 0.06;
+	if (bodyOption2 == 108) bodyPower += 0.06;
 	if (bodyOption3 == 2) bodyPower += 0.024;
 	if (bodyOption3 == 12) bodyPower += 0.06;
 	if (bodyOption3 == 42) bodyPower += 0.1;
 	if (bodyOption3 == 82) bodyPower += 0.06;
 	if (bodyOption3 == 105) bodyPower += 0.06;
+	if (bodyOption3 == 108) bodyPower += 0.06;
 	var bodyPowerloss = 1.0;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 	if (bodyOption1 == 111) bodyPowerloss -= 0.08;
