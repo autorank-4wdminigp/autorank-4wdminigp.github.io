@@ -17,8 +17,8 @@
 	}
 	writeValue += "</select></td>";
 	//覚醒
-	writeValue += "<td><input class='csinput1' type='radio' id='awakecalc1' name='awakecalc' onchange='All_Calc()' checked>覚醒オン　";
-	writeValue += "<input class='csinput1' type='radio' id='awakecalc2' name='awakecalc' onchange='All_Calc()'>オフ　</td>";
+	writeValue += "<td><input class='csinput1' type='radio' id='awakecalc1' name='awakecalc' onchange='All_Calc()'>覚醒オン　";
+	writeValue += "<input class='csinput1' type='radio' id='awakecalc2' name='awakecalc' onchange='All_Calc()' checked>オフ　</td>";
 
 	writeValue += "</tr></table>";
 	writeValue += "<br><font color='#FFA500'>※3 誤差あり(電池消耗未実装)</font>";
