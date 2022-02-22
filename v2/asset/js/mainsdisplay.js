@@ -33,6 +33,20 @@ function View_Set(value1) {
 		}
 		writeValue += "</select></td>";
 	}
+	//覚醒
+	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+		writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
+		for (var i = 1; i <= 2; i++) {
+			writeValue += "<td>覚醒" + i + " <span id='id_" + nameValue[value1] + "_awake" + i + "'></span>　強化Lv ";
+			writeValue += "<select id='" + nameValue[value1] + "_awakelv" + i + "' onchange='Type_Calc(" + value1 + ")'>";
+			for (var j = 1; j < 10; j++) {
+				writeValue += "<option value=" + j + ">" + j + "</option>";
+			}
+			writeValue += "<option value=" + 10 + " selected>" + 10 + "</option></select>";
+			writeValue += "　発動 <span id='id_" + nameValue[value1] + "_awakenum" + i + "'></span></td>";
+		}
+	}
+
 	writeValue += "</tr></table><table class='cstable'><tr>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 		if (i > 0 && i % 5 == 0) {
@@ -173,6 +187,36 @@ function Type_Set(value1, value2) {
 		}
 	}
 	oldselectArray = index;
+	//覚醒
+	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
+		for (var i = 1; i <= 2; i++) {
+			innerValue = "<select class='select_t' id='" + nameValue[value1] + "_awakeskill" + i + "' onchange='Awake_Set(" + value1 + ", " + i + ")'>";
+			innerValue += "<option value=0 selected>－</option>";
+			var awakeIndex = selectValue[nameCalc[value1]][document.getElementById(nameValue[value1]).value][4];
+			if (awakeIndex != 0) {
+				for (var j = 0; j < awakeOption[awakeIndex].length; j++) {
+					innerValue += "<option value=" + awakeOption[awakeIndex][j] + ">" + awakeValue[awakeOption[awakeIndex][j]][0] + "</option>";
+				}
+			}
+			document.getElementById("id_" + nameValue[value1] + "_awake" + i).innerHTML = innerValue + "</select>";
+			var calcFlgOrg = calcFlg;
+			calcFlg = 0;
+			Awake_Set(value1, i);
+			calcFlg = calcFlgOrg;
+		}
+	}
+
+	Type_Calc(value1);
+}
+
+function Awake_Set(value1, value2) {
+	var index = document.getElementById(nameValue[value1] + '_awakeskill' + value2).value;
+	var innerValue = "<select id='" + nameValue[value1] + "_awakenum" + value2 + "' onchange='Type_Calc(" + value1 + ")'>";
+	innerValue += "<option value=" + 1 + " selected>" + awakeValue[index][1] + "</option>";
+	for (var j = 2; j < awakeValue[index].length; j++) {
+		innerValue += "<option value=" + j + ">" + awakeValue[index][j] + "</option>";
+	}
+	document.getElementById("id_" + nameValue[value1] + "_awakenum" + value2).innerHTML = innerValue + "</select>";
 	Type_Calc(value1);
 }
 
