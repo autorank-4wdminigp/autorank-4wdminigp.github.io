@@ -35,19 +35,19 @@ function View_Set(value1) {
 	}
 	//覚醒
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
-		writeValue += "</tr></table><table class='cstable'><tr><td class='cstd'>　</td>";
+		writeValue += "</tr></table><table class='cstable'>";
 		for (var i = 1; i <= 2; i++) {
-			writeValue += "<td>覚醒" + i + " <span id='id_" + nameValue[value1] + "_awake" + i + "'></span>　強化Lv ";
+			writeValue += "<tr><td>覚醒" + i + " <span id='id_" + nameValue[value1] + "_awake" + i + "'></span>　強化Lv ";
 			writeValue += "<select id='" + nameValue[value1] + "_awakelv" + i + "' onchange='Type_Calc(" + value1 + ")'>";
 			for (var j = 1; j < 10; j++) {
 				writeValue += "<option value=" + j + ">" + j + "</option>";
 			}
 			writeValue += "<option value=" + 10 + " selected>" + 10 + "</option></select>";
-			writeValue += "　発動 <span id='id_" + nameValue[value1] + "_awakenum" + i + "'></span></td>";
+			writeValue += "　発動 <span id='id_" + nameValue[value1] + "_awakenum" + i + "'></span></td></tr>";
 		}
 	}
 
-	writeValue += "</tr></table><table class='cstable'><tr>";
+	writeValue += "</table><table class='cstable'><tr>";
 	for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 		if (i > 0 && i % 5 == 0) {
 			writeValue += "</tr><tr>";

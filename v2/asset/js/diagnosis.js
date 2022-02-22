@@ -17,7 +17,6 @@
 	}
 	writeValue += "</select></td>";
 	//覚醒
-	writeValue += "<td class='cstd'></td>";
 	writeValue += "<td><input class='csinput1' type='radio' id='awakecalc1' name='awakecalc' onchange='All_Calc()' checked>覚醒オン　";
 	writeValue += "<input class='csinput1' type='radio' id='awakecalc2' name='awakecalc' onchange='All_Calc()'>オフ　</td>";
 
