@@ -158,6 +158,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 94) bodyPower += 0.2;
 	if (bodyOption1 == 95) bodyPower += 0.06;
 	if (bodyOption1 == 114) bodyPower += 0.15;
+	if (bodyOption1 == 116) bodyPower += 0.06;
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
@@ -213,6 +214,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 112) bodySpeed += 0.02;
 	if (bodyOption1 == 113) bodySpeed += 0.04;
 	if (bodyOption1 == 115) bodySpeed += 0.04;
+	if (bodyOption1 == 116) bodySpeed += 0.02;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -366,6 +368,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 113) ftiregripUp += 0.07; //バーニングイグニッション
 	if (bodyOption1 == 114) ftiregripUp += 0.1; //ライジングフォルス
 	if (bodyOption1 == 115) ftiregripUp += 0.07; //スクァルス
+	if (bodyOption1 == 116) ftiregripUp += 0.07; //ナックルバリア
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13];
@@ -443,6 +446,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var bodyAerodf = 0.0;
 	if (bodyOption1 == 75) bodyAerodf += 1500.0;
 	if (bodyOption1 == 64) bodyAerodf += 500.0;
+	if (bodyOption1 == 116) bodyAerodf += 1300.0;
 	if (bodyOption2 == 75) bodyAerodf += 1000.0;
 	if (bodyOption3 == 75) bodyAerodf += 1000.0;
 
