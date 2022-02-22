@@ -190,7 +190,7 @@ function Type_Set(value1, value2) {
 	//覚醒
 	if (kaizouSelect[nameCalc[value1]][0].length != 0) {
 		for (var i = 1; i <= 2; i++) {
-			innerValue = "<select class='select_t' id='" + nameValue[value1] + "_awakeskill" + i + "' onchange='Awake_Set(" + value1 + ", " + i + ")'>";
+			innerValue = "<select id='" + nameValue[value1] + "_awakeskill" + i + "' onchange='Awake_Set(" + value1 + ", " + i + ")'>";
 			innerValue += "<option value=0 selected>－</option>";
 			var awakeIndex = selectValue[nameCalc[value1]][document.getElementById(nameValue[value1]).value][4];
 			if (awakeIndex != 0) {
