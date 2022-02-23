@@ -173,7 +173,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc) 
 							}
 						}
 						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 9) {
-							bodyOffload += (495.0 + 45.0 * awakeLv) * awakeNum;
+							awakeOffload += (495.0 + 45.0 * awakeLv) * awakeNum;
 							if (awakeNum == 3) {
 								awakePower += 11.0 + 1.0 * awakeLv;
 							}
