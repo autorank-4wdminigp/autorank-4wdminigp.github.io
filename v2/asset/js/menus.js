@@ -82,11 +82,13 @@ function Menu_Click(value1) {
 				document.getElementById(nameValue[value1] + "_slot" + i + "_" + (j + 1)).value = kaizouArrayUnit[value1][j + (i - 1) * 3];
 			}
 		}
+		var awakeoffset = 22;
 		if (value1 == 2) {
 			document.getElementById(nameValue[value1] + '_niku').selectedIndex = kaizouArray[value1][22];
 			for (var i = 1; i <= 3; i++) {
 				document.getElementById(nameValue[value1] + '_bodytokusei' + i).selectedIndex = kaizouArray[value1][22 + i];
 			}
+			awakeoffset = 26;
 		}
 		//覚醒
 		for (var i = 1; i <= 2; i++) {
