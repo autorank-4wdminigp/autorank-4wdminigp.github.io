@@ -88,6 +88,14 @@ function Menu_Click(value1) {
 				document.getElementById(nameValue[value1] + '_bodytokusei' + i).selectedIndex = kaizouArray[value1][22 + i];
 			}
 		}
+		//覚醒
+		for (var i = 1; i <= 2; i++) {
+			document.getElementById(nameValue[value1] + '_awakeskill' + i).selectedIndex = kaizouArray[value1][awakeoffset + (i - 1) * 3];
+			document.getElementById(nameValue[value1] + '_awakelv' + i).selectedIndex = kaizouArray[value1][awakeoffset + 1 + (i - 1) * 3];
+			Awake_Set(value1, i);
+			document.getElementById(nameValue[value1] + '_awakenum' + i).selectedIndex = kaizouArray[value1][awakeoffset + 2 + (i - 1) * 3];
+		}
+
 		document.getElementById(nameValue[value1] + "_pres").value = urlArray[value1];
 	}
 	calcFlg = 1;

@@ -239,9 +239,9 @@ function All_Set() {
 		statusArrayInit[i] = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //34
 		if (kaizouSelect[nameCalc[i]][0].length != 0) {
 			if (i == 2) {
-				kaizouArray[i] = new Array(0, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 0, 0);
+				kaizouArray[i] = new Array(0, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 0, 0, 0, 9, 0, 0, 9, 0);
 			} else {
-				kaizouArray[i] = new Array(0, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49);
+				kaizouArray[i] = new Array(0, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 9, 0, 0, 9, 0);
 			}
 			kaizouArrayUnit[i] = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 		} else {
@@ -501,6 +501,7 @@ function UrlSet() {
 						index = UrlToNum(presetText.charAt(pos++));
 						kaizouArray[value1][3 + (i - 1) * 3] = index;
 					}
+					var awakeoffset = 22;
 					if (value1 == 2) {
 						index = UrlToNum(presetText.charAt(pos++));
 						kaizouArray[value1][22] = index;
@@ -521,6 +522,7 @@ function UrlSet() {
 							index += UrlToNum(presetText.charAt(pos++));
 						}
 						kaizouArray[value1][25] = index;
+						awakeoffset = 26;
 					}
 					if ((value1 == 32 && presetText.length <= (669 + charLenTmp)) || (value1 == 34 && presetText.length <= (690 + charLenTmp))) {
 						kaizouArray[value1][0] = 0;
@@ -528,6 +530,17 @@ function UrlSet() {
 							kaizouArray[value1][1 + (i - 1) * 3] = 0;
 							kaizouArray[value1][2 + (i - 1) * 3] = 2;
 							kaizouArray[value1][3 + (i - 1) * 3] = 49;
+						}
+					}
+					//覚醒
+					if (presetText.length >= (904 + charLenTmp)) {
+						for (var i = 1; i <= 2; i++) {
+							index = UrlToNum(presetText.charAt(pos++));
+							kaizouArray[value1][awakeoffset + (i - 1) * 3] = index;
+							index = UrlToNum(presetText.charAt(pos++));
+							kaizouArray[value1][awakeoffset + 1 + (i - 1) * 3] = index;
+							index = UrlToNum(presetText.charAt(pos++));
+							kaizouArray[value1][awakeoffset + 2 + (i - 1) * 3] = index;
 						}
 					}
 				}
@@ -568,6 +581,7 @@ function Preset_Set(value1) {
 			document.getElementById(nameValue[value1] + '_lv' + i).selectedIndex = index;
 			Type_Slot_Set(value1, i - 1);
 		}
+		var awakeoffset = 22;
 		if (value1 == 2) {
 			index = UrlToNum(presetText.charAt(pos++));
 			document.getElementById(nameValue[value1] + '_niku').selectedIndex = index;
@@ -579,6 +593,17 @@ function Preset_Set(value1) {
 			document.getElementById(nameValue[value1] + '_bodytokusei2').selectedIndex = index;
 			index = UrlToNum(presetText.charAt(pos++));
 			document.getElementById(nameValue[value1] + '_bodytokusei3').selectedIndex = index;
+			awakeoffset = 26;
+		}
+		//覚醒
+		for (var i = 1; i <= 2; i++) {
+			index = UrlToNum(presetText.charAt(pos++));
+			document.getElementById(nameValue[value1] + '_awakeskill' + i).selectedIndex = index;
+			index = UrlToNum(presetText.charAt(pos++));
+			document.getElementById(nameValue[value1] + '_awakelv' + i).selectedIndex = index;
+			Awake_Set(value1, i);
+			index = UrlToNum(presetText.charAt(pos++));
+			document.getElementById(nameValue[value1] + '_awakenum' + i).selectedIndex = index;
 		}
 		calcFlg = 1;
 		Type_Calc(value1);
@@ -646,6 +671,28 @@ function Shikou_Set(value, parts) {
 
 	// 全パーツにセットする場合はモーターを選択状態にする
 	Menu_Click(Number.isInteger(parts) ? parts : 0);
+}
+
+function Awake_Init() {
+	for (var i = 0; i < nameValue.length; i++) {
+		if (kaizouSelect[nameCalc[i]][0].length != 0) {
+			var awakeoffset = 22;
+			if (i == 2) {
+				awakeoffset = 26;
+			}
+			for (var j = 1; j <= 2; j++) {
+				kaizouArray[i][awakeoffset + (j - 1) * 3] = 0;
+				kaizouArray[i][awakeoffset + 1 + (j - 1) * 3] = 9;
+				kaizouArray[i][awakeoffset + 2 + (j - 1) * 3] = 0;
+			}
+		}
+	}
+	for (var i = 0; i < nameValue.length; i++) {
+		UrlCalc(i);
+	}
+	UrlView(0);
+	Menu_Click(0);
+	Type_Calc(0);
 }
 
 function Parts_Out(value1) {
