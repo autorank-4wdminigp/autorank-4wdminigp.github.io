@@ -382,6 +382,7 @@ function Type_CalcArray(value1, viewFlg) {
 				//if (calcValueSv[typeIndex] < 0 && typeIndex != 12) calcValueSv[typeIndex] = 0;
 			}
 		}
+		var awakeoffset = 22;
 		if (value1 == 2) {
 			if (viewFlg != 0) {
 				kaizouArray[value1][22] = document.getElementById(nameValue[value1] + '_niku').selectedIndex;
@@ -391,6 +392,7 @@ function Type_CalcArray(value1, viewFlg) {
 			}
 			var nikuVal = kaizouArray[value1][22];
 			calcValueSv[5] -= nikuVal * calcValueSvInit[5] * 0.02;
+			awakeoffset = 26;
 		}
 		for (var i = 0; i < typeSelect[nameCalc[value1]].length; i++) {
 			var typeIndex = typeSelect[nameCalc[value1]][i];
@@ -403,6 +405,14 @@ function Type_CalcArray(value1, viewFlg) {
 				if (viewFlg != 0) {
 					document.getElementById(nameValue[value1] + "_" + addTypeValue[-typeIndex] + "_kaisv").value = document.getElementById(nameValue[value1] + "_" + addTypeValue[-typeIndex]).value;
 				}
+			}
+		}
+		//覚醒
+		if (viewFlg != 0) {
+			for (var i = 1; i <= 2; i++) {
+				kaizouArray[value1][awakeoffset + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_awakeskill' + i).selectedIndex;
+				kaizouArray[value1][awakeoffset + 1 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_awakelv' + i).selectedIndex;
+				kaizouArray[value1][awakeoffset + 2 + (i - 1) * 3] = document.getElementById(nameValue[value1] + '_awakenum' + i).selectedIndex;
 			}
 		}
 	}
