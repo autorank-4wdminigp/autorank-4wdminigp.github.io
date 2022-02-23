@@ -280,7 +280,7 @@ function All_Calc() {
 		shindantirekei = document.getElementById('shindantirekei').selectedIndex;
 	}
 	var awakecalc = 1;
-	if (window.parent.diagnosis.document.getElementById('awakecalc2').checked) {
+	if (document.getElementById('awakecalc2').checked) {
 		awakecalc = 2;
 	}
 	var diagnosis = Diagnosis_Calc(result.valueKaiSv, shindantire, shindantirekei, awakecalc);
