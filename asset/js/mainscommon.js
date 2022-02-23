@@ -57,11 +57,211 @@ function Result_Calc(disp1) {
 // resultValueKai: マシンのパラメータの配列(改造後)
 // shindantire: 1 -> タイヤ径差表示無し, 2 -> マシン診断タイヤ径差表示
 // shindantirekei: タイヤ径差
-function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
+function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc) {
 	var diagnosis = {};
 
+	var bodyOption1 = kaizouArray[2][23];
+	var bodyOption2 = kaizouArray[2][24];
+	var bodyOption3 = kaizouArray[2][25];
+	//覚醒
+	var awakeBodySpeedPer = 1.0;
+	if (bodyOption1 == 91) awakeBodySpeedPer += 0.2;
+	if (bodyOption1 == 92) awakeBodySpeedPer += 0.3;
+	if (bodyOption1 == 113) awakeBodySpeedPer += 0.2;
+
+	var awakeBodyPowerPer = 1.0;
+	if (bodyOption1 == 94) awakeBodyPowerPer += 0.3;
+	if (bodyOption1 == 114) awakeBodyPowerPer += 0.2;
+
+	var awakeBodyCornerAnteiPer = 1.0;
+	if (bodyOption1 == 91) awakeBodyCornerAnteiPer += 0.3;
+
+	var awakeBodyAerodfPer = 1.0;
+	if (bodyOption1 == 93) awakeBodyAerodfPer += 0.5;
+	if (bodyOption1 == 112) awakeBodyAerodfPer += 0.5;
+
+	var awakeBodyStaminaPer = 1.0;
+	if (bodyOption1 == 113) awakeBodyStaminaPer += 0.1;
+	if (bodyOption1 == 114) awakeBodyStaminaPer += 0.1;
+
+	var awakeSpeedPer = 0.0;
+	var awakePowerPer = 0.0;
+	var awakeCornerAnteiPer = 0.0;
+	var awakeTiregripPer = 0.0;
+	var awakeGearPer = 1.0;
+	var awakeBrakePer = 1.0;
+	var awakeSpeedlossPer = 0.0;
+	var awakePowerlossPer = 0.0;
+	var awakeBoundtime2Per = 0.0;
+
+	var awakeSpeed = 0.0;
+	var awakePower = 0.0;
+	var awakeCornerAntei = 0.0;
+	var awakeTaifuu = 0.0;
+	var awakeOffload = 0.0;
+	var awakeRollerangle = 0.0;
+	var awakeAerodf = 0.0;
+	var awakeFtiregrip = 0.0;
+	var awakeRtiregrip = 0.0;
+	var awakeWave = 0.0;
+	var awakeStamina = 0.0;
+
+	if (awakecalc == 1) {
+		for (var v = 0; v < nameValue.length; v++) {
+			if (kaizouSelect[nameCalc[v]][0].length != 0) {
+				var awakeoffset = 22;
+				if (v == 2) {
+					awakeoffset = 26;
+				}
+				for (var i = 1; i <= 2; i++) {
+					var awakeSelectIndex = kaizouArray[v][awakeoffset + (i - 1) * 3];
+					if (awakeSelectIndex != 0) {
+						var awakeIndex = selectValue[nameCalc[v]][kaizouArray[v][0]][4];
+						var awakeLv = kaizouArray[v][awakeoffset + 1 + (i - 1) * 3];
+						var awakeNum = 1 + kaizouArray[v][awakeoffset + 2 + (i - 1) * 3];
+
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 1) {
+							if (awakeNum == 1) {
+								awakeSpeedPer += 0.022 + 0.002 * awakeLv;
+								awakeCornerAnteiPer += 0.0825 + 0.0075 * awakeLv;
+							}
+							if (awakeNum == 2) {
+								awakeSpeedPer += 0.033 + 0.003 * awakeLv;
+								awakeCornerAnteiPer += 0.0825 + 0.0075 * awakeLv;
+								awakeTiregripPer += 0.055 + 0.005 * awakeLv;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 2) {
+							if (awakeNum == 1) {
+								awakeCornerAnteiPer += 0.055 + 0.005 * awakeLv;
+							}
+							if (awakeNum == 2) {
+								awakeCornerAnteiPer += 0.055 + 0.005 * awakeLv;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 3) {
+							if (awakeNum == 1) {
+								awakeBrakePer -= 0.275 + 0.025 * awakeLv;
+							}
+							if (awakeNum == 2) {
+								awakePowerPer += 0.033 + 0.003 * awakeLv;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 4) {
+							awakeSpeed += (3.2 + 0.2 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 5) {
+							awakeSpeed += (39.0 + 4.0 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 6) {
+							awakeSpeed += (55.0 + 5.0 * awakeLv) * awakeNum;
+							awakeCornerAntei -= 50.0 * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 7) {
+							awakeSpeedlossPer -= 0.055 + 0.005 * awakeLv;
+							if (awakeNum == 2) {
+								awakePowerlossPer -= 0.0275 + 0.0025 * awakeLv;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 8) {
+							awakeTaifuu += (385.0 + 35.0 * awakeLv) * awakeNum;
+							if (awakeNum == 3) {
+								awakeSpeed += 5.5 + 0.5 * awakeLv;
+							}
+							if (awakeNum == 4) {
+								awakeSpeed += 11.0 + 1.0 * awakeLv;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 9) {
+							bodyOffload += (495.0 + 45.0 * awakeLv) * awakeNum;
+							if (awakeNum == 3) {
+								awakePower += 11.0 + 1.0 * awakeLv;
+							}
+							if (awakeNum == 4) {
+								awakePower += 16.5 + 1.5 * awakeLv;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 10) {
+							awakeRollerangle -= 2.75 + 0.25 * awakeLv;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 11) {
+							awakeRollerangle += 20.0;
+							awakeAerodf += 11000.0 + 1000.0 * awakeLv;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 12) {
+							if (v == 6) {
+								awakeFtiregrip += (6.0 + 1.0 * awakeLv) * awakeNum;
+							}
+							if (v == 7) {
+								awakeRtiregrip += (6.0 + 1.0 * awakeLv) * awakeNum;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 13) {
+							awakeSpeed += (44.0 + 4.0 * awakeLv) * awakeNum;
+							awakePower += (66.0 + 6.0 * awakeLv) * awakeNum;
+							if (v == 6) {
+								awakeFtiregrip += (11.0 + 1.0 * awakeLv) * awakeNum;
+							}
+							if (v == 7) {
+								awakeRtiregrip += (11.0 + 1.0 * awakeLv) * awakeNum;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 14) {
+							awakePower += (5.5 + 0.5 * awakeLv) * awakeNum;
+							awakeRollerangle -= (1.1 + 0.1 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 15) {
+							awakeAerodf += 935.0 + 85.0 * awakeLv;
+							awakeSpeed += 16.5 + 1.5 * awakeLv;
+							awakeBoundtime2Per += 1.1 + 0.1 * awakeLv;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 16) {
+							awakeSpeed += (165.0 + 15.0 * awakeLv) * awakeNum;
+							awakePower += (55.0 + 5.0 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 17) {
+							awakeSpeed += (11.0 + 1.0 * awakeLv) * awakeNum;
+							awakePower += (16.5 + 1.5 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 18) {
+							awakeGearPer -= (0.22 + 0.02 * awakeLv) * (5.0 - awakeNum) / 4.0;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 19) {
+							awakeSpeed += (11.0 + 1.0 * awakeLv) * awakeNum;
+							awakePower += (5.5 + 0.5 * awakeLv) * awakeNum;
+							awakeWave += (2200.0 + 200.0 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 20) {
+							awakePower += (11.0 + 1.0 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 21) {
+							awakeAerodf += 165.0 + 15.0 * awakeLv;
+							if (awakeNum == 2) {
+								awakeAerodf += 110.0 + 10.0 * awakeLv;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 22) {
+							awakeSpeed += (7.8 + 0.8 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 23) {
+							awakeSpeed += 110.0 + 10.0 * awakeLv;
+							awakePower += 220.0 + 20.0 * awakeLv;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 24) {
+							awakeSpeed += (55.0 + 5.0 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 25) {
+							awakeStamina += (8.25 + 0.75 * awakeLv) * awakeNum;
+							awakeCornerAntei += (11.0 + 1.0 * awakeLv) * awakeNum;
+						}
+					}
+				}
+			}
+		}
+	}
+
 	//ローラースラスト角
-	var rollerangleValue = Math.max(0, resultValueKai[12]);
+	var rollerangleValue = Math.max(0, resultValueKai[12] + awakeRollerangle);
 	diagnosis[diagnosisValue[10]] = rollerangleValue;
 
 	//重さ
@@ -70,9 +270,6 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 
 	//ブレーキ性能
 	var brakeValue = resultValueKai[23] / 2000.0;
-	var bodyOption1 = kaizouArray[2][23];
-	var bodyOption2 = kaizouArray[2][24];
-	var bodyOption3 = kaizouArray[2][25];
 	if (brakeValue != 0 && bodyOption1 == 6) brakeValue += 0.05;
 	if (brakeValue != 0 && bodyOption1 == 16) brakeValue += 0.06;
 	if (brakeValue != 0 && bodyOption1 == 86) brakeValue += 0.05;
@@ -85,6 +282,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (brakeValue != 0 && bodyOption3 == 6) brakeValue += 0.015;
 	if (brakeValue != 0 && bodyOption3 == 16) brakeValue += 0.03;
 	if (brakeValue != 0 && bodyOption3 == 86) brakeValue += 0.015;
+	brakeValue = brakeValue * awakeBrakePer;
 	diagnosis[diagnosisValue[12]] = brakeValue;
 
 	//バッテリー消費量
@@ -119,7 +317,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[2]] = batteryValue;
 
 	//異径スピロス
-	var bodySpeedloss = 1.0;
+	var bodySpeedloss = 1.0 + awakeSpeedlossPer;
 	if (bodyOption1 == 51) bodySpeedloss -= 0.15;
 	var ftirekeiValue = statusArray[6][16];
 	var rtirekeiValue = statusArray[7][16];
@@ -138,7 +336,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	}
 	var speedlossValue = 800.0 * tirekeisa * mintiresenkai / mintirekei;
 	//パワー
-	var bodyPower = 1.0;
+	var bodyPower = 1.0 + awakePowerPer * awakeBodyPowerPer;
 	if (bodyOption1 == 2) bodyPower += 0.06;
 	if (bodyOption1 == 12) bodyPower += 0.12;
 	if (bodyOption1 == 42) bodyPower += 0.15;
@@ -171,12 +369,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 82) bodyPower += 0.06;
 	if (bodyOption3 == 105) bodyPower += 0.06;
 	if (bodyOption3 == 108) bodyPower += 0.06;
-	var bodyPowerloss = 1.0;
+	var bodyPowerloss = 1.0 + awakePowerlossPer;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 	if (bodyOption1 == 111) bodyPowerloss -= 0.08;
 
 	//最高速度
-	var bodySpeed = 1.0;
+	var bodySpeed = 1.0 + awakeSpeedPer * awakeBodySpeedPer;
 	if (bodyOption1 == 1) bodySpeed += 0.02;
 	if (bodyOption1 == 11) bodySpeed += 0.03;
 	if (bodyOption1 == 41) bodySpeed += 0.04;
@@ -234,14 +432,14 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	var hoseiSpeedStr = "";
 	var hoseiAcceleStr = "";
 	var powerlossValue = resultValueKai[7];
-	var powerlossMax = ((0.25 * powerlossValue / 10000.0 + 0.75) - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21])) * 10000.0 / bodyPowerloss;
+	var powerlossMax = ((0.25 * powerlossValue / 10000.0 + 0.75) - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) * (resultValueKai[21] * awakeGearPer))) * 10000.0 / bodyPowerloss;
 	if (powerlossValue > powerlossMax) {
 		powerlossValue = powerlossMax;
 		hoseiSpeedStr = "PL)";
 		hoseiAcceleStr = "PL)";
 	}
-	var spowerValue = (1.0 - bodyPowerloss * powerlossValue / 10000.0 - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]));
-	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * bodySpeed * resultValueKai[1] / 60.0) / resultValueKai[21];
+	var spowerValue = (1.0 - bodyPowerloss * powerlossValue / 10000.0 - (resultValueKai[6] + bodySpeedloss * (resultValueKai[8] + speedlossValue) / 10000.0 * weightValue * rtirekeiValue / 2.0) / (10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) * (resultValueKai[21] * awakeGearPer)));
+	var speedValue = batteryPower[batteryIndex] * (2.0 * Math.PI * rtirekeiValue / 2000.0) * (10.0 * (bodySpeed * resultValueKai[1] + awakeSpeed * awakeBodySpeedPer) / 60.0) / (resultValueKai[21] * awakeGearPer);
 	//var speedValue2 = speedValue * spowerValue - resultValueKai[9] / 1000.0;
 	var speedValue2 = speedValue * spowerValue;
 	//var speedValueNotDf = speedValue * spowerValue / 2.0;
@@ -253,12 +451,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[1]] = hoseiSpeedStr + speedValue2;
 
 	//加速度(毎秒)
-	var acceleValue = (10.0 * bodyPower * resultValueKai[2] / 1000.0) / 4.0 * resultValueKai[21] / (rtirekeiValue / 2000.0 * weightValue);
+	var acceleValue = (10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) / 1000.0) / 4.0 * (resultValueKai[21] * awakeGearPer) / (rtirekeiValue / 2000.0 * weightValue);
 	var acceleValue2 = acceleValue * spowerValue;
 	diagnosis[diagnosisValue[3]] = hoseiAcceleStr + acceleValue2;
 
 	//消費電流量
-	var currentValue = 2.25 * 10.0 * bodyPower * resultValueKai[2] * (speedValue / speedValue2) * batteryValue / 3600.0 / 1000.0 / batteryCapacity[batteryIndex];
+	var currentValue = 2.25 * 10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) * (speedValue / speedValue2) * batteryValue / 3600.0 / 1000.0 / batteryCapacity[batteryIndex];
 	diagnosis[diagnosisValue[28]] = currentValue;
 
 	//最高速25%減少
@@ -323,7 +521,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[4]] = Math.log(100.0 * speedValue2) / (4.0 * acceleValue2);
 
 	//タイヤグリップ
-	var ftiregripUp = 1.0;
+	var ftiregripUp = 1.0 + awakeTiregripPer;
 	if (bodyOption1 == 62) ftiregripUp += 0.2;
 	if (bodyOption1 == 21) ftiregripUp += 0.06; //かっとびマシン
 	if (bodyOption1 == 22) ftiregripUp += 0.06; //パワーブースト
@@ -371,12 +569,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption1 == 116) ftiregripUp += 0.07; //ナックルバリア
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
-	var ftiregripValue = statusArray[6][13];
-	var rtiregripValue = statusArray[7][13];
+	var ftiregripValue = statusArray[6][13] + awakeFtiregrip;
+	var rtiregripValue = statusArray[7][13] + awakeRtiregrip;
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
 	//tiregripValue += statusArray[29][13];
 	//tiregripValue += statusArray[33][13];
-	diagnosis[diagnosisValue[5]] = tiregripValue * ftiregripUp / 100.0;
+	diagnosis[diagnosisValue[5]] = (tiregripValue * ftiregripUp) / 100.0;
 
 	//空転
 	diagnosis[diagnosisValue[15]] = (diagnosis[diagnosisValue[5]] * 10.0 + 0.3) * 3.6;
@@ -391,20 +589,20 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	diagnosis[diagnosisValue[19]] = (diagnosis[diagnosisValue[5]] * 10.0 * Math.min(resultValueKai[27] + 200.0 + taisuigripUp, 10000.0) / 10000.0 + 0.3) * 3.6;
 
 	//耐風最高速
-	var bodyTaifuu = 0.0;
+	var bodyTaifuu = 0.0 + awakeTaifuu;
 	if (resultValueKai[26] != 0 && bodyOption1 == 72) bodyTaifuu += 15000.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 38) bodyTaifuu += 4000.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 58) bodyTaifuu += 4000.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 112) bodyTaifuu += 6000.0;
 	if (resultValueKai[26] != 0 && bodyOption2 == 72) bodyTaifuu += 7000.0;
 	if (resultValueKai[26] != 0 && bodyOption3 == 72) bodyTaifuu += 7000.0;
-	var taifuuFuka = (1.0 - Math.min(resultValueKai[26] + bodyTaifuu, 10000.0) / 10000.0) * weightValue * 0.086 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
+	var taifuuFuka = (1.0 - Math.min(resultValueKai[26] + bodyTaifuu, 10000.0) / 10000.0) * weightValue * 0.086 * (weightValue * rtirekeiValue / 2.0) / (10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) * (resultValueKai[21] * awakeGearPer));
 	//diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
 	diagnosis[diagnosisValue[16]] = Math.max(speedValue * (spowerValue - taifuuFuka), speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[16]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(resultValueKai[26] + bodyTaifuu, 10000.0) / 10000.0) * weightValue / acceleValue2 / 46.0), speedValue2 / 5.0) * 3.6;
 
 	//芝最高速
-	var bodyOffload = 0.0;
+	var bodyOffload = 0.0 + awakeOffload;
 	if (resultValueKai[20] != 0 && bodyOption1 == 9) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 19) bodyOffload += 25000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 29) bodyOffload += 20000.0;
@@ -415,19 +613,19 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (resultValueKai[20] != 0 && bodyOption2 == 19) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 19) bodyOffload += 15000.0;
-	var shibaFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.068 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
+	var shibaFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.068 * (weightValue * rtirekeiValue / 2.0) / (10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) * (resultValueKai[21] * awakeGearPer));
 	//diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
 	diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka), speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[17]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
 
 	//ダート最高速
-	var dirtFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.048 * (weightValue * rtirekeiValue / 2.0) / (10.0 * bodyPower * resultValueKai[2] * resultValueKai[21]);
+	var dirtFuka = (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue * 0.048 * (weightValue * rtirekeiValue / 2.0) / (10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) * (resultValueKai[21] * awakeGearPer));
 	//diagnosis[diagnosisValue[18]] = Math.max(speedValue * (spowerValue - dirtFuka) - resultValueKai[9] / 1000.0, speedValue2 / 5.0) * 3.6;
 	diagnosis[diagnosisValue[18]] = Math.max(speedValue * (spowerValue - dirtFuka), speedValue2 / 5.0) * 3.6;
 	//diagnosis[diagnosisValue[18]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 82.0), speedValue2 / 5.0) * 3.6;
 
 	//ウェーブ
-	var bodyWave = 0.0;
+	var bodyWave = 0.0 + awakeWave;
 	if (resultValueKai[19] != 0 && bodyOption1 == 68) bodyWave += 25000.0;
 	if (resultValueKai[19] != 0 && bodyOption1 == 39) bodyWave += 4000.0;
 	if (resultValueKai[19] != 0 && bodyOption2 == 68) bodyWave += 15000.0;
@@ -443,7 +641,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (resultValueKai[25] != 0 && bodyOption3 == 78) bodyDigital += 15000.0;
 
 	//ｴｱﾛﾀﾞｳﾝﾌｫｰｽ
-	var bodyAerodf = 0.0;
+	var bodyAerodf = 0.0 + awakeAerodf * awakeBodyAerodfPer;
 	if (bodyOption1 == 75) bodyAerodf += 1500.0;
 	if (bodyOption1 == 64) bodyAerodf += 500.0;
 	if (bodyOption1 == 116) bodyAerodf += 1300.0;
@@ -528,7 +726,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption3 == 45) bodyStamina += 0.2;
 	if (bodyOption3 == 85) bodyStamina += 0.1;
 	if (bodyOption3 == 105) bodyStamina += 0.1;
-	var staminaValue = (resultValueKai[4] + resultValueKai[28] - resultValueKai[36]) * bodyStamina;
+	var staminaValue = (resultValueKai[4] + resultValueKai[28] - resultValueKai[36]) * bodyStamina + awakeStamina * awakeBodyStaminaPer;
 	diagnosis[diagnosisValue[24]] = staminaValue;
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
 	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / ((0.9 * 0.9 + 0.8 * 0.8) * speedValue2 * speedValue2 * weightValue * 0.45); //0.458 0.573 0.688
@@ -647,22 +845,22 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	cornerweightValue = (senkaiC * (gravityValue + senkaiA) * (gravityValue + senkaiA) + 0.024516625024408 - senkaiC * senkaiA * senkaiA) * treadValue;
 	diagnosis[diagnosisValue[39]] = calcCornerdecele(458.0);
 
-	//コーナー安定速度
-	var cornerspeedUp = 1.0;
-	if (bodyOption1 == 3) cornerspeedUp += 0.4;
-	if (bodyOption1 == 13) cornerspeedUp += 0.5;
-	if (bodyOption1 == 43) cornerspeedUp += 0.6;
-	if (bodyOption1 == 23) cornerspeedUp += 0.5;
-	if (bodyOption1 == 25) cornerspeedUp += 0.4;
-	if (bodyOption1 == 57) cornerspeedUp += 0.6;
-	if (bodyOption1 == 95) cornerspeedUp += 0.6;
-	if (bodyOption2 == 3) cornerspeedUp += 0.3;
-	if (bodyOption2 == 13) cornerspeedUp += 0.35;
-	if (bodyOption2 == 43) cornerspeedUp += 0.4;
-	if (bodyOption3 == 3) cornerspeedUp += 0.3;
-	if (bodyOption3 == 13) cornerspeedUp += 0.35;
-	if (bodyOption3 == 43) cornerspeedUp += 0.4;
-	var cornerInValue = 0.0 - resultValueKai[35];
+	//コーナー安定
+	var cornerAnteiUp = 1.0 + awakeCornerAnteiPer * awakeBodyCornerAnteiPer;
+	if (bodyOption1 == 3) cornerAnteiUp += 0.4;
+	if (bodyOption1 == 13) cornerAnteiUp += 0.5;
+	if (bodyOption1 == 43) cornerAnteiUp += 0.6;
+	if (bodyOption1 == 23) cornerAnteiUp += 0.5;
+	if (bodyOption1 == 25) cornerAnteiUp += 0.4;
+	if (bodyOption1 == 57) cornerAnteiUp += 0.6;
+	if (bodyOption1 == 95) cornerAnteiUp += 0.6;
+	if (bodyOption2 == 3) cornerAnteiUp += 0.3;
+	if (bodyOption2 == 13) cornerAnteiUp += 0.35;
+	if (bodyOption2 == 43) cornerAnteiUp += 0.4;
+	if (bodyOption3 == 3) cornerAnteiUp += 0.3;
+	if (bodyOption3 == 13) cornerAnteiUp += 0.35;
+	if (bodyOption3 == 43) cornerAnteiUp += 0.4;
+	var cornerInValue = 0.0 - resultValueKai[35] + awakeCornerAntei;
 	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3.0);
 	for (var i = 0; i < nameValue.length; i++) {
 		if (i != 12 && i != 15 || (rollerteikouValue1 < -10.0 || rollerteikouValue2 < -10.0)) {
@@ -671,11 +869,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]] * 0.2;
 		}
 	}
-	diagnosis[diagnosisValue[20]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp) * 3.6;
-	diagnosis[diagnosisValue[21]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerspeedUp * 0.38) * 3.6;
-	diagnosis[diagnosisValue[36]] = cornerInValue * cornerspeedUp;
-	diagnosis[diagnosisValue[37]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerspeedUp) * 3.6;
-	diagnosis[diagnosisValue[38]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerspeedUp * 0.38) * 3.6;
+	cornerInValue = Math.max(cornerInValue, 0.0);
+	diagnosis[diagnosisValue[20]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerAnteiUp) * 3.6;
+	diagnosis[diagnosisValue[21]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerAnteiUp * 0.38) * 3.6;
+	diagnosis[diagnosisValue[36]] = cornerInValue * cornerAnteiUp;
+	diagnosis[diagnosisValue[37]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerAnteiUp) * 3.6;
+	diagnosis[diagnosisValue[38]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerAnteiUp * 0.38) * 3.6;
 
 	//ジャンプ飛距離
 	var slopeLength = 0.45;
@@ -722,7 +921,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei) {
 	if (bodyOption2 == 17) bodyBoundtime -= 0.08;
 	if (bodyOption3 == 7) bodyBoundtime -= 0.04;
 	if (bodyOption3 == 17) bodyBoundtime -= 0.08;
-	var bodyBoundtime2 = 1.0; //制振
+	var bodyBoundtime2 = 1.0 + awakeBoundtime2Per; //制振
 	if (bodyOption1 == 27) bodyBoundtime2 += 2.0;
 	if (bodyOption1 == 65) bodyBoundtime2 += 4.0;
 	var seishinValue = resultValueKai[11];
@@ -797,6 +996,7 @@ function UrlCalc(value1) {
 			urlValue += NumToUrl(kaizouArray[value1][2 + (i - 1) * 3]);
 			urlValue += NumToUrl(kaizouArray[value1][3 + (i - 1) * 3]);
 		}
+		var awakeoffset = 22;
 		if (value1 == 2) {
 			urlValue += NumToUrl(kaizouArray[value1][22]);
 			for (var i = 1; i <= 3; i++) {
@@ -807,6 +1007,13 @@ function UrlCalc(value1) {
 					urlValue += NumToUrl(kaizouArray[value1][22 + i]);
 				}
 			}
+			awakeoffset = 26;
+		}
+		//覚醒
+		for (var i = 1; i <= 2; i++) {
+			urlValue += NumToUrl(kaizouArray[value1][awakeoffset + (i - 1) * 3]);
+			urlValue += NumToUrl(kaizouArray[value1][awakeoffset + 1 + (i - 1) * 3]);
+			urlValue += NumToUrl(kaizouArray[value1][awakeoffset + 2 + (i - 1) * 3]);
 		}
 	}
 	urlArray[value1] = urlValue;
