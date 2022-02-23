@@ -279,7 +279,11 @@ function All_Calc() {
 		shindantire = 2;
 		shindantirekei = document.getElementById('shindantirekei').selectedIndex;
 	}
-	var diagnosis = Diagnosis_Calc(result.valueKaiSv, shindantire, shindantirekei);
+	var awakecalc = 1;
+	if (window.parent.diagnosis.document.getElementById('awakecalc2').checked) {
+		awakecalc = 2;
+	}
+	var diagnosis = Diagnosis_Calc(result.valueKaiSv, shindantire, shindantirekei, awakecalc);
 	for (var key in diagnosis) {
 		document.getElementById(key).value = diagnosis[key];
 	}
