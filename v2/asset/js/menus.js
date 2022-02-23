@@ -34,6 +34,7 @@ function View_Menus() {
 	writeValue += "<td><input type='button' value='職人技' onclick='Shikou_Set(1)'></td>";
 	writeValue += "<td><input type='button' value='イイ感じ' onclick='Shikou_Set(0)'></td>";
 	writeValue += "</tr></table>";
+	writeValue += "<table class='cstable'><tr><td>全覚醒 <input type='button' value='初期化' onclick='Awake_Init()'></td></tr></table>";
 	writeValue += "<input type='hidden' id='menu_oldselect' value='0'>";
 	document.getElementById("menus-main").innerHTML = writeValue;
 }
