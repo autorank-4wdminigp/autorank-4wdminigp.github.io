@@ -726,7 +726,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc) 
 	if (bodyOption3 == 45) bodyStamina += 0.2;
 	if (bodyOption3 == 85) bodyStamina += 0.1;
 	if (bodyOption3 == 105) bodyStamina += 0.1;
-	var staminaValue = (resultValueKai[4] + resultValueKai[28] - resultValueKai[36]) * bodyStamina + awakeStamina * awakeBodyStaminaPer;
+	var staminaValue = Math.max((resultValueKai[4] + resultValueKai[28] - resultValueKai[36]) * bodyStamina + awakeStamina * awakeBodyStaminaPer, 0.0);
 	diagnosis[diagnosisValue[24]] = staminaValue;
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
 	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / ((0.9 * 0.9 + 0.8 * 0.8) * speedValue2 * speedValue2 * weightValue * 0.45); //0.458 0.573 0.688
@@ -860,7 +860,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc) 
 	if (bodyOption3 == 3) cornerAnteiUp += 0.3;
 	if (bodyOption3 == 13) cornerAnteiUp += 0.35;
 	if (bodyOption3 == 43) cornerAnteiUp += 0.4;
-	var cornerInValue = 0.0 - resultValueKai[35] + awakeCornerAntei;
+	var cornerInValue = 0.0 - resultValueKai[35];
 	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3.0);
 	for (var i = 0; i < nameValue.length; i++) {
 		if (i != 12 && i != 15 || (rollerteikouValue1 < -10.0 || rollerteikouValue2 < -10.0)) {
@@ -869,12 +869,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc) 
 			cornerInValue += statusArray[i][3] / cornerHosei[nameCalc[i]] * 0.2;
 		}
 	}
-	cornerInValue = Math.max(cornerInValue, 0.0);
-	diagnosis[diagnosisValue[20]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerAnteiUp) * 3.6;
-	diagnosis[diagnosisValue[21]] = 0.885 * Math.sqrt(0.458 * cornerInValue * cornerAnteiUp * 0.38) * 3.6;
-	diagnosis[diagnosisValue[36]] = cornerInValue * cornerAnteiUp;
-	diagnosis[diagnosisValue[37]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerAnteiUp) * 3.6;
-	diagnosis[diagnosisValue[38]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue * cornerAnteiUp * 0.38) * 3.6;
+	var cornerInValue2 = Math.max(cornerInValue * cornerAnteiUp + awakeCornerAntei * awakeBodyCornerAnteiPer, 0.0);
+	diagnosis[diagnosisValue[20]] = 0.885 * Math.sqrt(0.458 * cornerInValue2) * 3.6;
+	diagnosis[diagnosisValue[21]] = 0.885 * Math.sqrt(0.458 * cornerInValue2 * 0.38) * 3.6;
+	diagnosis[diagnosisValue[36]] = cornerInValue2;
+	diagnosis[diagnosisValue[37]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue2) * 3.6;
+	diagnosis[diagnosisValue[38]] = 0.885 * Math.sqrt((0.6 - 0.115 * 2.0 + 0.066 / 2.0) * cornerInValue2 * 0.38) * 3.6;
 
 	//ジャンプ飛距離
 	var slopeLength = 0.45;
