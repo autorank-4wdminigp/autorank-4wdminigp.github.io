@@ -401,7 +401,13 @@ function All_Calc() {
 	if (window.parent.diagnosis.document.getElementById('awakecalc2').checked) {
 		awakecalc = 2;
 	}
-	var diagnosis = Diagnosis_Calc(result.valueKaiSv, shindantire, shindantirekei, awakecalc);
+	var lanenum = 3;
+	if (window.parent.diagnosis.document.getElementById('lanenum5').checked) {
+		lanenum = 5;
+	}
+	var sectionnum = window.parent.diagnosis.document.getElementById('sectionnum').selectedIndex + 1;
+
+	var diagnosis = Diagnosis_Calc(result.valueKaiSv, shindantire, shindantirekei, awakecalc, lanenum, sectionnum);
 	for (var key in diagnosis) {
 		window.parent.diagnosis.document.getElementById(key).value = diagnosis[key];
 	}
