@@ -20,6 +20,15 @@
 	writeValue += "<td><input class='csinput1' type='radio' id='awakecalc1' name='awakecalc' onchange='All_Calc()'>覚醒オン　";
 	writeValue += "<input class='csinput1' type='radio' id='awakecalc2' name='awakecalc' onchange='All_Calc()' checked>オフ　</td>";
 
+	writeValue += "<td><input class='csinput1' type='radio' id='lanenum3' name='lanenum' onchange='All_Calc()' checked>3レーン　";
+	writeValue += "<input class='csinput1' type='radio' id='lanenum5' name='lanenum' onchange='All_Calc()'>5レーン　</td>";
+
+	writeValue += "<td>連続セクション数　<select id='sectionnum' onchange='All_Calc()'>";
+	for (var j = 1; j <= 20; j++) {
+		writeValue += "<option value=" + j + ">" + j + "</option>";
+	}
+	writeValue += "</select></td>";
+
 	writeValue += "</tr></table>";
 	writeValue += "<br><font color='#FFA500'>※3 誤差あり(電池消耗未実装)</font>";
 	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明((重心ありやスラスト角ありは誤差少しあり)</font>";

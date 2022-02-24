@@ -284,7 +284,13 @@ function All_Calc() {
 	if (document.getElementById('awakecalc2').checked) {
 		awakecalc = 2;
 	}
-	var diagnosis = Diagnosis_Calc(result.valueKaiSv, shindantire, shindantirekei, awakecalc);
+	var lanenum = 3;
+	if (document.getElementById('lanenum5').checked) {
+		lanenum = 5;
+	}
+	var sectionnum = document.getElementById('sectionnum').selectedIndex + 1;
+
+	var diagnosis = Diagnosis_Calc(result.valueKaiSv, shindantire, shindantirekei, awakecalc, lanenum, sectionnum);
 	for (var key in diagnosis) {
 		document.getElementById(key).value = diagnosis[key];
 	}
