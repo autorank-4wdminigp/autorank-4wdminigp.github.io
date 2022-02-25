@@ -128,7 +128,7 @@ kaizouTenpre[1][2] = new Array("パワロスx2 ギヤ負荷x4", 5, 5, 4, 4, 3, 3
 kaizouTenpre[1][3] = new Array("ギヤ負荷x6", 4, 4, 3, 3, 3, 3);
 kaizouTenpre[1][4] = new Array("パワロスx2 節電x4", 5, 5, 6, 6, 6, 6);
 kaizouTenpre[1][5] = new Array("パワロスx2 耐風x4", 5, 5, 7, 7, 7, 7);
-kaizouTenpre[1][6] = new Array("パワロスx2 ギヤ負荷・パワロスx4", 5, 5, 6, 6, 6, 6);
+kaizouTenpre[1][6] = new Array("パワロスx4 ギヤ負荷・パワロスx2", 5, 5, 6, 6, 2, 2);
 
 //ボディ
 s = 0;
@@ -1450,7 +1450,7 @@ kaizouValue[1][8][0] = new Array("ギヤ位置の固定(耐風重視) [4]", "耐
 kaizouValue[1][8][1] = new Array("", "パワーロス〇 [2] ", -0.02, -0.024, -0.028, -0.001, -1, 7);
 
 kaizouValue[1][9] = new Array();
-kaizouValue[1][9][0] = new Array("ギヤ精密メンテ [4?]", "ギヤ負荷〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 6);
+kaizouValue[1][9][0] = new Array("ギヤ精密メンテ [2]", "ギヤ負荷〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 6);
 kaizouValue[1][9][1] = new Array("", "パワーロス〇〇 [3] ", -0.03, -0.036, -0.042, -0.0015, -1, 7);
 kaizouValue[1][9][2] = new Array("", "コーナー安定ダウン× [18(固定UP)] ", 9.0, 10.8, 12.6, 0.9, -2, 35);
 
