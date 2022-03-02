@@ -254,6 +254,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 							awakeStamina += (8.25 + 0.75 * awakeLv) * awakeNum;
 							awakeCornerAntei += (11.0 + 1.0 * awakeLv) * awakeNum;
 						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 26) {
+							awakeStamina += 22.0 + 2.0 * awakeLv;
+							if (awakeNum == 2) {
+								awakeStamina += 44.0 + 4.0 * awakeLv;
+							}
+						}
 					}
 				}
 			}
@@ -379,6 +385,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 11) bodySpeed += 0.03;
 	if (bodyOption1 == 41) bodySpeed += 0.04;
 	if (bodyOption1 == 82) bodySpeed += 0.03;
+	if (bodyOption1 == 83) bodySpeed += 0.03;
 	if (bodyOption1 == 84) bodySpeed += 0.03;
 	if (bodyOption1 == 85) bodySpeed += 0.03;
 	if (bodyOption1 == 86) bodySpeed += 0.03;
@@ -417,6 +424,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
 	if (bodyOption2 == 82) bodySpeed += 0.015;
+	if (bodyOption2 == 83) bodySpeed += 0.015;
 	if (bodyOption2 == 84) bodySpeed += 0.015;
 	if (bodyOption2 == 85) bodySpeed += 0.015;
 	if (bodyOption2 == 86) bodySpeed += 0.015;
@@ -425,6 +433,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption3 == 11) bodySpeed += 0.015;
 	if (bodyOption3 == 41) bodySpeed += 0.025;
 	if (bodyOption3 == 82) bodySpeed += 0.015;
+	if (bodyOption3 == 83) bodySpeed += 0.015;
 	if (bodyOption3 == 84) bodySpeed += 0.015;
 	if (bodyOption3 == 85) bodySpeed += 0.015;
 	if (bodyOption3 == 86) bodySpeed += 0.015;
@@ -858,6 +867,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 3) cornerAnteiUp += 0.4;
 	if (bodyOption1 == 13) cornerAnteiUp += 0.5;
 	if (bodyOption1 == 43) cornerAnteiUp += 0.6;
+	if (bodyOption1 == 83) cornerAnteiUp += 0.5;
 	if (bodyOption1 == 23) cornerAnteiUp += 0.5;
 	if (bodyOption1 == 25) cornerAnteiUp += 0.4;
 	if (bodyOption1 == 57) cornerAnteiUp += 0.6;
@@ -865,9 +875,11 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption2 == 3) cornerAnteiUp += 0.3;
 	if (bodyOption2 == 13) cornerAnteiUp += 0.35;
 	if (bodyOption2 == 43) cornerAnteiUp += 0.4;
+	if (bodyOption2 == 83) cornerAnteiUp += 0.35;
 	if (bodyOption3 == 3) cornerAnteiUp += 0.3;
 	if (bodyOption3 == 13) cornerAnteiUp += 0.35;
 	if (bodyOption3 == 43) cornerAnteiUp += 0.4;
+	if (bodyOption3 == 83) cornerAnteiUp += 0.35;
 	var cornerInValue = 0.0 - resultValueKai[35];
 	var cornerHosei = new Array(1, 1, 3.0, 1.2, 2.0, 2.0, 2.0, 2.0, 2.0, 3.0, 2.0, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3.0);
 	for (var i = 0; i < nameValue.length; i++) {
