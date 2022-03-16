@@ -235,9 +235,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 							awakePower += (11.0 + 1.0 * awakeLv) * awakeNum;
 						}
 						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 21) {
-							awakeAerodf += 165.0 + 15.0 * awakeLv;
+							awakeAerodf += 1650.0 + 150.0 * awakeLv;
 							if (awakeNum == 2) {
-								awakeAerodf += 110.0 + 10.0 * awakeLv;
+								awakeAerodf += 1100.0 + 100.0 * awakeLv;
 							}
 						}
 						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 22) {
@@ -259,6 +259,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 							if (awakeNum == 2) {
 								awakeStamina += 44.0 + 4.0 * awakeLv;
 							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 27) {
+							awakePower += (14.2 + 1.2 * awakeLv) * awakeNum;
 						}
 					}
 				}
@@ -384,6 +387,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 1) bodySpeed += 0.02;
 	if (bodyOption1 == 11) bodySpeed += 0.03;
 	if (bodyOption1 == 41) bodySpeed += 0.04;
+	if (bodyOption1 == 81) bodySpeed += 0.03;
 	if (bodyOption1 == 82) bodySpeed += 0.03;
 	if (bodyOption1 == 83) bodySpeed += 0.03;
 	if (bodyOption1 == 84) bodySpeed += 0.03;
@@ -424,6 +428,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
+	if (bodyOption2 == 81) bodySpeed += 0.015;
 	if (bodyOption2 == 82) bodySpeed += 0.015;
 	if (bodyOption2 == 83) bodySpeed += 0.015;
 	if (bodyOption2 == 84) bodySpeed += 0.015;
@@ -433,6 +438,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption3 == 1) bodySpeed += 0.006;
 	if (bodyOption3 == 11) bodySpeed += 0.015;
 	if (bodyOption3 == 41) bodySpeed += 0.025;
+	if (bodyOption3 == 81) bodySpeed += 0.015;
 	if (bodyOption3 == 82) bodySpeed += 0.015;
 	if (bodyOption3 == 83) bodySpeed += 0.015;
 	if (bodyOption3 == 84) bodySpeed += 0.015;
@@ -655,10 +661,13 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	//ｴｱﾛﾀﾞｳﾝﾌｫｰｽ
 	var bodyAerodf = 0.0 + awakeAerodf * awakeBodyAerodfPer;
 	if (bodyOption1 == 75) bodyAerodf += 1500.0;
+	if (bodyOption1 == 81) bodyAerodf += 1000.0;
 	if (bodyOption1 == 64) bodyAerodf += 500.0;
 	if (bodyOption1 == 116) bodyAerodf += 1300.0;
 	if (bodyOption2 == 75) bodyAerodf += 1000.0;
+	if (bodyOption2 == 81) bodyAerodf += 500.0;
 	if (bodyOption3 == 75) bodyAerodf += 1000.0;
+	if (bodyOption3 == 81) bodyAerodf += 500.0;
 
 	diagnosis[diagnosisValue[36]] = bodyOffload + resultValueKai[20];
 	diagnosis[diagnosisValue[37]] = bodyWave + resultValueKai[19];
