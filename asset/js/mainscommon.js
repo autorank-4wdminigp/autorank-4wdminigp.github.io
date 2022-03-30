@@ -387,6 +387,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 114) bodyPower += 0.15;
 	if (bodyOption1 == 116) bodyPower += 0.06;
 	if (bodyOption1 == 119) bodyPower += 0.1;
+	if (bodyOption1 == 121) bodyPower -= 0.06;
 	if (bodyOption2 == 2) bodyPower += 0.024;
 	if (bodyOption2 == 12) bodyPower += 0.06;
 	if (bodyOption2 == 42) bodyPower += 0.1;
@@ -449,6 +450,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 118) bodySpeed += 0.095;
 	if (bodyOption1 == 119) bodySpeed += 0.025;
 	if (bodyOption1 == 120) bodySpeed += 0.02;
+	if (bodyOption1 == 121) bodySpeed += 0.06;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -611,6 +613,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 118) ftiregripUp += 0.2; //ブレイジングジェット
 	if (bodyOption1 == 119) ftiregripUp += 0.12; //アブソリュートフレイム
 	if (bodyOption1 == 120) ftiregripUp += 0.07; //アルミュールスチール
+	if (bodyOption1 == 121) ftiregripUp += 0.15; //スパイダースプリント
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13] + awakeFtiregrip;
@@ -916,6 +919,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 57) cornerAnteiUp += 0.6;
 	if (bodyOption1 == 95) cornerAnteiUp += 0.6;
 	if (bodyOption1 == 117) cornerAnteiUp -= 0.5;
+	if (bodyOption1 == 121) cornerAnteiUp += 0.4;
 	if (bodyOption2 == 3) cornerAnteiUp += 0.3;
 	if (bodyOption2 == 13) cornerAnteiUp += 0.35;
 	if (bodyOption2 == 43) cornerAnteiUp += 0.4;
