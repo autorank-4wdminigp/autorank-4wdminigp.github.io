@@ -283,6 +283,26 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 								awakePowerPer += 0.033 + 0.003 * awakeLv;
 							}
 						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 31) {
+							if (awakeNum == 1) {
+								if (v == 6) {
+									awakeFtiregrip += 44.0 + 4.0 * awakeLv;
+								}
+								if (v == 7) {
+									awakeRtiregrip += 44.0 + 4.0 * awakeLv;
+								}
+								awakeCornerAntei += 55.0 + 5.0 * awakeLv;
+							}
+							if (awakeNum == 2) {
+								if (v == 6) {
+									awakeFtiregrip += 22.0 + 2.0 * awakeLv;
+								}
+								if (v == 7) {
+									awakeRtiregrip += 22.0 + 2.0 * awakeLv;
+								}
+								awakeCornerAntei += 33.0 + 3.0 * awakeLv;
+							}
+						}
 					}
 				}
 			}
@@ -332,6 +352,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (setsudenValue != 0 && bodyOption1 == 65) setsudenUp += 0.15;
 	if (setsudenValue != 0 && bodyOption1 == 70) setsudenUp -= 0.4;
 	if (setsudenValue != 0 && bodyOption1 == 91) setsudenUp += 0.15;
+	if (setsudenValue != 0 && bodyOption1 == 122) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption2 == 8) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption2 == 18) setsudenUp += 0.17;
 	if (setsudenValue != 0 && bodyOption2 == 48) setsudenUp += 0.2;
@@ -403,6 +424,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	var bodyPowerloss = 1.0 + awakePowerlossPer;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 	if (bodyOption1 == 111) bodyPowerloss -= 0.08;
+	if (bodyOption1 == 122) bodyPowerloss -= 0.2;
 
 	//最高速度
 	var bodySpeed = 1.0 + awakeSpeedPer * awakeBodySpeedPer;
@@ -614,6 +636,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 119) ftiregripUp += 0.12; //アブソリュートフレイム
 	if (bodyOption1 == 120) ftiregripUp += 0.07; //アルミュールスチール
 	if (bodyOption1 == 121) ftiregripUp += 0.15; //スパイダースプリント
+	if (bodyOption1 == 122) ftiregripUp += 0.12; //ZXブレイザー
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13] + awakeFtiregrip;
