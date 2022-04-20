@@ -30,6 +30,7 @@
 	writeValue += "</select></td>";
 
 	writeValue += "</tr></table>";
+	writeValue += "<br><font color='#FFA500'>※2 誤差あり</font>";
 	writeValue += "<br><font color='#FFA500'>※3 誤差あり(電池消耗未実装)</font>";
 	writeValue += "<br><font color='#FFA500'>※4 ほぼ解明((重心ありやスラスト角ありは誤差少しあり)</font>";
 	writeValue += "<br><font color='#FFA500'>※5 誤差あり(電池消耗未実装)</font>";
