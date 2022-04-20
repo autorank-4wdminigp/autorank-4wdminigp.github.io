@@ -418,7 +418,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (setsudenValue != 0 && bodyOption3 == 48) setsudenUp += 0.2;
 	if (setsudenValue != 0 && bodyOption3 == 88) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption3 == 108) setsudenUp += 0.12;
-	var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0001);
+	//var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0001);
+	setsudenValue = setsudenValue * setsudenUp;
+	setsudenValue = -2.2715504528582 / 10000000000000000.0 * Math.pow(setsudenValue, 5) + 9.20197562470307 / 1000000000000.0 * Math.pow(setsudenValue, 4) - 1.353328948115 / 10000000.0 * Math.pow(setsudenValue, 3) + 7.94223244750647 / 10000.0 * Math.pow(setsudenValue, 2) - 0.471937169239936 * setsudenValue + 43.7150290906429;
+	var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue / 10000.0, 0.0001);
 	diagnosis[diagnosisValue[2]] = batteryValue;
 
 	//異径スピロス
