@@ -419,13 +419,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (setsudenValue != 0 && bodyOption3 == 88) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption3 == 108) setsudenUp += 0.12;
 	//var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0001);
-	setsudenValue = setsudenValue * setsudenUp;
-	if (setsudenValue > 5000.0) {
-		setsudenValue = -1.14098833317918 / 1000000000000000000.0 * Math.pow(setsudenValue, 5) - 3.18569685442552 / 10000000000000.0 * Math.pow(setsudenValue, 4) + 1.85626707725803 / 100000000.0 * Math.pow(setsudenValue, 3) - 3.91410819927965 / 10000.0 * Math.pow(setsudenValue, 2) + 3.85066568039368 * setsudenValue - 5877.67646358502;
-	} else if (setsudenValue > 0.0){
-		setsudenValue = 3.48208568878374 / 1000000000000000.0 * Math.pow(setsudenValue, 5) - 4.52492824424229 / 100000000000.0 * Math.pow(setsudenValue, 4) + 1.47506488081331 / 10000000.0 * Math.pow(setsudenValue, 3) + 1.9037871587102 / 10000.0 * Math.pow(setsudenValue, 2) - 0.0243699206221208 * setsudenValue + 0.433380708331242;
-	}
-	var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue / 10000.0, 0.0001);
+	var batteryValue = resultValueKai[22] / (1 + Math.pow(setsudenValue * setsudenUp / 4445.04146576913, 2.4));
 	diagnosis[diagnosisValue[2]] = batteryValue;
 
 	//異径スピロス
