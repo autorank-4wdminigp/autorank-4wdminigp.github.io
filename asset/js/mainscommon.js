@@ -419,7 +419,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (setsudenValue != 0 && bodyOption3 == 88) setsudenUp += 0.12;
 	if (setsudenValue != 0 && bodyOption3 == 108) setsudenUp += 0.12;
 	//var batteryValue = resultValueKai[22] * Math.max(1 - setsudenValue * setsudenUp / 10000.0, 0.0001);
-	var batteryValue = resultValueKai[22] / (1 + Math.pow(setsudenValue * setsudenUp / 4445.04146576913, 2.4));
+	var batteryValue = resultValueKai[22] / (1 + Math.pow(Math.max(setsudenValue * setsudenUp, 0.0) / 4445.04146576913, 2.4));
 	diagnosis[diagnosisValue[2]] = batteryValue;
 
 	//異径スピロス
@@ -706,6 +706,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
 	//tiregripValue += statusArray[29][13];
 	//tiregripValue += statusArray[33][13];
+	tiregripValue += statusArray[10][13];
+	tiregripValue += statusArray[19][13];
 	diagnosis[diagnosisValue[5]] = (tiregripValue * ftiregripUp) / 100.0;
 
 	//空転
