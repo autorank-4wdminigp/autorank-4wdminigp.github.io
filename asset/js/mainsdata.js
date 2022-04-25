@@ -2271,6 +2271,7 @@ awakeOption[22] = [32];//11mm大径スタビヘッド
 awakeOption[23] = [33];//スペーサー付リヤローラー･スタビステーSS
 awakeOption[24] = [34];//スーパーXシャーシSS
 awakeOption[25] = [35];//ウイング･ダクトSS(ウイングA)
+awakeOption[26] = [35];
 
 var awakeValue = new Array();
 awakeValue[0] = new Array("－", "－");
