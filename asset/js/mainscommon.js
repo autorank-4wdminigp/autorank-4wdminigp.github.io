@@ -87,6 +87,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 114) awakeBodyStaminaPer += 0.1;
 	if (bodyOption1 == 120) awakeBodyStaminaPer += 0.2;
 
+	var awakeBodyDigitalPer = 1.0;
+	if (bodyOption1 == 124) awakeBodyDigitalPer += 0.5;
+
 	var awakeSpeedPer = 0.0;
 	var awakePowerPer = 0.0;
 	var awakeCornerAnteiPer = 0.0;
@@ -109,6 +112,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	var awakeWave = 0.0;
 	var awakeStamina = 0.0;
 	var awakeBrake = 0.0;
+	var awakeDigital = 0.0;
 
 	if (awakecalc == 1) {
 		for (var v = 0; v < nameValue.length; v++) {
@@ -699,6 +703,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 121) ftiregripUp += 0.15; //スパイダースプリント
 	if (bodyOption1 == 122) ftiregripUp += 0.12; //ZXブレイザー
 	if (bodyOption1 == 123) ftiregripUp += 0.2; //ターミネートモード
+	if (bodyOption1 == 124) ftiregripUp += 0.1; //)レジストブースト
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13] + awakeFtiregrip;
@@ -770,11 +775,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (resultValueKai[19] != 0 && bodyOption3 == 68) bodyWave += 15000.0;
 
 	//デジタル
-	var bodyDigital = 0.0;
+	var bodyDigital = 0.0 + awakeDigital * awakeBodyDigitalPer;
 	if (resultValueKai[25] != 0 && bodyOption1 == 78) bodyDigital += 25000.0;
 	if (resultValueKai[25] != 0 && bodyOption1 == 36) bodyDigital += 5000.0;
 	if (resultValueKai[25] != 0 && bodyOption1 == 39) bodyDigital += 4000.0;
 	if (resultValueKai[25] != 0 && bodyOption1 == 66) bodyDigital += 7000.0;
+	if (resultValueKai[25] != 0 && bodyOption1 == 124) bodyDigital += 25000.0;
 	if (resultValueKai[25] != 0 && bodyOption2 == 78) bodyDigital += 15000.0;
 	if (resultValueKai[25] != 0 && bodyOption3 == 78) bodyDigital += 15000.0;
 
@@ -860,6 +866,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 114) bodyStamina += 0.1;
 	if (bodyOption1 == 120) bodyStamina += 0.25;
 	if (bodyOption1 == 123) bodyStamina -= 0.2;
+	if (bodyOption1 == 124) bodyStamina += 0.3;
 	if (bodyOption2 == 5) bodyStamina += 0.05;
 	if (bodyOption2 == 15) bodyStamina += 0.1;
 	if (bodyOption2 == 45) bodyStamina += 0.2;
