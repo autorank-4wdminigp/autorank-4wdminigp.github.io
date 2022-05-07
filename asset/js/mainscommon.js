@@ -362,6 +362,25 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 								awakePower -= 30.0;
 							}
 						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 36) {
+							awakeDigital += 3300.0 + 300.0 * awakeLv;
+							if (awakeNum >= 2) {
+								awakeDigital -= 825.0 + 75.0 * awakeLv;
+								awakeStamina += 2.75 + 0.25 * awakeLv;
+							}
+							if (awakeNum >= 3) {
+								awakeDigital -= 825.0 + 75.0 * awakeLv;
+								awakeStamina += 2.75 + 0.25 * awakeLv;
+							}
+							if (awakeNum >= 4) {
+								awakeDigital -= 825.0 + 75.0 * awakeLv;
+								awakeStamina += 2.75 + 0.25 * awakeLv;
+							}
+							if (awakeNum == 5) {
+								awakeDigital -= 825.0 + 75.0 * awakeLv;
+								awakeStamina += 2.75 + 0.25 * awakeLv;
+							}
+						}
 					}
 				}
 			}
