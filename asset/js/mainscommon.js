@@ -240,7 +240,19 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 							awakePower += (16.5 + 1.5 * awakeLv) * awakeNum;
 						}
 						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 18) {
-							awakeGearPer -= (0.22 + 0.02 * awakeLv) * (5.0 - awakeNum) / 4.0;
+							awakeGearPer -= 0.22 + 0.02 * awakeLv;
+							if (awakeNum >= 2) {
+								awakeGearPer += 0.044 + 0.004 * awakeLv;
+							}
+							if (awakeNum >= 3) {
+								awakeGearPer += 0.044 + 0.004 * awakeLv;
+							}
+							if (awakeNum >= 4) {
+								awakeGearPer += 0.066 + 0.006 * awakeLv;
+							}
+							if (awakeNum == 5) {
+								awakeGearPer += 0.066 + 0.006 * awakeLv;
+							}
 						}
 						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 19) {
 							awakeSpeed += (11.0 + 1.0 * awakeLv) * awakeNum;
@@ -381,6 +393,38 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 								awakeStamina += 2.75 + 0.25 * awakeLv;
 							}
 						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 37) {
+							awakeSpeed += 11.0 + 1.0 * awakeLv;
+							awakePower += 5.5 + 0.5 * awakeLv;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 38) {
+							awakeGearPer -= 0.0275 + 0.0025 * awakeLv;
+							if (awakeNum >= 2) {
+								awakeGearPer -= 0.0408 + 0.0038 * awakeLv;
+							}
+							if (awakeNum == 3) {
+								awakeGearPer -= 0.0683 + 0.0063 * awakeLv;
+							}
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 39) {
+							awakeSpeed += 16.5 + 1.5 * awakeLv;
+							awakeOffload += 1650.0 + 150.0 * awakeLv;
+							if (v == 6) {
+								awakeFtiregrip += 5.0;
+							}
+							if (v == 7) {
+								awakeRtiregrip += 5.0;
+							}
+							if (awakeNum >= 2) {
+								awakeSpeed += (16.5 + 1.5 * awakeLv) * (awakeNum - 1);
+								if (v == 6) {
+									awakeFtiregrip += 5.0 * (awakeNum - 1);
+								}
+								if (v == 7) {
+									awakeRtiregrip += 5.0 * (awakeNum - 1);
+								}
+							}
+						}
 					}
 				}
 			}
@@ -518,6 +562,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 85) bodySpeed += 0.03;
 	if (bodyOption1 == 86) bodySpeed += 0.03;
 	if (bodyOption1 == 88) bodySpeed += 0.03;
+	if (bodyOption1 == 89) bodySpeed += 0.03;
 	if (bodyOption1 == 90) bodySpeed += 0.03;
 	if (bodyOption1 == 21) bodySpeed += 0.04;
 	if (bodyOption1 == 23) bodySpeed += 0.03;
@@ -565,6 +610,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption2 == 85) bodySpeed += 0.015;
 	if (bodyOption2 == 86) bodySpeed += 0.015;
 	if (bodyOption2 == 88) bodySpeed += 0.015;
+	if (bodyOption2 == 89) bodySpeed += 0.015;
 	if (bodyOption2 == 90) bodySpeed += 0.015;
 	if (bodyOption3 == 1) bodySpeed += 0.006;
 	if (bodyOption3 == 11) bodySpeed += 0.015;
@@ -576,6 +622,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption3 == 85) bodySpeed += 0.015;
 	if (bodyOption3 == 86) bodySpeed += 0.015;
 	if (bodyOption3 == 88) bodySpeed += 0.015;
+	if (bodyOption3 == 89) bodySpeed += 0.015;
 	if (bodyOption3 == 90) bodySpeed += 0.015;
 	var hoseiSpeedStr = "";
 	var hoseiAcceleStr = "";
@@ -769,14 +816,17 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	var bodyOffload = 0.0 + awakeOffload;
 	if (resultValueKai[20] != 0 && bodyOption1 == 9) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 19) bodyOffload += 25000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 89) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 29) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 80) bodyOffload += 25000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 94) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 19) bodyOffload += 15000.0;
+	if (resultValueKai[20] != 0 && bodyOption2 == 89) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 19) bodyOffload += 15000.0;
+	if (resultValueKai[20] != 0 && bodyOption3 == 89) bodyOffload += 10000.0;
 	//diagnosis[diagnosisValue[17]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
 	var shibaFuka = (1.0 - Math.min((bodyOffload + resultValueKai[20]) * Math.pow(sectiondown, sectionnum - 1), 10000.0) / 10000.0) * weightValue * 0.068 * (weightValue * rtirekeiValue / 2.0) / (10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) * (resultValueKai[21] * awakeGearPer));
 	diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka), speedValue2 / 5.0) * 3.6;
