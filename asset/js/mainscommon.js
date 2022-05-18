@@ -425,6 +425,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 								}
 							}
 						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 40) {
+							awakePower += 8.8 + 0.8 * awakeLv;
+						}
 					}
 				}
 			}
@@ -600,6 +603,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 120) bodySpeed += 0.02;
 	if (bodyOption1 == 121) bodySpeed += 0.06;
 	if (bodyOption1 == 123) bodySpeed += 0.065;
+	if (bodyOption1 == 125) bodySpeed += 0.05;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -769,7 +773,8 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 121) ftiregripUp += 0.15; //スパイダースプリント
 	if (bodyOption1 == 122) ftiregripUp += 0.12; //ZXブレイザー
 	if (bodyOption1 == 123) ftiregripUp += 0.2; //ターミネートモード
-	if (bodyOption1 == 124) ftiregripUp += 0.1; //)レジストブースト
+	if (bodyOption1 == 124) ftiregripUp += 0.1; //レジストブースト
+	if (bodyOption1 == 125) ftiregripUp += 0.2; //シンクロコア
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	var ftiregripValue = statusArray[6][13] + awakeFtiregrip;
@@ -800,6 +805,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (resultValueKai[26] != 0 && bodyOption1 == 58) bodyTaifuu += 4000.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 90) bodyTaifuu += 8000.0;
 	if (resultValueKai[26] != 0 && bodyOption1 == 112) bodyTaifuu += 6000.0;
+	if (resultValueKai[26] != 0 && bodyOption1 == 125) bodyTaifuu += 6000.0;
 	if (resultValueKai[26] != 0 && bodyOption2 == 72) bodyTaifuu += 7000.0;
 	if (resultValueKai[26] != 0 && bodyOption2 == 90) bodyTaifuu += 4000.0;
 	if (resultValueKai[26] != 0 && bodyOption3 == 72) bodyTaifuu += 7000.0;
@@ -1002,6 +1008,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 59) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 60) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 93) bodyCornerdecele3 -= 0.5;
+	if (bodyOption1 == 125) bodyCornerdecele3 -= 0.7;
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
