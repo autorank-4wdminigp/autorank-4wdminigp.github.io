@@ -635,7 +635,7 @@ function UrlSet() {
 						kaizouArray[value1][25] = index;
 						awakeoffset = 26;
 					}
-					if ((value1 == 32 && presetText.length <= (669 + charLenTmp)) || (value1 == 34 && presetText.length <= (690 + charLenTmp))) {
+					if ((value1 == 32 && presetText.length <= (669 + charLenTmp)) || (value1 == 34 && presetText.length <= (690 + charLenTmp)) || (value1 == 35 && presetText.length <= (904 + charLenTmp))) {
 						kaizouArray[value1][0] = 0;
 						for (var i = 1; i <= slotNumTmp; i++) {
 							kaizouArray[value1][1 + (i - 1) * 3] = 0;
