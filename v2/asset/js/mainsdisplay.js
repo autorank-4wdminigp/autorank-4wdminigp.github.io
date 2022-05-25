@@ -499,7 +499,7 @@ function UrlSet() {
 		var presetText = url.substring(start + 1);
 		var index = 0;
 		var pos = 0;
-		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668 22x31+4+3=689 22x32+4+3=711 28x32+4+3=903
+		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668 22x31+4+3=689 22x32+4+3=711 28x32+4+3=903 28x33+4+3=931
 			var indexEnd = UrlToNum(presetText.charAt(presetText.length - 1));
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
@@ -545,7 +545,7 @@ function UrlSet() {
 						kaizouArray[value1][25] = index;
 						awakeoffset = 26;
 					}
-					if ((value1 == 32 && presetText.length <= (669 + charLenTmp)) || (value1 == 34 && presetText.length <= (690 + charLenTmp))) {
+					if ((value1 == 32 && presetText.length <= (669 + charLenTmp)) || (value1 == 34 && presetText.length <= (690 + charLenTmp)) || (value1 == 35 && presetText.length <= (904 + charLenTmp))) {
 						kaizouArray[value1][0] = 0;
 						for (var i = 1; i <= slotNumTmp; i++) {
 							kaizouArray[value1][1 + (i - 1) * 3] = 0;
