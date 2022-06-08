@@ -799,3 +799,4 @@ function Parts_Out(value1) {
 	document.getElementById(nameValue[value1]).selectedIndex = 0;
 	Type_Set(value1, nameUpdate[nameCalc[value1]]);
 }
+
