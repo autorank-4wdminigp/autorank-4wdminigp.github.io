@@ -35,3 +35,4 @@ function View_Menus() {
 	writeValue += "<input type='hidden' id='menu_oldselect' value='0'>";
 	document.getElementById("bmain").innerHTML = writeValue;
 }
+
