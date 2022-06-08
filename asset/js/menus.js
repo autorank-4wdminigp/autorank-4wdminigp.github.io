@@ -17,7 +17,7 @@ function View_Menus() {
 	menuValue[10] = new Array(-1, 23, -1, 24);
 	menuValue[11] = new Array(25, 26, 27, 28);
 	menuValue[12] = new Array(29, 30, 31, 32);
-	menuValue[13] = new Array(-1, -1, 33, -1);
+	menuValue[13] = new Array(36, -1, -1, 33);
 	var writeValue = "<table class='csmenutable'>";
 	for (var j = 0; j <= 13; j++) {
 		writeValue += "<tr>";

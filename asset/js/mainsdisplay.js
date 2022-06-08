@@ -330,7 +330,7 @@ function Menu_Set(value1) {
 		}
 	}
 	var imgNo = nameCalc[value1];
-	if (value1 >= 25 && value1 <= 32) {
+	if ((value1 >= 25 && value1 <= 32) || value1 == 36) {
 		imgNo = 13;
 	}
 	window.parent.menus.document.getElementById("id_menu" + value1 + "_img").innerHTML = "<img class='csimg' src='asset/img/img" + imgNo + imgName + ".png' onclick='Menu_Click(" + value1 + ")'>";
@@ -352,8 +352,8 @@ function Menu_Set(value1) {
 
 function All_Set() {
 	for (var i = 0; i < nameValue.length; i++) {
-		statusArray[i] = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //35
-		statusArrayInit[i] = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //35
+		statusArray[i] = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //36
+		statusArrayInit[i] = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //36
 		if (kaizouSelect[nameCalc[i]][0].length != 0) {
 			if (i == 2) {
 				kaizouArray[i] = new Array(0, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 49, 0, 2, 0, 0, 0, 9, 0, 0, 9, 0);
@@ -365,7 +365,7 @@ function All_Set() {
 			kaizouArray[i] = new Array(0, 0);
 		}
 	}
-	urlArray = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); //35
+	urlArray = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); //36
 	calcFlg = 1;
 	resultFlg = 1;
 	UrlSet();
@@ -435,7 +435,7 @@ function Type_CalcArray(value1, viewFlg) {
 	}
 	var nameIndex = kaizouArray[value1][0];
 	if (kaizouSelect[nameCalc[value1]][0].length == 0) {
-		var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //35
+		var calcValue = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //36
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length - addStatusNum; i++) {
 			calcValue[i] = selectValue[nameCalc[value1]][nameIndex][i + addStatusNum];
 			statusArray[value1][i] = calcValue[i];
@@ -457,8 +457,8 @@ function Type_CalcArray(value1, viewFlg) {
 				}
 			}
 		}
-		var calcValueSv = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //35
-		var calcValueSvInit = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //35
+		var calcValueSv = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //36
+		var calcValueSvInit = new Array(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); //36
 		for (var i = 1; i < selectValue[nameCalc[value1]][nameIndex].length - addStatusNum; i++) {
 			calcValueSv[i] = selectValue[nameCalc[value1]][nameIndex][i + addStatusNum];
 			calcValueSvInit[i] = calcValueSv[i];
@@ -589,7 +589,7 @@ function UrlSet() {
 		var presetText = url.substring(start + 1);
 		var index = 0;
 		var pos = 0;
-		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668 22x31+4+3=689 22x32+4+3=711 28x32+4+3=903 28x33+4+3=931
+		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668 22x31+4+3=689 22x32+4+3=711 28x32+4+3=903 28x33+4+3=931 28x34+4+3=959
 			var indexEnd = UrlToNum(presetText.charAt(presetText.length - 1));
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
@@ -635,7 +635,7 @@ function UrlSet() {
 						kaizouArray[value1][25] = index;
 						awakeoffset = 26;
 					}
-					if ((value1 == 32 && presetText.length <= (669 + charLenTmp)) || (value1 == 34 && presetText.length <= (690 + charLenTmp)) || (value1 == 35 && presetText.length <= (904 + charLenTmp))) {
+					if ((value1 == 32 && presetText.length <= (669 + charLenTmp)) || (value1 == 34 && presetText.length <= (690 + charLenTmp)) || (value1 == 35 && presetText.length <= (904 + charLenTmp)) || (value1 == 36 && presetText.length <= (932 + charLenTmp))) {
 						kaizouArray[value1][0] = 0;
 						for (var i = 1; i <= slotNumTmp; i++) {
 							kaizouArray[value1][1 + (i - 1) * 3] = 0;
