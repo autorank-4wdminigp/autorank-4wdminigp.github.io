@@ -591,9 +591,9 @@ function UrlSet() {
 		var pos = 0;
 		if (presetText.length >= ((1 + 3 * 6) * (nameValue.length - 5) + 5 + 3)) { //19x29+5+3=559 19x30+4+3=577 19x30+4+4=578 22x30+4+4=668 22x31+4+3=689 22x32+4+3=711 28x32+4+3=903 28x33+4+3=931 28x34+4+3=959
 			var indexEnd = UrlToNum(presetText.charAt(presetText.length - 1));
+			var charLenTmp = 0;
 			for (var value1 = 0; value1 < nameValue.length; value1++) {
 				var str = presetText.charAt(pos++);
-				var charLenTmp = 0;
 				index = UrlToNum(str);
 				if (index > 60) {
 					str = presetText.charAt(pos++);
@@ -620,17 +620,20 @@ function UrlSet() {
 							index = UrlToNum(presetText.charAt(pos++));
 							if (index > 60) {
 								index += UrlToNum(presetText.charAt(pos++));
+								charLenTmp++;
 							}
 							kaizouArray[value1][23] = index;
 						}
 						index = UrlToNum(presetText.charAt(pos++));
 						if (index > 60) {
 							index += UrlToNum(presetText.charAt(pos++));
+							charLenTmp++;
 						}
 						kaizouArray[value1][24] = index;
 						index = UrlToNum(presetText.charAt(pos++));
 						if (index > 60) {
 							index += UrlToNum(presetText.charAt(pos++));
+							charLenTmp++;
 						}
 						kaizouArray[value1][25] = index;
 						awakeoffset = 26;
