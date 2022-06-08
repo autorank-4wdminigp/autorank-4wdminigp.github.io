@@ -15,7 +15,7 @@ function View_Menus() {
 	menuValue[10] = new Array(-1, 23, -1, 24);
 	menuValue[11] = new Array(25, 26, 27, 28);
 	menuValue[12] = new Array(29, 30, 31, 32);
-	menuValue[13] = new Array(-1, -1, 33, -1);
+	menuValue[13] = new Array(36, -1, -1, 33);
 	var writeValue = "<table class='csmenutable'>";
 	for (var j = 0; j <= 13; j++) {
 		writeValue += "<tr>";
@@ -131,7 +131,7 @@ function Menu_Set(value1) {
 		}
 	}
 	var imgNo = nameCalc[value1];
-	if (value1 >= 25 && value1 <= 32) {
+	if ((value1 >= 25 && value1 <= 32) || value1 == 36) {
 		imgNo = 13;
 	}
 	document.getElementById("id_menu" + value1 + "_img").innerHTML = "<img class='csimg' src='../asset/img/img" + imgNo + imgName + ".png' onclick='Menu_Click(" + value1 + ")'>";
