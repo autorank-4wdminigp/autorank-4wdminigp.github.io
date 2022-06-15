@@ -469,6 +469,17 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 48) {
 							awakePowerloss -= 44.0 + 4.0 * awakeLv;
 						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 49) {
+							awakePowerloss -= (10.0 + 0.0 * awakeLv) * awakeNum;
+							awakePower += (5.5 + 0.5 * awakeLv) * awakeNum;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 50) {
+							awakeCornerAntei += 55.0 + 5.0 * awakeLv;
+						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 51) {
+							awakeSpeed += (16.5 + 1.5 * awakeLv) * awakeNum;
+							awakeRollerangle -= (0.55 + 0.05 * awakeLv) * awakeNum;
+						}
 					}
 				}
 			}
@@ -652,6 +663,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 125) bodySpeed += 0.05;
 	if (bodyOption1 == 126) bodySpeed += 0.03;
 	if (bodyOption1 == 127) bodySpeed += 0.03;
+	if (bodyOption1 == 128) bodySpeed += 0.05;
 	if (bodyOption2 == 1) bodySpeed += 0.006;
 	if (bodyOption2 == 11) bodySpeed += 0.015;
 	if (bodyOption2 == 41) bodySpeed += 0.025;
@@ -826,6 +838,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 125) ftiregripUp += 0.2; //シンクロコア
 	if (bodyOption1 == 126) ftiregripUp += 0.25; //終焉の炎
 	if (bodyOption1 == 127) ftiregripUp += 0.12; //ライトストラーダ
+	if (bodyOption1 == 128) ftiregripUp += 0.2; //サンダーロアー
 	if (bodyOption2 == 62) ftiregripUp += 0.16;
 	if (bodyOption2 == 102) ftiregripUp += 0.08;
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
@@ -899,6 +912,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	var bodyWave = 0.0 + awakeWave;
 	if (resultValueKai[19] != 0 && bodyOption1 == 68) bodyWave += 25000.0;
 	if (resultValueKai[19] != 0 && bodyOption1 == 39) bodyWave += 4000.0;
+	if (resultValueKai[19] != 0 && bodyOption1 == 128) bodyWave += 10000.0;
 	if (resultValueKai[19] != 0 && bodyOption2 == 68) bodyWave += 15000.0;
 	if (resultValueKai[19] != 0 && bodyOption3 == 68) bodyWave += 15000.0;
 
@@ -1046,6 +1060,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 55) bodyCornerdecele2 -= 0.5;
 	if (bodyOption1 == 56) bodyCornerdecele2 += 0.17;
 	if (bodyOption1 == 118) bodyCornerdecele2 += 0.2;
+	if (bodyOption1 == 128) bodyCornerdecele2 -= 0.5;
 	if (bodyOption2 == 4) bodyCornerdecele2 -= 0.085;
 	if (bodyOption2 == 14) bodyCornerdecele2 -= 0.1;
 	if (bodyOption2 == 44) bodyCornerdecele2 -= 0.3;
@@ -1064,6 +1079,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 93) bodyCornerdecele3 -= 0.5;
 	if (bodyOption1 == 125) bodyCornerdecele3 -= 0.7;
 	if (bodyOption1 == 126) bodyCornerdecele3 -= 0.5;
+	if (bodyOption1 == 128) bodyCornerdecele3 -= 0.7;
 	var rollermasatsuValue = 0.0;
 	var rollerNo = new Array(14, 11, 15, 12, 16, 13, 17, 18);
 	for (var i = 0; i < rollerNo.length; i++) {
