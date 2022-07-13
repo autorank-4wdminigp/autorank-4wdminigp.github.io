@@ -537,6 +537,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 55) {
 							awakeCornerAntei += (30.0 + 3.0 * awakeLv) * awakeNum;
 						}
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 56) {
+							if (awakeNum == 1) {
+								awakeSpeed += 50.0 + 5.0 * awakeLv;
+								awakePower += 20.0 + 2.0 * awakeLv;
+							}
+						}
 					}
 				}
 			}
