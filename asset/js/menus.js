@@ -5,7 +5,7 @@
 function View_Menus() {
 	var menuValue = new Array();
 	menuValue[0] = new Array(-1, 2, 0, 1);
-	menuValue[1] = new Array(34, -1, 3, -1);
+	menuValue[1] = new Array(34, 37, 3, 38);
 	menuValue[2] = new Array(4, 6, 5, 7);
 	menuValue[3] = new Array(-1, 8, 9, 10);
 	menuValue[4] = new Array(-1, 35, -1, -1);
