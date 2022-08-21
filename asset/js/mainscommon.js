@@ -595,7 +595,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 								awakePower -= 6.0;
 							}
 						}
-						
+						if (awakeOption[awakeIndex][awakeSelectIndex - 1] == 61) {
+							awakeSeishin += 450.0 + 45.0 * awakeLv;
+						}
 					}
 				}
 			}
@@ -984,8 +986,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 102) ftiregripUp += 0.08;
 	// 後ろ重心による摩擦補正
-	if (gravityValue < 0) ftiregripUp += -0.0117 * gravityValue + -7.5e-5 * Math.pow(gravityValue, 2) + -8.33e-7 * Math.pow(gravityValue, 3);
-	//if (gravityValue < 0) ftiregripUp += -0.0111 * gravityValue + -2.735e-5 * Math.pow(gravityValue, 2);
+	if (gravityValue < 0) ftiregripUp += -0.01 * gravityValue;
 	var ftiregripValue = statusArray[6][13] + awakeFtiregrip;
 	var rtiregripValue = statusArray[7][13] + awakeRtiregrip;
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
