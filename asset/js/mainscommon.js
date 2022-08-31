@@ -1005,7 +1005,12 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption3 == 62) ftiregripUp += 0.16;
 	if (bodyOption3 == 102) ftiregripUp += 0.08;
 	// 後ろ重心による摩擦補正
-	if (gravityValue < 0) ftiregripUp += -0.01 * gravityValue;
+	//if (gravityValue < 0) ftiregripUp += -0.0118 * gravityValue;
+	//if (gravityValue < 0) ftiregripUp += -0.0125 * gravityValue + -6.36e-5 * Math.pow(gravityValue, 2);
+	//if (gravityValue < 0) ftiregripUp += -0.0116 * gravityValue + 8.0e-5 * Math.pow(gravityValue, 2) + 3.0e-6 * Math.pow(gravityValue, 3);
+
+	if (gravityValue < 0) ftiregripUp += -0.0113 * gravityValue + 1.0e-4 * Math.pow(gravityValue, 2) + 3.33e-6 * Math.pow(gravityValue, 3);
+	//if (gravityValue < 0) ftiregripUp += Math.log(-9.86 * gravityValue);
 	var ftiregripValue = statusArray[6][13] + awakeFtiregrip;
 	var rtiregripValue = statusArray[7][13] + awakeRtiregrip;
 	var tiregripValue = (ftiregripValue * (resultValueKai[31] / 2.0 + gravityValue) + rtiregripValue * (resultValueKai[31] / 2.0 - gravityValue)) / resultValueKai[31];
