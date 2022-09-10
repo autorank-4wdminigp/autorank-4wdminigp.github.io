@@ -719,6 +719,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption1 == 102) bodyPower += 0.12;
 	if (bodyOption1 == 105) bodyPower += 0.12;
 	if (bodyOption1 == 108) bodyPower += 0.12;
+	if (bodyOption1 == 109) bodyPower += 0.12;
 	if (bodyOption1 == 22) bodyPower += 0.12;
 	if (bodyOption1 == 25) bodyPower += 0.075;
 	if (bodyOption1 == 30) bodyPower += 0.03;
@@ -744,6 +745,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption2 == 102) bodyPower += 0.06;
 	if (bodyOption2 == 105) bodyPower += 0.06;
 	if (bodyOption2 == 108) bodyPower += 0.06;
+	if (bodyOption2 == 109) bodyPower += 0.06;
 	if (bodyOption3 == 2) bodyPower += 0.024;
 	if (bodyOption3 == 12) bodyPower += 0.06;
 	if (bodyOption3 == 42) bodyPower += 0.1;
@@ -751,6 +753,7 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (bodyOption3 == 102) bodyPower += 0.06;
 	if (bodyOption3 == 105) bodyPower += 0.06;
 	if (bodyOption3 == 108) bodyPower += 0.06;
+	if (bodyOption3 == 109) bodyPower += 0.06;
 	var bodyPowerloss = 1.0 + awakePowerlossPer;
 	if (bodyOption1 == 22) bodyPowerloss -= 0.1;
 	if (bodyOption1 == 111) bodyPowerloss -= 0.08;
@@ -1061,14 +1064,17 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	if (resultValueKai[20] != 0 && bodyOption1 == 31) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 80) bodyOffload += 25000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 94) bodyOffload += 15000.0;
+	if (resultValueKai[20] != 0 && bodyOption1 == 109) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 129) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption1 == 132) bodyOffload += 20000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 9) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 19) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption2 == 89) bodyOffload += 10000.0;
+	if (resultValueKai[20] != 0 && bodyOption2 == 109) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 9) bodyOffload += 10000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 19) bodyOffload += 15000.0;
 	if (resultValueKai[20] != 0 && bodyOption3 == 89) bodyOffload += 10000.0;
+	if (resultValueKai[20] != 0 && bodyOption3 == 109) bodyOffload += 10000.0;
 	//diagnosis[diagnosisValue[17]] = Math.max(speedValue2 * (1.0 - (1.0 - Math.min(bodyOffload + resultValueKai[20], 10000.0) / 10000.0) * weightValue / acceleValue2 / 58.0), speedValue2 / 5.0) * 3.6;
 	var shibaFuka = (1.0 - Math.min((bodyOffload + resultValueKai[20]) * Math.pow(sectiondown, sectionnum - 1), 10000.0) / 10000.0) * weightValue * 0.068 * (weightValue * rtirekeiValue / 2.0) / (10.0 * (bodyPower * resultValueKai[2] + awakePower * awakeBodyPowerPer) * (resultValueKai[21] * awakeGearPer));
 	diagnosis[diagnosisValue[17]] = Math.max(speedValue * (spowerValue - shibaFuka), speedValue2 / 5.0) * 3.6;
@@ -1202,6 +1208,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
 	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / ((0.9 * 0.9 + 0.8 * 0.8) * speedValue2 * speedValue2 * weightValue * 0.45); //0.458 0.573 0.688
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / (0.9 * 0.9 * speedValue2 * speedValue2 * weightValue * 0.8); //0.458 0.573 0.688
+	//カーブ耐久
+	diagnosis[diagnosisValue[43]] = resultValueKai[28] * 10.0;
+	//ジャンプ耐久
+	diagnosis[diagnosisValue[44]] = resultValueKai[29] * 10.0 * (1.3 + -0.02 * Math.abs(gravityValue) + 2.0e-4 * Math.pow(Math.abs(gravityValue), 2));
 
 	//コーナー減速率
 	var bodyCornerdecele = 1.0; //旋回
@@ -1480,6 +1490,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.0004 * gravityValue + aeroGain * (bodyAerodf + resultValueKai[9]);
 	if (jumpValue == 0.001 || boundtimeValue < 0.001) boundtimeValue = 0.001;
 	diagnosis[diagnosisValue[8]] = hanpatsuStr + boundtimeValue;
+
+	// 制振
+	diagnosis[diagnosisValue[42]] = seishinValue;
 
 	for (var i = 0; i < diagnosisValue.length; i++) {
 		if (diagnosis[diagnosisValue[i]] != "" && Math.abs(diagnosis[diagnosisValue[i]]) < 0.00000000000001) diagnosis[diagnosisValue[i]] = 0;
