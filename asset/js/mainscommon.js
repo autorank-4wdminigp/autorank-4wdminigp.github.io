@@ -1208,6 +1208,10 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.5975 / (speedValue2 * speedValue2 * weightValue * 0.42); //0.4825 0.5975 0.7125 0.458 0.573 0.688
 	diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / ((0.9 * 0.9 + 0.8 * 0.8) * speedValue2 * speedValue2 * weightValue * 0.45); //0.458 0.573 0.688
 	//diagnosis[diagnosisValue[25]] = staminaValue * staminaValue * 0.573 / (0.9 * 0.9 * speedValue2 * speedValue2 * weightValue * 0.8); //0.458 0.573 0.688
+	//カーブ耐久
+	diagnosis[diagnosisValue[43]] = resultValueKai[28] * 10.0;
+	//ジャンプ耐久
+	diagnosis[diagnosisValue[44]] = resultValueKai[29] * 10.0 * (1.3 + -0.02 * Math.abs(gravityValue) + 2.0e-4 * Math.pow(Math.abs(gravityValue), 2));
 
 	//コーナー減速率
 	var bodyCornerdecele = 1.0; //旋回
@@ -1486,6 +1490,9 @@ function Diagnosis_Calc(resultValueKai, shindantire, shindantirekei, awakecalc, 
 	var boundtimeValue = 2.0 * slopeSpeed * Math.sin(slopeAngle * (Math.PI / 180.0)) * hanpatsuValue / (1.0 - hanpatsuValue) / 9.80665 - 0.0004 * gravityValue + aeroGain * (bodyAerodf + resultValueKai[9]);
 	if (jumpValue == 0.001 || boundtimeValue < 0.001) boundtimeValue = 0.001;
 	diagnosis[diagnosisValue[8]] = hanpatsuStr + boundtimeValue;
+
+	// 制振
+	diagnosis[diagnosisValue[42]] = seishinValue;
 
 	for (var i = 0; i < diagnosisValue.length; i++) {
 		if (diagnosis[diagnosisValue[i]] != "" && Math.abs(diagnosis[diagnosisValue[i]]) < 0.00000000000001) diagnosis[diagnosisValue[i]] = 0;

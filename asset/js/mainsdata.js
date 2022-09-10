@@ -7,23 +7,22 @@ var nameCalc = new Array(0, 1, 2, 3, 4, 4, 5, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9
 var nameUpdate = new Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1);
 var nameZero = new Array(0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
+//タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
+//11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
+//21:ギヤ比, 22:消費電流, 23:ブレーキ減速, 24:スタビ減速, 25:デジタル, 26:耐風, 27:耐水, 28:耐カーブ, 29:耐ジャンプ, 30:トレッド
+//31:ホイールベース, 32:ローラー幅, 33:ローラーベース, 34:タイヤ旋回ダウン, 35:コーナー安定ダウン, 36:スタミナ耐久ダウン, 37:着地減速抑制, 38:モーター重心, 39:バッテリー重心, 40:耐雪
+//41:耐ブレーキ改善(雪), 42:節電ダウン
 var typeValue = new Array("", "speed", "power", "corner", "stamina", "weight", "gearfuka", "powerloss", "speedloss", "aerodf", "setsuden", "seishin", "thrust", "tiremasatsu", "tiresenkai", "tirehanpatsu", "tirekei", "rollermasatsu", "rollerteikou", "wave", "offload", "gearrate", "ampere", "brake", "stabilizer", "digital", "taifuu", "taisui", "curvestamina", "jumpstamina", "tread", "wheelbase", "rollerwidth", "rollerbase", "tiresenkaidown", "cornerdown", "staminadown", "antilandspeed", "motergravity", "batterygravity", "taiyuki", "taiyukibrake", "setsudendown", "total");
 var typeView = new Array("", "スピード ", "パワー ", "コーナー安定 ", "スタミナ耐久 ", "重さ ", "ギヤ負荷 ", "パワーロス ", "スピードロス ", "ｴｱﾛﾀﾞｳﾝﾌｫｰｽ ", "節電 ", "制振 ", "スラスト角 ", "タイヤ摩擦 ", "タイヤ旋回 ", "タイヤ反発 ", "タイヤ径 ", "ローラー摩擦 ", "ローラー抵抗 ", "ウェーブ ", "オフロード ", "ギヤ比 ", "消費電流 ", "ブレーキ減速 ", "スタビ減速 ", "デジタル ", "耐風 ", "耐水 ", "耐カーブ ", "耐ジャンプ ", "トレッド ", "ﾎｲｰﾙﾍﾞｰｽ ", "ローラー幅 ", "ﾛｰﾗｰﾍﾞｰｽ ", "ﾀｲﾔ旋回ﾀﾞｳﾝ ", "ｺｰﾅｰ安定ﾀﾞｳﾝ ", "ｽﾀﾐﾅ耐久ﾀﾞｳﾝ ", "着地減速抑制 ", "モーター重心 ", "バッテリー重心 ", "耐雪 ", "耐ﾌﾞﾚｰｷ改善(雪) ", "節電ダウン ", "総合評価 ");
 
-var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h", "dia16taifuu_h", "dia17offload_h", "dia18offloaddirt_h", "dia19taisuikuuten_h", "dia20cornerspeed_h", "dia21raincornerspeed_h", "dia22arrivaltime95", "dia23time100m", "dia24stamina", "dia25staminascore", "dia26time25m", "dia27time50m", "dia28ampere", "dia29speed25dec", "dia30speed10s", "dia31speed20s", "dia32cornerin", "dia33cornerdecele", "dia34cornerdecele", "dia35cornerdecele", "dia36offroad", "dia38wave", "dia39digital", "dia40taifuu", "dia41aerodf", "dia42taisui");
-var diagnosisView = new Array("最高速度(時速) ", "最高速度(秒速) ", "バッテリー消費量<font color='#FFA500'>※6</font> ", "加速度(毎秒) ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ ", "コーナー減速率(仮)<font color='#FFA500'>※4</font> ", "(調整中)ジャンプ飛距離(仮)<font color='#FFA500'>※3</font> ", "(調整中)バウンド時間(仮)<font color='#FFA500'>※5</font> ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "(調整中)空転目安(時速) ", "耐風最高速(時速) ", "芝最高速(時速) ", "ダート最高速(時速) ", "(調整中)耐水空転目安(時速) ", "(調整中)ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "(調整中)雨ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "最高速95%到達時間(秒) ", "100m走(仮)(秒) ", "ﾃﾞｼﾞﾀﾙｶｰﾌﾞ耐久目安 ", "ﾃﾞｼﾞﾀﾙｶｰﾌﾞ耐久ｽｺｱ(仮) ", "25m走(仮)(秒) ", "50m走(仮)(秒) ", "消費電流量(仮)(毎秒)<font color='#FFA500'>※6</font> ", "最高速25%減少時間(仮)(秒) ", "10秒後最高速度(仮)(時速) ", "20秒後最高速度(仮)(時速) ", "(調整中)コーナー安定(進入)目安 ", "最内側減速率(仮) ", "最外側減速率(仮) ", "ﾚｰｽでのｺｰﾅｰ減速率(仮) ", "オフロード ", "ウェーブ ", "デジタル ", "耐風 ", "エアロダウンフォース ", "耐水 ");
+var diagnosisValue = new Array("dia0speed_h", "dia1speed_s", "dia2battery", "dia3accele", "dia4arrivaltime", "dia5tiregrip", "dia6cornerdecele", "dia7jump", "dia8boundtime", "dia9gravity", "dia10rollerangle", "dia11weight", "dia12brake", "dia13rollermasatsu", "dia14rollerteikou", "dia15kuuten_h", "dia16taifuu_h", "dia17offload_h", "dia18offloaddirt_h", "dia19taisuikuuten_h", "dia20cornerspeed_h", "dia21raincornerspeed_h", "dia22arrivaltime95", "dia23time100m", "dia24stamina", "dia25staminascore", "dia26time25m", "dia27time50m", "dia28ampere", "dia29speed25dec", "dia30speed10s", "dia31speed20s", "dia32cornerin", "dia33cornerdecele", "dia34cornerdecele", "dia35cornerdecele", "dia36offroad", "dia38wave", "dia39digital", "dia40taifuu", "dia41aerodf", "dia42taisui", "dia43seishin", "dia44curvestamina", "dia45jumpstamina");
+var diagnosisView = new Array("最高速度(時速) ", "最高速度(秒速) ", "バッテリー消費量<font color='#FFA500'>※6</font> ", "加速度(毎秒) ", "最高速到達時間(秒)<font color='#FFA500'>※6</font> ", "タイヤグリップ ", "コーナー減速率(仮)<font color='#FFA500'>※4</font> ", "(調整中)ジャンプ飛距離(仮)<font color='#FFA500'>※3</font> ", "(調整中)バウンド時間(仮)<font color='#FFA500'>※5</font> ", "前後の重心 ", "ローラースラスト角 ", "重さ ", "ブレーキ性能 ", "有効ローラー摩擦 ", "有効ローラー抵抗 ", "(調整中)空転目安(時速) ", "耐風最高速(時速) ", "芝最高速(時速) ", "ダート最高速(時速) ", "(調整中)耐水空転目安(時速) ", "(調整中)ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "(調整中)雨ｺｰﾅｰｵﾊﾞｽﾋﾟ目安(仮)(時速) ", "最高速95%到達時間(秒) ", "100m走(仮)(秒) ", "ﾃﾞｼﾞﾀﾙｶｰﾌﾞ耐久目安 ", "ﾃﾞｼﾞﾀﾙｶｰﾌﾞ耐久ｽｺｱ(仮) ", "25m走(仮)(秒) ", "50m走(仮)(秒) ", "消費電流量(仮)(毎秒)<font color='#FFA500'>※6</font> ", "最高速25%減少時間(仮)(秒) ", "10秒後最高速度(仮)(時速) ", "20秒後最高速度(仮)(時速) ", "(調整中)コーナー安定(進入)目安 ", "最内側減速率(仮) ", "最外側減速率(仮) ", "ﾚｰｽでのｺｰﾅｰ減速率(仮) ", "オフロード ", "ウェーブ ", "デジタル ", "耐風 ", "エアロダウンフォース ", "耐水 ", "制振 ", "耐カーブ ", "耐ジャンプ<font color='#FFA500'>※9</font> ");
 
 var slotNum = 7;
 var addStatusNum = 5; //1:適正, 2:特性, 3:レーザーパーツ, 4:覚醒, 5:
 
 var addTypeValue = new Array("", "", "", "", "", "");
 var addTypeView = new Array("", "", "", "", "", "");
-
-//タイプ 1:スピード, 2:パワー, 3:コーナー安定, 4:スタミナ耐久, 5:重さ, 6:ギヤ負荷, 7:パワーロス, 8:スピードロス, 9:エアロダウンフォース, 10:節電
-//11:制振, 12:スラスト角, 13:タイヤ摩擦, 14:タイヤ旋回, 15:タイヤ反発, 16:タイヤ径, 17:ローラー摩擦, 18:ローラー抵抗, 19:ウェーブ, 20:オフロード
-//21:ギヤ比, 22:消費電流, 23:ブレーキ減速, 24:スタビ減速, 25:デジタル, 26:耐風, 27:耐水, 28:耐カーブ, 29:耐ジャンプ, 30:トレッド
-//31:ホイールベース, 32:ローラー幅, 33:ローラーベース, 34:タイヤ旋回ダウン, 35:コーナー安定ダウン, 36:スタミナ耐久ダウン, 37:着地減速抑制, 38:モーター重心, 39:バッテリー重心, 40:耐雪
-//41:耐ブレーキ改善(雪), 42:節電ダウン
 
 var s;
 var typeSelect = new Array();
